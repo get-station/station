@@ -41,22 +41,19 @@ export async function fetchUserInfo({ connectionId }: { connectionId?: string } 
                 workspaces: {
                     id: true,
                     createdAt: true,
-                    subscriptionModel: true,
-                    team: {
-                        id: true,
-                        name: true,
-                        avatar: true,
-                        projects: {
-                            edges: {
-                                node: {
-                                    id: true,
-                                    name: true,
-                                    services: {
-                                        edges: {
-                                            node: {
-                                                id: true,
-                                                name: true,
-                                            },
+                    plan: true,
+                    name: true,
+                    avatar: true,
+                    projects: {
+                        edges: {
+                            node: {
+                                id: true,
+                                name: true,
+                                services: {
+                                    edges: {
+                                        node: {
+                                            id: true,
+                                            name: true,
                                         },
                                     },
                                 },
@@ -70,22 +67,6 @@ export async function fetchUserInfo({ connectionId }: { connectionId?: string } 
                 registrationStatus: true,
                 termsAgreedOn: true,
                 // isEligibleForFreeHobbyPlan: true,
-                projects: {
-                    edges: {
-                        node: {
-                            id: true,
-                            name: true,
-                            services: {
-                                edges: {
-                                    node: {
-                                        id: true,
-                                        name: true,
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
             },
         })
 

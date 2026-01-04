@@ -2,253 +2,370 @@ export default {
     "scalars": [
         1,
         2,
-        10,
-        12,
-        13,
-        14,
-        15,
+        3,
         17,
         19,
-        23,
-        32,
-        33,
-        34,
-        36,
-        40,
-        45,
-        47,
-        50,
-        55,
-        73,
-        83,
-        88,
-        99,
-        101,
+        20,
+        21,
+        22,
+        24,
+        25,
+        27,
+        31,
+        42,
+        43,
+        44,
+        46,
+        52,
+        57,
+        59,
+        62,
+        67,
+        76,
+        84,
+        89,
+        97,
         102,
-        110,
-        112,
+        104,
+        115,
+        117,
         118,
-        120,
-        121,
+        126,
+        128,
         134,
-        147,
-        148,
-        185,
-        194,
-        203,
-        249,
-        252,
-        255,
-        260,
-        261,
-        263,
-        274,
-        285,
-        288,
-        292,
+        136,
+        137,
+        140,
+        141,
+        142,
+        150,
+        151,
+        154,
+        155,
+        156,
+        165,
+        171,
+        175,
+        177,
+        179,
+        186,
+        187,
+        226,
+        236,
+        244,
         293,
-        294,
-        295,
-        296,
-        310,
-        319,
-        329,
-        332,
+        299,
+        304,
+        306,
+        307,
+        311,
+        312,
+        313,
+        325,
         336,
-        337,
-        343,
+        339,
+        340,
+        344,
         345,
         346,
-        352,
-        380,
-        381,
-        383,
-        391,
+        347,
+        348,
+        349,
+        357,
+        360,
+        369,
+        373,
+        377,
+        378,
+        385,
+        386,
+        387,
         392,
-        395
+        417,
+        422,
+        426,
+        429,
+        432
     ],
     "types": {
         "AccessRule": {
             "disallowed": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ActiveFeatureFlag": {},
+        "ActivePlatformFlag": {},
         "ActiveServiceFeatureFlag": {},
         "AdoptionInfo": {
             "adoptionLevel": [
-                88
+                102
             ],
             "createdAt": [
-                36
-            ],
-            "customer": [
-                299
+                46
             ],
             "deltaLevel": [
-                88
+                102
             ],
             "id": [
-                99
+                115
             ],
             "matchedIcpEmail": [
-                288
+                340
             ],
             "monthlyEstimatedUsage": [
-                88
+                102
             ],
             "numConfigFile": [
-                102
+                118
             ],
             "numCronSchedule": [
-                102
+                118
             ],
             "numDeploys": [
-                102
+                118
             ],
             "numEnvs": [
-                102
+                118
             ],
             "numFailedDeploys": [
-                102
+                118
             ],
             "numHealthcheck": [
-                102
+                118
             ],
             "numIconConfig": [
-                102
+                118
             ],
             "numRegion": [
-                102
+                118
             ],
             "numReplicas": [
-                102
+                118
             ],
             "numRootDirectory": [
-                102
+                118
             ],
             "numSeats": [
-                102
+                118
             ],
             "numServices": [
-                102
-            ],
-            "numSupportRequests": [
-                102
+                118
             ],
             "numVariables": [
-                102
+                118
             ],
             "numWatchPatterns": [
-                102
+                118
             ],
             "totalCores": [
-                88
+                102
             ],
             "totalDisk": [
-                88
+                102
             ],
             "totalNetwork": [
-                88
+                102
             ],
             "updatedAt": [
-                36
+                46
+            ],
+            "workspace": [
+                430
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "AggregatedUsage": {
             "measurement": [
-                120
+                136
             ],
             "tags": [
-                122
+                138
             ],
             "value": [
-                88
+                102
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "AllDomains": {
             "customDomains": [
-                24
+                32
             ],
             "serviceDomains": [
-                269
+                320
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ApiToken": {
             "displayToken": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ApiTokenContext": {
+            "workspaces": [
+                11
+            ],
+            "__typename": [
+                340
             ]
         },
         "ApiTokenCreateInput": {
             "name": [
-                288
+                340
             ],
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "BanReasonHistory": {
-            "actor": [
-                350
+        "ApiTokenRateLimit": {
+            "remainingPoints": [
+                118
             ],
-            "banReason": [
-                288
-            ],
-            "createdAt": [
-                36
-            ],
-            "id": [
-                99
+            "resetsAt": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ApiTokenWorkspace": {
+            "id": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "AppliedByMember": {
+            "avatar": [
+                340
+            ],
+            "email": [
+                340
+            ],
+            "id": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "username": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "AuditLog": {
+            "context": [
+                126
+            ],
+            "createdAt": [
+                46
+            ],
+            "environment": [
+                75
+            ],
+            "environmentId": [
+                340
+            ],
+            "eventType": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "payload": [
+                126
+            ],
+            "project": [
+                197
+            ],
+            "projectId": [
+                340
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "AuditLogEventTypeInfo": {
+            "description": [
+                340
+            ],
+            "eventType": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "AuditLogFilterInput": {
+            "endDate": [
+                46
+            ],
+            "environmentId": [
+                340
+            ],
+            "eventTypes": [
+                340
+            ],
+            "projectId": [
+                340
+            ],
+            "startDate": [
+                46
+            ],
+            "__typename": [
+                340
             ]
         },
         "BaseEnvironmentOverrideInput": {
             "baseEnvironmentOverrideId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "BigInt": {},
         "BillingPeriod": {
             "end": [
-                36
+                46
             ],
             "start": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Boolean": {},
@@ -257,366 +374,437 @@ export default {
         "CanvasConfig": {},
         "CertificatePublicData": {
             "domainNames": [
-                288
+                340
             ],
             "expiresAt": [
-                36
+                46
             ],
             "fingerprintSha256": [
-                288
+                340
             ],
             "issuedAt": [
-                36
+                46
             ],
             "keyType": [
-                112
+                128
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CertificateStatus": {},
+        "CertificateStatusDetailed": {},
         "CnameCheck": {
             "link": [
-                288
+                340
             ],
             "message": [
-                288
+                340
             ],
             "status": [
-                19
+                27
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CnameCheckStatus": {},
-        "Container": {
-            "createdAt": [
-                36
+        "ComplianceAgreementsInfo": {
+            "hasBAA": [
+                19
             ],
-            "deletedAt": [
-                36
-            ],
-            "environment": [
-                62
-            ],
-            "environmentId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "migratedAt": [
-                36
-            ],
-            "plugin": [
-                142
-            ],
-            "pluginId": [
-                288
+            "hasDPA": [
+                19
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "Container": {
+            "createdAt": [
+                46
+            ],
+            "deletedAt": [
+                46
+            ],
+            "environment": [
+                75
+            ],
+            "environmentId": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "migratedAt": [
+                46
+            ],
+            "plugin": [
+                181
+            ],
+            "pluginId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "Credit": {
             "amount": [
-                88
+                102
             ],
             "createdAt": [
-                36
+                46
             ],
             "customerId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "memo": [
-                288
+                340
             ],
             "type": [
-                23
+                31
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
-            ]
-        },
-        "CreditTransferMetrics": {
-            "creditTransferAvg": [
-                88
-            ],
-            "creditTransferCount": [
-                102
-            ],
-            "creditTransferSum": [
-                102
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "CreditType": {},
         "CustomDomain": {
             "cnameCheck": [
-                18
-            ],
-            "createdAt": [
-                36
-            ],
-            "deletedAt": [
-                36
-            ],
-            "domain": [
-                288
-            ],
-            "environmentId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "projectId": [
-                288
-            ],
-            "serviceId": [
-                288
-            ],
-            "status": [
                 26
             ],
+            "createdAt": [
+                46
+            ],
+            "deletedAt": [
+                46
+            ],
+            "domain": [
+                340
+            ],
+            "edgeId": [
+                340
+            ],
+            "environmentId": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "projectId": [
+                340
+            ],
+            "serviceId": [
+                340
+            ],
+            "status": [
+                34
+            ],
             "targetPort": [
-                102
+                118
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CustomDomainCreateInput": {
             "domain": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "targetPort": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CustomDomainStatus": {
             "cdnProvider": [
-                14
+                21
             ],
             "certificateStatus": [
-                17
+                24
+            ],
+            "certificateStatusDetailed": [
+                25
             ],
             "certificates": [
-                16
+                23
             ],
             "dnsRecords": [
-                35
+                45
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Customer": {
             "appliedCredits": [
-                88
+                102
+            ],
+            "billingAddress": [
+                36
             ],
             "billingEmail": [
-                288
+                340
             ],
             "billingPeriod": [
-                11
+                18
             ],
             "creditBalance": [
-                88
+                102
             ],
             "credits": [
-                28,
+                37,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
+            "currentUsage": [
+                102
+            ],
             "defaultPaymentMethod": [
-                138
+                173
             ],
             "defaultPaymentMethodId": [
-                288
+                340
+            ],
+            "hasExhaustedFreePlan": [
+                19
             ],
             "id": [
-                99
+                115
             ],
             "invoices": [
-                30
+                39
             ],
             "isPrepaying": [
-                12
+                19
             ],
             "isTrialing": [
-                12
+                19
             ],
             "isUsageSubscriber": [
-                12
+                19
             ],
             "isWithdrawingToCredits": [
-                12
+                19
             ],
             "planLimitOverride": [
-                140
+                176
             ],
             "remainingUsageCreditBalance": [
-                88
+                102
             ],
             "state": [
-                295
-            ],
-            "stripeCustomerId": [
-                288
-            ],
-            "subscriptions": [
-                31
-            ],
-            "teamId": [
-                288
-            ],
-            "usageLimit": [
                 347
             ],
-            "userId": [
-                288
+            "stripeCustomerId": [
+                340
+            ],
+            "subscriptions": [
+                40
+            ],
+            "supportedWithdrawalPlatforms": [
+                426
+            ],
+            "taxIds": [
+                41
+            ],
+            "trialDaysRemaining": [
+                118
+            ],
+            "usageLimit": [
+                388
             ],
             "workspace": [
-                396
+                430
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "CustomerAddress": {
+            "city": [
+                340
+            ],
+            "country": [
+                340
+            ],
+            "line1": [
+                340
+            ],
+            "line2": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "postalCode": [
+                340
+            ],
+            "state": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "CustomerCreditsConnection": {
             "edges": [
-                29
+                38
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CustomerCreditsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                21
+                30
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "CustomerInvoice": {
-            "amountPaid": [
-                88
-            ],
-            "hostedURL": [
-                288
-            ],
-            "invoiceId": [
-                288
-            ],
-            "items": [
-                291
-            ],
-            "paymentIntentStatus": [
-                288
-            ],
-            "pdfURL": [
-                288
-            ],
-            "periodEnd": [
-                288
-            ],
-            "periodStart": [
-                288
-            ],
-            "status": [
-                288
-            ],
-            "subscriptionId": [
-                288
-            ],
-            "total": [
+            "amountDue": [
                 102
             ],
+            "amountPaid": [
+                102
+            ],
+            "hostedURL": [
+                340
+            ],
+            "invoiceId": [
+                340
+            ],
+            "items": [
+                343
+            ],
+            "lastPaymentError": [
+                340
+            ],
+            "paymentIntentStatus": [
+                340
+            ],
+            "pdfURL": [
+                340
+            ],
+            "periodEnd": [
+                340
+            ],
+            "periodStart": [
+                340
+            ],
+            "reissuedInvoiceFrom": [
+                340
+            ],
+            "reissuedInvoiceOf": [
+                340
+            ],
+            "status": [
+                340
+            ],
+            "subscriptionId": [
+                340
+            ],
+            "subscriptionStatus": [
+                340
+            ],
+            "total": [
+                118
+            ],
             "__typename": [
-                288
+                340
             ]
         },
         "CustomerSubscription": {
             "billingCycleAnchor": [
-                36
+                46
             ],
             "cancelAt": [
-                288
+                340
             ],
             "cancelAtPeriodEnd": [
-                12
+                19
             ],
             "couponId": [
-                288
+                340
             ],
             "discounts": [
-                290
+                342
             ],
             "id": [
-                288
+                340
             ],
             "items": [
-                291
+                343
             ],
             "latestInvoiceId": [
-                288
+                340
             ],
             "nextInvoiceCurrentTotal": [
-                102
+                118
             ],
             "nextInvoiceDate": [
-                288
+                340
             ],
             "status": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "CustomerTaxId": {
+            "id": [
+                340
+            ],
+            "type": [
+                340
+            ],
+            "value": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "DNSRecordPurpose": {},
@@ -624,840 +812,988 @@ export default {
         "DNSRecordType": {},
         "DNSRecords": {
             "currentValue": [
-                288
+                340
             ],
             "fqdn": [
-                288
+                340
             ],
             "hostlabel": [
-                288
+                340
             ],
             "purpose": [
-                32
+                42
             ],
             "recordType": [
-                34
+                44
             ],
             "requiredValue": [
-                288
+                340
             ],
             "status": [
-                33
+                43
             ],
             "zone": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DateTime": {},
         "Deployment": {
             "canRedeploy": [
-                12
+                19
             ],
             "canRollback": [
-                12
+                19
             ],
             "createdAt": [
-                36
+                46
             ],
             "creator": [
-                350
+                48
             ],
             "deploymentStopped": [
-                12
+                19
             ],
             "environment": [
-                62
+                75
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
-            "meta": [
-                47
-            ],
-            "projectId": [
-                288
-            ],
-            "service": [
-                264
-            ],
-            "serviceId": [
-                288
-            ],
-            "snapshotId": [
-                288
-            ],
-            "sockets": [
+            "instances": [
                 49
             ],
+            "meta": [
+                59
+            ],
+            "projectId": [
+                340
+            ],
+            "service": [
+                314
+            ],
+            "serviceId": [
+                340
+            ],
+            "snapshotId": [
+                340
+            ],
+            "sockets": [
+                61
+            ],
             "staticUrl": [
-                288
+                340
             ],
             "status": [
-                50
+                62
+            ],
+            "statusUpdatedAt": [
+                46
             ],
             "suggestAddServiceDomain": [
-                12
+                19
             ],
             "updatedAt": [
-                36
+                46
             ],
             "url": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "DeploymentCreator": {
+            "avatar": [
+                340
+            ],
+            "email": [
+                340
+            ],
+            "id": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "DeploymentDeploymentInstance": {
+            "id": [
+                340
+            ],
+            "status": [
+                57
+            ],
+            "__typename": [
+                340
             ]
         },
         "DeploymentEvent": {
             "completedAt": [
-                36
+                46
             ],
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "payload": [
-                39
+                51
             ],
             "step": [
-                40
+                52
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentEventPayload": {
             "error": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentEventStep": {},
         "DeploymentInstanceExecution": {
             "completedAt": [
-                36
+                46
             ],
             "createdAt": [
-                36
+                46
             ],
             "deploymentId": [
-                288
+                340
             ],
             "deploymentMeta": [
-                47
+                59
             ],
             "id": [
-                99
+                115
             ],
             "status": [
-                45
+                57
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentInstanceExecutionCreateInput": {
             "serviceInstanceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentInstanceExecutionInput": {
             "deploymentId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentInstanceExecutionListInput": {
             "environmentId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentInstanceStatus": {},
         "DeploymentListInput": {
             "environmentId": [
-                288
+                340
             ],
             "includeDeleted": [
-                12
+                19
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "status": [
-                51
+                63
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentMeta": {},
         "DeploymentSnapshot": {
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "updatedAt": [
-                36
+                46
             ],
             "variables": [
-                73
+                89
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentSocket": {
             "ipv6": [
-                12
+                19
             ],
             "port": [
-                102
+                118
             ],
             "processName": [
-                288
+                340
             ],
             "updatedAt": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentStatus": {},
         "DeploymentStatusInput": {
             "in": [
-                50
+                62
             ],
             "notIn": [
-                50
+                62
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentTrigger": {
             "baseEnvironmentOverrideId": [
-                288
+                340
             ],
             "branch": [
-                288
+                340
             ],
             "checkSuites": [
-                12
+                19
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "projectId": [
-                288
+                340
             ],
             "provider": [
-                288
+                340
             ],
             "repository": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "validCheckSuites": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentTriggerCreateInput": {
             "branch": [
-                288
+                340
             ],
             "checkSuites": [
-                12
+                19
             ],
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "provider": [
-                288
+                340
             ],
             "repository": [
-                288
+                340
             ],
             "rootDirectory": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DeploymentTriggerUpdateInput": {
             "branch": [
-                288
+                340
             ],
             "checkSuites": [
-                12
+                19
             ],
             "repository": [
-                288
+                340
             ],
             "rootDirectory": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DisplayConfig": {},
-        "Domain": {
-            "createdAt": [
-                36
+        "DockerComposeImport": {
+            "errors": [
+                340
             ],
-            "deletedAt": [
-                36
-            ],
-            "domain": [
-                288
-            ],
-            "environmentId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "projectId": [
-                288
-            ],
-            "serviceId": [
-                288
-            ],
-            "targetPort": [
-                102
-            ],
-            "updatedAt": [
-                36
-            ],
-            "on_CustomDomain": [
-                24
-            ],
-            "on_ServiceDomain": [
-                269
+            "patch": [
+                76
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "Domain": {
+            "createdAt": [
+                46
+            ],
+            "deletedAt": [
+                46
+            ],
+            "domain": [
+                340
+            ],
+            "edgeId": [
+                340
+            ],
+            "environmentId": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "projectId": [
+                340
+            ],
+            "serviceId": [
+                340
+            ],
+            "targetPort": [
+                118
+            ],
+            "updatedAt": [
+                46
+            ],
+            "on_CustomDomain": [
+                32
+            ],
+            "on_ServiceDomain": [
+                320
+            ],
+            "__typename": [
+                340
             ]
         },
         "DomainAvailable": {
             "available": [
-                12
+                19
             ],
             "message": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "DomainWithStatus": {
             "cdnProvider": [
-                14
+                21
             ],
             "certificateStatus": [
-                17
+                24
+            ],
+            "certificateStatusDetailed": [
+                25
             ],
             "certificates": [
-                16
+                23
             ],
             "dnsRecords": [
-                35
+                45
             ],
             "domain": [
-                56
+                69
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EgressGateway": {
             "ipv4": [
-                288
+                340
             ],
             "region": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EgressGatewayCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "region": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EgressGatewayServiceTargetInput": {
             "environmentId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Environment": {
+            "canAccess": [
+                19
+            ],
+            "config": [
+                76,
+                {
+                    "decryptVariables": [
+                        19
+                    ]
+                }
+            ],
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "deploymentTriggers": [
-                64,
+                78,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "deployments": [
-                66,
+                80,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "id": [
-                99
+                115
             ],
             "isEphemeral": [
-                12
+                19
             ],
             "meta": [
-                68
+                82
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceInstances": [
-                70,
+                86,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "sourceEnvironment": [
-                62
+                75
             ],
             "unmergedChangesCount": [
-                102
+                118
             ],
             "updatedAt": [
-                36
+                46
             ],
             "variables": [
-                74,
+                90,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "volumeInstances": [
-                76,
+                92,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
+        "EnvironmentConfig": {},
         "EnvironmentCreateInput": {
+            "applyChangesInBackground": [
+                19
+            ],
             "ephemeral": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "skipInitialDeploys": [
-                12
+                19
             ],
             "sourceEnvironmentId": [
-                288
+                340
             ],
             "stageInitialChanges": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentDeploymentTriggersConnection": {
             "edges": [
-                65
+                79
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentDeploymentTriggersConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                52
+                64
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentDeploymentsConnection": {
             "edges": [
-                67
+                81
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentDeploymentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                37
+                47
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentMeta": {
             "baseBranch": [
-                288
+                340
             ],
             "branch": [
-                288
+                340
+            ],
+            "latestSuccessfulGitHubDeploymentId": [
+                118
             ],
             "prCommentId": [
-                102
+                118
             ],
             "prNumber": [
-                102
+                118
             ],
             "prRepo": [
-                288
+                340
             ],
             "prTitle": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "EnvironmentRenameInput": {
-            "name": [
-                288
+        "EnvironmentPatch": {
+            "appliedAt": [
+                46
+            ],
+            "appliedBy": [
+                12
+            ],
+            "createdAt": [
+                46
+            ],
+            "environment": [
+                75
+            ],
+            "environmentId": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "lastAppliedError": [
+                340
+            ],
+            "message": [
+                340
+            ],
+            "patch": [
+                76,
+                {
+                    "decryptVariables": [
+                        19
+                    ]
+                }
+            ],
+            "status": [
+                84
+            ],
+            "updatedAt": [
+                46
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "EnvironmentPatchStatus": {},
+        "EnvironmentRenameInput": {
+            "name": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "EnvironmentServiceInstancesConnection": {
             "edges": [
-                71
+                87
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentServiceInstancesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                273
+                324
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentTriggersDeployInput": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentVariables": {},
         "EnvironmentVariablesConnection": {
             "edges": [
-                75
+                91
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentVariablesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                368
+                405
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentVolumeInstancesConnection": {
             "edges": [
-                77
+                93
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "EnvironmentVolumeInstancesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                377
+                414
             ],
             "__typename": [
-                288
-            ]
-        },
-        "Errors": {
-            "errors": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "EstimatedUsage": {
             "estimatedValue": [
-                88
+                102
             ],
             "measurement": [
-                120
+                136
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Event": {
             "action": [
-                288
+                340
             ],
             "createdAt": [
-                36
+                46
             ],
             "environment": [
-                62
+                75
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "object": [
-                288
+                340
             ],
             "payload": [
-                110
+                126
             ],
             "project": [
-                161
+                197
             ],
             "projectId": [
-                288
+                340
+            ],
+            "severity": [
+                97
             ],
             "__typename": [
-                288
-            ]
-        },
-        "EventBatchTrackInput": {
-            "events": [
-                85
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "EventFilterInput": {
             "action": [
-                84
+                98
             ],
             "object": [
-                84
+                98
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "EventProperties": {},
+        "EventSeverity": {},
         "EventStringListFilter": {
             "in": [
-                288
+                340
             ],
             "notIn": [
-                288
+                340
             ],
             "__typename": [
-                288
-            ]
-        },
-        "EventTrackInput": {
-            "eventName": [
-                288
-            ],
-            "properties": [
-                83
-            ],
-            "ts": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "ExplicitOwnerInput": {
             "id": [
-                288
+                340
             ],
             "type": [
-                260
+                311
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ExternalWorkspace": {
+            "allowDeprecatedRegions": [
+                19
+            ],
+            "avatar": [
+                340
+            ],
+            "banReason": [
+                340
+            ],
+            "createdAt": [
+                46
+            ],
+            "currentSessionHasAccess": [
+                19
+            ],
+            "customerId": [
+                340
+            ],
+            "customerState": [
+                347
+            ],
+            "discordRole": [
+                340
+            ],
+            "hasBAA": [
+                19
+            ],
+            "hasRBAC": [
+                19
+            ],
+            "hasSAML": [
+                19
+            ],
+            "id": [
+                340
+            ],
+            "isTrialing": [
+                19
+            ],
+            "name": [
+                340
+            ],
+            "plan": [
+                175
+            ],
+            "preferredRegion": [
+                340
+            ],
+            "projects": [
+                197
+            ],
+            "supportTierOverride": [
+                340
+            ],
+            "teamId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "FeatureFlagToggleInput": {
@@ -1465,3399 +1801,3672 @@ export default {
                 1
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Float": {},
-        "GitHubAccess": {
-            "hasAccess": [
-                12
+        "FunctionRuntime": {
+            "image": [
+                340
             ],
-            "isPublic": [
-                12
+            "latestVersion": [
+                105
+            ],
+            "name": [
+                104
+            ],
+            "versions": [
+                105
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "FunctionRuntimeName": {},
+        "FunctionRuntimeVersion": {
+            "image": [
+                340
+            ],
+            "tag": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "GitHubAccess": {
+            "hasAccess": [
+                19
+            ],
+            "isPublic": [
+                19
+            ],
+            "__typename": [
+                340
             ]
         },
         "GitHubBranch": {
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "GitHubRepo": {
             "defaultBranch": [
-                288
+                340
+            ],
+            "description": [
+                340
             ],
             "fullName": [
-                288
+                340
             ],
             "id": [
-                102
+                118
             ],
             "installationId": [
-                288
+                340
             ],
             "isPrivate": [
-                12
+                19
             ],
             "name": [
-                288
+                340
+            ],
+            "ownerAvatarUrl": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "GitHubRepoDeployInput": {
             "branch": [
-                288
+                340
+            ],
+            "environmentId": [
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "repo": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "GitHubRepoUpdateInput": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "GitHubRepoWithoutInstallation": {
             "defaultBranch": [
-                288
+                340
+            ],
+            "description": [
+                340
             ],
             "fullName": [
-                288
+                340
             ],
             "id": [
-                102
+                118
             ],
             "isPrivate": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
-            ]
-        },
-        "HelpStationFormInput": {
-            "isPrivate": [
-                12
-            ],
-            "message": [
-                288
-            ],
-            "subject": [
-                288
-            ],
-            "topic": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "HerokuApp": {
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "HerokuImportVariablesInput": {
             "environmentId": [
-                288
+                340
             ],
             "herokuAppId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "HttpLog": {
             "clientUa": [
-                288
+                340
             ],
             "deploymentId": [
-                288
+                340
             ],
             "deploymentInstanceId": [
-                288
+                340
             ],
             "downstreamProto": [
-                288
+                340
             ],
             "edgeRegion": [
-                288
+                340
             ],
             "host": [
-                288
+                340
             ],
             "httpStatus": [
-                102
+                118
             ],
             "method": [
-                288
+                340
             ],
             "path": [
-                288
+                340
             ],
             "requestId": [
-                288
+                340
             ],
             "responseDetails": [
-                288
+                340
             ],
             "rxBytes": [
-                102
+                118
             ],
             "srcIp": [
-                288
+                340
             ],
             "timestamp": [
-                288
+                340
             ],
             "totalDuration": [
-                102
+                118
             ],
             "txBytes": [
-                102
+                118
             ],
             "upstreamAddress": [
-                288
+                340
+            ],
+            "upstreamErrors": [
+                340
             ],
             "upstreamProto": [
-                288
+                340
             ],
             "upstreamRqDuration": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ID": {},
         "Incident": {
             "id": [
-                288
+                340
             ],
             "message": [
-                288
+                340
             ],
             "status": [
-                101
+                117
             ],
             "url": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IncidentStatus": {},
         "Int": {},
         "Integration": {
             "config": [
-                110
+                126
             ],
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IntegrationAuth": {
             "id": [
-                99
+                115
             ],
             "integrations": [
-                105,
+                121,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "provider": [
-                288
+                340
             ],
             "providerId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IntegrationAuthIntegrationsConnection": {
             "edges": [
-                106
+                122
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IntegrationAuthIntegrationsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                103
+                119
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IntegrationCreateInput": {
             "config": [
-                110
+                126
             ],
             "integrationAuthId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "IntegrationUpdateInput": {
             "config": [
-                110
+                126
             ],
             "integrationAuthId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "InviteCode": {
             "code": [
-                288
+                340
             ],
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "project": [
-                161
+                197
             ],
             "projectId": [
-                288
+                340
             ],
             "role": [
-                185
+                226
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "JSON": {},
         "JobApplicationCreateInput": {
             "email": [
-                288
+                340
             ],
             "jobId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "why": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "KeyType": {},
         "Log": {
             "attributes": [
-                114
+                130
             ],
             "message": [
-                288
+                340
             ],
             "severity": [
-                288
+                340
             ],
             "tags": [
-                115
+                131
             ],
             "timestamp": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "LogAttribute": {
             "key": [
-                288
+                340
             ],
             "value": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "LogTags": {
             "deploymentId": [
-                288
+                340
             ],
             "deploymentInstanceId": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "pluginId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "snapshotId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "LoginSessionAuthInput": {
             "code": [
-                288
+                340
             ],
             "hostname": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Maintenance": {
             "id": [
-                288
+                340
             ],
             "message": [
-                288
+                340
+            ],
+            "start": [
+                46
             ],
             "status": [
-                118
+                134
             ],
             "url": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "MaintenanceStatus": {},
         "Metric": {
             "ts": [
-                102
+                118
             ],
             "value": [
-                88
+                102
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "MetricMeasurement": {},
         "MetricTag": {},
         "MetricTags": {
             "deploymentId": [
-                288
+                340
+            ],
+            "deploymentInstanceId": [
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "pluginId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
+            ],
+            "region": [
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "volumeId": [
-                288
+                340
+            ],
+            "volumeInstanceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "MetricsResult": {
             "measurement": [
-                120
+                136
             ],
             "tags": [
-                122
+                138
             ],
             "values": [
-                119
+                135
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "MissingCommandAlertInput": {
-            "page": [
-                288
+        "MonitorAlertResourceType": {},
+        "MonitorStatus": {},
+        "MonitorThresholdCondition": {},
+        "MonitorThresholdConfig": {
+            "condition": [
+                142
             ],
-            "text": [
-                288
+            "measurement": [
+                136
+            ],
+            "threshold": [
+                102
+            ],
+            "type": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Mutation": {
             "apiTokenCreate": [
-                288,
+                340,
                 {
                     "input": [
-                        7,
+                        9,
                         "ApiTokenCreateInput!"
                     ]
                 }
             ],
             "apiTokenDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "baseEnvironmentOverride": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        9,
+                        16,
                         "BaseEnvironmentOverrideInput!"
                     ]
                 }
             ],
             "customDomainCreate": [
-                24,
+                32,
                 {
                     "input": [
-                        25,
+                        33,
                         "CustomDomainCreateInput!"
                     ]
                 }
             ],
             "customDomainDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "customDomainUpdate": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "targetPort": [
-                        102
+                        118
                     ]
                 }
             ],
-            "customerMigrateToHobbyPlan": [
-                12,
+            "customerCreateFreePlanSubscription": [
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "customerTogglePayoutsToCredits": [
-                12,
+                19,
                 {
                     "customerId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        398,
+                        445,
                         "customerTogglePayoutsToCreditsInput!"
                     ]
                 }
             ],
             "deploymentApprove": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentCancel": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentInstanceExecutionCreate": [
-                12,
+                19,
                 {
                     "input": [
-                        42,
+                        54,
                         "DeploymentInstanceExecutionCreateInput!"
                     ]
                 }
             ],
             "deploymentRedeploy": [
-                37,
+                47,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "usePreviousImageTag": [
-                        12
+                        19
                     ]
                 }
             ],
             "deploymentRemove": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentRestart": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentRollback": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentStop": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentTriggerCreate": [
-                52,
+                64,
                 {
                     "input": [
-                        53,
+                        65,
                         "DeploymentTriggerCreateInput!"
                     ]
                 }
             ],
             "deploymentTriggerDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentTriggerUpdate": [
-                52,
+                64,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        54,
+                        66,
                         "DeploymentTriggerUpdateInput!"
                     ]
                 }
             ],
             "dockerComposeImport": [
-                78,
+                68,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
+                    "skipStagingPatch": [
+                        19
+                    ],
                     "yaml": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "egressGatewayAssociationCreate": [
-                59,
+                72,
                 {
                     "input": [
-                        60,
+                        73,
                         "EgressGatewayCreateInput!"
                     ]
                 }
             ],
             "egressGatewayAssociationsClear": [
-                12,
+                19,
                 {
                     "input": [
-                        61,
+                        74,
                         "EgressGatewayServiceTargetInput!"
                     ]
                 }
             ],
             "emailChangeConfirm": [
-                12,
+                19,
                 {
                     "nonce": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "emailChangeInitiate": [
-                12,
+                19,
                 {
                     "newEmail": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "environmentCreate": [
-                62,
+                75,
                 {
                     "input": [
-                        63,
+                        77,
                         "EnvironmentCreateInput!"
                     ]
                 }
             ],
             "environmentDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
+                    ]
+                }
+            ],
+            "environmentPatchCommit": [
+                340,
+                {
+                    "commitMessage": [
+                        340
+                    ],
+                    "environmentId": [
+                        340,
+                        "String!"
+                    ],
+                    "patch": [
+                        76
+                    ]
+                }
+            ],
+            "environmentPatchCommitStaged": [
+                340,
+                {
+                    "commitMessage": [
+                        340
+                    ],
+                    "environmentId": [
+                        340,
+                        "String!"
+                    ],
+                    "skipDeploys": [
+                        19
                     ]
                 }
             ],
             "environmentRename": [
-                62,
+                75,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        69,
+                        85,
                         "EnvironmentRenameInput!"
                     ]
                 }
             ],
+            "environmentStageChanges": [
+                83,
+                {
+                    "environmentId": [
+                        340,
+                        "String!"
+                    ],
+                    "input": [
+                        76,
+                        "EnvironmentConfig!"
+                    ]
+                }
+            ],
             "environmentTriggersDeploy": [
-                12,
+                19,
                 {
                     "input": [
-                        72,
+                        88,
                         "EnvironmentTriggersDeployInput!"
                     ]
                 }
             ],
-            "eventBatchTrack": [
-                12,
-                {
-                    "input": [
-                        81,
-                        "EventBatchTrackInput!"
-                    ]
-                }
-            ],
-            "eventTrack": [
-                12,
-                {
-                    "input": [
-                        85,
-                        "EventTrackInput!"
-                    ]
-                }
-            ],
             "fairUseAgree": [
-                12,
+                19,
                 {
                     "agree": [
-                        12,
+                        19,
                         "Boolean!"
                     ]
                 }
             ],
             "featureFlagAdd": [
-                12,
+                19,
                 {
                     "input": [
-                        87,
+                        101,
                         "FeatureFlagToggleInput!"
                     ]
                 }
             ],
             "featureFlagRemove": [
-                12,
+                19,
                 {
                     "input": [
-                        87,
+                        101,
                         "FeatureFlagToggleInput!"
                     ]
                 }
             ],
             "githubRepoDeploy": [
-                12,
+                340,
                 {
                     "input": [
-                        92,
+                        109,
                         "GitHubRepoDeployInput!"
                     ]
                 }
             ],
             "githubRepoUpdate": [
-                12,
+                19,
                 {
                     "input": [
-                        93,
+                        110,
                         "GitHubRepoUpdateInput!"
                     ]
                 }
             ],
-            "helpStationCreateThread": [
-                288,
-                {
-                    "input": [
-                        95,
-                        "HelpStationFormInput!"
-                    ]
-                }
-            ],
             "herokuImportVariables": [
-                102,
+                118,
                 {
                     "input": [
-                        97,
+                        113,
                         "HerokuImportVariablesInput!"
                     ]
                 }
             ],
-            "hobbyToTeamDenyMigration": [
-                12,
-                {
-                    "teamId": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "hobbyToTeamMigrate": [
-                12,
-                {
-                    "teamId": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
             "integrationCreate": [
-                103,
+                119,
                 {
                     "input": [
-                        107,
+                        123,
                         "IntegrationCreateInput!"
                     ]
                 }
             ],
             "integrationDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "integrationUpdate": [
-                103,
+                119,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        108,
+                        124,
                         "IntegrationUpdateInput!"
                     ]
                 }
             ],
             "inviteCodeUse": [
-                161,
+                197,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "jobApplicationCreate": [
-                12,
+                19,
                 {
                     "input": [
-                        111,
+                        127,
                         "JobApplicationCreateInput!"
                     ],
                     "resume": [
-                        343,
+                        387,
                         "Upload!"
                     ]
                 }
             ],
             "loginSessionAuth": [
-                12,
+                19,
                 {
                     "input": [
-                        116,
+                        132,
                         "LoginSessionAuthInput!"
                     ]
                 }
             ],
             "loginSessionCancel": [
-                12,
+                19,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "loginSessionConsume": [
-                288,
+                340,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "loginSessionCreate": [
-                288
+                340
             ],
             "loginSessionVerify": [
-                12,
+                19,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
-            "logout": [
-                12
-            ],
-            "missingCommandAlert": [
-                12,
+            "notificationDeliveriesMarkAsRead": [
+                19,
                 {
-                    "input": [
-                        124,
-                        "MissingCommandAlertInput!"
+                    "deliveryIds": [
+                        340,
+                        "[String!]!"
                     ]
                 }
             ],
             "observabilityDashboardCreate": [
-                12,
+                19,
                 {
                     "input": [
-                        128,
+                        159,
                         "ObservabilityDashboardCreateInput!"
                     ]
                 }
             ],
             "observabilityDashboardReset": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "observabilityDashboardUpdate": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        135,
+                        168,
                         "[ObservabilityDashboardUpdateInput!]!"
                     ]
                 }
             ],
+            "passkeyDelete": [
+                19,
+                {
+                    "id": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
             "pluginCreate": [
-                142,
+                181,
                 {
                     "input": [
-                        145,
+                        184,
                         "PluginCreateInput!"
                     ]
                 }
             ],
             "pluginDelete": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288
+                        340
                     ],
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "pluginReset": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        258,
+                        309,
                         "ResetPluginInput!"
                     ]
                 }
             ],
             "pluginResetCredentials": [
-                288,
+                340,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        257,
+                        308,
                         "ResetPluginCredentialsInput!"
                     ]
                 }
             ],
             "pluginRestart": [
-                142,
+                181,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        146,
+                        185,
                         "PluginRestartInput!"
                     ]
                 }
             ],
             "pluginStart": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        146,
+                        185,
                         "PluginRestartInput!"
                     ]
                 }
             ],
             "pluginUpdate": [
-                142,
+                181,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        149,
+                        188,
                         "PluginUpdateInput!"
                     ]
                 }
             ],
-            "preferenceOverridesCreateUpdate": [
-                12,
-                {
-                    "input": [
-                        153,
-                        "PreferenceOverridesCreateUpdateData!"
-                    ]
-                }
-            ],
-            "preferenceOverridesDestroyForResource": [
-                12,
-                {
-                    "input": [
-                        154,
-                        "PreferenceOverridesDestroyData!"
-                    ]
-                }
-            ],
             "preferencesUpdate": [
-                155,
+                191,
                 {
                     "input": [
-                        156,
+                        192,
                         "PreferencesUpdateData!"
                     ]
                 }
             ],
             "privateNetworkCreateOrGet": [
-                157,
+                193,
                 {
                     "input": [
-                        158,
+                        194,
                         "PrivateNetworkCreateOrGetInput!"
                     ]
                 }
             ],
             "privateNetworkEndpointCreateOrGet": [
-                159,
+                195,
                 {
                     "input": [
-                        160,
+                        196,
                         "PrivateNetworkEndpointCreateOrGetInput!"
                     ]
                 }
             ],
             "privateNetworkEndpointDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "privateNetworkEndpointRename": [
-                12,
+                19,
                 {
                     "dnsName": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "privateNetworkId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "privateNetworksForEnvironmentDelete": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectClaim": [
-                161,
+                197,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ],
+                    "workspaceId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectCreate": [
-                161,
+                197,
                 {
                     "input": [
-                        162,
+                        201,
                         "ProjectCreateInput!"
                     ]
                 }
             ],
             "projectDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInvitationAccept": [
-                179,
+                220,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInvitationCreate": [
-                172,
+                211,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        175,
+                        214,
                         "ProjectInvitee!"
                     ]
                 }
             ],
             "projectInvitationDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInvitationResend": [
-                172,
+                211,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInviteUser": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        174,
+                        213,
                         "ProjectInviteUserInput!"
                     ]
                 }
             ],
             "projectLeave": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectMemberRemove": [
-                176,
+                215,
                 {
                     "input": [
-                        177,
+                        217,
                         "ProjectMemberRemoveInput!"
                     ]
                 }
             ],
             "projectMemberUpdate": [
-                176,
+                215,
                 {
                     "input": [
-                        178,
+                        219,
                         "ProjectMemberUpdateInput!"
                     ]
                 }
             ],
+            "projectScheduleDelete": [
+                19,
+                {
+                    "id": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "projectScheduleDeleteCancel": [
+                19,
+                {
+                    "id": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "projectScheduleDeleteForce": [
+                19,
+                {
+                    "id": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
             "projectTokenCreate": [
-                288,
+                340,
                 {
                     "input": [
-                        189,
+                        230,
                         "ProjectTokenCreateInput!"
                     ]
                 }
             ],
             "projectTokenDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "projectTransfer": [
+                19,
+                {
+                    "input": [
+                        233,
+                        "ProjectTransferInput!"
+                    ],
+                    "projectId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectTransferConfirm": [
-                12,
+                19,
                 {
                     "input": [
-                        190,
+                        231,
                         "ProjectTransferConfirmInput!"
                     ]
                 }
             ],
             "projectTransferInitiate": [
-                12,
+                19,
                 {
                     "input": [
-                        191,
+                        232,
                         "ProjectTransferInitiateInput!"
                     ]
                 }
             ],
             "projectTransferToTeam": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        192,
+                        234,
                         "ProjectTransferToTeamInput!"
                     ]
                 }
             ],
-            "projectTransferToUser": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
             "projectUpdate": [
-                161,
+                197,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        193,
+                        235,
                         "ProjectUpdateInput!"
                     ]
                 }
             ],
             "providerAuthRemove": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "recoveryCodeGenerate": [
-                245
+                295
             ],
             "recoveryCodeValidate": [
-                12,
+                19,
                 {
                     "input": [
-                        244,
+                        294,
                         "RecoveryCodeValidateInput!"
                     ]
                 }
             ],
             "referralInfoUpdate": [
-                246,
+                296,
                 {
                     "input": [
-                        247,
+                        297,
                         "ReferralInfoUpdateInput!"
                     ]
                 }
             ],
-            "sendCommunityThreadNotificationEmail": [
-                12,
-                {
-                    "input": [
-                        262,
-                        "SendCommunityThreadNotificationEmailInput!"
-                    ]
-                }
-            ],
             "serviceConnect": [
-                264,
+                314,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        265,
+                        316,
                         "ServiceConnectInput!"
                     ]
                 }
             ],
             "serviceCreate": [
-                264,
+                314,
                 {
                     "input": [
-                        266,
+                        317,
                         "ServiceCreateInput!"
                     ]
                 }
             ],
             "serviceDelete": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288
+                        340
                     ],
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceDisconnect": [
-                264,
+                314,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceDomainCreate": [
-                269,
+                320,
                 {
                     "input": [
-                        270,
+                        321,
                         "ServiceDomainCreateInput!"
                     ]
                 }
             ],
             "serviceDomainDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceDomainUpdate": [
-                12,
+                19,
                 {
                     "input": [
-                        271,
+                        322,
                         "ServiceDomainUpdateInput!"
                     ]
                 }
             ],
+            "serviceDuplicate": [
+                314,
+                {
+                    "environmentId": [
+                        340,
+                        "String!"
+                    ],
+                    "serviceId": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
             "serviceFeatureFlagAdd": [
-                12,
+                19,
                 {
                     "input": [
-                        272,
+                        323,
                         "ServiceFeatureFlagToggleInput!"
                     ]
                 }
             ],
             "serviceFeatureFlagRemove": [
-                12,
+                19,
                 {
                     "input": [
-                        272,
+                        323,
                         "ServiceFeatureFlagToggleInput!"
                     ]
                 }
             ],
             "serviceInstanceDeploy": [
-                12,
+                19,
                 {
                     "commitSha": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "latestCommit": [
-                        12
+                        19
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceDeployV2": [
-                288,
+                340,
                 {
                     "commitSha": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceLimitsUpdate": [
-                12,
+                19,
                 {
                     "input": [
-                        275,
+                        326,
                         "ServiceInstanceLimitsUpdateInput!"
                     ]
                 }
             ],
             "serviceInstanceRedeploy": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceUpdate": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288
+                        340
                     ],
                     "input": [
-                        276,
+                        327,
                         "ServiceInstanceUpdateInput!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceRemoveUpstreamUrl": [
-                264,
+                314,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceUpdate": [
-                264,
+                314,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        283,
+                        334,
                         "ServiceUpdateInput!"
                     ]
                 }
             ],
             "sessionDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "sharedVariableConfigure": [
-                368,
+                405,
                 {
                     "input": [
-                        286,
+                        337,
                         "SharedVariableConfigureInput!"
                     ]
                 }
             ],
             "tcpProxyCreate": [
-                297,
+                350,
                 {
                     "input": [
-                        298,
+                        351,
                         "TCPProxyCreateInput!"
                     ]
                 }
             ],
             "tcpProxyDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
-                    ]
-                }
-            ],
-            "teamBulkProjectTransfer": [
-                12,
-                {
-                    "input": [
-                        300,
-                        "TeamBulkProjectTransferInput!"
-                    ]
-                }
-            ],
-            "teamCreate": [
-                299,
-                {
-                    "input": [
-                        303,
-                        "TeamCreateInput!"
-                    ]
-                }
-            ],
-            "teamCreateAndSubscribe": [
-                302,
-                {
-                    "input": [
-                        301,
-                        "TeamCreateAndSubscribeInput!"
-                    ]
-                }
-            ],
-            "teamDelete": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamInviteCodeCreate": [
-                288,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ],
-                    "input": [
-                        304,
-                        "TeamInviteCodeCreateInput!"
-                    ]
-                }
-            ],
-            "teamInviteCodeUse": [
-                299,
-                {
-                    "code": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamLeave": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamPermissionChange": [
-                12,
-                {
-                    "input": [
-                        307,
-                        "TeamPermissionChangeInput!"
-                    ]
-                }
-            ],
-            "teamTrustedDomainCreate": [
-                12,
-                {
-                    "input": [
-                        312,
-                        "TeamTrustedDomainCreateInput!"
-                    ]
-                }
-            ],
-            "teamTrustedDomainDelete": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamUpdate": [
-                299,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ],
-                    "input": [
-                        313,
-                        "TeamUpdateInput!"
-                    ]
-                }
-            ],
-            "teamUserInvite": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ],
-                    "input": [
-                        314,
-                        "TeamUserInviteInput!"
-                    ]
-                }
-            ],
-            "teamUserRemove": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ],
-                    "input": [
-                        315,
-                        "TeamUserRemoveInput!"
-                    ]
-                }
-            ],
-            "telemetrySend": [
-                12,
-                {
-                    "input": [
-                        316,
-                        "TelemetrySendInput!"
                     ]
                 }
             ],
             "templateClone": [
-                317,
+                358,
                 {
                     "input": [
-                        318,
+                        359,
                         "TemplateCloneInput!"
                     ]
                 }
             ],
             "templateDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        321,
+                        362,
                         "TemplateDeleteInput!"
                     ]
                 }
             ],
             "templateDeploy": [
-                323,
+                364,
                 {
                     "input": [
-                        322,
+                        363,
                         "TemplateDeployInput!"
                     ]
                 }
             ],
             "templateDeployV2": [
-                323,
+                364,
                 {
                     "input": [
-                        325,
+                        366,
                         "TemplateDeployV2Input!"
                     ]
                 }
             ],
             "templateGenerate": [
-                317,
+                358,
                 {
                     "input": [
-                        326,
+                        367,
                         "TemplateGenerateInput!"
                     ]
                 }
             ],
-            "templateMaybeUnsetCommunityThreadSlug": [
-                12,
-                {
-                    "communityThreadSlug": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
             "templatePublish": [
-                317,
+                358,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        330,
+                        371,
                         "TemplatePublishInput!"
                     ]
                 }
             ],
             "templateServiceSourceEject": [
-                12,
+                19,
                 {
                     "input": [
-                        333,
+                        374,
                         "TemplateServiceSourceEjectInput!"
                     ]
                 }
             ],
             "templateUnpublish": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "trustedDomainCreate": [
+                19,
+                {
+                    "input": [
+                        441,
+                        "WorkspaceTrustedDomainCreateInput!"
+                    ]
+                }
+            ],
+            "trustedDomainDelete": [
+                19,
+                {
+                    "id": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "twoFactorInfoCreate": [
-                245,
+                295,
                 {
                     "input": [
-                        340,
+                        382,
                         "TwoFactorInfoCreateInput!"
                     ]
                 }
             ],
             "twoFactorInfoDelete": [
-                12
+                19
             ],
             "twoFactorInfoSecret": [
-                341
+                383
             ],
             "twoFactorInfoValidate": [
-                12,
+                19,
                 {
                     "input": [
-                        342,
+                        384,
                         "TwoFactorInfoValidateInput!"
                     ]
                 }
             ],
-            "upsertSlackChannelForTeam": [
-                12,
+            "upsertSlackChannel": [
+                19,
                 {
-                    "teamId": [
-                        288,
+                    "workspaceId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "usageLimitRemove": [
-                12,
+                19,
                 {
                     "input": [
-                        348,
+                        389,
                         "UsageLimitRemoveInput!"
                     ]
                 }
             ],
             "usageLimitSet": [
-                12,
+                19,
                 {
                     "input": [
-                        349,
+                        390,
                         "UsageLimitSetInput!"
                     ]
                 }
             ],
             "userBetaLeave": [
-                12
+                19
             ],
             "userDelete": [
-                12
+                19
             ],
             "userDiscordDisconnect": [
-                12
+                19
             ],
             "userFlagsRemove": [
-                12,
+                19,
                 {
                     "input": [
-                        353,
+                        393,
                         "UserFlagsRemoveInput!"
                     ]
                 }
             ],
             "userFlagsSet": [
-                12,
+                19,
                 {
                     "input": [
-                        354,
+                        394,
                         "UserFlagsSetInput!"
                     ]
                 }
             ],
             "userProfileUpdate": [
-                12,
+                19,
                 {
                     "input": [
-                        360,
+                        400,
                         "UserProfileUpdateInput!"
                     ]
                 }
             ],
-            "userSlackDisconnect": [
-                12
-            ],
             "userTermsUpdate": [
-                350
-            ],
-            "userUpdate": [
-                350,
-                {
-                    "input": [
-                        367,
-                        "UserUpdateInput!"
-                    ]
-                }
+                391
             ],
             "variableCollectionUpsert": [
-                12,
+                19,
                 {
                     "input": [
-                        369,
+                        406,
                         "VariableCollectionUpsertInput!"
                     ]
                 }
             ],
             "variableDelete": [
-                12,
+                19,
                 {
                     "input": [
-                        370,
+                        407,
                         "VariableDeleteInput!"
                     ]
                 }
             ],
             "variableUpsert": [
-                12,
+                19,
                 {
                     "input": [
-                        371,
+                        408,
                         "VariableUpsertInput!"
                     ]
                 }
             ],
             "volumeCreate": [
-                375,
+                412,
                 {
                     "input": [
-                        376,
+                        413,
                         "VolumeCreateInput!"
                     ]
                 }
             ],
             "volumeDelete": [
-                12,
+                19,
                 {
                     "volumeId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupCreate": [
-                393,
+                427,
                 {
+                    "name": [
+                        340
+                    ],
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupDelete": [
-                393,
+                427,
                 {
                     "volumeInstanceBackupId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupLock": [
-                12,
+                19,
                 {
                     "volumeInstanceBackupId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupRestore": [
-                393,
+                427,
                 {
                     "volumeInstanceBackupId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupScheduleUpdate": [
-                12,
+                19,
                 {
                     "kinds": [
-                        380,
+                        417,
                         "[VolumeInstanceBackupScheduleKind!]!"
                     ],
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceUpdate": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288
+                        340
                     ],
                     "input": [
-                        382,
+                        419,
                         "VolumeInstanceUpdateInput!"
                     ],
                     "volumeId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeUpdate": [
-                375,
+                412,
                 {
                     "input": [
-                        384,
+                        423,
                         "VolumeUpdateInput!"
                     ],
                     "volumeId": [
-                        288,
+                        340,
                         "String!"
-                    ]
-                }
-            ],
-            "webhookCreate": [
-                197,
-                {
-                    "input": [
-                        387,
-                        "WebhookCreateInput!"
-                    ]
-                }
-            ],
-            "webhookDelete": [
-                12,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "webhookUpdate": [
-                197,
-                {
-                    "id": [
-                        288,
-                        "String!"
-                    ],
-                    "input": [
-                        388,
-                        "WebhookUpdateInput!"
                     ]
                 }
             ],
             "workspaceDelete": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceInviteCodeCreate": [
+                340,
+                {
+                    "input": [
+                        436,
+                        "WorkspaceInviteCodeCreateInput!"
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceInviteCodeUse": [
+                430,
+                {
+                    "code": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "workspaceLeave": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
+            "workspacePermissionChange": [
+                19,
+                {
+                    "input": [
+                        438,
+                        "WorkspacePermissionChangeInput!"
+                    ]
+                }
+            ],
             "workspaceUpdate": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "input": [
-                        397,
+                        442,
                         "WorkspaceUpdateInput!"
                     ]
                 }
             ],
             "workspaceUpsertSlackChannel": [
-                12,
+                19,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceUserInvite": [
+                19,
+                {
+                    "input": [
+                        443,
+                        "WorkspaceUserInviteInput!"
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceUserRemove": [
+                19,
+                {
+                    "input": [
+                        444,
+                        "WorkspaceUserRemoveInput!"
+                    ],
+                    "workspaceId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Node": {
             "id": [
-                99
+                115
             ],
             "on_AdoptionInfo": [
-                3
+                4
             ],
             "on_ApiToken": [
-                6
+                7
             ],
-            "on_BanReasonHistory": [
-                8
+            "on_AuditLog": [
+                13
             ],
             "on_Container": [
-                20
+                29
             ],
             "on_Credit": [
-                21
+                30
             ],
             "on_Customer": [
-                27
+                35
             ],
             "on_Deployment": [
-                37
+                47
             ],
             "on_DeploymentEvent": [
-                38
+                50
             ],
             "on_DeploymentInstanceExecution": [
-                41
+                53
             ],
             "on_DeploymentSnapshot": [
-                48
+                60
             ],
             "on_DeploymentTrigger": [
-                52
+                64
             ],
             "on_Environment": [
-                62
+                75
+            ],
+            "on_EnvironmentPatch": [
+                83
             ],
             "on_Event": [
-                80
+                95
             ],
             "on_Integration": [
-                103
+                119
             ],
             "on_IntegrationAuth": [
-                104
+                120
             ],
             "on_InviteCode": [
-                109
+                125
+            ],
+            "on_NotificationDelivery": [
+                146
+            ],
+            "on_NotificationInstance": [
+                153
             ],
             "on_ObservabilityDashboard": [
-                127
+                157
+            ],
+            "on_ObservabilityDashboardAlert": [
+                158
             ],
             "on_ObservabilityDashboardItem": [
-                129
+                160
             ],
             "on_ObservabilityDashboardItemInstance": [
-                133
+                164
+            ],
+            "on_ObservabilityDashboardMonitor": [
+                166
+            ],
+            "on_Passkey": [
+                172
             ],
             "on_PlanLimitOverride": [
-                140
+                176
             ],
             "on_Plugin": [
-                142
-            ],
-            "on_PreferenceOverride": [
-                152
+                181
             ],
             "on_Preferences": [
-                155
+                191
             ],
             "on_Project": [
-                161
-            ],
-            "on_ProjectPermission": [
-                179
-            ],
-            "on_ProjectToken": [
-                188
-            ],
-            "on_ProjectWebhook": [
                 197
             ],
+            "on_ProjectPermission": [
+                220
+            ],
+            "on_ProjectToken": [
+                229
+            ],
             "on_ProviderAuth": [
-                200
+                241
             ],
             "on_ReferralInfo": [
-                246
-            ],
-            "on_RefundRequest": [
-                251
+                296
             ],
             "on_Service": [
-                264
+                314
             ],
             "on_ServiceInstance": [
-                273
+                324
             ],
             "on_Session": [
-                284
+                335
             ],
             "on_Team": [
-                299
+                352
             ],
             "on_TeamPermission": [
-                306
-            ],
-            "on_TeamTrustedDomain": [
-                311
+                354
             ],
             "on_Template": [
-                317
+                358
             ],
             "on_TemplateService": [
-                331
-            ],
-            "on_UsageAnomaly": [
-                344
+                372
             ],
             "on_UsageLimit": [
-                347
+                388
             ],
             "on_User": [
-                350
+                391
             ],
             "on_Variable": [
-                368
+                405
             ],
             "on_Volume": [
-                375
+                412
             ],
             "on_VolumeInstance": [
-                377
+                414
             ],
             "on_VolumeInstanceBackupSchedule": [
-                379
-            ],
-            "on_Withdrawal": [
-                389
-            ],
-            "on_WithdrawalAccount": [
-                390
+                416
             ],
             "on_Workspace": [
-                396
+                430
+            ],
+            "on_WorkspaceIdentityProvider": [
+                433
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "ObservabilityDashboard": {
-            "id": [
-                99
+        "NotificationDelivery": {
+            "createdAt": [
+                46
             ],
-            "items": [
-                133
+            "id": [
+                115
+            ],
+            "notificationInstance": [
+                153
+            ],
+            "readAt": [
+                46
+            ],
+            "status": [
+                150
+            ],
+            "type": [
+                151
+            ],
+            "updatedAt": [
+                46
+            ],
+            "userId": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "NotificationDeliveryCreated": {
+            "delivery": [
+                146
+            ],
+            "type": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "NotificationDeliveryFilterInput": {
+            "environmentId": [
+                340
+            ],
+            "onlyUnread": [
+                19
+            ],
+            "projectId": [
+                340
+            ],
+            "status": [
+                156
+            ],
+            "type": [
+                151
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "NotificationDeliveryResolved": {
+            "deliveryIds": [
+                340
+            ],
+            "type": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "NotificationDeliveryStatus": {},
+        "NotificationDeliveryType": {},
+        "NotificationDeliveryUpdate": {
+            "on_NotificationDeliveryCreated": [
+                147
+            ],
+            "on_NotificationDeliveryResolved": [
+                149
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "NotificationInstance": {
+            "createdAt": [
+                46
+            ],
+            "environmentId": [
+                340
+            ],
+            "event": [
+                95
+            ],
+            "eventId": [
+                340
+            ],
+            "eventType": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "payload": [
+                154
+            ],
+            "projectId": [
+                340
+            ],
+            "resolvedAt": [
+                46
+            ],
+            "resourceId": [
+                340
+            ],
+            "resourceType": [
+                340
+            ],
+            "serviceId": [
+                340
+            ],
+            "severity": [
+                155
+            ],
+            "status": [
+                156
+            ],
+            "updatedAt": [
+                46
+            ],
+            "volumeId": [
+                340
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "NotificationPayload": {},
+        "NotificationSeverity": {},
+        "NotificationStatus": {},
+        "ObservabilityDashboard": {
+            "id": [
+                115
+            ],
+            "items": [
+                164
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "ObservabilityDashboardAlert": {
+            "createdAt": [
+                46
+            ],
+            "id": [
+                115
+            ],
+            "resolvedAt": [
+                46
+            ],
+            "resourceId": [
+                340
+            ],
+            "resourceType": [
+                140
+            ],
+            "status": [
+                141
+            ],
+            "__typename": [
+                340
             ]
         },
         "ObservabilityDashboardCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "items": [
-                135
+                168
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItem": {
             "config": [
-                130
+                161
             ],
             "description": [
-                288
+                340
             ],
             "id": [
-                99
+                115
+            ],
+            "monitors": [
+                166
             ],
             "name": [
-                288
+                340
             ],
             "type": [
-                134
+                165
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItemConfig": {
             "logsFilter": [
-                288
+                340
             ],
             "measurements": [
-                120
+                136
             ],
             "projectUsageProperties": [
-                194
+                236
             ],
             "resourceIds": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItemConfigInput": {
             "logsFilter": [
-                288
+                340
             ],
             "measurements": [
-                120
+                136
             ],
             "projectUsageProperties": [
-                194
+                236
             ],
             "resourceIds": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItemCreateInput": {
             "config": [
-                131
+                162
             ],
             "description": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "type": [
-                134
+                165
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItemInstance": {
             "dashboardItem": [
-                129
+                160
             ],
             "displayConfig": [
-                55
+                67
             ],
             "id": [
-                99
+                115
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ObservabilityDashboardItemType": {},
-        "ObservabilityDashboardUpdateInput": {
-            "dashboardItem": [
-                132
+        "ObservabilityDashboardMonitor": {
+            "alerts": [
+                158,
+                {
+                    "endDate": [
+                        46
+                    ],
+                    "startDate": [
+                        46
+                    ]
+                }
             ],
-            "displayConfig": [
-                55
+            "config": [
+                167
+            ],
+            "createdAt": [
+                46
             ],
             "id": [
-                288
+                115
+            ],
+            "updatedAt": [
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "OverrideInput": {
-            "enabled": [
-                12
-            ],
-            "name": [
-                288
-            ],
-            "resource": [
-                288
-            ],
-            "resourceId": [
-                288
+        "ObservabilityDashboardMonitorConfig": {
+            "on_MonitorThresholdConfig": [
+                143
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ObservabilityDashboardUpdateInput": {
+            "dashboardItem": [
+                163
+            ],
+            "displayConfig": [
+                67
+            ],
+            "id": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "PageInfo": {
             "endCursor": [
-                288
+                340
             ],
             "hasNextPage": [
-                12
+                19
             ],
             "hasPreviousPage": [
-                12
+                19
             ],
             "startCursor": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "PartnerProfile": {
+            "category": [
+                340
+            ],
+            "description": [
+                340
+            ],
+            "slug": [
+                340
+            ],
+            "type": [
+                171
+            ],
+            "website": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "PartnerProfileType": {},
+        "Passkey": {
+            "aaguid": [
+                340
+            ],
+            "backedUp": [
+                19
+            ],
+            "createdAt": [
+                46
+            ],
+            "credentialId": [
+                340
+            ],
+            "deviceName": [
+                340
+            ],
+            "deviceType": [
+                340
+            ],
+            "displayName": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "lastUsedAt": [
+                46
+            ],
+            "lastUsedDevice": [
+                340
+            ],
+            "transports": [
+                340
+            ],
+            "updatedAt": [
+                46
+            ],
+            "__typename": [
+                340
             ]
         },
         "PaymentMethod": {
             "card": [
-                139
+                174
             ],
             "id": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PaymentMethodCard": {
             "brand": [
-                288
+                340
             ],
             "country": [
-                288
+                340
             ],
             "last4": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
+        "Plan": {},
         "PlanLimitOverride": {
             "config": [
-                293
+                345
             ],
             "id": [
-                99
+                115
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "PlatformStatus": {
-            "incident": [
-                100
+        "PlatformFeatureFlag": {},
+        "PlatformFeatureFlagStatus": {
+            "flag": [
+                177
             ],
-            "isStable": [
-                12
+            "rolloutPercentage": [
+                118
             ],
-            "maintenance": [
-                117
+            "status": [
+                19
+            ],
+            "type": [
+                179
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "PlatformFeatureFlagType": {},
+        "PlatformStatus": {
+            "incident": [
+                116
+            ],
+            "isStable": [
+                19
+            ],
+            "maintenance": [
+                133
+            ],
+            "__typename": [
+                340
             ]
         },
         "Plugin": {
             "containers": [
-                143,
+                182,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "deprecatedAt": [
-                36
+                46
             ],
             "friendlyName": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "logsEnabled": [
-                12
+                19
             ],
             "migrationDatabaseServiceId": [
-                288
+                340
             ],
             "name": [
-                148
+                187
             ],
             "project": [
-                161
+                197
             ],
             "status": [
-                147
+                186
             ],
             "variables": [
-                150,
+                189,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginContainersConnection": {
             "edges": [
-                144
+                183
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginContainersConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                20
+                29
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "friendlyName": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginRestartInput": {
             "environmentId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginStatus": {},
         "PluginType": {},
         "PluginUpdateInput": {
             "friendlyName": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginVariablesConnection": {
             "edges": [
-                151
+                190
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PluginVariablesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                368
+                405
             ],
             "__typename": [
-                288
-            ]
-        },
-        "PreferenceOverride": {
-            "enabled": [
-                12
-            ],
-            "id": [
-                99
-            ],
-            "name": [
-                288
-            ],
-            "resource": [
-                288
-            ],
-            "resourceId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "PreferenceOverridesCreateUpdateData": {
-            "overrides": [
-                136
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "PreferenceOverridesDestroyData": {
-            "resource": [
-                288
-            ],
-            "resourceId": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "Preferences": {
             "buildFailedEmail": [
-                12
+                19
             ],
             "changelogEmail": [
-                12
+                19
             ],
             "communityEmail": [
-                12
+                19
             ],
             "deployCrashedEmail": [
-                12
+                19
             ],
             "ephemeralEnvironmentEmail": [
-                12
+                19
             ],
             "id": [
-                99
+                115
             ],
             "marketingEmail": [
-                12
-            ],
-            "preferenceOverrides": [
-                152
+                19
             ],
             "subprocessorUpdatesEmail": [
-                12
+                19
+            ],
+            "templateQueueEmail": [
+                19
             ],
             "usageEmail": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PreferencesUpdateData": {
             "buildFailedEmail": [
-                12
+                19
             ],
             "changelogEmail": [
-                12
+                19
             ],
             "communityEmail": [
-                12
+                19
             ],
             "deployCrashedEmail": [
-                12
+                19
             ],
             "ephemeralEnvironmentEmail": [
-                12
+                19
             ],
             "marketingEmail": [
-                12
+                19
             ],
             "subprocessorUpdatesEmail": [
-                12
+                19
+            ],
+            "templateQueueEmail": [
+                19
             ],
             "token": [
-                288
+                340
             ],
             "usageEmail": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PrivateNetwork": {
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "dnsName": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "networkId": [
-                10
+                17
             ],
             "projectId": [
-                288
+                340
             ],
             "publicId": [
-                288
+                340
             ],
             "tags": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PrivateNetworkCreateOrGetInput": {
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "tags": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PrivateNetworkEndpoint": {
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "dnsName": [
-                288
+                340
             ],
             "privateIps": [
-                288
+                340
             ],
             "publicId": [
-                288
+                340
             ],
             "serviceInstanceId": [
-                288
+                340
             ],
             "tags": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PrivateNetworkEndpointCreateOrGetInput": {
             "environmentId": [
-                288
+                340
             ],
             "privateNetworkId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "serviceName": [
-                288
+                340
             ],
             "tags": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Project": {
             "baseEnvironment": [
-                62
+                75
             ],
             "baseEnvironmentId": [
-                288
+                340
             ],
             "botPrEnvironments": [
-                12
+                19
             ],
-            "createdAt": [
-                36
-            ],
-            "deletedAt": [
-                36
-            ],
-            "deploymentTriggers": [
-                164,
+            "buckets": [
+                198,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
+                    ]
+                }
+            ],
+            "createdAt": [
+                46
+            ],
+            "deletedAt": [
+                46
+            ],
+            "deploymentTriggers": [
+                203,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
                     ]
                 }
             ],
             "deployments": [
-                166,
+                205,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "description": [
-                288
+                340
             ],
             "environments": [
-                168,
+                207,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "expiredAt": [
-                36
+                46
             ],
             "groups": [
-                170,
+                209,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "id": [
-                99
+                115
             ],
             "isPublic": [
-                12
+                19
             ],
             "isTempProject": [
-                12
+                19
             ],
             "members": [
-                176
+                215
             ],
             "name": [
-                288
+                340
             ],
             "plugins": [
-                180,
+                221,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "prDeploys": [
-                12
-            ],
-            "prEnvCopyVolData": [
-                12
+                19
             ],
             "projectPermissions": [
-                182,
+                223,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "services": [
-                186,
+                227,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "subscriptionPlanLimit": [
-                293
+                345
             ],
             "subscriptionType": [
-                294
+                346
             ],
             "team": [
-                299
+                352
             ],
             "teamId": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "volumes": [
-                195,
+                237,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
-            "webhooks": [
-                198,
-                {
-                    "after": [
-                        288
-                    ],
-                    "before": [
-                        288
-                    ],
-                    "first": [
-                        102
-                    ],
-                    "last": [
-                        102
-                    ]
-                }
+            "workspace": [
+                430
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ProjectBucketsConnection": {
+            "edges": [
+                199
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "ProjectBucketsConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "ProjectComplianceInfo": {
+            "memberPermissions": [
+                216
+            ],
+            "projectId": [
+                340
+            ],
+            "projectName": [
+                340
+            ],
+            "serviceBackups": [
+                315
+            ],
+            "twoFactorMembers": [
+                218
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "ProjectCreateInput": {
             "defaultEnvironmentName": [
-                288
+                340
             ],
             "description": [
-                288
+                340
+            ],
+            "isMonorepo": [
+                19
             ],
             "isPublic": [
-                12
+                19
             ],
             "name": [
-                288
-            ],
-            "plugins": [
-                288
+                340
             ],
             "prDeploys": [
-                12
+                19
             ],
             "repo": [
-                163
+                202
             ],
             "runtime": [
-                203
+                244
             ],
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectCreateRepo": {
             "branch": [
-                288
+                340
             ],
             "fullRepoName": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectDeploymentTriggersConnection": {
             "edges": [
-                165
+                204
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectDeploymentTriggersConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                52
+                64
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectDeploymentsConnection": {
             "edges": [
-                167
+                206
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectDeploymentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                37
+                47
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectEnvironmentsConnection": {
             "edges": [
-                169
+                208
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectEnvironmentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                62
+                75
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectGroupsConnection": {
             "edges": [
-                171
+                210
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectGroupsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectInvitation": {
             "email": [
-                288
+                340
             ],
             "expiresAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "inviter": [
-                173
+                212
             ],
             "isExpired": [
-                12
+                19
             ],
             "project": [
-                201
+                242
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectInvitationInviter": {
             "email": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectInviteUserInput": {
             "email": [
-                288
+                340
             ],
             "link": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectInvitee": {
             "email": [
-                288
+                340
             ],
             "role": [
-                185
+                226
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectMember": {
             "avatar": [
-                288
+                340
             ],
             "email": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "role": [
-                185
+                226
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ProjectMemberPermissionsInfo": {
+            "email": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "role": [
+                226
+            ],
+            "__typename": [
+                340
             ]
         },
         "ProjectMemberRemoveInput": {
             "projectId": [
-                288
+                340
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ProjectMemberTwoFactorInfo": {
+            "email": [
+                340
+            ],
+            "enabledMethods": [
+                385
+            ],
+            "name": [
+                340
+            ],
+            "twoFactorAuthEnabled": [
+                19
+            ],
+            "__typename": [
+                340
             ]
         },
         "ProjectMemberUpdateInput": {
             "projectId": [
-                288
+                340
             ],
             "role": [
-                185
+                226
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectPermission": {
             "id": [
-                99
+                115
             ],
             "projectId": [
-                288
+                340
             ],
             "role": [
-                185
+                226
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectPluginsConnection": {
             "edges": [
-                181
+                222
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectPluginsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                142
+                181
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectProjectPermissionsConnection": {
             "edges": [
-                183
+                224
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectProjectPermissionsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                179
+                220
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectResourceAccess": {
@@ -4877,4560 +5486,4931 @@ export default {
                 0
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectRole": {},
         "ProjectServicesConnection": {
             "edges": [
-                187
+                228
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectServicesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                264
+                314
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectToken": {
             "createdAt": [
-                36
+                46
             ],
             "displayToken": [
-                288
+                340
             ],
             "environment": [
-                62
+                75
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
             "project": [
-                161
+                197
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectTokenCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectTransferConfirmInput": {
+            "destinationWorkspaceId": [
+                340
+            ],
             "ownershipTransferId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectTransferInitiateInput": {
             "memberId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ProjectTransferInput": {
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "ProjectTransferToTeamInput": {
             "teamId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectUpdateInput": {
             "baseEnvironmentId": [
-                288
+                340
             ],
             "botPrEnvironments": [
-                12
+                19
             ],
             "description": [
-                288
+                340
             ],
             "isPublic": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "prDeploys": [
-                12
-            ],
-            "prEnvCopyVolData": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectUsageProperty": {},
         "ProjectVolumesConnection": {
             "edges": [
-                196
+                238
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ProjectVolumesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                375
+                412
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "ProjectWebhook": {
-            "filters": [
-                288
+        "ProjectWorkspaceMember": {
+            "email": [
+                340
             ],
-            "id": [
-                99
+            "enabledMethods": [
+                386
             ],
-            "lastStatus": [
-                102
+            "name": [
+                340
+            ],
+            "twoFactorAuthEnabled": [
+                19
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "ProjectWorkspaceMembersResponse": {
+            "members": [
+                239
             ],
             "projectId": [
-                288
+                340
             ],
-            "url": [
-                288
+            "projectName": [
+                340
             ],
-            "__typename": [
-                288
-            ]
-        },
-        "ProjectWebhooksConnection": {
-            "edges": [
-                199
-            ],
-            "pageInfo": [
-                137
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
-            ]
-        },
-        "ProjectWebhooksConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                197
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "ProviderAuth": {
             "email": [
-                288
+                340
             ],
             "id": [
-                99
+                115
+            ],
+            "isAuthEnabled": [
+                19
             ],
             "metadata": [
-                110
+                126
             ],
             "provider": [
-                288
+                340
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PublicProjectInformation": {
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PublicProjectInvitation": {
             "on_InviteCode": [
-                109
+                125
             ],
             "on_ProjectInvitation": [
-                172
+                211
             ],
             "on_Node": [
-                126
+                145
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "PublicRuntime": {},
         "PublicStats": {
             "totalDeploymentsLastMonth": [
-                102
+                118
             ],
             "totalLogsLastMonth": [
-                10
+                17
             ],
             "totalProjects": [
-                102
+                118
             ],
             "totalRequestsLastMonth": [
-                10
+                17
             ],
             "totalServices": [
-                102
+                118
             ],
             "totalUsers": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Query": {
             "adminVolumeInstancesForVolume": [
-                377,
+                414,
                 {
                     "volumeId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
+            "allPlatformFeatureFlags": [
+                178
+            ],
+            "apiToken": [
+                8
+            ],
             "apiTokens": [
-                206,
+                247,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
+                    ]
+                }
+            ],
+            "auditLog": [
+                13,
+                {
+                    "id": [
+                        340,
+                        "String!"
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "auditLogEventTypeInfo": [
+                14
+            ],
+            "auditLogs": [
+                249,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "filter": [
+                        15
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ],
+                    "sort": [
+                        339
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
                     ]
                 }
             ],
             "buildLogs": [
-                113,
+                129,
                 {
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "endDate": [
-                        36
+                        46
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ],
                     "startDate": [
-                        36
+                        46
                     ]
                 }
             ],
             "changelogBlockImage": [
-                288,
+                340,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
-            "creditTransferMetrics": [
-                22
+            "complianceAgreements": [
+                28,
+                {
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
             ],
             "customDomain": [
-                24,
+                32,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "customDomainAvailable": [
-                57,
+                70,
                 {
                     "domain": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deployment": [
-                37,
+                47,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentEvents": [
-                208,
+                251,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "deploymentInstanceExecutions": [
-                210,
+                253,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "input": [
-                        44,
+                        56,
                         "DeploymentInstanceExecutionListInput!"
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "deploymentLogs": [
-                113,
+                129,
                 {
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "endDate": [
-                        36
+                        46
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ],
                     "startDate": [
-                        36
+                        46
                     ]
                 }
             ],
             "deploymentSnapshot": [
-                48,
+                60,
                 {
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentTriggers": [
-                212,
+                255,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deployments": [
-                214,
+                257,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "input": [
-                        46,
+                        58,
                         "DeploymentListInput!"
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "domainStatus": [
-                58,
+                71,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "domains": [
-                5,
+                6,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "egressGateways": [
-                59,
+                72,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "environment": [
-                62,
+                75,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
+                    ],
+                    "projectId": [
+                        340
                     ]
                 }
             ],
             "environmentLogs": [
-                113,
+                129,
                 {
                     "afterDate": [
-                        288
+                        340
                     ],
                     "afterLimit": [
-                        102
+                        118
                     ],
                     "anchorDate": [
-                        288
+                        340
                     ],
                     "beforeDate": [
-                        288
+                        340
                     ],
                     "beforeLimit": [
-                        102
+                        118
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
+                    ]
+                }
+            ],
+            "environmentPatch": [
+                83,
+                {
+                    "id": [
+                        340,
+                        "String!"
                     ]
                 }
             ],
             "environmentPatches": [
-                216,
+                259,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
+                    ]
+                }
+            ],
+            "environmentStagedChanges": [
+                83,
+                {
+                    "environmentId": [
+                        340,
+                        "String!"
                     ]
                 }
             ],
             "environments": [
-                218,
+                261,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "isEphemeral": [
-                        12
+                        19
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "estimatedUsage": [
-                79,
+                94,
                 {
                     "includeDeleted": [
-                        12
+                        19
                     ],
                     "measurements": [
-                        120,
+                        136,
                         "[MetricMeasurement!]!"
                     ],
                     "projectId": [
-                        288
+                        340
                     ],
-                    "teamId": [
-                        288
-                    ],
-                    "userId": [
-                        288
+                    "workspaceId": [
+                        340
                     ]
                 }
             ],
             "events": [
-                220,
+                263,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288
+                        340
                     ],
                     "filter": [
-                        82
+                        96
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
+            "externalWorkspaces": [
+                100,
+                {
+                    "projectId": [
+                        340
+                    ]
+                }
+            ],
+            "functionRuntime": [
+                103,
+                {
+                    "name": [
+                        104,
+                        "FunctionRuntimeName!"
+                    ]
+                }
+            ],
+            "functionRuntimes": [
+                103
+            ],
             "gitHubRepoAccessAvailable": [
-                89,
+                106,
                 {
                     "fullRepoName": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "githubIsRepoNameAvailable": [
-                12,
+                19,
                 {
                     "fullRepoName": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "githubRepo": [
-                94,
+                111,
                 {
                     "fullRepoName": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "githubRepoBranches": [
-                90,
+                107,
                 {
                     "owner": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "repo": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "githubRepos": [
-                91
+                108
             ],
             "githubWritableScopes": [
-                288
+                340
             ],
             "herokuApps": [
-                96
+                112
             ],
             "httpLogs": [
-                98,
+                114,
                 {
                     "afterDate": [
-                        288
+                        340
                     ],
                     "afterLimit": [
-                        102
+                        118
                     ],
                     "anchorDate": [
-                        288
+                        340
                     ],
                     "beforeDate": [
-                        288
+                        340
                     ],
                     "beforeLimit": [
-                        102
+                        118
                     ],
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "endDate": [
-                        288
+                        340
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ],
                     "startDate": [
-                        288
+                        340
                     ]
                 }
             ],
             "integrationAuth": [
-                104,
+                120,
                 {
                     "provider": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "providerId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "integrationAuths": [
-                222,
+                265,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "integrations": [
-                224,
+                267,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "inviteCode": [
-                109,
+                125,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "me": [
-                350
+                391
             ],
             "metrics": [
-                123,
+                139,
                 {
                     "averagingWindowSeconds": [
-                        102
+                        118
                     ],
                     "endDate": [
-                        36
+                        46
                     ],
                     "environmentId": [
-                        288
+                        340
                     ],
                     "groupBy": [
-                        121,
+                        137,
                         "[MetricTag!]"
                     ],
                     "includeDeleted": [
-                        12
+                        19
                     ],
                     "measurements": [
-                        120,
+                        136,
                         "[MetricMeasurement!]!"
                     ],
-                    "pluginId": [
-                        288
-                    ],
                     "projectId": [
-                        288
+                        340
                     ],
                     "sampleRateSeconds": [
-                        102
+                        118
                     ],
                     "serviceId": [
-                        288
+                        340
                     ],
                     "startDate": [
-                        36,
+                        46,
                         "DateTime!"
                     ],
-                    "teamId": [
-                        288
-                    ],
-                    "userId": [
-                        288
-                    ],
                     "volumeId": [
-                        288
+                        340
+                    ],
+                    "volumeInstanceExternalId": [
+                        340
+                    ],
+                    "workspaceId": [
+                        340
                     ]
                 }
             ],
-            "node": [
-                126,
+            "notificationDeliveries": [
+                269,
                 {
-                    "id": [
-                        99,
-                        "ID!"
-                    ]
-                }
-            ],
-            "nodes": [
-                126,
-                {
-                    "ids": [
-                        99,
-                        "[ID!]!"
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "filter": [
+                        148
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
                     ]
                 }
             ],
             "observabilityDashboards": [
-                226,
+                271,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
+                    ]
+                }
+            ],
+            "passkeys": [
+                273,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
                     ]
                 }
             ],
             "platformStatus": [
-                141
+                180
             ],
             "plugin": [
-                142,
+                181,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "pluginLogs": [
-                113,
+                129,
                 {
                     "endDate": [
-                        36
+                        46
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ],
                     "pluginId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "startDate": [
-                        36
+                        46
                     ]
                 }
             ],
             "preferences": [
-                155,
+                191,
                 {
                     "token": [
-                        288
+                        340
                     ]
                 }
             ],
             "privateNetworkEndpoint": [
-                159,
+                195,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "privateNetworkId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "privateNetworkEndpointNameAvailable": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "prefix": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "privateNetworkId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "privateNetworks": [
-                157,
+                193,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "project": [
-                161,
+                197,
                 {
                     "id": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "projectCompliance": [
+                200,
+                {
+                    "projectId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInvitation": [
-                202,
+                243,
                 {
                     "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInvitations": [
-                172,
+                211,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectInviteCode": [
-                109,
+                125,
                 {
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "role": [
-                        185,
+                        226,
                         "ProjectRole!"
                     ]
                 }
             ],
             "projectMembers": [
-                176,
+                215,
                 {
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectResourceAccess": [
-                184,
+                225,
                 {
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projectToken": [
-                188
+                229
             ],
             "projectTokens": [
-                228,
+                275,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "projectId": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "projectWorkspaceMembers": [
+                240,
+                {
+                    "projectId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "projects": [
-                230,
+                277,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "includeDeleted": [
-                        12
+                        19
                     ],
                     "last": [
-                        102
-                    ],
-                    "teamId": [
-                        288
+                        118
                     ],
                     "userId": [
-                        288
+                        340
+                    ],
+                    "workspaceId": [
+                        340
                     ]
                 }
             ],
             "publicStats": [
-                204
+                245
             ],
             "referralInfo": [
-                246
+                296,
+                {
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
             ],
             "regions": [
-                253,
+                301,
                 {
                     "projectId": [
-                        288
+                        340
                     ]
                 }
             ],
             "resourceAccess": [
-                259,
+                310,
                 {
                     "explicitResourceOwner": [
-                        86
+                        99,
+                        "ExplicitOwnerInput!"
                     ]
                 }
             ],
             "service": [
-                264,
+                314,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceDomainAvailable": [
-                57,
+                70,
                 {
                     "domain": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstance": [
-                273,
+                324,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceIsUpdatable": [
-                12,
+                19,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceLimitOverride": [
-                274,
+                325,
                 {
                     "environmentId": [
-                        288,
-                        "String!"
-                    ],
-                    "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "serviceInstanceLimits": [
-                274,
+                325,
                 {
                     "environmentId": [
-                        288,
-                        "String!"
-                    ],
-                    "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "sessions": [
-                232,
+                279,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "tcpProxies": [
-                297,
+                350,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "team": [
-                299,
+                352,
                 {
                     "id": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamByCode": [
-                299,
-                {
-                    "code": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "teamTemplates": [
-                234,
+                281,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "teamId": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "teamTrustedDomains": [
-                236,
-                {
-                    "after": [
-                        288
-                    ],
-                    "before": [
-                        288
-                    ],
-                    "first": [
-                        102
-                    ],
-                    "last": [
-                        102
-                    ],
-                    "teamId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "template": [
-                317,
+                358,
                 {
                     "code": [
-                        288
+                        340
+                    ],
+                    "id": [
+                        340
                     ],
                     "owner": [
-                        288
+                        340
                     ],
                     "repo": [
-                        288
+                        340
                     ]
                 }
             ],
-            "templateKickbacksLeaderboard": [
-                328
-            ],
-            "templateSourceForProject": [
-                317,
+            "templateMetrics": [
+                370,
                 {
-                    "projectId": [
-                        288,
+                    "id": [
+                        340,
                         "String!"
                     ]
                 }
             ],
-            "templatekickbacksTotal": [
-                88
+            "templateSourceForProject": [
+                358,
+                {
+                    "projectId": [
+                        340,
+                        "String!"
+                    ]
+                }
             ],
             "templates": [
-                238,
+                283,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ],
                     "recommended": [
-                        12
+                        19
+                    ],
+                    "verified": [
+                        19
+                    ]
+                }
+            ],
+            "templatesCount": [
+                118
+            ],
+            "trustedDomains": [
+                285,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
                     ]
                 }
             ],
             "twoFactorInfo": [
-                339
+                381
             ],
             "usage": [
-                4,
+                5,
                 {
                     "endDate": [
-                        36
+                        46
                     ],
                     "groupBy": [
-                        121,
+                        137,
                         "[MetricTag!]"
                     ],
                     "includeDeleted": [
-                        12
+                        19
                     ],
                     "measurements": [
-                        120,
+                        136,
                         "[MetricMeasurement!]!"
                     ],
                     "projectId": [
-                        288
+                        340
                     ],
                     "startDate": [
-                        36
+                        46
                     ],
-                    "teamId": [
-                        288
-                    ],
-                    "userId": [
-                        288
-                    ]
-                }
-            ],
-            "userIdForDiscordId": [
-                288,
-                {
-                    "discordId": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "userIdForSlackId": [
-                288,
-                {
-                    "slackId": [
-                        288,
-                        "String!"
+                    "workspaceId": [
+                        340
                     ]
                 }
             ],
             "userKickbackEarnings": [
-                355,
+                395,
                 {
                     "userId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "userProfile": [
-                357,
+                397,
                 {
                     "username": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "userTemplates": [
-                240,
+                287,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "variables": [
-                73,
+                89,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
-                    "pluginId": [
-                        288
-                    ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288
+                        340
                     ],
                     "unrendered": [
-                        12
+                        19
                     ]
                 }
             ],
             "variablesForServiceDeployment": [
-                73,
+                89,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "projectId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "serviceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "vercelInfo": [
-                373
+                410
             ],
             "volumeInstance": [
-                377,
+                414,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupList": [
-                378,
+                415,
                 {
                     "volumeInstanceId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "volumeInstanceBackupScheduleList": [
-                379,
+                416,
                 {
                     "volumeInstanceId": [
-                        288,
-                        "String!"
-                    ]
-                }
-            ],
-            "webhooks": [
-                242,
-                {
-                    "after": [
-                        288
-                    ],
-                    "before": [
-                        288
-                    ],
-                    "first": [
-                        102
-                    ],
-                    "last": [
-                        102
-                    ],
-                    "projectId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "workflowStatus": [
-                394,
+                428,
                 {
                     "workflowId": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "workspace": [
-                396,
+                430,
                 {
                     "workspaceId": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceByCode": [
+                430,
+                {
+                    "code": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceIdentityProviders": [
+                289,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ],
+                    "workspaceId": [
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "workspaceTemplates": [
+                291,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ],
+                    "workspaceId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryApiTokensConnection": {
             "edges": [
-                207
+                248
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryApiTokensConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                6
+                7
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "QueryAuditLogsConnection": {
+            "edges": [
+                250
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryAuditLogsConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                13
+            ],
+            "__typename": [
+                340
             ]
         },
         "QueryDeploymentEventsConnection": {
             "edges": [
-                209
+                252
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentEventsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                38
+                50
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentInstanceExecutionsConnection": {
             "edges": [
-                211
+                254
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentInstanceExecutionsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                41
+                53
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentTriggersConnection": {
             "edges": [
-                213
+                256
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentTriggersConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                52
+                64
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentsConnection": {
             "edges": [
-                215
+                258
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryDeploymentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                37
+                47
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEnvironmentPatchesConnection": {
             "edges": [
-                217
+                260
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEnvironmentPatchesConnectionEdge": {
             "cursor": [
-                288
+                340
+            ],
+            "node": [
+                83
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEnvironmentsConnection": {
             "edges": [
-                219
+                262
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEnvironmentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                62
+                75
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEventsConnection": {
             "edges": [
-                221
+                264
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryEventsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                80
+                95
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryIntegrationAuthsConnection": {
             "edges": [
-                223
+                266
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryIntegrationAuthsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                104
+                120
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryIntegrationsConnection": {
             "edges": [
-                225
+                268
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryIntegrationsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                103
+                119
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "QueryNotificationDeliveriesConnection": {
+            "edges": [
+                270
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryNotificationDeliveriesConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                146
+            ],
+            "__typename": [
+                340
             ]
         },
         "QueryObservabilityDashboardsConnection": {
             "edges": [
-                227
+                272
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryObservabilityDashboardsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                127
+                157
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "QueryPasskeysConnection": {
+            "edges": [
+                274
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryPasskeysConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                172
+            ],
+            "__typename": [
+                340
             ]
         },
         "QueryProjectTokensConnection": {
             "edges": [
-                229
+                276
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryProjectTokensConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                188
+                229
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryProjectsConnection": {
             "edges": [
-                231
+                278
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "QueryProjectsConnectionEdge": {
             "cursor": [
-                288
-            ],
-            "node": [
-                161
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QuerySessionsConnection": {
-            "edges": [
-                233
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QuerySessionsConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                284
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTeamTemplatesConnection": {
-            "edges": [
-                235
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTeamTemplatesConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                317
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTeamTrustedDomainsConnection": {
-            "edges": [
-                237
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTeamTrustedDomainsConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                311
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTemplatesConnection": {
-            "edges": [
-                239
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryTemplatesConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                317
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryUserTemplatesConnection": {
-            "edges": [
-                241
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryUserTemplatesConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                317
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryWebhooksConnection": {
-            "edges": [
-                243
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "QueryWebhooksConnectionEdge": {
-            "cursor": [
-                288
+                340
             ],
             "node": [
                 197
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "RecoveryCodeValidateInput": {
-            "code": [
-                288
+        "QuerySessionsConnection": {
+            "edges": [
+                280
             ],
-            "twoFactorLinkingKey": [
-                288
+            "pageInfo": [
+                169
             ],
             "__typename": [
+                340
+            ]
+        },
+        "QuerySessionsConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                335
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTeamTemplatesConnection": {
+            "edges": [
+                282
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTeamTemplatesConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                358
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTemplatesConnection": {
+            "edges": [
+                284
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTemplatesConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                358
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTrustedDomainsConnection": {
+            "edges": [
+                286
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryTrustedDomainsConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                379
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryUserTemplatesConnection": {
+            "edges": [
                 288
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryUserTemplatesConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                358
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryWorkspaceIdentityProvidersConnection": {
+            "edges": [
+                290
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryWorkspaceIdentityProvidersConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                433
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryWorkspaceTemplatesConnection": {
+            "edges": [
+                292
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "QueryWorkspaceTemplatesConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                358
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "RailpackInfo": {},
+        "RecoveryCodeValidateInput": {
+            "code": [
+                340
+            ],
+            "twoFactorLinkingKey": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "RecoveryCodes": {
             "recoveryCodes": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ReferralInfo": {
             "code": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "referralStats": [
-                248
+                298
             ],
             "status": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ReferralInfoUpdateInput": {
             "code": [
-                288
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ReferralStats": {
             "credited": [
-                102
+                118
             ],
             "pending": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ReferralStatus": {},
         "ReferralUser": {
             "code": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "status": [
-                249
+                299
             ],
             "__typename": [
-                288
+                340
             ]
         },
-        "RefundRequest": {
-            "amount": [
-                102
-            ],
-            "decision": [
-                252
-            ],
-            "id": [
-                99
-            ],
-            "invoiceId": [
-                288
-            ],
-            "plainThreadId": [
-                288
-            ],
-            "reason": [
-                288
-            ],
-            "teamId": [
-                288
-            ],
-            "userId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "RefundRequestDecisionEnum": {},
         "Region": {
-            "adminOnly": [
-                12
-            ],
             "country": [
-                288
+                340
             ],
             "deploymentConstraints": [
-                254
+                302
             ],
             "location": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "railwayMetal": [
-                12
+                19
             ],
             "region": [
-                288
+                340
             ],
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "RegionDeploymentConstraints": {
             "adminOnly": [
-                12
+                19
             ],
-            "computeOnly": [
-                12
+            "deprecationInfo": [
+                303
             ],
             "runtimeExclusivity": [
-                288
+                340
             ],
             "stagingOnly": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "RegionDeprecationInfo": {
+            "isDeprecated": [
+                19
+            ],
+            "replacementRegion": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "RegistrationStatus": {},
         "RegistryCredentialsInput": {
             "password": [
-                288
+                340
             ],
             "username": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
+        "ReplicateVolumeInstanceSnapshotStatus": {},
+        "ReplicateVolumeInstanceStatus": {},
         "ResetPluginCredentialsInput": {
             "environmentId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ResetPluginInput": {
             "environmentId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ResourceAccess": {
+            "deployment": [
+                0
+            ],
             "project": [
                 0
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ResourceOwnerType": {},
         "RestartPolicyType": {},
-        "SendCommunityThreadNotificationEmailInput": {
-            "postEntryContent": [
-                288
-            ],
-            "threadTitle": [
-                288
-            ],
-            "threadUrl": [
-                288
-            ],
-            "userIds": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
         "SerializedTemplateConfig": {},
         "Service": {
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "deployments": [
-                267,
+                318,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "featureFlags": [
-                2
+                3
             ],
             "icon": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
             "project": [
-                161
+                197
             ],
             "projectId": [
-                288
+                340
             ],
             "repoTriggers": [
-                277,
+                328,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "serviceInstances": [
-                279,
+                330,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "templateServiceId": [
-                288
+                340
             ],
             "templateThreadSlug": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "ServiceBackupInfo": {
+            "schedules": [
+                417
+            ],
+            "serviceId": [
+                340
+            ],
+            "serviceName": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "ServiceConnectInput": {
             "branch": [
-                288
+                340
             ],
             "image": [
-                288
+                340
             ],
             "repo": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceCreateInput": {
             "branch": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "icon": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "registryCredentials": [
-                256
+                305
             ],
             "source": [
-                282
+                333
             ],
             "templateServiceId": [
-                288
+                340
             ],
             "variables": [
-                73
+                89
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceDeploymentsConnection": {
             "edges": [
-                268
+                319
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceDeploymentsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                37
+                47
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceDomain": {
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "domain": [
-                288
+                340
+            ],
+            "edgeId": [
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "suffix": [
-                288
+                340
             ],
             "targetPort": [
-                102
+                118
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceDomainCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "targetPort": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceDomainUpdateInput": {
             "domain": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "serviceDomainId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "targetPort": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceFeatureFlagToggleInput": {
             "flag": [
-                2
+                3
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceInstance": {
             "buildCommand": [
-                288
+                340
             ],
             "builder": [
-                13
+                20
             ],
             "createdAt": [
-                36
+                46
             ],
             "cronSchedule": [
-                288
+                340
             ],
             "deletedAt": [
-                36
+                46
+            ],
+            "dockerfilePath": [
+                340
             ],
             "domains": [
-                5
+                6
+            ],
+            "drainingSeconds": [
+                118
             ],
             "environmentId": [
-                288
+                340
             ],
             "healthcheckPath": [
-                288
+                340
             ],
             "healthcheckTimeout": [
-                102
+                118
             ],
             "id": [
-                99
+                115
             ],
             "isUpdatable": [
-                12
+                19
             ],
             "latestDeployment": [
-                37
+                47
             ],
             "nextCronRunAt": [
-                36
+                46
             ],
             "nixpacksPlan": [
-                110
+                126
             ],
             "numReplicas": [
-                102
+                118
+            ],
+            "overlapSeconds": [
+                118
             ],
             "preDeployCommand": [
-                110
+                126
+            ],
+            "railpackInfo": [
+                293
             ],
             "railwayConfigFile": [
-                288
+                340
             ],
             "region": [
-                288
+                340
             ],
             "restartPolicyMaxRetries": [
-                102
+                118
             ],
             "restartPolicyType": [
-                261
+                312
             ],
             "rootDirectory": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "serviceName": [
-                288
+                340
             ],
             "sleepApplication": [
-                12
+                19
             ],
             "source": [
-                281
+                332
             ],
             "startCommand": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "upstreamUrl": [
-                288
+                340
             ],
             "watchPatterns": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceInstanceLimit": {},
         "ServiceInstanceLimitsUpdateInput": {
             "environmentId": [
-                288
+                340
             ],
             "memoryGB": [
-                88
+                102
             ],
             "serviceId": [
-                288
+                340
             ],
             "vCPUs": [
-                88
+                102
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceInstanceUpdateInput": {
             "buildCommand": [
-                288
+                340
             ],
             "builder": [
-                13
+                20
             ],
             "cronSchedule": [
-                288
+                340
+            ],
+            "dockerfilePath": [
+                340
+            ],
+            "drainingSeconds": [
+                118
             ],
             "healthcheckPath": [
-                288
+                340
             ],
             "healthcheckTimeout": [
-                102
+                118
             ],
             "multiRegionConfig": [
-                110
+                126
             ],
             "nixpacksPlan": [
-                110
+                126
             ],
             "numReplicas": [
-                102
+                118
+            ],
+            "overlapSeconds": [
+                118
             ],
             "preDeployCommand": [
-                288
+                340
             ],
             "railwayConfigFile": [
-                288
+                340
             ],
             "region": [
-                288
+                340
             ],
             "registryCredentials": [
-                256
+                305
             ],
             "restartPolicyMaxRetries": [
-                102
+                118
             ],
             "restartPolicyType": [
-                261
+                312
             ],
             "rootDirectory": [
-                288
+                340
             ],
             "sleepApplication": [
-                12
+                19
             ],
             "source": [
-                282
+                333
             ],
             "startCommand": [
-                288
+                340
             ],
             "watchPatterns": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceRepoTriggersConnection": {
             "edges": [
-                278
+                329
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceRepoTriggersConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                52
+                64
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceServiceInstancesConnection": {
             "edges": [
-                280
+                331
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceServiceInstancesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                273
+                324
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceSource": {
             "image": [
-                288
+                340
             ],
             "repo": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceSourceInput": {
             "image": [
-                288
+                340
             ],
             "repo": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "ServiceUpdateInput": {
             "icon": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Session": {
             "createdAt": [
-                36
+                46
             ],
             "expiredAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "isCurrent": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "type": [
-                285
+                336
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "SessionType": {},
         "SharedVariableConfigureInput": {
             "disabledServiceIds": [
-                288
+                340
             ],
             "enabledServiceIds": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "SimilarTemplate": {
             "code": [
-                288
+                340
             ],
             "createdAt": [
-                36
+                46
             ],
             "creator": [
-                320
+                361
             ],
             "deploys": [
-                102
+                118
             ],
             "description": [
-                288
+                340
             ],
             "health": [
-                88
+                102
             ],
             "image": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "teamId": [
-                288
+                340
             ],
             "userId": [
-                288
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
+        "SortOrder": {},
         "String": {},
         "Subscription": {
             "buildLogs": [
-                113,
+                129,
                 {
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ]
                 }
             ],
             "deployment": [
-                37,
+                47,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentEvents": [
-                38,
+                50,
                 {
                     "id": [
-                        288,
+                        340,
                         "String!"
                     ]
                 }
             ],
             "deploymentInstanceExecutions": [
-                41,
+                53,
                 {
                     "input": [
-                        43,
+                        55,
                         "DeploymentInstanceExecutionInput!"
                     ]
                 }
             ],
             "deploymentLogs": [
-                113,
+                129,
                 {
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ]
                 }
             ],
             "environmentLogs": [
-                113,
+                129,
                 {
                     "afterDate": [
-                        288
+                        340
                     ],
                     "afterLimit": [
-                        102
+                        118
                     ],
                     "anchorDate": [
-                        288
+                        340
                     ],
                     "beforeDate": [
-                        288
+                        340
                     ],
                     "beforeLimit": [
-                        102
+                        118
                     ],
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
+                    ]
+                }
+            ],
+            "environmentStagedPatch": [
+                83,
+                {
+                    "environmentId": [
+                        340,
+                        "String!"
                     ]
                 }
             ],
             "httpLogs": [
-                98,
+                114,
                 {
                     "afterDate": [
-                        288
+                        340
                     ],
                     "afterLimit": [
-                        102
+                        118
                     ],
                     "anchorDate": [
-                        288
+                        340
                     ],
                     "beforeDate": [
-                        288
+                        340
                     ],
                     "beforeLimit": [
-                        102
+                        118
                     ],
                     "deploymentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
                     ]
                 }
             ],
+            "notificationDeliveryUpdated": [
+                152
+            ],
             "pluginLogs": [
-                113,
+                129,
                 {
                     "environmentId": [
-                        288,
+                        340,
                         "String!"
                     ],
                     "filter": [
-                        288
+                        340
                     ],
                     "limit": [
-                        102
+                        118
                     ],
                     "pluginId": [
-                        288,
+                        340,
+                        "String!"
+                    ]
+                }
+            ],
+            "replicationProgress": [
+                420,
+                {
+                    "volumeInstanceId": [
+                        340,
                         "String!"
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "SubscriptionDiscount": {
             "couponId": [
-                288
+                340
+            ],
+            "couponName": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "SubscriptionItem": {
             "itemId": [
-                288
+                340
+            ],
+            "priceDollars": [
+                102
             ],
             "priceId": [
-                288
+                340
             ],
             "productId": [
-                288
+                340
             ],
             "quantity": [
-                10
+                17
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "SubscriptionModel": {},
         "SubscriptionPlanLimit": {},
         "SubscriptionPlanType": {},
         "SubscriptionState": {},
+        "SupportHealthMetrics": {},
         "SupportTierOverride": {},
         "TCPProxy": {
             "applicationPort": [
-                102
+                118
             ],
             "createdAt": [
-                36
+                46
             ],
             "deletedAt": [
-                36
+                46
             ],
             "domain": [
-                288
+                340
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "proxyPort": [
-                102
+                118
             ],
             "serviceId": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TCPProxyCreateInput": {
             "applicationPort": [
-                102
+                118
             ],
             "environmentId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Team": {
             "adoptionHistory": [
-                3
+                4
             ],
             "adoptionLevel": [
-                88
+                102
+            ],
+            "apiTokenRateLimit": [
+                10
             ],
             "avatar": [
-                288
-            ],
-            "banReason": [
-                288
+                340
             ],
             "createdAt": [
-                36
+                46
             ],
             "customer": [
-                27
-            ],
-            "discordRole": [
-                288
+                35
             ],
             "id": [
-                99
+                115
             ],
             "members": [
-                305
+                353
             ],
             "name": [
-                288
+                340
             ],
             "preferredRegion": [
-                288
+                340
             ],
             "projects": [
-                308,
+                355,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
-            "promptUpgrade": [
-                12
-            ],
             "slackChannelId": [
-                288
+                340
             ],
             "supportTierOverride": [
-                296
+                349
             ],
             "teamPermissions": [
-                306
+                354
             ],
             "updatedAt": [
-                36
+                46
             ],
             "workspace": [
-                396
+                430
             ],
             "__typename": [
-                288
-            ]
-        },
-        "TeamBulkProjectTransferInput": {
-            "projectIds": [
-                288
-            ],
-            "teamId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamCreateAndSubscribeInput": {
-            "avatar": [
-                288
-            ],
-            "name": [
-                288
-            ],
-            "paymentMethodId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamCreateAndSubscribeResponse": {
-            "customerId": [
-                288
-            ],
-            "paymentIntent": [
-                110
-            ],
-            "teamId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamCreateInput": {
-            "avatar": [
-                288
-            ],
-            "name": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamInviteCodeCreateInput": {
-            "role": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "TeamMember": {
             "avatar": [
-                288
+                340
             ],
             "email": [
-                288
+                340
             ],
             "featureFlags": [
                 1
             ],
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "role": [
-                310
+                357
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TeamPermission": {
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "role": [
-                310
-            ],
-            "teamId": [
-                288
+                357
             ],
             "updatedAt": [
-                36
+                46
             ],
             "userId": [
-                288
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
-            ]
-        },
-        "TeamPermissionChangeInput": {
-            "role": [
-                310
-            ],
-            "teamId": [
-                288
-            ],
-            "userId": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "TeamProjectsConnection": {
             "edges": [
-                309
+                356
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TeamProjectsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                161
+                197
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TeamRole": {},
-        "TeamTrustedDomain": {
-            "domainName": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "teamId": [
-                288
-            ],
-            "teamRole": [
-                288
-            ],
-            "verificationData": [
-                338
-            ],
-            "verificationType": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamTrustedDomainCreateInput": {
-            "domainName": [
-                288
-            ],
-            "teamId": [
-                288
-            ],
-            "teamRole": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamUpdateInput": {
-            "avatar": [
-                288
-            ],
-            "name": [
-                288
-            ],
-            "preferredRegion": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamUserInviteInput": {
-            "code": [
-                288
-            ],
-            "email": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TeamUserRemoveInput": {
-            "userId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "TelemetrySendInput": {
-            "command": [
-                288
-            ],
-            "environmentId": [
-                288
-            ],
-            "error": [
-                288
-            ],
-            "projectId": [
-                288
-            ],
-            "stacktrace": [
-                288
-            ],
-            "version": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
         "Template": {
             "activeProjects": [
-                102
+                118
             ],
             "canvasConfig": [
-                15
+                22
             ],
             "category": [
-                288
+                340
             ],
             "code": [
-                288
+                340
             ],
             "communityThreadSlug": [
-                288
+                340
             ],
             "config": [
-                319
+                360
             ],
             "createdAt": [
-                36
+                46
             ],
             "creator": [
-                320
+                361
             ],
             "demoProjectId": [
-                288
+                340
             ],
             "description": [
-                288
+                340
             ],
             "guides": [
-                327
+                368
             ],
             "health": [
-                88
-            ],
-            "id": [
-                99
-            ],
-            "image": [
-                288
-            ],
-            "isApproved": [
-                12
-            ],
-            "isV2Template": [
-                12
-            ],
-            "languages": [
-                288
-            ],
-            "metadata": [
-                329
-            ],
-            "name": [
-                288
-            ],
-            "projects": [
                 102
             ],
+            "id": [
+                115
+            ],
+            "image": [
+                340
+            ],
+            "isApproved": [
+                19
+            ],
+            "isV2Template": [
+                19
+            ],
+            "isVerified": [
+                19
+            ],
+            "languages": [
+                340
+            ],
+            "metadata": [
+                369
+            ],
+            "name": [
+                340
+            ],
+            "projects": [
+                118
+            ],
             "readme": [
-                288
+                340
+            ],
+            "recentProjects": [
+                118
             ],
             "serializedConfig": [
-                263
+                313
             ],
             "services": [
-                334,
+                375,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "similarTemplates": [
-                287
+                338
             ],
             "status": [
-                336
+                377
+            ],
+            "supportHealthMetrics": [
+                348
             ],
             "tags": [
-                288
+                340
             ],
             "teamId": [
-                288
+                340
             ],
             "totalPayout": [
-                88
+                102
             ],
-            "userId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateCloneInput": {
             "code": [
-                288
+                340
             ],
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateConfig": {},
         "TemplateCreator": {
             "avatar": [
-                288
+                340
             ],
             "hasPublicProfile": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "username": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateDeleteInput": {
-            "teamId": [
-                288
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateDeployInput": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "services": [
-                324
-            ],
-            "teamId": [
-                288
+                365
             ],
             "templateCode": [
-                288
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateDeployPayload": {
             "projectId": [
-                288
+                340
             ],
             "workflowId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateDeployService": {
             "commit": [
-                288
+                340
             ],
             "hasDomain": [
-                12
+                19
             ],
             "healthcheckPath": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "isPrivate": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "owner": [
-                288
+                340
             ],
             "preDeployCommand": [
-                288
+                340
             ],
             "rootDirectory": [
-                288
+                340
             ],
             "serviceIcon": [
-                288
+                340
             ],
             "serviceName": [
-                288
+                340
             ],
             "startCommand": [
-                288
+                340
             ],
             "tcpProxyApplicationPort": [
-                102
+                118
             ],
             "template": [
-                288
+                340
             ],
             "variables": [
-                73
+                89
             ],
             "volumes": [
-                337
+                378
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateDeployV2Input": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serializedConfig": [
-                263
-            ],
-            "teamId": [
-                288
+                313
             ],
             "templateId": [
-                288
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateGenerateInput": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
-            ],
-            "teamId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateGuide": {
             "post": [
-                288
+                340
             ],
             "video": [
-                288
+                340
             ],
             "__typename": [
-                288
-            ]
-        },
-        "TemplateKickbacksLeaderboard": {
-            "total_amount": [
-                88
-            ],
-            "userId": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "TemplateMetadata": {},
-        "TemplatePublishInput": {
-            "category": [
-                288
+        "TemplateMetrics": {
+            "activeDeployments": [
+                118
             ],
-            "demoProjectId": [
-                288
+            "deploymentsLast90Days": [
+                118
             ],
-            "description": [
-                288
+            "earningsLast30Days": [
+                102
             ],
-            "image": [
-                288
+            "earningsLast90Days": [
+                102
             ],
-            "readme": [
-                288
+            "eligibleForSupportBonus": [
+                19
             ],
-            "teamId": [
-                288
+            "supportHealth": [
+                102
+            ],
+            "templateHealth": [
+                102
+            ],
+            "totalDeployments": [
+                118
+            ],
+            "totalEarnings": [
+                102
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "TemplatePublishInput": {
+            "category": [
+                340
+            ],
+            "demoProjectId": [
+                340
+            ],
+            "description": [
+                340
+            ],
+            "image": [
+                340
+            ],
+            "readme": [
+                340
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "TemplateService": {
             "config": [
-                332
+                373
             ],
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "templateId": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateServiceConfig": {},
         "TemplateServiceSourceEjectInput": {
             "projectId": [
-                288
+                340
             ],
             "repoName": [
-                288
+                340
             ],
             "repoOwner": [
-                288
+                340
             ],
             "serviceIds": [
-                288
+                340
             ],
             "upstreamUrl": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateServicesConnection": {
             "edges": [
-                335
+                376
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateServicesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                331
+                372
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TemplateStatus": {},
         "TemplateVolume": {},
-        "TrustedDomainVerificationData": {
-            "domainMatch": [
-                56
+        "TrustedDomain": {
+            "domainName": [
+                340
             ],
-            "domainStatus": [
-                26
+            "id": [
+                115
+            ],
+            "role": [
+                340
+            ],
+            "verificationData": [
+                380
+            ],
+            "verificationType": [
+                340
+            ],
+            "workspaceId": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "TrustedDomainVerificationData": {
+            "domainMatch": [
+                69
+            ],
+            "domainStatus": [
+                34
+            ],
+            "__typename": [
+                340
             ]
         },
         "TwoFactorInfo": {
             "hasRecoveryCodes": [
-                12
+                19
             ],
             "isVerified": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TwoFactorInfoCreateInput": {
             "token": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TwoFactorInfoSecret": {
             "secret": [
-                288
+                340
             ],
             "uri": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "TwoFactorInfoValidateInput": {
             "token": [
-                288
+                340
             ],
             "twoFactorLinkingKey": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
+        "TwoFactorMethodCompliance": {},
+        "TwoFactorMethodProjectWorkspace": {},
         "Upload": {},
-        "UsageAnomaly": {
-            "actedOn": [
-                36
-            ],
-            "action": [
-                345
-            ],
-            "actorId": [
-                288
-            ],
-            "flaggedAt": [
-                36
-            ],
-            "flaggedFor": [
-                346
-            ],
-            "id": [
-                99
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "UsageAnomalyAction": {},
-        "UsageAnomalyFlagReason": {},
         "UsageLimit": {
             "customerId": [
-                288
+                340
             ],
             "hardLimit": [
-                102
+                118
             ],
             "id": [
-                99
+                115
             ],
             "isOverLimit": [
-                12
+                19
             ],
             "softLimit": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UsageLimitRemoveInput": {
             "customerId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UsageLimitSetInput": {
             "customerId": [
-                288
+                340
             ],
             "hardLimitDollars": [
-                102
+                118
             ],
             "softLimitDollars": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "User": {
             "agreedFairUse": [
-                12
+                19
+            ],
+            "apiTokenRateLimit": [
+                10
             ],
             "avatar": [
-                288
+                340
             ],
             "banReason": [
-                288
-            ],
-            "cost": [
-                351
+                340
             ],
             "createdAt": [
-                36
-            ],
-            "customer": [
-                27
+                46
             ],
             "email": [
-                288
+                340
             ],
             "featureFlags": [
                 1
             ],
             "flags": [
-                352
+                392
+            ],
+            "githubProviderId": [
+                340
+            ],
+            "githubUsername": [
+                340
             ],
             "has2FA": [
-                12
+                19
             ],
             "id": [
-                99
+                115
             ],
             "isAdmin": [
-                12
+                19
             ],
             "isConductor": [
-                12
-            ],
-            "isDevPlan": [
-                12
-            ],
-            "isEligibleForFreeHobbyPlan": [
-                12
-            ],
-            "isOnHobbyPlan": [
-                12
+                19
             ],
             "isVerified": [
-                12
+                19
             ],
             "lastLogin": [
-                36
+                46
             ],
             "name": [
-                288
+                340
+            ],
+            "platformFeatureFlags": [
+                2
             ],
             "profile": [
-                356
+                396
             ],
             "projects": [
-                361,
+                401,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "providerAuths": [
-                363,
+                403,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
-            ],
-            "referredUsers": [
-                250
             ],
             "registrationStatus": [
-                255
+                304
             ],
             "riskLevel": [
-                88
-            ],
-            "teams": [
-                365,
-                {
-                    "after": [
-                        288
-                    ],
-                    "before": [
-                        288
-                    ],
-                    "first": [
-                        102
-                    ],
-                    "last": [
-                        102
-                    ]
-                }
+                102
             ],
             "termsAgreedOn": [
-                36
+                46
             ],
             "username": [
-                288
+                340
             ],
             "workspace": [
-                396
+                430
             ],
             "workspaces": [
-                396
+                430
             ],
             "__typename": [
-                288
-            ]
-        },
-        "UserCost": {
-            "current": [
-                88
-            ],
-            "estimated": [
-                88
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "UserFlag": {},
         "UserFlagsRemoveInput": {
             "flags": [
-                352
+                392
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserFlagsSetInput": {
             "flags": [
-                352
+                392
             ],
             "userId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserKickbackEarnings": {
             "total_amount": [
-                88
+                102
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProfile": {
             "bio": [
-                288
+                340
             ],
             "isPublic": [
-                12
+                19
             ],
             "website": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProfileResponse": {
             "avatar": [
-                288
+                340
             ],
             "createdAt": [
-                36
+                46
             ],
             "customerId": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "isTrialing": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "profile": [
-                356
+                396
             ],
             "publicProjects": [
-                358,
+                398,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "publishedTemplates": [
-                287
+                338
             ],
             "state": [
-                288
+                340
             ],
             "totalDeploys": [
-                102
+                118
             ],
             "username": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProfileResponsePublicProjectsConnection": {
             "edges": [
-                359
+                399
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProfileResponsePublicProjectsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                161
+                197
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProfileUpdateInput": {
             "bio": [
-                288
+                340
             ],
             "isPublic": [
-                12
+                19
             ],
             "website": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProjectsConnection": {
             "edges": [
-                362
+                402
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProjectsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                161
+                197
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProviderAuthsConnection": {
             "edges": [
-                364
+                404
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "UserProviderAuthsConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                200
+                241
             ],
             "__typename": [
-                288
-            ]
-        },
-        "UserTeamsConnection": {
-            "edges": [
-                366
-            ],
-            "pageInfo": [
-                137
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "UserTeamsConnectionEdge": {
-            "cursor": [
-                288
-            ],
-            "node": [
-                299
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "UserUpdateInput": {
-            "avatar": [
-                288
-            ],
-            "name": [
-                288
-            ],
-            "username": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "Variable": {
             "createdAt": [
-                36
+                46
             ],
             "environment": [
-                62
+                75
             ],
             "environmentId": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "isSealed": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "plugin": [
-                142
+                181
             ],
             "pluginId": [
-                288
+                340
             ],
             "references": [
-                288
+                340
             ],
             "service": [
-                264
+                314
             ],
             "serviceId": [
-                288
+                340
             ],
             "updatedAt": [
-                36
+                46
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VariableCollectionUpsertInput": {
             "environmentId": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "replace": [
-                12
+                19
             ],
             "serviceId": [
-                288
+                340
+            ],
+            "skipDeploys": [
+                19
             ],
             "variables": [
-                73
+                89
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VariableDeleteInput": {
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VariableUpsertInput": {
             "environmentId": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
             ],
             "serviceId": [
-                288
+                340
+            ],
+            "skipDeploys": [
+                19
             ],
             "value": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VercelAccount": {
             "id": [
-                288
+                340
             ],
             "integrationAuthId": [
-                288
+                340
             ],
             "isUser": [
-                12
+                19
             ],
             "name": [
-                288
+                340
             ],
             "projects": [
-                374
+                411
             ],
             "slug": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VercelInfo": {
             "accounts": [
-                372
+                409
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VercelProject": {
             "accountId": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "Volume": {
             "createdAt": [
-                36
+                46
             ],
             "id": [
-                99
+                115
             ],
             "name": [
-                288
+                340
             ],
             "project": [
-                161
+                197
             ],
             "projectId": [
-                288
+                340
             ],
             "volumeInstances": [
-                385,
+                424,
                 {
                     "after": [
-                        288
+                        340
                     ],
                     "before": [
-                        288
+                        340
                     ],
                     "first": [
-                        102
+                        118
                     ],
                     "last": [
-                        102
+                        118
                     ]
                 }
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeCreateInput": {
             "environmentId": [
-                288
+                340
             ],
             "mountPath": [
-                288
+                340
             ],
             "projectId": [
-                288
+                340
+            ],
+            "region": [
+                340
             ],
             "serviceId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeInstance": {
             "createdAt": [
-                36
+                46
             ],
             "currentSizeMB": [
-                88
-            ],
-            "environment": [
-                62
-            ],
-            "environmentId": [
-                288
-            ],
-            "externalId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "mountPath": [
-                288
-            ],
-            "region": [
-                288
-            ],
-            "service": [
-                264
-            ],
-            "serviceId": [
-                288
-            ],
-            "sizeMB": [
                 102
             ],
-            "state": [
-                383
+            "environment": [
+                75
             ],
-            "type": [
-                381
+            "environmentId": [
+                340
+            ],
+            "externalId": [
+                340
+            ],
+            "id": [
+                115
+            ],
+            "mountPath": [
+                340
+            ],
+            "region": [
+                340
+            ],
+            "service": [
+                314
+            ],
+            "serviceId": [
+                340
+            ],
+            "sizeMB": [
+                118
+            ],
+            "state": [
+                422
             ],
             "volume": [
-                375
+                412
             ],
             "volumeId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeInstanceBackup": {
             "createdAt": [
-                36
+                46
             ],
             "creatorId": [
-                288
+                340
             ],
             "expiresAt": [
-                36
+                46
             ],
             "externalId": [
-                288
+                340
             ],
             "id": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "referencedMB": [
-                102
+                118
+            ],
+            "scheduleId": [
+                340
             ],
             "usedMB": [
-                102
+                118
+            ],
+            "volumeInstanceSizeMB": [
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeInstanceBackupSchedule": {
             "createdAt": [
-                36
+                46
             ],
             "cron": [
-                288
+                340
             ],
             "id": [
-                99
+                115
             ],
             "kind": [
-                380
+                417
             ],
             "name": [
-                288
+                340
             ],
             "retentionSeconds": [
-                102
+                118
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeInstanceBackupScheduleKind": {},
-        "VolumeInstanceType": {},
-        "VolumeInstanceUpdateInput": {
-            "mountPath": [
-                288
+        "VolumeInstanceReplicationProgress": {
+            "bytesTransferred": [
+                17
             ],
-            "serviceId": [
-                288
+            "percentComplete": [
+                102
             ],
-            "state": [
-                383
+            "timestamp": [
+                46
             ],
-            "type": [
-                381
+            "transferRateMbps": [
+                102
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "VolumeInstanceUpdateInput": {
+            "mountPath": [
+                340
+            ],
+            "serviceId": [
+                340
+            ],
+            "state": [
+                422
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "VolumeReplicationProgressUpdate": {
+            "currentSnapshot": [
+                421
+            ],
+            "destExternalId": [
+                340
+            ],
+            "destRegion": [
+                340
+            ],
+            "destStackerId": [
+                340
+            ],
+            "error": [
+                340
+            ],
+            "estimatedTimeRemainingMs": [
+                17
+            ],
+            "history": [
+                418
+            ],
+            "nbSnapshots": [
+                118
+            ],
+            "offlineBytesTransferred": [
+                17
+            ],
+            "offlineTotalBytes": [
+                17
+            ],
+            "onlineBytesTransferred": [
+                17
+            ],
+            "onlineTotalBytes": [
+                17
+            ],
+            "percentComplete": [
+                102
+            ],
+            "snapshotsSizes": [
+                17
+            ],
+            "srcExternalId": [
+                340
+            ],
+            "srcRegion": [
+                340
+            ],
+            "srcStackerId": [
+                340
+            ],
+            "status": [
+                307
+            ],
+            "transferRateMbps": [
+                102
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "VolumeSnapshotReplicationProgressUpdate": {
+            "bytesTransferred": [
+                17
+            ],
+            "compressedBytesTransferred": [
+                17
+            ],
+            "compressedTransferRateMbps": [
+                102
+            ],
+            "elapsedMs": [
+                118
+            ],
+            "error": [
+                340
+            ],
+            "estimatedTimeRemainingMs": [
+                17
+            ],
+            "index": [
+                118
+            ],
+            "percentComplete": [
+                102
+            ],
+            "startedAt": [
+                46
+            ],
+            "status": [
+                306
+            ],
+            "totalBytes": [
+                17
+            ],
+            "transferRateMbps": [
+                102
+            ],
+            "__typename": [
+                340
             ]
         },
         "VolumeState": {},
         "VolumeUpdateInput": {
             "name": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeVolumeInstancesConnection": {
             "edges": [
-                386
+                425
             ],
             "pageInfo": [
-                137
+                169
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "VolumeVolumeInstancesConnectionEdge": {
             "cursor": [
-                288
+                340
             ],
             "node": [
-                377
+                414
             ],
             "__typename": [
-                288
-            ]
-        },
-        "WebhookCreateInput": {
-            "filters": [
-                288
-            ],
-            "projectId": [
-                288
-            ],
-            "url": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "WebhookUpdateInput": {
-            "filters": [
-                288
-            ],
-            "url": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "Withdrawal": {
-            "amount": [
-                88
-            ],
-            "createdAt": [
-                36
-            ],
-            "customerId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "status": [
-                392
-            ],
-            "updatedAt": [
-                36
-            ],
-            "withdrawalAccountId": [
-                288
-            ],
-            "__typename": [
-                288
-            ]
-        },
-        "WithdrawalAccount": {
-            "customerId": [
-                288
-            ],
-            "id": [
-                99
-            ],
-            "platform": [
-                391
-            ],
-            "platformDetails": [
-                288
-            ],
-            "__typename": [
-                288
+                340
             ]
         },
         "WithdrawalPlatformTypes": {},
-        "WithdrawalStatusType": {},
         "WorkflowId": {
             "workflowId": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "WorkflowResult": {
             "error": [
-                288
+                340
             ],
             "status": [
-                395
+                429
             ],
             "__typename": [
-                288
+                340
             ]
         },
         "WorkflowStatus": {},
         "Workspace": {
+            "adoptionHistory": [
+                4
+            ],
+            "adoptionLevel": [
+                102
+            ],
+            "allowDeprecatedRegions": [
+                19
+            ],
+            "apiTokenRateLimit": [
+                10
+            ],
+            "avatar": [
+                340
+            ],
+            "banReason": [
+                340
+            ],
             "createdAt": [
-                36
+                46
             ],
             "customer": [
-                27
+                35
+            ],
+            "discordRole": [
+                340
+            ],
+            "hasSAML": [
+                19
             ],
             "id": [
-                99
+                115
+            ],
+            "identityProviders": [
+                434,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ]
+                }
+            ],
+            "members": [
+                437
+            ],
+            "name": [
+                340
+            ],
+            "partnerProfile": [
+                170
+            ],
+            "plan": [
+                175
+            ],
+            "preferredRegion": [
+                340
+            ],
+            "projects": [
+                439,
+                {
+                    "after": [
+                        340
+                    ],
+                    "before": [
+                        340
+                    ],
+                    "first": [
+                        118
+                    ],
+                    "last": [
+                        118
+                    ]
+                }
+            ],
+            "referredUsers": [
+                300
+            ],
+            "slackChannelId": [
+                340
             ],
             "subscriptionModel": [
-                292
+                344
+            ],
+            "supportTierOverride": [
+                349
             ],
             "team": [
-                299
+                352
+            ],
+            "updatedAt": [
+                46
+            ],
+            "usersWithout2FA": [
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "WorkspaceIdPConnection": {
+            "createdAt": [
+                46
+            ],
+            "provider": [
+                340
+            ],
+            "status": [
+                432
+            ],
+            "updatedAt": [
+                46
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceIdPConnectionStatus": {},
+        "WorkspaceIdentityProvider": {
+            "connection": [
+                431
+            ],
+            "createdAt": [
+                46
+            ],
+            "enforcementEnabledAt": [
+                46
+            ],
+            "id": [
+                115
+            ],
+            "updatedAt": [
+                46
+            ],
+            "workspace": [
+                430
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceIdentityProvidersConnection": {
+            "edges": [
+                435
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceIdentityProvidersConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                433
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceInviteCodeCreateInput": {
+            "role": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceMember": {
+            "avatar": [
+                340
+            ],
+            "email": [
+                340
+            ],
+            "featureFlags": [
+                1
+            ],
+            "id": [
+                340
+            ],
+            "name": [
+                340
+            ],
+            "role": [
+                357
+            ],
+            "twoFactorAuthEnabled": [
+                19
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspacePermissionChangeInput": {
+            "role": [
+                357
+            ],
+            "userId": [
+                340
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceProjectsConnection": {
+            "edges": [
+                440
+            ],
+            "pageInfo": [
+                169
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceProjectsConnectionEdge": {
+            "cursor": [
+                340
+            ],
+            "node": [
+                197
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceTrustedDomainCreateInput": {
+            "domainName": [
+                340
+            ],
+            "role": [
+                340
+            ],
+            "workspaceId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "WorkspaceUpdateInput": {
             "avatar": [
-                288
+                340
             ],
             "name": [
-                288
+                340
             ],
             "preferredRegion": [
-                288
+                340
             ],
             "__typename": [
-                288
+                340
+            ]
+        },
+        "WorkspaceUserInviteInput": {
+            "code": [
+                340
+            ],
+            "email": [
+                340
+            ],
+            "__typename": [
+                340
+            ]
+        },
+        "WorkspaceUserRemoveInput": {
+            "userId": [
+                340
+            ],
+            "__typename": [
+                340
             ]
         },
         "customerTogglePayoutsToCreditsInput": {
             "isWithdrawingToCredits": [
-                12
+                19
             ],
             "__typename": [
-                288
+                340
             ]
         }
     }

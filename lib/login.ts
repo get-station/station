@@ -18,7 +18,7 @@ export async function checkLoginCredentials(token: string) {
                 workspaces: {
                     id: true,
                     createdAt: true,
-                    subscriptionModel: true,
+                    plan: true,
                 },
                 isVerified: true,
                 registrationStatus: true,

@@ -24,18 +24,8 @@ export function useWebhookCheck(
             const user = query.data
 
             for (const workspace of user.workspaces) {
-                if (workspace.team) {
-                    projects.push(
-                        ...workspace.team.projects.edges.map((edge) => ({
-                            projectId: edge.node.id,
-                            connectionId: user.id,
-                        }))
-                    )
-                    continue
-                }
-
                 projects.push(
-                    ...user.projects.edges.map((edge) => ({
+                    ...workspace.projects.edges.map((edge) => ({
                         projectId: edge.node.id,
                         connectionId: user.id,
                     }))

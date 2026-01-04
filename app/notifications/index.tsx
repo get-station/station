@@ -170,17 +170,11 @@ function WorkspaceCard({
     })
 
     const workspaceProjects = useMemo(() => {
-        // determine if currentWorkspace is the user or a team
-        if (workspace?.team) {
-            return workspace.team.projects.edges
-                .map((edge) => edge.node)
-                .sort((a, b) => a.name.localeCompare(b.name))
-        }
-
-        return userQuery.data?.projects.edges
+        if (!workspace?.projects) return []
+        return workspace.projects.edges
             .map((edge) => edge.node)
             .sort((a, b) => a.name.localeCompare(b.name))
-    }, [workspace, userQuery.data])
+    }, [workspace])
 
     return (
         <View style={{ flexDirection: 'column', gap: 20, backgroundColor, padding: 14 }}>
@@ -202,14 +196,12 @@ function WorkspaceCard({
                     >
                         <Image
                             source={{
-                                uri: workspace.team?.avatar || userQuery.data?.avatar || '',
+                                uri: workspace.avatar || userQuery.data?.avatar || '',
                             }}
                             style={{ flex: 1 }}
                         />
                     </View>
-                    <Text style={{ fontSize: 24, color: COLORS.white }}>
-                        {workspace.team?.name || workspace.team?.id}
-                    </Text>
+                    <Text style={{ fontSize: 24, color: COLORS.white }}>{workspace.name}</Text>
                 </View>
             </View>
 
@@ -237,7 +229,9 @@ function ProjectRow({
     enablePush,
     pushToken,
 }: {
-    project: Awaited<ReturnType<typeof fetchUserInfo>>['projects']['edges'][number]['node'] & {
+    project: Awaited<
+        ReturnType<typeof fetchUserInfo>
+    >['workspaces'][number]['projects']['edges'][number]['node'] & {
         connectionId: string
     }
     hasPushEnabled: boolean

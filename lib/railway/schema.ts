@@ -4,49 +4,50 @@
 /* eslint-disable */
 
 export type Scalars = {
-    BigInt: any
-    Boolean: boolean
-    CanvasConfig: any
-    DateTime: any
-    DeploymentMeta: any
-    DisplayConfig: any
-    EnvironmentVariables: any
-    EventProperties: any
-    Float: number
-    ID: string
-    Int: number
-    JSON: any
-    SerializedTemplateConfig: any
-    ServiceInstanceLimit: any
-    String: string
-    SubscriptionPlanLimit: any
-    TemplateConfig: any
-    TemplateMetadata: any
-    TemplateServiceConfig: any
-    TemplateVolume: any
-    Upload: any
+    BigInt: any,
+    Boolean: boolean,
+    CanvasConfig: any,
+    DateTime: any,
+    DeploymentMeta: any,
+    DisplayConfig: any,
+    EnvironmentConfig: any,
+    EnvironmentVariables: any,
+    Float: number,
+    ID: string,
+    Int: number,
+    JSON: any,
+    NotificationPayload: any,
+    RailpackInfo: any,
+    SerializedTemplateConfig: any,
+    ServiceInstanceLimit: any,
+    String: string,
+    SubscriptionPlanLimit: any,
+    SupportHealthMetrics: any,
+    TemplateConfig: any,
+    TemplateMetadata: any,
+    TemplateServiceConfig: any,
+    TemplateVolume: any,
+    Upload: any,
 }
 
 export interface AccessRule {
-    disallowed: Scalars['String'] | null
+    disallowed: (Scalars['String'] | null)
     __typename: 'AccessRule'
 }
 
-export type ActiveFeatureFlag =
-    | 'METAL_VOLUME_CREATION'
-    | 'PRIORITY_BOARDING'
-    | 'V2_NEW_PROJECT_PAGE'
+export type ActiveFeatureFlag = 'AUDIT_LOGS' | 'BUCKET_FILE_BROWSER' | 'CONVERSATIONAL_UI' | 'MAGIC_CONFIG' | 'POSTGRES_HA' | 'PRIORITY_BOARDING' | 'RAW_SQL_QUERIES'
 
-export type ActiveServiceFeatureFlag = 'COPY_VOLUME_TO_ENVIRONMENT' | 'LEGACY_CRONS' | 'PLACEHOLDER'
+export type ActivePlatformFlag = 'ALLOW_REPLICA_METRICS' | 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES' | 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO' | 'BUILDER_V3_ROLLOUT_NEW_SERVICES' | 'BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO' | 'CTRD_IMAGE_STORE_ROLLOUT' | 'DEMO_PERCENTAGE_ROLLOUT' | 'ENABLE_RAW_SQL_QUERIES' | 'SCYLLADB_ROUTING_ENABLED' | 'SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL' | 'SPLIT_USAGE_QUERIES' | 'UPDATED_VM_QUERIES' | 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' | 'VM_TIME_RANGE_QUERY'
+
+export type ActiveServiceFeatureFlag = 'COPY_VOLUME_TO_ENVIRONMENT' | 'ENABLE_DOCKER_EXTENSION' | 'ENABLE_ONLINE_VOLUME_RESIZING' | 'PLACEHOLDER' | 'USE_BUILDER_V3_FOR_CLI_DEPLOYS' | 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' | 'USE_VM_RUNTIME'
 
 export interface AdoptionInfo {
-    adoptionLevel: Scalars['Float'] | null
+    adoptionLevel: (Scalars['Float'] | null)
     createdAt: Scalars['DateTime']
-    customer: Team
-    deltaLevel: Scalars['Float'] | null
+    deltaLevel: (Scalars['Float'] | null)
     id: Scalars['ID']
-    matchedIcpEmail: Scalars['String'] | null
-    monthlyEstimatedUsage: Scalars['Float'] | null
+    matchedIcpEmail: (Scalars['String'] | null)
+    monthlyEstimatedUsage: (Scalars['Float'] | null)
     numConfigFile: Scalars['Int']
     numCronSchedule: Scalars['Int']
     numDeploys: Scalars['Int']
@@ -59,15 +60,16 @@ export interface AdoptionInfo {
     numRootDirectory: Scalars['Int']
     numSeats: Scalars['Int']
     numServices: Scalars['Int']
-    numSupportRequests: Scalars['Int']
     numVariables: Scalars['Int']
     numWatchPatterns: Scalars['Int']
-    totalCores: Scalars['Float'] | null
-    totalDisk: Scalars['Float'] | null
-    totalNetwork: Scalars['Float'] | null
+    totalCores: (Scalars['Float'] | null)
+    totalDisk: (Scalars['Float'] | null)
+    totalNetwork: (Scalars['Float'] | null)
     updatedAt: Scalars['DateTime']
+    workspace: Workspace
     __typename: 'AdoptionInfo'
 }
+
 
 /** The aggregated usage of a single measurement. */
 export interface AggregatedUsage {
@@ -90,17 +92,59 @@ export interface ApiToken {
     displayToken: Scalars['String']
     id: Scalars['ID']
     name: Scalars['String']
-    teamId: Scalars['String'] | null
+    workspaceId: (Scalars['String'] | null)
     __typename: 'ApiToken'
 }
 
-export interface BanReasonHistory {
-    actor: User
-    banReason: Scalars['String'] | null
-    createdAt: Scalars['DateTime']
-    id: Scalars['ID']
-    __typename: 'BanReasonHistory'
+
+/** Information about the current API token and its accessible workspaces. */
+export interface ApiTokenContext {
+    /** Workspaces this subject can operate on via this token or session. */
+    workspaces: ApiTokenWorkspace[]
+    __typename: 'ApiTokenContext'
 }
+
+export interface ApiTokenRateLimit {
+    remainingPoints: Scalars['Int']
+    resetsAt: Scalars['String']
+    __typename: 'ApiTokenRateLimit'
+}
+
+export interface ApiTokenWorkspace {
+    id: Scalars['String']
+    name: Scalars['String']
+    __typename: 'ApiTokenWorkspace'
+}
+
+export interface AppliedByMember {
+    avatar: (Scalars['String'] | null)
+    email: Scalars['String']
+    id: Scalars['String']
+    name: (Scalars['String'] | null)
+    username: (Scalars['String'] | null)
+    __typename: 'AppliedByMember'
+}
+
+export interface AuditLog {
+    context: (Scalars['JSON'] | null)
+    createdAt: Scalars['DateTime']
+    environment: (Environment | null)
+    environmentId: (Scalars['String'] | null)
+    eventType: Scalars['String']
+    id: Scalars['ID']
+    payload: (Scalars['JSON'] | null)
+    project: (Project | null)
+    projectId: (Scalars['String'] | null)
+    workspaceId: (Scalars['String'] | null)
+    __typename: 'AuditLog'
+}
+
+export interface AuditLogEventTypeInfo {
+    description: Scalars['String']
+    eventType: Scalars['String']
+    __typename: 'AuditLogEventTypeInfo'
+}
+
 
 /** The billing period for a customers subscription. */
 export interface BillingPeriod {
@@ -109,31 +153,25 @@ export interface BillingPeriod {
     __typename: 'BillingPeriod'
 }
 
-export type Builder = 'HEROKU' | 'NIXPACKS' | 'PAKETO'
+export type Builder = 'HEROKU' | 'NIXPACKS' | 'PAKETO' | 'RAILPACK'
 
-export type CDNProvider =
-    | 'DETECTED_CDN_PROVIDER_CLOUDFLARE'
-    | 'DETECTED_CDN_PROVIDER_UNSPECIFIED'
-    | 'UNRECOGNIZED'
+export type CDNProvider = 'DETECTED_CDN_PROVIDER_CLOUDFLARE' | 'DETECTED_CDN_PROVIDER_UNSPECIFIED' | 'UNRECOGNIZED'
 
 export interface CertificatePublicData {
     domainNames: Scalars['String'][]
-    expiresAt: Scalars['DateTime'] | null
+    expiresAt: (Scalars['DateTime'] | null)
     fingerprintSha256: Scalars['String']
-    issuedAt: Scalars['DateTime'] | null
+    issuedAt: (Scalars['DateTime'] | null)
     keyType: KeyType
     __typename: 'CertificatePublicData'
 }
 
-export type CertificateStatus =
-    | 'CERTIFICATE_STATUS_TYPE_ISSUE_FAILED'
-    | 'CERTIFICATE_STATUS_TYPE_ISSUING'
-    | 'CERTIFICATE_STATUS_TYPE_UNSPECIFIED'
-    | 'CERTIFICATE_STATUS_TYPE_VALID'
-    | 'UNRECOGNIZED'
+export type CertificateStatus = 'CERTIFICATE_STATUS_TYPE_ISSUE_FAILED' | 'CERTIFICATE_STATUS_TYPE_ISSUING' | 'CERTIFICATE_STATUS_TYPE_UNSPECIFIED' | 'CERTIFICATE_STATUS_TYPE_VALID' | 'CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP' | 'UNRECOGNIZED'
+
+export type CertificateStatusDetailed = 'CERTIFICATE_STATUS_TYPE_DETAILED_CLEANING_UP' | 'CERTIFICATE_STATUS_TYPE_DETAILED_COMPLETE' | 'CERTIFICATE_STATUS_TYPE_DETAILED_CREATING_ORDER' | 'CERTIFICATE_STATUS_TYPE_DETAILED_DOWNLOADING_CERTIFICATE' | 'CERTIFICATE_STATUS_TYPE_DETAILED_FAILED' | 'CERTIFICATE_STATUS_TYPE_DETAILED_FETCHING_AUTHORIZATIONS' | 'CERTIFICATE_STATUS_TYPE_DETAILED_FINALIZING_ORDER' | 'CERTIFICATE_STATUS_TYPE_DETAILED_GENERATING_KEYS' | 'CERTIFICATE_STATUS_TYPE_DETAILED_INITIATING_CHALLENGES' | 'CERTIFICATE_STATUS_TYPE_DETAILED_POLLING_AUTHORIZATIONS' | 'CERTIFICATE_STATUS_TYPE_DETAILED_PRESENTING_CHALLENGES' | 'CERTIFICATE_STATUS_TYPE_DETAILED_UNSPECIFIED' | 'UNRECOGNIZED'
 
 export interface CnameCheck {
-    link: Scalars['String'] | null
+    link: (Scalars['String'] | null)
     message: Scalars['String']
     status: CnameCheckStatus
     __typename: 'CnameCheck'
@@ -141,13 +179,21 @@ export interface CnameCheck {
 
 export type CnameCheckStatus = 'ERROR' | 'INFO' | 'INVALID' | 'VALID' | 'WAITING'
 
+export interface ComplianceAgreementsInfo {
+    /** Whether the workspace has a signed Business Associate Agreement (HIPAA) */
+    hasBAA: Scalars['Boolean']
+    /** Whether the workspace has a Data Processing Agreement (GDPR) */
+    hasDPA: Scalars['Boolean']
+    __typename: 'ComplianceAgreementsInfo'
+}
+
 export interface Container {
     createdAt: Scalars['DateTime']
-    deletedAt: Scalars['DateTime'] | null
+    deletedAt: (Scalars['DateTime'] | null)
     environment: Environment
     environmentId: Scalars['String']
     id: Scalars['ID']
-    migratedAt: Scalars['DateTime'] | null
+    migratedAt: (Scalars['DateTime'] | null)
     plugin: Plugin
     pluginId: Scalars['String']
     __typename: 'Container'
@@ -158,17 +204,10 @@ export interface Credit {
     createdAt: Scalars['DateTime']
     customerId: Scalars['String']
     id: Scalars['ID']
-    memo: Scalars['String'] | null
+    memo: (Scalars['String'] | null)
     type: CreditType
     updatedAt: Scalars['DateTime']
     __typename: 'Credit'
-}
-
-export interface CreditTransferMetrics {
-    creditTransferAvg: Scalars['Float'] | null
-    creditTransferCount: Scalars['Int'] | null
-    creditTransferSum: Scalars['Int'] | null
-    __typename: 'CreditTransferMetrics'
 }
 
 export type CreditType = 'APPLIED' | 'CREDIT' | 'DEBIT' | 'STRIPE' | 'TRANSFER' | 'WAIVED'
@@ -176,52 +215,71 @@ export type CreditType = 'APPLIED' | 'CREDIT' | 'DEBIT' | 'STRIPE' | 'TRANSFER' 
 export interface CustomDomain {
     /** @deprecated Use the `status` field instead. */
     cnameCheck: CnameCheck
-    createdAt: Scalars['DateTime'] | null
-    deletedAt: Scalars['DateTime'] | null
+    createdAt: (Scalars['DateTime'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
     domain: Scalars['String']
+    edgeId: (Scalars['String'] | null)
     environmentId: Scalars['String']
     id: Scalars['ID']
-    projectId: Scalars['String'] | null
+    projectId: (Scalars['String'] | null)
     serviceId: Scalars['String']
     status: CustomDomainStatus
-    targetPort: Scalars['Int'] | null
-    updatedAt: Scalars['DateTime'] | null
+    targetPort: (Scalars['Int'] | null)
+    updatedAt: (Scalars['DateTime'] | null)
     __typename: 'CustomDomain'
 }
 
 export interface CustomDomainStatus {
-    cdnProvider: CDNProvider | null
+    cdnProvider: (CDNProvider | null)
     certificateStatus: CertificateStatus
-    certificates: CertificatePublicData[] | null
+    certificateStatusDetailed: (CertificateStatusDetailed | null)
+    certificates: (CertificatePublicData[] | null)
     dnsRecords: DNSRecords[]
     __typename: 'CustomDomainStatus'
 }
 
 export interface Customer {
+    /** The total amount of credits that have been applied during the current billing period. */
     appliedCredits: Scalars['Float']
-    billingEmail: Scalars['String'] | null
+    billingAddress: (CustomerAddress | null)
+    billingEmail: (Scalars['String'] | null)
     billingPeriod: BillingPeriod
+    /** The total amount of unused credits for the customer. */
     creditBalance: Scalars['Float']
     credits: CustomerCreditsConnection
-    defaultPaymentMethod: PaymentMethod | null
-    defaultPaymentMethodId: Scalars['String'] | null
+    /** The current usage for the customer. This value is cached and may not be up to date. */
+    currentUsage: Scalars['Float']
+    defaultPaymentMethod: (PaymentMethod | null)
+    defaultPaymentMethodId: (Scalars['String'] | null)
+    hasExhaustedFreePlan: Scalars['Boolean']
     id: Scalars['ID']
     invoices: CustomerInvoice[]
     isPrepaying: Scalars['Boolean']
     isTrialing: Scalars['Boolean']
     isUsageSubscriber: Scalars['Boolean']
     isWithdrawingToCredits: Scalars['Boolean']
-    planLimitOverride: PlanLimitOverride | null
+    planLimitOverride: (PlanLimitOverride | null)
     remainingUsageCreditBalance: Scalars['Float']
     state: SubscriptionState
     stripeCustomerId: Scalars['String']
     subscriptions: CustomerSubscription[]
-    /** @deprecated A customer is not tied to a team anymore, if you want a team go through the workspace field */
-    teamId: Scalars['String'] | null
-    usageLimit: UsageLimit | null
-    userId: Scalars['String'] | null
+    supportedWithdrawalPlatforms: WithdrawalPlatformTypes[]
+    taxIds: CustomerTaxId[]
+    trialDaysRemaining: Scalars['Int']
+    usageLimit: (UsageLimit | null)
     workspace: Workspace
     __typename: 'Customer'
+}
+
+export interface CustomerAddress {
+    city: (Scalars['String'] | null)
+    country: (Scalars['String'] | null)
+    line1: (Scalars['String'] | null)
+    line2: (Scalars['String'] | null)
+    name: (Scalars['String'] | null)
+    postalCode: (Scalars['String'] | null)
+    state: (Scalars['String'] | null)
+    __typename: 'CustomerAddress'
 }
 
 export interface CustomerCreditsConnection {
@@ -237,25 +295,30 @@ export interface CustomerCreditsConnectionEdge {
 }
 
 export interface CustomerInvoice {
+    amountDue: Scalars['Float']
     amountPaid: Scalars['Float']
-    hostedURL: Scalars['String'] | null
+    hostedURL: (Scalars['String'] | null)
     invoiceId: Scalars['String']
     items: SubscriptionItem[]
-    paymentIntentStatus: Scalars['String'] | null
-    pdfURL: Scalars['String'] | null
+    lastPaymentError: (Scalars['String'] | null)
+    paymentIntentStatus: (Scalars['String'] | null)
+    pdfURL: (Scalars['String'] | null)
     periodEnd: Scalars['String']
     periodStart: Scalars['String']
-    status: Scalars['String'] | null
-    subscriptionId: Scalars['String'] | null
+    reissuedInvoiceFrom: (Scalars['String'] | null)
+    reissuedInvoiceOf: (Scalars['String'] | null)
+    status: (Scalars['String'] | null)
+    subscriptionId: (Scalars['String'] | null)
+    subscriptionStatus: (Scalars['String'] | null)
     total: Scalars['Int']
     __typename: 'CustomerInvoice'
 }
 
 export interface CustomerSubscription {
     billingCycleAnchor: Scalars['DateTime']
-    cancelAt: Scalars['String'] | null
+    cancelAt: (Scalars['String'] | null)
     cancelAtPeriodEnd: Scalars['Boolean']
-    couponId: Scalars['String'] | null
+    couponId: (Scalars['String'] | null)
     discounts: SubscriptionDiscount[]
     id: Scalars['String']
     items: SubscriptionItem[]
@@ -266,24 +329,18 @@ export interface CustomerSubscription {
     __typename: 'CustomerSubscription'
 }
 
-export type DNSRecordPurpose =
-    | 'DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE'
-    | 'DNS_RECORD_PURPOSE_TRAFFIC_ROUTE'
-    | 'DNS_RECORD_PURPOSE_UNSPECIFIED'
-    | 'UNRECOGNIZED'
+export interface CustomerTaxId {
+    id: Scalars['String']
+    type: Scalars['String']
+    value: Scalars['String']
+    __typename: 'CustomerTaxId'
+}
 
-export type DNSRecordStatus =
-    | 'DNS_RECORD_STATUS_PROPAGATED'
-    | 'DNS_RECORD_STATUS_REQUIRES_UPDATE'
-    | 'DNS_RECORD_STATUS_UNSPECIFIED'
-    | 'UNRECOGNIZED'
+export type DNSRecordPurpose = 'DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE' | 'DNS_RECORD_PURPOSE_TRAFFIC_ROUTE' | 'DNS_RECORD_PURPOSE_UNSPECIFIED' | 'UNRECOGNIZED'
 
-export type DNSRecordType =
-    | 'DNS_RECORD_TYPE_A'
-    | 'DNS_RECORD_TYPE_CNAME'
-    | 'DNS_RECORD_TYPE_NS'
-    | 'DNS_RECORD_TYPE_UNSPECIFIED'
-    | 'UNRECOGNIZED'
+export type DNSRecordStatus = 'DNS_RECORD_STATUS_PROPAGATED' | 'DNS_RECORD_STATUS_REQUIRES_UPDATE' | 'DNS_RECORD_STATUS_UNSPECIFIED' | 'UNRECOGNIZED'
+
+export type DNSRecordType = 'DNS_RECORD_TYPE_A' | 'DNS_RECORD_TYPE_CNAME' | 'DNS_RECORD_TYPE_NS' | 'DNS_RECORD_TYPE_UNSPECIFIED' | 'UNRECOGNIZED'
 
 export interface DNSRecords {
     currentValue: Scalars['String']
@@ -301,53 +358,60 @@ export interface Deployment {
     canRedeploy: Scalars['Boolean']
     canRollback: Scalars['Boolean']
     createdAt: Scalars['DateTime']
-    creator: User | null
+    creator: (DeploymentCreator | null)
     /** Check if a deployment's instances have all stopped */
     deploymentStopped: Scalars['Boolean']
     environment: Environment
     environmentId: Scalars['String']
     id: Scalars['ID']
-    meta: Scalars['DeploymentMeta'] | null
+    instances: DeploymentDeploymentInstance[]
+    meta: (Scalars['DeploymentMeta'] | null)
     projectId: Scalars['String']
     service: Service
-    serviceId: Scalars['String'] | null
-    snapshotId: Scalars['String'] | null
+    serviceId: (Scalars['String'] | null)
+    snapshotId: (Scalars['String'] | null)
     sockets: DeploymentSocket[]
-    staticUrl: Scalars['String'] | null
+    staticUrl: (Scalars['String'] | null)
     status: DeploymentStatus
+    statusUpdatedAt: (Scalars['DateTime'] | null)
     suggestAddServiceDomain: Scalars['Boolean']
     updatedAt: Scalars['DateTime']
-    url: Scalars['String'] | null
+    url: (Scalars['String'] | null)
     __typename: 'Deployment'
 }
 
+export interface DeploymentCreator {
+    avatar: (Scalars['String'] | null)
+    email: Scalars['String']
+    id: Scalars['String']
+    name: (Scalars['String'] | null)
+    __typename: 'DeploymentCreator'
+}
+
+export interface DeploymentDeploymentInstance {
+    id: Scalars['String']
+    status: DeploymentInstanceStatus
+    __typename: 'DeploymentDeploymentInstance'
+}
+
 export interface DeploymentEvent {
-    completedAt: Scalars['DateTime'] | null
+    completedAt: (Scalars['DateTime'] | null)
     createdAt: Scalars['DateTime']
     id: Scalars['ID']
-    payload: DeploymentEventPayload | null
+    payload: (DeploymentEventPayload | null)
     step: DeploymentEventStep
     __typename: 'DeploymentEvent'
 }
 
 export interface DeploymentEventPayload {
-    error: Scalars['String'] | null
+    error: (Scalars['String'] | null)
     __typename: 'DeploymentEventPayload'
 }
 
-export type DeploymentEventStep =
-    | 'BUILD_IMAGE'
-    | 'CREATE_CONTAINER'
-    | 'DRAIN_INSTANCES'
-    | 'HEALTHCHECK'
-    | 'MIGRATE_VOLUMES'
-    | 'PRE_DEPLOY_COMMAND'
-    | 'PUBLISH_IMAGE'
-    | 'SNAPSHOT_CODE'
-    | 'WAIT_FOR_DEPENDENCIES'
+export type DeploymentEventStep = 'BUILD_IMAGE' | 'CREATE_CONTAINER' | 'DRAIN_INSTANCES' | 'HEALTHCHECK' | 'MIGRATE_VOLUMES' | 'PRE_DEPLOY_COMMAND' | 'PUBLISH_IMAGE' | 'SNAPSHOT_CODE' | 'WAIT_FOR_DEPENDENCIES'
 
 export interface DeploymentInstanceExecution {
-    completedAt: Scalars['DateTime'] | null
+    completedAt: (Scalars['DateTime'] | null)
     createdAt: Scalars['DateTime']
     deploymentId: Scalars['String']
     deploymentMeta: Scalars['DeploymentMeta']
@@ -357,17 +421,7 @@ export interface DeploymentInstanceExecution {
     __typename: 'DeploymentInstanceExecution'
 }
 
-export type DeploymentInstanceStatus =
-    | 'CRASHED'
-    | 'CREATED'
-    | 'EXITED'
-    | 'INITIALIZING'
-    | 'REMOVED'
-    | 'REMOVING'
-    | 'RESTARTING'
-    | 'RUNNING'
-    | 'SKIPPED'
-    | 'STOPPED'
+export type DeploymentInstanceStatus = 'CRASHED' | 'CREATED' | 'EXITED' | 'INITIALIZING' | 'REMOVED' | 'REMOVING' | 'RESTARTING' | 'RUNNING' | 'SKIPPED' | 'STOPPED'
 
 export interface DeploymentSnapshot {
     createdAt: Scalars['DateTime']
@@ -385,23 +439,10 @@ export interface DeploymentSocket {
     __typename: 'DeploymentSocket'
 }
 
-export type DeploymentStatus =
-    | 'BUILDING'
-    | 'CRASHED'
-    | 'DEPLOYING'
-    | 'FAILED'
-    | 'INITIALIZING'
-    | 'NEEDS_APPROVAL'
-    | 'QUEUED'
-    | 'REMOVED'
-    | 'REMOVING'
-    | 'SKIPPED'
-    | 'SLEEPING'
-    | 'SUCCESS'
-    | 'WAITING'
+export type DeploymentStatus = 'BUILDING' | 'CRASHED' | 'DEPLOYING' | 'FAILED' | 'INITIALIZING' | 'NEEDS_APPROVAL' | 'QUEUED' | 'REMOVED' | 'REMOVING' | 'SKIPPED' | 'SLEEPING' | 'SUCCESS' | 'WAITING'
 
 export interface DeploymentTrigger {
-    baseEnvironmentOverrideId: Scalars['String'] | null
+    baseEnvironmentOverrideId: (Scalars['String'] | null)
     branch: Scalars['String']
     checkSuites: Scalars['Boolean']
     environmentId: Scalars['String']
@@ -409,9 +450,15 @@ export interface DeploymentTrigger {
     projectId: Scalars['String']
     provider: Scalars['String']
     repository: Scalars['String']
-    serviceId: Scalars['String'] | null
+    serviceId: (Scalars['String'] | null)
     validCheckSuites: Scalars['Int']
     __typename: 'DeploymentTrigger'
+}
+
+export interface DockerComposeImport {
+    errors: Scalars['String'][]
+    patch: (Scalars['EnvironmentConfig'] | null)
+    __typename: 'DockerComposeImport'
 }
 
 export type Domain = (CustomDomain | ServiceDomain) & { __isUnion?: true }
@@ -423,11 +470,12 @@ export interface DomainAvailable {
 }
 
 export interface DomainWithStatus {
-    cdnProvider: CDNProvider | null
+    cdnProvider: (CDNProvider | null)
     certificateStatus: CertificateStatus
-    certificates: CertificatePublicData[] | null
+    certificateStatusDetailed: (CertificateStatusDetailed | null)
+    certificates: (CertificatePublicData[] | null)
     dnsRecords: DNSRecords[]
-    domain: Domain | null
+    domain: (Domain | null)
     __typename: 'DomainWithStatus'
 }
 
@@ -438,18 +486,20 @@ export interface EgressGateway {
 }
 
 export interface Environment {
+    canAccess: Scalars['Boolean']
+    config: Scalars['EnvironmentConfig']
     createdAt: Scalars['DateTime']
-    deletedAt: Scalars['DateTime'] | null
+    deletedAt: (Scalars['DateTime'] | null)
     deploymentTriggers: EnvironmentDeploymentTriggersConnection
     deployments: EnvironmentDeploymentsConnection
     id: Scalars['ID']
     isEphemeral: Scalars['Boolean']
-    meta: EnvironmentMeta | null
+    meta: (EnvironmentMeta | null)
     name: Scalars['String']
     projectId: Scalars['String']
     serviceInstances: EnvironmentServiceInstancesConnection
-    sourceEnvironment: Environment | null
-    unmergedChangesCount: Scalars['Int'] | null
+    sourceEnvironment: (Environment | null)
+    unmergedChangesCount: (Scalars['Int'] | null)
     updatedAt: Scalars['DateTime']
     variables: EnvironmentVariablesConnection
     volumeInstances: EnvironmentVolumeInstancesConnection
@@ -481,14 +531,32 @@ export interface EnvironmentDeploymentsConnectionEdge {
 }
 
 export interface EnvironmentMeta {
-    baseBranch: Scalars['String'] | null
-    branch: Scalars['String'] | null
-    prCommentId: Scalars['Int'] | null
-    prNumber: Scalars['Int'] | null
-    prRepo: Scalars['String'] | null
-    prTitle: Scalars['String'] | null
+    baseBranch: (Scalars['String'] | null)
+    branch: (Scalars['String'] | null)
+    latestSuccessfulGitHubDeploymentId: (Scalars['Int'] | null)
+    prCommentId: (Scalars['Int'] | null)
+    prNumber: (Scalars['Int'] | null)
+    prRepo: (Scalars['String'] | null)
+    prTitle: (Scalars['String'] | null)
     __typename: 'EnvironmentMeta'
 }
+
+export interface EnvironmentPatch {
+    appliedAt: (Scalars['DateTime'] | null)
+    appliedBy: (AppliedByMember | null)
+    createdAt: Scalars['DateTime']
+    environment: Environment
+    environmentId: Scalars['String']
+    id: Scalars['ID']
+    lastAppliedError: (Scalars['String'] | null)
+    message: (Scalars['String'] | null)
+    patch: Scalars['EnvironmentConfig']
+    status: EnvironmentPatchStatus
+    updatedAt: Scalars['DateTime']
+    __typename: 'EnvironmentPatch'
+}
+
+export type EnvironmentPatchStatus = 'APPLYING' | 'COMMITTED' | 'STAGED'
 
 export interface EnvironmentServiceInstancesConnection {
     edges: EnvironmentServiceInstancesConnectionEdge[]
@@ -526,10 +594,6 @@ export interface EnvironmentVolumeInstancesConnectionEdge {
     __typename: 'EnvironmentVolumeInstancesConnectionEdge'
 }
 
-export interface Errors {
-    errors: Scalars['String'][]
-    __typename: 'Errors'
-}
 
 /** The estimated usage of a single measurement. */
 export interface EstimatedUsage {
@@ -544,14 +608,62 @@ export interface EstimatedUsage {
 export interface Event {
     action: Scalars['String']
     createdAt: Scalars['DateTime']
-    environment: Environment | null
-    environmentId: Scalars['String'] | null
+    environment: (Environment | null)
+    environmentId: (Scalars['String'] | null)
     id: Scalars['ID']
     object: Scalars['String']
-    payload: Scalars['JSON'] | null
+    payload: (Scalars['JSON'] | null)
     project: Project
-    projectId: Scalars['String']
+    projectId: (Scalars['String'] | null)
+    severity: EventSeverity
     __typename: 'Event'
+}
+
+export type EventSeverity = 'CRITICAL' | 'INFO' | 'NOTICE' | 'WARNING'
+
+export interface ExternalWorkspace {
+    allowDeprecatedRegions: (Scalars['Boolean'] | null)
+    avatar: (Scalars['String'] | null)
+    banReason: (Scalars['String'] | null)
+    createdAt: Scalars['DateTime']
+    currentSessionHasAccess: (Scalars['Boolean'] | null)
+    customerId: (Scalars['String'] | null)
+    customerState: SubscriptionState
+    discordRole: (Scalars['String'] | null)
+    hasBAA: Scalars['Boolean']
+    hasRBAC: Scalars['Boolean']
+    hasSAML: Scalars['Boolean']
+    id: Scalars['String']
+    isTrialing: (Scalars['Boolean'] | null)
+    name: Scalars['String']
+    plan: Plan
+    preferredRegion: (Scalars['String'] | null)
+    projects: Project[]
+    supportTierOverride: (Scalars['String'] | null)
+    teamId: (Scalars['String'] | null)
+    __typename: 'ExternalWorkspace'
+}
+
+export interface FunctionRuntime {
+    /** The image of the function runtime */
+    image: Scalars['String']
+    /** The latest version of the function runtime */
+    latestVersion: FunctionRuntimeVersion
+    /** The name of the function runtime */
+    name: FunctionRuntimeName
+    /** The versions of the function runtime */
+    versions: FunctionRuntimeVersion[]
+    __typename: 'FunctionRuntime'
+}
+
+
+/** Supported function runtime environments */
+export type FunctionRuntimeName = 'bun'
+
+export interface FunctionRuntimeVersion {
+    image: Scalars['String']
+    tag: Scalars['String']
+    __typename: 'FunctionRuntimeVersion'
 }
 
 export interface GitHubAccess {
@@ -567,16 +679,19 @@ export interface GitHubBranch {
 
 export interface GitHubRepo {
     defaultBranch: Scalars['String']
+    description: (Scalars['String'] | null)
     fullName: Scalars['String']
     id: Scalars['Int']
     installationId: Scalars['String']
     isPrivate: Scalars['Boolean']
     name: Scalars['String']
+    ownerAvatarUrl: (Scalars['String'] | null)
     __typename: 'GitHubRepo'
 }
 
 export interface GitHubRepoWithoutInstallation {
     defaultBranch: Scalars['String']
+    description: (Scalars['String'] | null)
     fullName: Scalars['String']
     id: Scalars['Int']
     isPrivate: Scalars['Boolean']
@@ -589,6 +704,7 @@ export interface HerokuApp {
     name: Scalars['String']
     __typename: 'HerokuApp'
 }
+
 
 /** The result of a http logs query. */
 export interface HttpLog {
@@ -626,6 +742,8 @@ export interface HttpLog {
     txBytes: Scalars['Int']
     /** The upstream address */
     upstreamAddress: Scalars['String']
+    /** Any upstream errors that occurred */
+    upstreamErrors: Scalars['String']
     /** The upstream HTTP protocol version */
     upstreamProto: Scalars['String']
     /** How long the upstream request took to respond */
@@ -681,12 +799,8 @@ export interface InviteCode {
     __typename: 'InviteCode'
 }
 
-export type KeyType =
-    | 'KEY_TYPE_ECDSA'
-    | 'KEY_TYPE_RSA_2048'
-    | 'KEY_TYPE_RSA_4096'
-    | 'KEY_TYPE_UNSPECIFIED'
-    | 'UNRECOGNIZED'
+export type KeyType = 'KEY_TYPE_ECDSA' | 'KEY_TYPE_RSA_2048' | 'KEY_TYPE_RSA_4096' | 'KEY_TYPE_UNSPECIFIED' | 'UNRECOGNIZED'
+
 
 /** The result of a logs query. */
 export interface Log {
@@ -695,13 +809,14 @@ export interface Log {
     /** The contents of the log message */
     message: Scalars['String']
     /** The severity of the log message (eg. err) */
-    severity: Scalars['String'] | null
+    severity: (Scalars['String'] | null)
     /** The tags that were associated with the log */
-    tags: LogTags | null
+    tags: (LogTags | null)
     /** The timestamp of the log message in format RFC3339 (nano) */
     timestamp: Scalars['String']
     __typename: 'Log'
 }
+
 
 /** The attributes associated with a structured log */
 export interface LogAttribute {
@@ -710,27 +825,31 @@ export interface LogAttribute {
     __typename: 'LogAttribute'
 }
 
+
 /** The tags associated with a specific log */
 export interface LogTags {
-    deploymentId: Scalars['String'] | null
-    deploymentInstanceId: Scalars['String'] | null
-    environmentId: Scalars['String'] | null
-    pluginId: Scalars['String'] | null
-    projectId: Scalars['String'] | null
-    serviceId: Scalars['String'] | null
-    snapshotId: Scalars['String'] | null
+    deploymentId: (Scalars['String'] | null)
+    deploymentInstanceId: (Scalars['String'] | null)
+    environmentId: (Scalars['String'] | null)
+    /** @deprecated Plugins have been removed */
+    pluginId: (Scalars['String'] | null)
+    projectId: (Scalars['String'] | null)
+    serviceId: (Scalars['String'] | null)
+    snapshotId: (Scalars['String'] | null)
     __typename: 'LogTags'
 }
 
 export interface Maintenance {
     id: Scalars['String']
     message: Scalars['String']
+    start: Scalars['DateTime']
     status: MaintenanceStatus
     url: Scalars['String']
     __typename: 'Maintenance'
 }
 
 export type MaintenanceStatus = 'COMPLETED' | 'INPROGRESS' | 'NOTSTARTEDYET'
+
 
 /** A single sample of a metric. */
 export interface Metric {
@@ -741,43 +860,30 @@ export interface Metric {
     __typename: 'Metric'
 }
 
+
 /** A thing that can be measured on Railway. */
-export type MetricMeasurement =
-    | 'BACKUP_USAGE_GB'
-    | 'CPU_LIMIT'
-    | 'CPU_USAGE'
-    | 'CPU_USAGE_2'
-    | 'DISK_USAGE_GB'
-    | 'EPHEMERAL_DISK_USAGE_GB'
-    | 'MEASUREMENT_UNSPECIFIED'
-    | 'MEMORY_LIMIT_GB'
-    | 'MEMORY_USAGE_GB'
-    | 'NETWORK_RX_GB'
-    | 'NETWORK_TX_GB'
-    | 'UNRECOGNIZED'
+export type MetricMeasurement = 'BACKUP_USAGE_GB' | 'CPU_LIMIT' | 'CPU_USAGE' | 'CPU_USAGE_2' | 'DISK_USAGE_GB' | 'EPHEMERAL_DISK_USAGE_GB' | 'MEASUREMENT_UNSPECIFIED' | 'MEMORY_LIMIT_GB' | 'MEMORY_USAGE_GB' | 'NETWORK_RX_GB' | 'NETWORK_TX_GB' | 'UNRECOGNIZED'
+
 
 /** A property that can be used to group metrics. */
-export type MetricTag =
-    | 'DEPLOYMENT_ID'
-    | 'DEPLOYMENT_INSTANCE_ID'
-    | 'ENVIRONMENT_ID'
-    | 'KEY_UNSPECIFIED'
-    | 'PLUGIN_ID'
-    | 'PROJECT_ID'
-    | 'SERVICE_ID'
-    | 'UNRECOGNIZED'
-    | 'VOLUME_ID'
+export type MetricTag = 'DEPLOYMENT_ID' | 'DEPLOYMENT_INSTANCE_ID' | 'ENVIRONMENT_ID' | 'HOST_TYPE' | 'KEY_UNSPECIFIED' | 'PLUGIN_ID' | 'PROJECT_ID' | 'REGION' | 'SERVICE_ID' | 'UNRECOGNIZED' | 'VOLUME_ID' | 'VOLUME_INSTANCE_ID'
+
 
 /** The tags that were used to group the metric. */
 export interface MetricTags {
-    deploymentId: Scalars['String'] | null
-    environmentId: Scalars['String'] | null
-    pluginId: Scalars['String'] | null
-    projectId: Scalars['String'] | null
-    serviceId: Scalars['String'] | null
-    volumeId: Scalars['String'] | null
+    deploymentId: (Scalars['String'] | null)
+    deploymentInstanceId: (Scalars['String'] | null)
+    environmentId: (Scalars['String'] | null)
+    /** @deprecated Plugins have been removed */
+    pluginId: (Scalars['String'] | null)
+    projectId: (Scalars['String'] | null)
+    region: (Scalars['String'] | null)
+    serviceId: (Scalars['String'] | null)
+    volumeId: (Scalars['String'] | null)
+    volumeInstanceId: (Scalars['String'] | null)
     __typename: 'MetricTags'
 }
+
 
 /** The result of a metrics query. */
 export interface MetricsResult {
@@ -788,6 +894,20 @@ export interface MetricsResult {
     /** The samples of the metric. */
     values: Metric[]
     __typename: 'MetricsResult'
+}
+
+export type MonitorAlertResourceType = 'SERVICE' | 'VOLUME'
+
+export type MonitorStatus = 'ALERT' | 'OK'
+
+export type MonitorThresholdCondition = 'above' | 'below'
+
+export interface MonitorThresholdConfig {
+    condition: MonitorThresholdCondition
+    measurement: (MetricMeasurement | null)
+    threshold: Scalars['Float']
+    type: Scalars['String']
+    __typename: 'MonitorThresholdConfig'
 }
 
 export interface Mutation {
@@ -803,8 +923,8 @@ export interface Mutation {
     customDomainDelete: Scalars['Boolean']
     /** Updates a custom domain. */
     customDomainUpdate: Scalars['Boolean']
-    /** Migrate a customer to the hobby plan */
-    customerMigrateToHobbyPlan: Scalars['Boolean']
+    /** Create a free plan subscription for a customer */
+    customerCreateFreePlanSubscription: Scalars['Boolean']
     /** Toggle whether a customer is automatically withdrawing to credits */
     customerTogglePayoutsToCredits: Scalars['Boolean']
     /** Approves a deployment. */
@@ -830,7 +950,7 @@ export interface Mutation {
     /** Updates a deployment trigger. */
     deploymentTriggerUpdate: DeploymentTrigger
     /** Create services and volumes from docker compose */
-    dockerComposeImport: Errors
+    dockerComposeImport: DockerComposeImport
     /** Create a new egress gateway association for a service instance */
     egressGatewayAssociationCreate: EgressGateway[]
     /** Clear all egress gateway associations for a service instance */
@@ -843,14 +963,16 @@ export interface Mutation {
     environmentCreate: Environment
     /** Deletes an environment. */
     environmentDelete: Scalars['Boolean']
+    /** Commit the provided patch to the environment. */
+    environmentPatchCommit: Scalars['String']
+    /** Commits the staged changes for a single environment. */
+    environmentPatchCommitStaged: Scalars['String']
     /** Renames an environment. */
     environmentRename: Environment
+    /** Sets the staged patch for a single environment. */
+    environmentStageChanges: EnvironmentPatch
     /** Deploys all connected triggers for an environment. */
     environmentTriggersDeploy: Scalars['Boolean']
-    /** Track a batch of events for authenticated user */
-    eventBatchTrack: Scalars['Boolean']
-    /** Track event for authenticated user */
-    eventTrack: Scalars['Boolean']
     /** Agree to the fair use policy for the currently authenticated user */
     fairUseAgree: Scalars['Boolean']
     /** Add a feature flag for a user */
@@ -858,17 +980,11 @@ export interface Mutation {
     /** Remove a feature flag for a user */
     featureFlagRemove: Scalars['Boolean']
     /** Deploys a GitHub repo */
-    githubRepoDeploy: Scalars['Boolean']
+    githubRepoDeploy: Scalars['String']
     /** Updates a GitHub repo through the linked template */
     githubRepoUpdate: Scalars['Boolean']
-    /** Creates a new help station thread */
-    helpStationCreateThread: Scalars['String']
     /** Import variables from a Heroku app into a Railway service. Returns the number of variables imports */
     herokuImportVariables: Scalars['Int']
-    /** Reject migration from Hobby to Team */
-    hobbyToTeamDenyMigration: Scalars['Boolean']
-    /** Migrate projects from Hobby to Team and cancel Hobby subscription */
-    hobbyToTeamMigrate: Scalars['Boolean']
     /** Create an integration for a project */
     integrationCreate: Integration
     /** Delete an integration for a project */
@@ -884,42 +1000,56 @@ export interface Mutation {
     /** Cancel a login session */
     loginSessionCancel: Scalars['Boolean']
     /** Get a token for a login session if it exists */
-    loginSessionConsume: Scalars['String'] | null
+    loginSessionConsume: (Scalars['String'] | null)
     /** Start a CLI login session */
     loginSessionCreate: Scalars['String']
     /** Verify if a login session is valid */
     loginSessionVerify: Scalars['Boolean']
-    /** Deletes session for current user if it exists */
-    logout: Scalars['Boolean']
-    /** Alert the team of a missing command palette command */
-    missingCommandAlert: Scalars['Boolean']
+    /** Marks notification deliveries as read */
+    notificationDeliveriesMarkAsRead: Scalars['Boolean']
     /** Create an observability dashboard */
     observabilityDashboardCreate: Scalars['Boolean']
     /** Reset an observability dashboard to default dashboard items */
     observabilityDashboardReset: Scalars['Boolean']
     /** Update an observability dashboard */
     observabilityDashboardUpdate: Scalars['Boolean']
+    /** Deletes a Passkey */
+    passkeyDelete: Scalars['Boolean']
     /**
      * @deprecated Plugins are deprecated on Railway. Use database templates instead.
      * Creates a new plugin.
      */
     pluginCreate: Plugin
-    /** Deletes a plugin. */
+    /**
+     * @deprecated Plugins are deprecated
+     * Deletes a plugin.
+     */
     pluginDelete: Scalars['Boolean']
-    /** Reset envs and container for a plugin in an environment */
+    /**
+     * @deprecated Plugins are deprecated
+     * Reset envs and container for a plugin in an environment
+     */
     pluginReset: Scalars['Boolean']
-    /** Resets the credentials for a plugin in an environment */
+    /**
+     * @deprecated Plugins are deprecated
+     * Resets the credentials for a plugin in an environment
+     */
     pluginResetCredentials: Scalars['String']
-    /** Restarts a plugin. */
+    /**
+     * @deprecated Plugins are deprecated
+     * Restarts a plugin.
+     */
     pluginRestart: Plugin
-    /** Force start a plugin */
+    /**
+     * @deprecated Plugins are deprecated
+     * Force start a plugin
+     */
     pluginStart: Scalars['Boolean']
-    /** Updates an existing plugin. */
+    /**
+     * @deprecated Plugins are deprecated
+     * Updates an existing plugin.
+     */
     pluginUpdate: Plugin
-    /** Create/Updates preferences overrides for a specific resource belonging to a user */
-    preferenceOverridesCreateUpdate: Scalars['Boolean']
-    /** Destroy preferences overrides for a specific resource belonging to a user */
-    preferenceOverridesDestroyForResource: Scalars['Boolean']
     /** Update the email preferences for a user */
     preferencesUpdate: Preferences
     /** Create or get a private network. */
@@ -954,18 +1084,27 @@ export interface Mutation {
     projectMemberRemove: ProjectMember[]
     /** Change the role for a user within a project */
     projectMemberUpdate: ProjectMember
+    /** Deletes a project with a 48 hour grace period. */
+    projectScheduleDelete: Scalars['Boolean']
+    /** Cancel scheduled deletion of a project */
+    projectScheduleDeleteCancel: Scalars['Boolean']
+    /** Force delete a scheduled deletion of a project (skips the grace period) */
+    projectScheduleDeleteForce: Scalars['Boolean']
     /** Create a token for a project that has access to a specific environment */
     projectTokenCreate: Scalars['String']
     /** Delete a project token */
     projectTokenDelete: Scalars['Boolean']
+    /** Transfer a project to a workspace */
+    projectTransfer: Scalars['Boolean']
     /** Confirm the transfer of project ownership */
     projectTransferConfirm: Scalars['Boolean']
     /** Initiate the transfer of project ownership */
     projectTransferInitiate: Scalars['Boolean']
-    /** Transfer a project to a team */
+    /**
+     * @deprecated Use projectTransfer instead
+     * Transfer a project to a team
+     */
     projectTransferToTeam: Scalars['Boolean']
-    /** Transfer a project to a user */
-    projectTransferToUser: Scalars['Boolean']
     /** Updates a project. */
     projectUpdate: Project
     /** Deletes a ProviderAuth. */
@@ -976,8 +1115,6 @@ export interface Mutation {
     recoveryCodeValidate: Scalars['Boolean']
     /** Updates the ReferralInfo for the authenticated user. */
     referralInfoUpdate: ReferralInfo
-    /** Send a community thread notification email */
-    sendCommunityThreadNotificationEmail: Scalars['Boolean']
     /** Connect a service to a source */
     serviceConnect: Service
     /** Creates a new service. */
@@ -992,6 +1129,11 @@ export interface Mutation {
     serviceDomainDelete: Scalars['Boolean']
     /** Updates a service domain. */
     serviceDomainUpdate: Scalars['Boolean']
+    /**
+     * @deprecated This API route is used only by the CLI. We plan to remove it in a future version. Please use the UI to duplicate services.
+     * Duplicate a service, including its configuration, variables, and volumes.
+     */
+    serviceDuplicate: Service
     /** Add a feature flag for a service */
     serviceFeatureFlagAdd: Scalars['Boolean']
     /** Remove a feature flag for a service */
@@ -1014,47 +1156,13 @@ export interface Mutation {
     sessionDelete: Scalars['Boolean']
     /** Configure a shared variable. */
     sharedVariableConfigure: Variable
-    /** Creates a new TCP proxy for a service instance. */
+    /**
+     * @deprecated Use staged changes and apply them. Creating a TCP proxy with this endpoint requires you to redeploy the service for it to be active.
+     * Creates a new TCP proxy for a service instance.
+     */
     tcpProxyCreate: TCPProxy
     /** Deletes a TCP proxy by id */
     tcpProxyDelete: Scalars['Boolean']
-    /** Bulk transfer projects from user to team */
-    teamBulkProjectTransfer: Scalars['Boolean']
-    /**
-     * @deprecated Use teamCreateAndSubscribe
-     * Create a team
-     */
-    teamCreate: Team
-    /** Create a team and subscribe to the Pro plan */
-    teamCreateAndSubscribe: TeamCreateAndSubscribeResponse
-    /**
-     * @deprecated Use workspaceDelete
-     * Delete a team and all data associated with it
-     */
-    teamDelete: Scalars['Boolean']
-    /** Get an invite code for a team and role */
-    teamInviteCodeCreate: Scalars['String']
-    /** Use an invite code to join a team */
-    teamInviteCodeUse: Team
-    /** Leave a team */
-    teamLeave: Scalars['Boolean']
-    /** Changes a user team permissions. */
-    teamPermissionChange: Scalars['Boolean']
-    /** Create a new team trusted domain for this team */
-    teamTrustedDomainCreate: Scalars['Boolean']
-    /** Delete a team trusted domain */
-    teamTrustedDomainDelete: Scalars['Boolean']
-    /**
-     * @deprecated Use workspaceUpdate
-     * Update a team by id
-     */
-    teamUpdate: Team
-    /** Invite a user by email to a team */
-    teamUserInvite: Scalars['Boolean']
-    /** Remove a user from a team */
-    teamUserRemove: Scalars['Boolean']
-    /** Logs panics from CLI to Datadog */
-    telemetrySend: Scalars['Boolean']
     /** Duplicates an existing template */
     templateClone: Template
     /** Deletes a template. */
@@ -1068,14 +1176,16 @@ export interface Mutation {
     templateDeployV2: TemplateDeployPayload
     /** Generate a template for a project */
     templateGenerate: Template
-    /** Nullify the community thread slug for a template, if one is found with the provided slug */
-    templateMaybeUnsetCommunityThreadSlug: Scalars['Boolean']
     /** Publishes a template. */
     templatePublish: Template
     /** Ejects a service from the template and creates a new repo in the provided org. */
     templateServiceSourceEject: Scalars['Boolean']
     /** Unpublishes a template. */
     templateUnpublish: Scalars['Boolean']
+    /** Create a new trusted domain for this workspace */
+    trustedDomainCreate: Scalars['Boolean']
+    /** Delete a trusted domain */
+    trustedDomainDelete: Scalars['Boolean']
     /** Setup 2FA authorization for authenticated user. */
     twoFactorInfoCreate: RecoveryCodes
     /** Deletes the TwoFactorInfo for the authenticated user. */
@@ -1084,8 +1194,8 @@ export interface Mutation {
     twoFactorInfoSecret: TwoFactorInfoSecret
     /** Validates the token for a 2FA action or for a login request. */
     twoFactorInfoValidate: Scalars['Boolean']
-    /** Generate a Slack channel for a team */
-    upsertSlackChannelForTeam: Scalars['Boolean']
+    /** Generate a Slack channel for a workspace */
+    upsertSlackChannel: Scalars['Boolean']
     /** Remove the usage limit for a customer */
     usageLimitRemove: Scalars['Boolean']
     /** Set the usage limit for a customer */
@@ -1102,12 +1212,8 @@ export interface Mutation {
     userFlagsSet: Scalars['Boolean']
     /** Updates the profile for the authenticated user */
     userProfileUpdate: Scalars['Boolean']
-    /** Disconnect your Railway account from Slack. */
-    userSlackDisconnect: Scalars['Boolean']
     /** Update date of TermsAgreedOn */
-    userTermsUpdate: User | null
-    /** Update currently logged in user */
-    userUpdate: User | null
+    userTermsUpdate: (User | null)
     /** Upserts a collection of variables. */
     variableCollectionUpsert: Scalars['Boolean']
     /** Deletes a variable. */
@@ -1132,73 +1238,83 @@ export interface Mutation {
     volumeInstanceUpdate: Scalars['Boolean']
     /** Update a persistent volume in a project */
     volumeUpdate: Volume
-    /** Create a webhook on a project */
-    webhookCreate: ProjectWebhook
-    /** Delete a webhook from a project */
-    webhookDelete: Scalars['Boolean']
-    /** Update a webhook on a project */
-    webhookUpdate: ProjectWebhook
     /** Delete a workspace and all data associated with it */
     workspaceDelete: Scalars['Boolean']
+    /** Get an invite code for a workspace and role */
+    workspaceInviteCodeCreate: Scalars['String']
+    /** Use an invite code to join a workspace */
+    workspaceInviteCodeUse: Workspace
     /** Leave a workspace */
     workspaceLeave: Scalars['Boolean']
+    /** Changes a user workspace permissions. */
+    workspacePermissionChange: Scalars['Boolean']
     /** Update a workspace by id */
     workspaceUpdate: Scalars['Boolean']
     /** Generate a Slack channel for a workspace */
     workspaceUpsertSlackChannel: Scalars['Boolean']
+    /** Invite a user by email to a workspace */
+    workspaceUserInvite: Scalars['Boolean']
+    /** Remove a user from a workspace */
+    workspaceUserRemove: Scalars['Boolean']
     __typename: 'Mutation'
 }
 
-export type Node = (
-    | AdoptionInfo
-    | ApiToken
-    | BanReasonHistory
-    | Container
-    | Credit
-    | Customer
-    | Deployment
-    | DeploymentEvent
-    | DeploymentInstanceExecution
-    | DeploymentSnapshot
-    | DeploymentTrigger
-    | Environment
-    | Event
-    | Integration
-    | IntegrationAuth
-    | InviteCode
-    | ObservabilityDashboard
-    | ObservabilityDashboardItem
-    | ObservabilityDashboardItemInstance
-    | PlanLimitOverride
-    | Plugin
-    | PreferenceOverride
-    | Preferences
-    | Project
-    | ProjectPermission
-    | ProjectToken
-    | ProjectWebhook
-    | ProviderAuth
-    | ReferralInfo
-    | RefundRequest
-    | Service
-    | ServiceInstance
-    | Session
-    | Team
-    | TeamPermission
-    | TeamTrustedDomain
-    | Template
-    | TemplateService
-    | UsageAnomaly
-    | UsageLimit
-    | User
-    | Variable
-    | Volume
-    | VolumeInstance
-    | VolumeInstanceBackupSchedule
-    | Withdrawal
-    | WithdrawalAccount
-    | Workspace
-) & { __isUnion?: true }
+export type Node = (AdoptionInfo | ApiToken | AuditLog | Container | Credit | Customer | Deployment | DeploymentEvent | DeploymentInstanceExecution | DeploymentSnapshot | DeploymentTrigger | Environment | EnvironmentPatch | Event | Integration | IntegrationAuth | InviteCode | NotificationDelivery | NotificationInstance | ObservabilityDashboard | ObservabilityDashboardAlert | ObservabilityDashboardItem | ObservabilityDashboardItemInstance | ObservabilityDashboardMonitor | Passkey | PlanLimitOverride | Plugin | Preferences | Project | ProjectPermission | ProjectToken | ProviderAuth | ReferralInfo | Service | ServiceInstance | Session | Team | TeamPermission | Template | TemplateService | UsageLimit | User | Variable | Volume | VolumeInstance | VolumeInstanceBackupSchedule | Workspace | WorkspaceIdentityProvider) & { __isUnion?: true }
+
+export interface NotificationDelivery {
+    createdAt: Scalars['DateTime']
+    id: Scalars['ID']
+    notificationInstance: NotificationInstance
+    readAt: (Scalars['DateTime'] | null)
+    status: NotificationDeliveryStatus
+    type: NotificationDeliveryType
+    updatedAt: Scalars['DateTime']
+    userId: (Scalars['String'] | null)
+    __typename: 'NotificationDelivery'
+}
+
+export interface NotificationDeliveryCreated {
+    delivery: NotificationDelivery
+    type: Scalars['String']
+    __typename: 'NotificationDeliveryCreated'
+}
+
+export interface NotificationDeliveryResolved {
+    deliveryIds: Scalars['String'][]
+    type: Scalars['String']
+    __typename: 'NotificationDeliveryResolved'
+}
+
+export type NotificationDeliveryStatus = 'FAILED' | 'PENDING' | 'SENT'
+
+export type NotificationDeliveryType = 'EMAIL' | 'INAPP' | 'WEBHOOK'
+
+export type NotificationDeliveryUpdate = (NotificationDeliveryCreated | NotificationDeliveryResolved) & { __isUnion?: true }
+
+export interface NotificationInstance {
+    createdAt: Scalars['DateTime']
+    environmentId: (Scalars['String'] | null)
+    event: Event
+    eventId: Scalars['String']
+    eventType: (Scalars['String'] | null)
+    id: Scalars['ID']
+    payload: Scalars['NotificationPayload']
+    projectId: (Scalars['String'] | null)
+    resolvedAt: (Scalars['DateTime'] | null)
+    resourceId: (Scalars['String'] | null)
+    resourceType: (Scalars['String'] | null)
+    serviceId: (Scalars['String'] | null)
+    severity: NotificationSeverity
+    status: NotificationStatus
+    updatedAt: Scalars['DateTime']
+    volumeId: (Scalars['String'] | null)
+    workspaceId: Scalars['String']
+    __typename: 'NotificationInstance'
+}
+
+export type NotificationSeverity = 'CRITICAL' | 'INFO' | 'NOTICE' | 'WARNING'
+
+export type NotificationStatus = 'ACTIVE' | 'RESOLVED'
 
 export interface ObservabilityDashboard {
     id: Scalars['ID']
@@ -1206,20 +1322,31 @@ export interface ObservabilityDashboard {
     __typename: 'ObservabilityDashboard'
 }
 
+export interface ObservabilityDashboardAlert {
+    createdAt: Scalars['DateTime']
+    id: Scalars['ID']
+    resolvedAt: (Scalars['DateTime'] | null)
+    resourceId: (Scalars['String'] | null)
+    resourceType: MonitorAlertResourceType
+    status: MonitorStatus
+    __typename: 'ObservabilityDashboardAlert'
+}
+
 export interface ObservabilityDashboardItem {
     config: ObservabilityDashboardItemConfig
-    description: Scalars['String'] | null
+    description: (Scalars['String'] | null)
     id: Scalars['ID']
+    monitors: ObservabilityDashboardMonitor[]
     name: Scalars['String']
     type: ObservabilityDashboardItemType
     __typename: 'ObservabilityDashboardItem'
 }
 
 export interface ObservabilityDashboardItemConfig {
-    logsFilter: Scalars['String'] | null
-    measurements: MetricMeasurement[] | null
-    projectUsageProperties: ProjectUsageProperty[] | null
-    resourceIds: Scalars['String'][] | null
+    logsFilter: (Scalars['String'] | null)
+    measurements: (MetricMeasurement[] | null)
+    projectUsageProperties: (ProjectUsageProperty[] | null)
+    resourceIds: (Scalars['String'][] | null)
     __typename: 'ObservabilityDashboardItemConfig'
 }
 
@@ -1230,32 +1357,68 @@ export interface ObservabilityDashboardItemInstance {
     __typename: 'ObservabilityDashboardItemInstance'
 }
 
-export type ObservabilityDashboardItemType =
-    | 'PROJECT_USAGE_ITEM'
-    | 'SERVICE_LOGS_ITEM'
-    | 'SERVICE_METRICS_ITEM'
-    | 'VOLUME_METRICS_ITEM'
+export type ObservabilityDashboardItemType = 'PROJECT_USAGE_ITEM' | 'SERVICE_LOGS_ITEM' | 'SERVICE_METRICS_ITEM' | 'VOLUME_METRICS_ITEM'
+
+export interface ObservabilityDashboardMonitor {
+    alerts: ObservabilityDashboardAlert[]
+    config: ObservabilityDashboardMonitorConfig
+    createdAt: Scalars['DateTime']
+    id: Scalars['ID']
+    updatedAt: Scalars['DateTime']
+    __typename: 'ObservabilityDashboardMonitor'
+}
+
+export type ObservabilityDashboardMonitorConfig = (MonitorThresholdConfig) & { __isUnion?: true }
 
 export interface PageInfo {
-    endCursor: Scalars['String'] | null
+    endCursor: (Scalars['String'] | null)
     hasNextPage: Scalars['Boolean']
     hasPreviousPage: Scalars['Boolean']
-    startCursor: Scalars['String'] | null
+    startCursor: (Scalars['String'] | null)
     __typename: 'PageInfo'
 }
 
+export interface PartnerProfile {
+    category: Scalars['String']
+    description: Scalars['String']
+    slug: Scalars['String']
+    type: PartnerProfileType
+    website: Scalars['String']
+    __typename: 'PartnerProfile'
+}
+
+export type PartnerProfileType = 'BASIC_PARTNER' | 'LIMITED_PARTNER' | 'TEMPLATE_MAINTAINER'
+
+export interface Passkey {
+    aaguid: (Scalars['String'] | null)
+    backedUp: Scalars['Boolean']
+    createdAt: Scalars['DateTime']
+    credentialId: Scalars['String']
+    deviceName: Scalars['String']
+    deviceType: Scalars['String']
+    displayName: (Scalars['String'] | null)
+    id: Scalars['ID']
+    lastUsedAt: (Scalars['DateTime'] | null)
+    lastUsedDevice: (Scalars['String'] | null)
+    transports: Scalars['String'][]
+    updatedAt: Scalars['DateTime']
+    __typename: 'Passkey'
+}
+
 export interface PaymentMethod {
-    card: PaymentMethodCard | null
+    card: (PaymentMethodCard | null)
     id: Scalars['String']
     __typename: 'PaymentMethod'
 }
 
 export interface PaymentMethodCard {
     brand: Scalars['String']
-    country: Scalars['String'] | null
+    country: (Scalars['String'] | null)
     last4: Scalars['String']
     __typename: 'PaymentMethodCard'
 }
+
+export type Plan = 'FREE' | 'HOBBY' | 'PRO'
 
 export interface PlanLimitOverride {
     config: Scalars['SubscriptionPlanLimit']
@@ -1263,22 +1426,34 @@ export interface PlanLimitOverride {
     __typename: 'PlanLimitOverride'
 }
 
+export type PlatformFeatureFlag = 'ALLOW_REPLICA_METRICS' | 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES' | 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO' | 'BUILDER_V3_ROLLOUT_NEW_SERVICES' | 'BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO' | 'CTRD_IMAGE_STORE_ROLLOUT' | 'DEMO_PERCENTAGE_ROLLOUT' | 'ENABLE_RAW_SQL_QUERIES' | 'SCYLLADB_ROUTING_ENABLED' | 'SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL' | 'SPLIT_USAGE_QUERIES' | 'UPDATED_VM_QUERIES' | 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' | 'VM_TIME_RANGE_QUERY'
+
+export interface PlatformFeatureFlagStatus {
+    flag: PlatformFeatureFlag
+    rolloutPercentage: Scalars['Int']
+    status: Scalars['Boolean']
+    type: PlatformFeatureFlagType
+    __typename: 'PlatformFeatureFlagStatus'
+}
+
+export type PlatformFeatureFlagType = 'BOOLEAN' | 'PERCENTAGE'
+
 export interface PlatformStatus {
-    incident: Incident | null
+    incident: (Incident | null)
     isStable: Scalars['Boolean']
-    maintenance: Maintenance | null
+    maintenance: (Maintenance | null)
     __typename: 'PlatformStatus'
 }
 
 export interface Plugin {
     containers: PluginContainersConnection
     createdAt: Scalars['DateTime']
-    deletedAt: Scalars['DateTime'] | null
-    deprecatedAt: Scalars['DateTime'] | null
+    deletedAt: (Scalars['DateTime'] | null)
+    deprecatedAt: (Scalars['DateTime'] | null)
     friendlyName: Scalars['String']
     id: Scalars['ID']
     logsEnabled: Scalars['Boolean']
-    migrationDatabaseServiceId: Scalars['String'] | null
+    migrationDatabaseServiceId: (Scalars['String'] | null)
     name: PluginType
     project: Project
     status: PluginStatus
@@ -1314,15 +1489,6 @@ export interface PluginVariablesConnectionEdge {
     __typename: 'PluginVariablesConnectionEdge'
 }
 
-export interface PreferenceOverride {
-    enabled: Scalars['Boolean']
-    id: Scalars['ID']
-    name: Scalars['String']
-    resource: Scalars['String']
-    resourceId: Scalars['String']
-    __typename: 'PreferenceOverride'
-}
-
 export interface Preferences {
     buildFailedEmail: Scalars['Boolean']
     changelogEmail: Scalars['Boolean']
@@ -1331,15 +1497,15 @@ export interface Preferences {
     ephemeralEnvironmentEmail: Scalars['Boolean']
     id: Scalars['ID']
     marketingEmail: Scalars['Boolean']
-    preferenceOverrides: PreferenceOverride[] | null
     subprocessorUpdatesEmail: Scalars['Boolean']
+    templateQueueEmail: Scalars['Boolean']
     usageEmail: Scalars['Boolean']
     __typename: 'Preferences'
 }
 
 export interface PrivateNetwork {
-    createdAt: Scalars['DateTime'] | null
-    deletedAt: Scalars['DateTime'] | null
+    createdAt: (Scalars['DateTime'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
     dnsName: Scalars['String']
     environmentId: Scalars['String']
     name: Scalars['String']
@@ -1351,8 +1517,8 @@ export interface PrivateNetwork {
 }
 
 export interface PrivateNetworkEndpoint {
-    createdAt: Scalars['DateTime'] | null
-    deletedAt: Scalars['DateTime'] | null
+    createdAt: (Scalars['DateTime'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
     dnsName: Scalars['String']
     privateIps: Scalars['String'][]
     publicId: Scalars['String']
@@ -1362,35 +1528,65 @@ export interface PrivateNetworkEndpoint {
 }
 
 export interface Project {
-    baseEnvironment: Environment | null
-    baseEnvironmentId: Scalars['String'] | null
+    baseEnvironment: (Environment | null)
+    baseEnvironmentId: (Scalars['String'] | null)
     botPrEnvironments: Scalars['Boolean']
+    buckets: ProjectBucketsConnection
     createdAt: Scalars['DateTime']
-    deletedAt: Scalars['DateTime'] | null
+    deletedAt: (Scalars['DateTime'] | null)
+    /** @deprecated Use environment.deploymentTriggers for properly scoped access control */
     deploymentTriggers: ProjectDeploymentTriggersConnection
+    /** @deprecated Use environment.deployments for properly scoped access control */
     deployments: ProjectDeploymentsConnection
-    description: Scalars['String'] | null
+    description: (Scalars['String'] | null)
     environments: ProjectEnvironmentsConnection
-    expiredAt: Scalars['DateTime'] | null
+    expiredAt: (Scalars['DateTime'] | null)
     groups: ProjectGroupsConnection
     id: Scalars['ID']
     isPublic: Scalars['Boolean']
     isTempProject: Scalars['Boolean']
     members: ProjectMember[]
     name: Scalars['String']
+    /** @deprecated Plugins have been removed */
     plugins: ProjectPluginsConnection
     prDeploys: Scalars['Boolean']
-    prEnvCopyVolData: Scalars['Boolean']
     projectPermissions: ProjectProjectPermissionsConnection
     services: ProjectServicesConnection
     subscriptionPlanLimit: Scalars['SubscriptionPlanLimit']
     subscriptionType: SubscriptionPlanType
-    team: Team | null
-    teamId: Scalars['String'] | null
+    /** @deprecated Use workspace */
+    team: (Team | null)
+    /** @deprecated Use workspaceId */
+    teamId: (Scalars['String'] | null)
     updatedAt: Scalars['DateTime']
     volumes: ProjectVolumesConnection
-    webhooks: ProjectWebhooksConnection
+    workspace: (Workspace | null)
+    workspaceId: (Scalars['String'] | null)
     __typename: 'Project'
+}
+
+export interface ProjectBucketsConnection {
+    edges: ProjectBucketsConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'ProjectBucketsConnection'
+}
+
+export interface ProjectBucketsConnectionEdge {
+    cursor: Scalars['String']
+    __typename: 'ProjectBucketsConnectionEdge'
+}
+
+export interface ProjectComplianceInfo {
+    /** Permissions for each project member */
+    memberPermissions: ProjectMemberPermissionsInfo[]
+    projectId: Scalars['String']
+    projectName: Scalars['String']
+    /** Backup schedules for database services */
+    serviceBackups: ServiceBackupInfo[]
+    /** 2FA status for each project member */
+    twoFactorMembers: ProjectMemberTwoFactorInfo[]
+    workspaceId: Scalars['String']
+    __typename: 'ProjectComplianceInfo'
 }
 
 export interface ProjectDeploymentTriggersConnection {
@@ -1444,7 +1640,7 @@ export interface ProjectInvitation {
     email: Scalars['String']
     expiresAt: Scalars['DateTime']
     id: Scalars['ID']
-    inviter: ProjectInvitationInviter | null
+    inviter: (ProjectInvitationInviter | null)
     isExpired: Scalars['Boolean']
     project: PublicProjectInformation
     __typename: 'ProjectInvitation'
@@ -1452,17 +1648,33 @@ export interface ProjectInvitation {
 
 export interface ProjectInvitationInviter {
     email: Scalars['String']
-    name: Scalars['String'] | null
+    name: (Scalars['String'] | null)
     __typename: 'ProjectInvitationInviter'
 }
 
 export interface ProjectMember {
-    avatar: Scalars['String'] | null
+    avatar: (Scalars['String'] | null)
     email: Scalars['String']
     id: Scalars['String']
-    name: Scalars['String'] | null
+    name: (Scalars['String'] | null)
     role: ProjectRole
     __typename: 'ProjectMember'
+}
+
+export interface ProjectMemberPermissionsInfo {
+    email: Scalars['String']
+    name: (Scalars['String'] | null)
+    role: ProjectRole
+    __typename: 'ProjectMemberPermissionsInfo'
+}
+
+export interface ProjectMemberTwoFactorInfo {
+    email: Scalars['String']
+    /** List of enabled 2FA methods (AUTHENTICATOR, PASSKEY) */
+    enabledMethods: TwoFactorMethodCompliance[]
+    name: (Scalars['String'] | null)
+    twoFactorAuthEnabled: Scalars['Boolean']
+    __typename: 'ProjectMemberTwoFactorInfo'
 }
 
 export interface ProjectPermission {
@@ -1502,6 +1714,7 @@ export interface ProjectResourceAccess {
     databaseDeployment: AccessRule
     deployment: AccessRule
     environment: AccessRule
+    /** @deprecated Plugins have been removed */
     plugin: AccessRule
     __typename: 'ProjectResourceAccess'
 }
@@ -1532,14 +1745,7 @@ export interface ProjectToken {
     __typename: 'ProjectToken'
 }
 
-export type ProjectUsageProperty =
-    | 'BACKUP_USAGE'
-    | 'CPU_USAGE'
-    | 'CURRENT_USAGE'
-    | 'DISK_USAGE'
-    | 'ESTIMATED_USAGE'
-    | 'MEMORY_USAGE'
-    | 'NETWORK_USAGE'
+export type ProjectUsageProperty = 'BACKUP_USAGE' | 'CPU_USAGE' | 'CURRENT_USAGE' | 'DISK_USAGE' | 'ESTIMATED_USAGE' | 'MEMORY_USAGE' | 'NETWORK_USAGE'
 
 export interface ProjectVolumesConnection {
     edges: ProjectVolumesConnectionEdge[]
@@ -1553,30 +1759,27 @@ export interface ProjectVolumesConnectionEdge {
     __typename: 'ProjectVolumesConnectionEdge'
 }
 
-export interface ProjectWebhook {
-    filters: Scalars['String'][] | null
-    id: Scalars['ID']
-    lastStatus: Scalars['Int'] | null
+export interface ProjectWorkspaceMember {
+    email: Scalars['String']
+    /** List of enabled 2FA methods (AUTHENTICATOR, PASSKEY) */
+    enabledMethods: TwoFactorMethodProjectWorkspace[]
+    name: (Scalars['String'] | null)
+    twoFactorAuthEnabled: Scalars['Boolean']
+    __typename: 'ProjectWorkspaceMember'
+}
+
+export interface ProjectWorkspaceMembersResponse {
+    members: ProjectWorkspaceMember[]
     projectId: Scalars['String']
-    url: Scalars['String']
-    __typename: 'ProjectWebhook'
-}
-
-export interface ProjectWebhooksConnection {
-    edges: ProjectWebhooksConnectionEdge[]
-    pageInfo: PageInfo
-    __typename: 'ProjectWebhooksConnection'
-}
-
-export interface ProjectWebhooksConnectionEdge {
-    cursor: Scalars['String']
-    node: ProjectWebhook
-    __typename: 'ProjectWebhooksConnectionEdge'
+    projectName: Scalars['String']
+    workspaceId: Scalars['String']
+    __typename: 'ProjectWorkspaceMembersResponse'
 }
 
 export interface ProviderAuth {
     email: Scalars['String']
     id: Scalars['ID']
+    isAuthEnabled: Scalars['Boolean']
     metadata: Scalars['JSON']
     provider: Scalars['String']
     userId: Scalars['String']
@@ -1606,14 +1809,24 @@ export interface PublicStats {
 export interface Query {
     /** Get all volume instances for a given volume */
     adminVolumeInstancesForVolume: VolumeInstance[]
+    /** Returns the platform feature flags enabled for the current user */
+    allPlatformFeatureFlags: PlatformFeatureFlagStatus[]
+    /** Introspect the current API token and its accessible workspaces. */
+    apiToken: ApiTokenContext
     /** Gets all API tokens for the authenticated user. */
     apiTokens: QueryApiTokensConnection
+    /** Get an audit log by ID */
+    auditLog: AuditLog
+    /** Get a list of all audit log event types and their description */
+    auditLogEventTypeInfo: AuditLogEventTypeInfo[]
+    /** Gets audit logs for a workspace. */
+    auditLogs: QueryAuditLogsConnection
     /** Fetch logs for a build */
     buildLogs: Log[]
     /** Gets the image URL for a Notion image block */
     changelogBlockImage: Scalars['String']
-    /** Get the total count and sum of transfers to date. */
-    creditTransferMetrics: CreditTransferMetrics
+    /** Get compliance agreements for a workspace including HIPAA BAA and GDPR DPA status. */
+    complianceAgreements: ComplianceAgreementsInfo
     /** Fetch details for a custom domain */
     customDomain: CustomDomain
     /** Checks if a custom domain is available. */
@@ -1627,7 +1840,7 @@ export interface Query {
     /** Fetch logs for a deployment */
     deploymentLogs: Log[]
     /** Find a single DeploymentSnapshot */
-    deploymentSnapshot: DeploymentSnapshot | null
+    deploymentSnapshot: (DeploymentSnapshot | null)
     /** All deployment triggers. */
     deploymentTriggers: QueryDeploymentTriggersConnection
     /** Get all deployments */
@@ -1645,14 +1858,24 @@ export interface Query {
     environment: Environment
     /** Fetch logs for a project environment. Build logs are excluded unless a snapshot ID is explicitly provided in the filter */
     environmentLogs: Log[]
+    /** Get a single environment patch by ID */
+    environmentPatch: EnvironmentPatch
     /** Get the patches for an environment */
     environmentPatches: QueryEnvironmentPatchesConnection
+    /** Get the latest staged commit for a single environment. */
+    environmentStagedChanges: EnvironmentPatch
     /** Gets all environments for a project. */
     environments: QueryEnvironmentsConnection
     /** Get the estimated total cost of the project at the end of the current billing cycle. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
     estimatedUsage: EstimatedUsage[]
     /** Gets the events for a project. */
     events: QueryEventsConnection
+    /** Get the workspaces the user doesn't belong to, but needs access (like when invited to a project) */
+    externalWorkspaces: ExternalWorkspace[]
+    /** Get information about a specific function runtime */
+    functionRuntime: FunctionRuntime
+    /** List available function runtimes */
+    functionRuntimes: FunctionRuntime[]
     /** Checks if user has access to GitHub repository */
     gitHubRepoAccessAvailable: GitHubAccess
     /** Check if a repo name is available */
@@ -1681,26 +1904,36 @@ export interface Query {
     me: User
     /** Get metrics for a project, environment, and service */
     metrics: MetricsResult[]
-    node: Node | null
-    nodes: (Node | null)[]
+    /** Gets notification deliveries for the authenticated user */
+    notificationDeliveries: QueryNotificationDeliveriesConnection
     /** Get all observability dashboards for an environment */
     observabilityDashboards: QueryObservabilityDashboardsConnection
+    /** Gets all passkeys for the authenticated user */
+    passkeys: QueryPasskeysConnection
     /** Get the current status of the platform */
     platformStatus: PlatformStatus
-    /** Get a plugin by ID. */
+    /**
+     * @deprecated Plugins are deprecated
+     * Get a plugin by ID.
+     */
     plugin: Plugin
-    /** Fetch logs for a plugin */
+    /**
+     * @deprecated Plugins are deprecated
+     * Fetch logs for a plugin
+     */
     pluginLogs: Log[]
     /** Get the email preferences for a user */
     preferences: Preferences
     /** Get a private network endpoint for a service instance. */
-    privateNetworkEndpoint: PrivateNetworkEndpoint | null
+    privateNetworkEndpoint: (PrivateNetworkEndpoint | null)
     /** Check if an endpoint name is available. */
     privateNetworkEndpointNameAvailable: Scalars['Boolean']
     /** List private networks for an environment. */
     privateNetworks: PrivateNetwork[]
     /** Get a project by ID */
     project: Project
+    /** Get comprehensive compliance information for a project including 2FA status, member permissions, backup schedules, and compliance agreements. Requires workspace API token with admin access. */
+    projectCompliance: ProjectComplianceInfo
     /** Get a project invitation by code */
     projectInvitation: PublicProjectInvitation
     /** Get invitations for a project */
@@ -1715,7 +1948,9 @@ export interface Query {
     projectToken: ProjectToken
     /** Get all project tokens for a project */
     projectTokens: QueryProjectTokensConnection
-    /** Gets all projects for a user or a team. */
+    /** Get workspace members for a project with 2FA details */
+    projectWorkspaceMembers: ProjectWorkspaceMembersResponse
+    /** Gets all projects for a user or workspace. */
     projects: QueryProjectsConnection
     /** Get public Railway stats. */
     publicStats: PublicStats
@@ -1723,7 +1958,7 @@ export interface Query {
     referralInfo: ReferralInfo
     /** List available regions */
     regions: Region[]
-    /** Get resource access for the current user or team */
+    /** Get resource access for the current user or workspace */
     resourceAccess: ResourceAccess
     /** Get a service by ID */
     service: Service
@@ -1733,40 +1968,40 @@ export interface Query {
     serviceInstance: ServiceInstance
     /** Check if the upstream repo for a service has an update available */
     serviceInstanceIsUpdatable: Scalars['Boolean']
-    /** Get the resource limits for a service instance */
-    serviceInstanceLimitOverride: Scalars['ServiceInstanceLimit']
-    /** Get the resource limits for a service instance */
+    /** Get the service instance resource limit overrides (null if no overrides set) */
+    serviceInstanceLimitOverride: (Scalars['ServiceInstanceLimit'] | null)
+    /** Get the merged resource limits for a service instance (includes plan defaults) */
     serviceInstanceLimits: Scalars['ServiceInstanceLimit']
     /** Gets all sessions for authenticated user. */
     sessions: QuerySessionsConnection
     /** All TCP proxies for a service instance */
     tcpProxies: TCPProxy[]
-    /** Find a team by ID */
+    /**
+     * @deprecated Teams are now workspaces. Use the workspace query instead.
+     * Find a team by ID
+     */
     team: Team
-    /** Find a team by invite code */
-    teamByCode: Team
-    /** Get all templates for a team. */
+    /**
+     * @deprecated Use templates instead - teams are now workspaces
+     * Get all templates for a team.
+     */
     teamTemplates: QueryTeamTemplatesConnection
-    /** Get all team trusted domains */
-    teamTrustedDomains: QueryTeamTrustedDomainsConnection
-    /** Get a template by code or GitHub owner and repo. */
+    /** Get a template by code or ID or GitHub owner and repo. */
     template: Template
-    /** Get the top 25 users with the most template kickback earnings. */
-    templateKickbacksLeaderboard: TemplateKickbacksLeaderboard[]
+    /** Get the metrics for a template. */
+    templateMetrics: TemplateMetrics
     /** Get the source template for a project. */
-    templateSourceForProject: Template | null
-    /** Get the all-time sum of template kickbacks. */
-    templatekickbacksTotal: Scalars['Float']
+    templateSourceForProject: (Template | null)
     /** Get all published templates. */
     templates: QueryTemplatesConnection
+    /** Count all published templates. */
+    templatesCount: Scalars['Int']
+    /** Get all trusted domains for a workspace */
+    trustedDomains: QueryTrustedDomainsConnection
     /** Gets the TwoFactorInfo for the authenticated user. */
     twoFactorInfo: TwoFactorInfo
-    /** Get the usage for a single project or all projects for a user/team. If no `projectId` or `teamId` is provided, the usage for the current user is returned. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
+    /** Get the usage for a single project or all projects for a user/workspace. If no `projectId` or `workspaceId` is provided, the usage for the current user is returned. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
     usage: AggregatedUsage[]
-    /** Get the user id corresponding to a Discord id */
-    userIdForDiscordId: Scalars['String']
-    /** Get the user id corresponding to a Slack id */
-    userIdForSlackId: Scalars['String'] | null
     /**
      * @deprecated This field is deprecated and will be removed in future versions.
      * Get the total kickback earnings for a user.
@@ -1774,7 +2009,10 @@ export interface Query {
     userKickbackEarnings: UserKickbackEarnings
     /** Get the public profile for a user */
     userProfile: UserProfileResponse
-    /** Get all templates for the current user. */
+    /**
+     * @deprecated Users don't have personal templates anymore, they belong to their team now
+     * Get all templates for the current user.
+     */
     userTemplates: QueryUserTemplatesConnection
     /** All variables by pluginId or serviceId. If neither are provided, all shared variables are returned. */
     variables: Scalars['EnvironmentVariables']
@@ -1788,12 +2026,16 @@ export interface Query {
     volumeInstanceBackupList: VolumeInstanceBackup[]
     /** List backups schedules of a volume instance */
     volumeInstanceBackupScheduleList: VolumeInstanceBackupSchedule[]
-    /** Get all webhooks for a project */
-    webhooks: QueryWebhooksConnection
     /** Gets the status of a workflow */
     workflowStatus: WorkflowResult
     /** Get the workspace */
     workspace: Workspace
+    /** Find a workspace by invite code */
+    workspaceByCode: Workspace
+    /** Gets all identity providers of a workspace */
+    workspaceIdentityProviders: QueryWorkspaceIdentityProvidersConnection
+    /** Get all templates for a workspace. */
+    workspaceTemplates: QueryWorkspaceTemplatesConnection
     __typename: 'Query'
 }
 
@@ -1807,6 +2049,18 @@ export interface QueryApiTokensConnectionEdge {
     cursor: Scalars['String']
     node: ApiToken
     __typename: 'QueryApiTokensConnectionEdge'
+}
+
+export interface QueryAuditLogsConnection {
+    edges: QueryAuditLogsConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'QueryAuditLogsConnection'
+}
+
+export interface QueryAuditLogsConnectionEdge {
+    cursor: Scalars['String']
+    node: AuditLog
+    __typename: 'QueryAuditLogsConnectionEdge'
 }
 
 export interface QueryDeploymentEventsConnection {
@@ -1865,6 +2119,7 @@ export interface QueryEnvironmentPatchesConnection {
 
 export interface QueryEnvironmentPatchesConnectionEdge {
     cursor: Scalars['String']
+    node: EnvironmentPatch
     __typename: 'QueryEnvironmentPatchesConnectionEdge'
 }
 
@@ -1916,6 +2171,18 @@ export interface QueryIntegrationsConnectionEdge {
     __typename: 'QueryIntegrationsConnectionEdge'
 }
 
+export interface QueryNotificationDeliveriesConnection {
+    edges: QueryNotificationDeliveriesConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'QueryNotificationDeliveriesConnection'
+}
+
+export interface QueryNotificationDeliveriesConnectionEdge {
+    cursor: Scalars['String']
+    node: NotificationDelivery
+    __typename: 'QueryNotificationDeliveriesConnectionEdge'
+}
+
 export interface QueryObservabilityDashboardsConnection {
     edges: QueryObservabilityDashboardsConnectionEdge[]
     pageInfo: PageInfo
@@ -1926,6 +2193,18 @@ export interface QueryObservabilityDashboardsConnectionEdge {
     cursor: Scalars['String']
     node: ObservabilityDashboard
     __typename: 'QueryObservabilityDashboardsConnectionEdge'
+}
+
+export interface QueryPasskeysConnection {
+    edges: QueryPasskeysConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'QueryPasskeysConnection'
+}
+
+export interface QueryPasskeysConnectionEdge {
+    cursor: Scalars['String']
+    node: Passkey
+    __typename: 'QueryPasskeysConnectionEdge'
 }
 
 export interface QueryProjectTokensConnection {
@@ -1976,18 +2255,6 @@ export interface QueryTeamTemplatesConnectionEdge {
     __typename: 'QueryTeamTemplatesConnectionEdge'
 }
 
-export interface QueryTeamTrustedDomainsConnection {
-    edges: QueryTeamTrustedDomainsConnectionEdge[]
-    pageInfo: PageInfo
-    __typename: 'QueryTeamTrustedDomainsConnection'
-}
-
-export interface QueryTeamTrustedDomainsConnectionEdge {
-    cursor: Scalars['String']
-    node: TeamTrustedDomain
-    __typename: 'QueryTeamTrustedDomainsConnectionEdge'
-}
-
 export interface QueryTemplatesConnection {
     edges: QueryTemplatesConnectionEdge[]
     pageInfo: PageInfo
@@ -1998,6 +2265,18 @@ export interface QueryTemplatesConnectionEdge {
     cursor: Scalars['String']
     node: Template
     __typename: 'QueryTemplatesConnectionEdge'
+}
+
+export interface QueryTrustedDomainsConnection {
+    edges: QueryTrustedDomainsConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'QueryTrustedDomainsConnection'
+}
+
+export interface QueryTrustedDomainsConnectionEdge {
+    cursor: Scalars['String']
+    node: TrustedDomain
+    __typename: 'QueryTrustedDomainsConnectionEdge'
 }
 
 export interface QueryUserTemplatesConnection {
@@ -2012,16 +2291,28 @@ export interface QueryUserTemplatesConnectionEdge {
     __typename: 'QueryUserTemplatesConnectionEdge'
 }
 
-export interface QueryWebhooksConnection {
-    edges: QueryWebhooksConnectionEdge[]
+export interface QueryWorkspaceIdentityProvidersConnection {
+    edges: QueryWorkspaceIdentityProvidersConnectionEdge[]
     pageInfo: PageInfo
-    __typename: 'QueryWebhooksConnection'
+    __typename: 'QueryWorkspaceIdentityProvidersConnection'
 }
 
-export interface QueryWebhooksConnectionEdge {
+export interface QueryWorkspaceIdentityProvidersConnectionEdge {
     cursor: Scalars['String']
-    node: ProjectWebhook
-    __typename: 'QueryWebhooksConnectionEdge'
+    node: WorkspaceIdentityProvider
+    __typename: 'QueryWorkspaceIdentityProvidersConnectionEdge'
+}
+
+export interface QueryWorkspaceTemplatesConnection {
+    edges: QueryWorkspaceTemplatesConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'QueryWorkspaceTemplatesConnection'
+}
+
+export interface QueryWorkspaceTemplatesConnectionEdge {
+    cursor: Scalars['String']
+    node: Template
+    __typename: 'QueryWorkspaceTemplatesConnectionEdge'
 }
 
 export interface RecoveryCodes {
@@ -2052,74 +2343,82 @@ export interface ReferralUser {
     __typename: 'ReferralUser'
 }
 
-export interface RefundRequest {
-    amount: Scalars['Int']
-    decision: RefundRequestDecisionEnum | null
-    id: Scalars['ID']
-    invoiceId: Scalars['String']
-    plainThreadId: Scalars['String'] | null
-    reason: Scalars['String']
-    teamId: Scalars['String'] | null
-    userId: Scalars['String']
-    __typename: 'RefundRequest'
-}
-
-/** Possible decisions for a RefundRequest */
-export type RefundRequestDecisionEnum = 'AUTO_REFUNDED' | 'AUTO_REJECTED' | 'MANUALLY_REFUNDED'
-
 export interface Region {
-    /** @deprecated Use deploymentConstraints.adminOnly */
-    adminOnly: Scalars['Boolean'] | null
     /** Region country */
     country: Scalars['String']
-    deploymentConstraints: RegionDeploymentConstraints | null
+    deploymentConstraints: (RegionDeploymentConstraints | null)
     location: Scalars['String']
     name: Scalars['String']
     /** Region is on Railway Metal */
-    railwayMetal: Scalars['Boolean'] | null
-    region: Scalars['String'] | null
-    teamId: Scalars['String'] | null
+    railwayMetal: (Scalars['Boolean'] | null)
+    region: (Scalars['String'] | null)
+    workspaceId: (Scalars['String'] | null)
     __typename: 'Region'
 }
 
 export interface RegionDeploymentConstraints {
     /** Admin only region */
-    adminOnly: Scalars['Boolean'] | null
-    /** Region doesn't allow volumes */
-    computeOnly: Scalars['Boolean'] | null
-    runtimeExclusivity: Scalars['String'][] | null
+    adminOnly: (Scalars['Boolean'] | null)
+    /** Deprecation information for the region */
+    deprecationInfo: (RegionDeprecationInfo | null)
+    runtimeExclusivity: (Scalars['String'][] | null)
     /** Staging only region */
-    stagingOnly: Scalars['Boolean'] | null
+    stagingOnly: (Scalars['Boolean'] | null)
     __typename: 'RegionDeploymentConstraints'
+}
+
+export interface RegionDeprecationInfo {
+    /** Specifies if the region is deprecated */
+    isDeprecated: Scalars['Boolean']
+    /** Replacement region for the deprecated region */
+    replacementRegion: Scalars['String']
+    __typename: 'RegionDeprecationInfo'
 }
 
 export type RegistrationStatus = 'ONBOARDED' | 'REGISTERED' | 'WAITLISTED'
 
+export type ReplicateVolumeInstanceSnapshotStatus = 'COMPLETED' | 'FAILED' | 'INITIATED' | 'TRANSFERRING' | 'UNRECOGNIZED'
+
+
+/** The status of a volume instance replication */
+export type ReplicateVolumeInstanceStatus = 'COMPLETED' | 'ERROR' | 'QUEUED' | 'TRANSFERRING_OFFLINE' | 'TRANSFERRING_ONLINE'
+
 export interface ResourceAccess {
+    deployment: AccessRule
     project: AccessRule
     __typename: 'ResourceAccess'
 }
 
-export type ResourceOwnerType = 'TEAM' | 'USER'
+export type ResourceOwnerType = 'WORKSPACE'
 
 export type RestartPolicyType = 'ALWAYS' | 'NEVER' | 'ON_FAILURE'
 
 export interface Service {
     createdAt: Scalars['DateTime']
-    deletedAt: Scalars['DateTime'] | null
+    deletedAt: (Scalars['DateTime'] | null)
+    /** @deprecated Use environment.deployments for properly scoped access control */
     deployments: ServiceDeploymentsConnection
     featureFlags: ActiveServiceFeatureFlag[]
-    icon: Scalars['String'] | null
+    icon: (Scalars['String'] | null)
     id: Scalars['ID']
     name: Scalars['String']
     project: Project
     projectId: Scalars['String']
     repoTriggers: ServiceRepoTriggersConnection
+    /** @deprecated Use environment.serviceInstances for properly scoped access control */
     serviceInstances: ServiceServiceInstancesConnection
-    templateServiceId: Scalars['String'] | null
-    templateThreadSlug: Scalars['String'] | null
+    templateServiceId: (Scalars['String'] | null)
+    templateThreadSlug: (Scalars['String'] | null)
     updatedAt: Scalars['DateTime']
     __typename: 'Service'
+}
+
+export interface ServiceBackupInfo {
+    /** List of enabled backup schedule kinds (DAILY, WEEKLY, MONTHLY) */
+    schedules: VolumeInstanceBackupScheduleKind[]
+    serviceId: Scalars['String']
+    serviceName: Scalars['String']
+    __typename: 'ServiceBackupInfo'
 }
 
 export interface ServiceDeploymentsConnection {
@@ -2135,48 +2434,53 @@ export interface ServiceDeploymentsConnectionEdge {
 }
 
 export interface ServiceDomain {
-    createdAt: Scalars['DateTime'] | null
-    deletedAt: Scalars['DateTime'] | null
+    createdAt: (Scalars['DateTime'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
     domain: Scalars['String']
+    edgeId: (Scalars['String'] | null)
     environmentId: Scalars['String']
     id: Scalars['ID']
-    projectId: Scalars['String'] | null
+    projectId: (Scalars['String'] | null)
     serviceId: Scalars['String']
-    suffix: Scalars['String'] | null
-    targetPort: Scalars['Int'] | null
-    updatedAt: Scalars['DateTime'] | null
+    suffix: (Scalars['String'] | null)
+    targetPort: (Scalars['Int'] | null)
+    updatedAt: (Scalars['DateTime'] | null)
     __typename: 'ServiceDomain'
 }
 
 export interface ServiceInstance {
-    buildCommand: Scalars['String'] | null
+    buildCommand: (Scalars['String'] | null)
     builder: Builder
     createdAt: Scalars['DateTime']
-    cronSchedule: Scalars['String'] | null
-    deletedAt: Scalars['DateTime'] | null
+    cronSchedule: (Scalars['String'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
+    dockerfilePath: (Scalars['String'] | null)
     domains: AllDomains
+    drainingSeconds: (Scalars['Int'] | null)
     environmentId: Scalars['String']
-    healthcheckPath: Scalars['String'] | null
-    healthcheckTimeout: Scalars['Int'] | null
+    healthcheckPath: (Scalars['String'] | null)
+    healthcheckTimeout: (Scalars['Int'] | null)
     id: Scalars['ID']
     isUpdatable: Scalars['Boolean']
-    latestDeployment: Deployment | null
-    nextCronRunAt: Scalars['DateTime'] | null
-    nixpacksPlan: Scalars['JSON'] | null
-    numReplicas: Scalars['Int'] | null
-    preDeployCommand: Scalars['JSON'] | null
-    railwayConfigFile: Scalars['String'] | null
-    region: Scalars['String'] | null
+    latestDeployment: (Deployment | null)
+    nextCronRunAt: (Scalars['DateTime'] | null)
+    nixpacksPlan: (Scalars['JSON'] | null)
+    numReplicas: (Scalars['Int'] | null)
+    overlapSeconds: (Scalars['Int'] | null)
+    preDeployCommand: (Scalars['JSON'] | null)
+    railpackInfo: (Scalars['RailpackInfo'] | null)
+    railwayConfigFile: (Scalars['String'] | null)
+    region: (Scalars['String'] | null)
     restartPolicyMaxRetries: Scalars['Int']
     restartPolicyType: RestartPolicyType
-    rootDirectory: Scalars['String'] | null
+    rootDirectory: (Scalars['String'] | null)
     serviceId: Scalars['String']
     serviceName: Scalars['String']
-    sleepApplication: Scalars['Boolean'] | null
-    source: ServiceSource | null
-    startCommand: Scalars['String'] | null
+    sleepApplication: (Scalars['Boolean'] | null)
+    source: (ServiceSource | null)
+    startCommand: (Scalars['String'] | null)
     updatedAt: Scalars['DateTime']
-    upstreamUrl: Scalars['String'] | null
+    upstreamUrl: (Scalars['String'] | null)
     watchPatterns: Scalars['String'][]
     __typename: 'ServiceInstance'
 }
@@ -2206,8 +2510,8 @@ export interface ServiceServiceInstancesConnectionEdge {
 }
 
 export interface ServiceSource {
-    image: Scalars['String'] | null
-    repo: Scalars['String'] | null
+    image: (Scalars['String'] | null)
+    repo: (Scalars['String'] | null)
     __typename: 'ServiceSource'
 }
 
@@ -2227,16 +2531,20 @@ export type SessionType = 'BROWSER' | 'CLI' | 'FORUMS'
 export interface SimilarTemplate {
     code: Scalars['String']
     createdAt: Scalars['DateTime']
-    creator: TemplateCreator | null
+    creator: (TemplateCreator | null)
     deploys: Scalars['Int']
-    description: Scalars['String'] | null
-    health: Scalars['Float'] | null
-    image: Scalars['String'] | null
+    description: (Scalars['String'] | null)
+    health: (Scalars['Float'] | null)
+    image: (Scalars['String'] | null)
     name: Scalars['String']
-    teamId: Scalars['String'] | null
-    userId: Scalars['String'] | null
+    /** @deprecated Use workspaceId */
+    teamId: (Scalars['String'] | null)
+    userId: (Scalars['String'] | null)
+    workspaceId: (Scalars['String'] | null)
     __typename: 'SimilarTemplate'
 }
+
+export type SortOrder = 'asc' | 'desc'
 
 export interface Subscription {
     /** Stream logs for a build */
@@ -2251,23 +2559,34 @@ export interface Subscription {
     deploymentLogs: Log[]
     /** Stream logs for a project environment */
     environmentLogs: Log[]
+    /** Subscribe to updates for the staged patch for a single environment. */
+    environmentStagedPatch: EnvironmentPatch
     /** Stream HTTP logs for a deployment */
     httpLogs: HttpLog[]
-    /** Stream logs for a plugin */
+    /** Subscribe to notification delivery updates (created and resolved) for the authenticated user */
+    notificationDeliveryUpdated: NotificationDeliveryUpdate
+    /**
+     * @deprecated Plugins are deprecated
+     * Stream logs for a plugin
+     */
     pluginLogs: Log[]
+    /** Subscribe to migration progress updates for a volume */
+    replicationProgress: VolumeReplicationProgressUpdate
     __typename: 'Subscription'
 }
 
 export interface SubscriptionDiscount {
     couponId: Scalars['String']
+    couponName: Scalars['String']
     __typename: 'SubscriptionDiscount'
 }
 
 export interface SubscriptionItem {
     itemId: Scalars['String']
+    priceDollars: (Scalars['Float'] | null)
     priceId: Scalars['String']
     productId: Scalars['String']
-    quantity: Scalars['BigInt'] | null
+    quantity: (Scalars['BigInt'] | null)
     __typename: 'SubscriptionItem'
 }
 
@@ -2281,54 +2600,60 @@ export type SupportTierOverride = 'BUSINESS_CLASS' | 'BUSINESS_CLASS_TRIAL'
 
 export interface TCPProxy {
     applicationPort: Scalars['Int']
-    createdAt: Scalars['DateTime'] | null
-    deletedAt: Scalars['DateTime'] | null
+    createdAt: (Scalars['DateTime'] | null)
+    deletedAt: (Scalars['DateTime'] | null)
     domain: Scalars['String']
     environmentId: Scalars['String']
     id: Scalars['ID']
     proxyPort: Scalars['Int']
     serviceId: Scalars['String']
-    updatedAt: Scalars['DateTime'] | null
+    updatedAt: (Scalars['DateTime'] | null)
     __typename: 'TCPProxy'
 }
 
 export interface Team {
+    /** @deprecated Use workspace object instead */
     adoptionHistory: AdoptionInfo[]
+    /** @deprecated Use workspace object instead */
     adoptionLevel: Scalars['Float']
-    avatar: Scalars['String'] | null
-    banReason: Scalars['String'] | null
+    /** @deprecated Use workspace object instead */
+    apiTokenRateLimit: (ApiTokenRateLimit | null)
+    /** @deprecated Use workspace object instead */
+    avatar: (Scalars['String'] | null)
+    /** @deprecated Use workspace object instead */
     createdAt: Scalars['DateTime']
-    /** @deprecated Access the customer through the workspace */
+    /** @deprecated Use workspace object instead */
     customer: Customer
-    discordRole: Scalars['String'] | null
+    /** @deprecated Use workspace object instead */
     id: Scalars['ID']
+    /** @deprecated Use workspace object instead */
     members: TeamMember[]
+    /** @deprecated Use workspace object instead */
     name: Scalars['String']
-    preferredRegion: Scalars['String'] | null
+    /** @deprecated Use workspace object instead */
+    preferredRegion: (Scalars['String'] | null)
+    /** @deprecated Use workspace object instead */
     projects: TeamProjectsConnection
-    promptUpgrade: Scalars['Boolean']
-    slackChannelId: Scalars['String'] | null
-    supportTierOverride: SupportTierOverride | null
+    /** @deprecated Use workspace object instead */
+    slackChannelId: (Scalars['String'] | null)
+    /** @deprecated Use workspace object instead */
+    supportTierOverride: (SupportTierOverride | null)
+    /** @deprecated Use workspace object instead */
     teamPermissions: TeamPermission[]
+    /** @deprecated Use workspace object instead */
     updatedAt: Scalars['DateTime']
+    /** @deprecated Use workspace object instead */
     workspace: Workspace
     __typename: 'Team'
 }
 
-export interface TeamCreateAndSubscribeResponse {
-    customerId: Scalars['String']
-    paymentIntent: Scalars['JSON'] | null
-    teamId: Scalars['String']
-    __typename: 'TeamCreateAndSubscribeResponse'
-}
-
 export interface TeamMember {
-    avatar: Scalars['String'] | null
+    avatar: (Scalars['String'] | null)
     email: Scalars['String']
     /** Only retrieved if requested by an admin */
-    featureFlags: ActiveFeatureFlag[] | null
+    featureFlags: (ActiveFeatureFlag[] | null)
     id: Scalars['String']
-    name: Scalars['String'] | null
+    name: (Scalars['String'] | null)
     role: TeamRole
     __typename: 'TeamMember'
 }
@@ -2337,9 +2662,9 @@ export interface TeamPermission {
     createdAt: Scalars['DateTime']
     id: Scalars['ID']
     role: TeamRole
-    teamId: Scalars['String']
     updatedAt: Scalars['DateTime']
     userId: Scalars['String']
+    workspaceId: Scalars['String']
     __typename: 'TeamPermission'
 }
 
@@ -2357,74 +2682,76 @@ export interface TeamProjectsConnectionEdge {
 
 export type TeamRole = 'ADMIN' | 'MEMBER' | 'VIEWER'
 
-export interface TeamTrustedDomain {
-    domainName: Scalars['String']
-    id: Scalars['ID']
-    teamId: Scalars['String']
-    teamRole: Scalars['String']
-    verificationData: TrustedDomainVerificationData
-    verificationType: Scalars['String']
-    __typename: 'TeamTrustedDomain'
-}
-
 export interface Template {
     activeProjects: Scalars['Int']
-    canvasConfig: Scalars['CanvasConfig'] | null
-    category: Scalars['String'] | null
+    canvasConfig: (Scalars['CanvasConfig'] | null)
+    category: (Scalars['String'] | null)
     code: Scalars['String']
-    communityThreadSlug: Scalars['String'] | null
+    communityThreadSlug: (Scalars['String'] | null)
+    /** @deprecated Use serializedConfig instead */
     config: Scalars['TemplateConfig']
     createdAt: Scalars['DateTime']
-    creator: TemplateCreator | null
-    demoProjectId: Scalars['String'] | null
-    description: Scalars['String'] | null
-    guides: TemplateGuide | null
-    health: Scalars['Float'] | null
+    creator: (TemplateCreator | null)
+    demoProjectId: (Scalars['String'] | null)
+    description: (Scalars['String'] | null)
+    guides: (TemplateGuide | null)
+    health: (Scalars['Float'] | null)
     id: Scalars['ID']
-    image: Scalars['String'] | null
+    image: (Scalars['String'] | null)
     isApproved: Scalars['Boolean']
     isV2Template: Scalars['Boolean']
-    languages: Scalars['String'][] | null
+    isVerified: Scalars['Boolean']
+    languages: (Scalars['String'][] | null)
     /** @deprecated Deprecated in favor of listing the fields individually. */
     metadata: Scalars['TemplateMetadata']
     name: Scalars['String']
     projects: Scalars['Int']
-    readme: Scalars['String'] | null
-    serializedConfig: Scalars['SerializedTemplateConfig'] | null
+    readme: (Scalars['String'] | null)
+    recentProjects: Scalars['Int']
+    serializedConfig: (Scalars['SerializedTemplateConfig'] | null)
     services: TemplateServicesConnection
     similarTemplates: SimilarTemplate[]
     status: TemplateStatus
-    tags: Scalars['String'][] | null
-    teamId: Scalars['String'] | null
+    supportHealthMetrics: (Scalars['SupportHealthMetrics'] | null)
+    tags: (Scalars['String'][] | null)
+    /** @deprecated Use workspaceId */
+    teamId: (Scalars['String'] | null)
     totalPayout: Scalars['Float']
-    userId: Scalars['String'] | null
+    workspaceId: (Scalars['String'] | null)
     __typename: 'Template'
 }
 
 export interface TemplateCreator {
-    avatar: Scalars['String'] | null
+    avatar: (Scalars['String'] | null)
     hasPublicProfile: Scalars['Boolean']
-    name: Scalars['String'] | null
-    username: Scalars['String'] | null
+    name: (Scalars['String'] | null)
+    username: (Scalars['String'] | null)
     __typename: 'TemplateCreator'
 }
 
 export interface TemplateDeployPayload {
     projectId: Scalars['String']
-    workflowId: Scalars['String'] | null
+    workflowId: (Scalars['String'] | null)
     __typename: 'TemplateDeployPayload'
 }
 
 export interface TemplateGuide {
-    post: Scalars['String'] | null
-    video: Scalars['String'] | null
+    post: (Scalars['String'] | null)
+    video: (Scalars['String'] | null)
     __typename: 'TemplateGuide'
 }
 
-export interface TemplateKickbacksLeaderboard {
-    total_amount: Scalars['Float']
-    userId: Scalars['String']
-    __typename: 'TemplateKickbacksLeaderboard'
+export interface TemplateMetrics {
+    activeDeployments: Scalars['Int']
+    deploymentsLast90Days: Scalars['Int']
+    earningsLast30Days: Scalars['Float']
+    earningsLast90Days: Scalars['Float']
+    eligibleForSupportBonus: Scalars['Boolean']
+    supportHealth: Scalars['Float']
+    templateHealth: Scalars['Float']
+    totalDeployments: Scalars['Int']
+    totalEarnings: Scalars['Float']
+    __typename: 'TemplateMetrics'
 }
 
 export interface TemplateService {
@@ -2450,9 +2777,19 @@ export interface TemplateServicesConnectionEdge {
 
 export type TemplateStatus = 'HIDDEN' | 'PUBLISHED' | 'UNPUBLISHED'
 
+export interface TrustedDomain {
+    domainName: Scalars['String']
+    id: Scalars['ID']
+    role: Scalars['String']
+    verificationData: TrustedDomainVerificationData
+    verificationType: Scalars['String']
+    workspaceId: Scalars['String']
+    __typename: 'TrustedDomain'
+}
+
 export interface TrustedDomainVerificationData {
-    domainMatch: Domain | null
-    domainStatus: CustomDomainStatus | null
+    domainMatch: (Domain | null)
+    domainStatus: (CustomDomainStatus | null)
     __typename: 'TrustedDomainVerificationData'
 }
 
@@ -2468,25 +2805,13 @@ export interface TwoFactorInfoSecret {
     __typename: 'TwoFactorInfoSecret'
 }
 
-export interface UsageAnomaly {
-    actedOn: Scalars['DateTime'] | null
-    action: UsageAnomalyAction | null
-    actorId: Scalars['String'] | null
-    flaggedAt: Scalars['DateTime']
-    flaggedFor: UsageAnomalyFlagReason
-    id: Scalars['ID']
-    __typename: 'UsageAnomaly'
-}
+export type TwoFactorMethodCompliance = 'AUTHENTICATOR' | 'PASSKEY'
 
-/** Possible actions for a UsageAnomaly. */
-export type UsageAnomalyAction = 'ALLOWED' | 'AUTOBANNED' | 'BANNED'
-
-/** Possible flag reasons for a UsageAnomaly. */
-export type UsageAnomalyFlagReason = 'HIGH_CPU_USAGE' | 'HIGH_DISK_USAGE' | 'HIGH_NETWORK_USAGE'
+export type TwoFactorMethodProjectWorkspace = 'AUTHENTICATOR' | 'PASSKEY'
 
 export interface UsageLimit {
     customerId: Scalars['String']
-    hardLimit: Scalars['Int'] | null
+    hardLimit: (Scalars['Int'] | null)
     id: Scalars['ID']
     isOverLimit: Scalars['Boolean']
     softLimit: Scalars['Int']
@@ -2495,44 +2820,36 @@ export interface UsageLimit {
 
 export interface User {
     agreedFairUse: Scalars['Boolean']
-    avatar: Scalars['String'] | null
-    banReason: Scalars['String'] | null
-    cost: UserCost
+    apiTokenRateLimit: (ApiTokenRateLimit | null)
+    avatar: (Scalars['String'] | null)
+    banReason: (Scalars['String'] | null)
     createdAt: Scalars['DateTime']
-    customer: Customer
     email: Scalars['String']
     featureFlags: ActiveFeatureFlag[]
     flags: UserFlag[]
+    githubProviderId: (Scalars['String'] | null)
+    githubUsername: (Scalars['String'] | null)
     has2FA: Scalars['Boolean']
     id: Scalars['ID']
     isAdmin: Scalars['Boolean']
     isConductor: Scalars['Boolean']
-    isDevPlan: Scalars['Boolean']
-    isEligibleForFreeHobbyPlan: Scalars['Boolean']
-    isOnHobbyPlan: Scalars['Boolean']
     isVerified: Scalars['Boolean']
     lastLogin: Scalars['DateTime']
-    name: Scalars['String'] | null
-    profile: UserProfile | null
+    name: (Scalars['String'] | null)
+    platformFeatureFlags: ActivePlatformFlag[]
+    profile: (UserProfile | null)
+    /** @deprecated This field will not return anything anymore, go through the workspace's projects */
     projects: UserProjectsConnection
     providerAuths: UserProviderAuthsConnection
-    referredUsers: ReferralUser[]
     registrationStatus: RegistrationStatus
-    riskLevel: Scalars['Float'] | null
-    /** @deprecated Use the workspaces relation to access the teams */
-    teams: UserTeamsConnection
-    termsAgreedOn: Scalars['DateTime'] | null
-    username: Scalars['String'] | null
-    workspace: Workspace
+    riskLevel: (Scalars['Float'] | null)
+    termsAgreedOn: (Scalars['DateTime'] | null)
+    username: (Scalars['String'] | null)
+    /** @deprecated Use user.workspaces instead, no user are associated to a workspace */
+    workspace: (Workspace | null)
     /** Workspaces user is member of */
     workspaces: Workspace[]
     __typename: 'User'
-}
-
-export interface UserCost {
-    current: Scalars['Float']
-    estimated: Scalars['Float']
-    __typename: 'UserCost'
 }
 
 export type UserFlag = 'BETA'
@@ -2543,26 +2860,27 @@ export interface UserKickbackEarnings {
 }
 
 export interface UserProfile {
-    bio: Scalars['String'] | null
+    bio: (Scalars['String'] | null)
     isPublic: Scalars['Boolean']
-    website: Scalars['String'] | null
+    website: (Scalars['String'] | null)
     __typename: 'UserProfile'
 }
 
 export interface UserProfileResponse {
-    avatar: Scalars['String'] | null
+    avatar: (Scalars['String'] | null)
     createdAt: Scalars['DateTime']
-    customerId: Scalars['String'] | null
+    customerId: (Scalars['String'] | null)
     id: Scalars['String']
-    isTrialing: Scalars['Boolean'] | null
-    name: Scalars['String'] | null
+    isTrialing: (Scalars['Boolean'] | null)
+    name: (Scalars['String'] | null)
     profile: UserProfile
     /** Gets all public projects for a user. */
     publicProjects: UserProfileResponsePublicProjectsConnection
+    /** @deprecated There are no personal templates anymore, they all belong to a workspace */
     publishedTemplates: SimilarTemplate[]
-    state: Scalars['String'] | null
+    state: (Scalars['String'] | null)
     totalDeploys: Scalars['Int']
-    username: Scalars['String'] | null
+    username: (Scalars['String'] | null)
     __typename: 'UserProfileResponse'
 }
 
@@ -2602,30 +2920,19 @@ export interface UserProviderAuthsConnectionEdge {
     __typename: 'UserProviderAuthsConnectionEdge'
 }
 
-export interface UserTeamsConnection {
-    edges: UserTeamsConnectionEdge[]
-    pageInfo: PageInfo
-    __typename: 'UserTeamsConnection'
-}
-
-export interface UserTeamsConnectionEdge {
-    cursor: Scalars['String']
-    node: Team
-    __typename: 'UserTeamsConnectionEdge'
-}
-
 export interface Variable {
     createdAt: Scalars['DateTime']
     environment: Environment
-    environmentId: Scalars['String'] | null
+    environmentId: (Scalars['String'] | null)
     id: Scalars['ID']
     isSealed: Scalars['Boolean']
     name: Scalars['String']
     plugin: Plugin
-    pluginId: Scalars['String'] | null
+    /** @deprecated Plugins have been removed */
+    pluginId: (Scalars['String'] | null)
     references: Scalars['String'][]
     service: Service
-    serviceId: Scalars['String'] | null
+    serviceId: (Scalars['String'] | null)
     updatedAt: Scalars['DateTime']
     __typename: 'Variable'
 }
@@ -2634,9 +2941,9 @@ export interface VercelAccount {
     id: Scalars['String']
     integrationAuthId: Scalars['String']
     isUser: Scalars['Boolean']
-    name: Scalars['String'] | null
+    name: (Scalars['String'] | null)
     projects: VercelProject[]
-    slug: Scalars['String'] | null
+    slug: (Scalars['String'] | null)
     __typename: 'VercelAccount'
 }
 
@@ -2658,6 +2965,7 @@ export interface Volume {
     name: Scalars['String']
     project: Project
     projectId: Scalars['String']
+    /** @deprecated Use environment.volumeInstances for properly scoped access control */
     volumeInstances: VolumeVolumeInstancesConnection
     __typename: 'Volume'
 }
@@ -2667,15 +2975,14 @@ export interface VolumeInstance {
     currentSizeMB: Scalars['Float']
     environment: Environment
     environmentId: Scalars['String']
-    externalId: Scalars['String'] | null
+    externalId: (Scalars['String'] | null)
     id: Scalars['ID']
     mountPath: Scalars['String']
-    region: Scalars['String'] | null
+    region: (Scalars['String'] | null)
     service: Service
-    serviceId: Scalars['String'] | null
+    serviceId: (Scalars['String'] | null)
     sizeMB: Scalars['Int']
-    state: VolumeState | null
-    type: VolumeInstanceType
+    state: (VolumeState | null)
     volume: Volume
     volumeId: Scalars['String']
     __typename: 'VolumeInstance'
@@ -2683,13 +2990,15 @@ export interface VolumeInstance {
 
 export interface VolumeInstanceBackup {
     createdAt: Scalars['DateTime']
-    creatorId: Scalars['String'] | null
-    expiresAt: Scalars['DateTime'] | null
+    creatorId: (Scalars['String'] | null)
+    expiresAt: (Scalars['DateTime'] | null)
     externalId: Scalars['String']
     id: Scalars['String']
-    name: Scalars['String'] | null
-    referencedMB: Scalars['Int'] | null
-    usedMB: Scalars['Int'] | null
+    name: (Scalars['String'] | null)
+    referencedMB: (Scalars['Int'] | null)
+    scheduleId: (Scalars['String'] | null)
+    usedMB: (Scalars['Int'] | null)
+    volumeInstanceSizeMB: (Scalars['Int'] | null)
     __typename: 'VolumeInstanceBackup'
 }
 
@@ -2699,22 +3008,60 @@ export interface VolumeInstanceBackupSchedule {
     id: Scalars['ID']
     kind: VolumeInstanceBackupScheduleKind
     name: Scalars['String']
-    retentionSeconds: Scalars['Int'] | null
+    retentionSeconds: (Scalars['Int'] | null)
     __typename: 'VolumeInstanceBackupSchedule'
 }
 
 export type VolumeInstanceBackupScheduleKind = 'DAILY' | 'MONTHLY' | 'WEEKLY'
 
-export type VolumeInstanceType = 'CLOUD' | 'METAL'
+export interface VolumeInstanceReplicationProgress {
+    bytesTransferred: Scalars['BigInt']
+    percentComplete: Scalars['Float']
+    timestamp: Scalars['DateTime']
+    transferRateMbps: (Scalars['Float'] | null)
+    __typename: 'VolumeInstanceReplicationProgress'
+}
 
-export type VolumeState =
-    | 'DELETED'
-    | 'DELETING'
-    | 'ERROR'
-    | 'MIGRATING'
-    | 'MIGRATION_PENDING'
-    | 'READY'
-    | 'UPDATING'
+export interface VolumeReplicationProgressUpdate {
+    currentSnapshot: VolumeSnapshotReplicationProgressUpdate
+    destExternalId: Scalars['String']
+    destRegion: (Scalars['String'] | null)
+    destStackerId: (Scalars['String'] | null)
+    error: (Scalars['String'] | null)
+    estimatedTimeRemainingMs: (Scalars['BigInt'] | null)
+    history: VolumeInstanceReplicationProgress[]
+    nbSnapshots: Scalars['Int']
+    offlineBytesTransferred: Scalars['BigInt']
+    offlineTotalBytes: Scalars['BigInt']
+    onlineBytesTransferred: Scalars['BigInt']
+    onlineTotalBytes: Scalars['BigInt']
+    percentComplete: Scalars['Float']
+    snapshotsSizes: Scalars['BigInt'][]
+    srcExternalId: Scalars['String']
+    srcRegion: (Scalars['String'] | null)
+    srcStackerId: (Scalars['String'] | null)
+    status: ReplicateVolumeInstanceStatus
+    transferRateMbps: (Scalars['Float'] | null)
+    __typename: 'VolumeReplicationProgressUpdate'
+}
+
+export interface VolumeSnapshotReplicationProgressUpdate {
+    bytesTransferred: Scalars['BigInt']
+    compressedBytesTransferred: Scalars['BigInt']
+    compressedTransferRateMbps: (Scalars['Float'] | null)
+    elapsedMs: Scalars['Int']
+    error: (Scalars['String'] | null)
+    estimatedTimeRemainingMs: (Scalars['BigInt'] | null)
+    index: Scalars['Int']
+    percentComplete: Scalars['Float']
+    startedAt: (Scalars['DateTime'] | null)
+    status: ReplicateVolumeInstanceSnapshotStatus
+    totalBytes: Scalars['BigInt']
+    transferRateMbps: (Scalars['Float'] | null)
+    __typename: 'VolumeSnapshotReplicationProgressUpdate'
+}
+
+export type VolumeState = 'DELETED' | 'DELETING' | 'ERROR' | 'MIGRATING' | 'MIGRATION_PENDING' | 'READY' | 'RESTORING' | 'UPDATING'
 
 export interface VolumeVolumeInstancesConnection {
     edges: VolumeVolumeInstancesConnectionEdge[]
@@ -2728,36 +3075,15 @@ export interface VolumeVolumeInstancesConnectionEdge {
     __typename: 'VolumeVolumeInstancesConnectionEdge'
 }
 
-export interface Withdrawal {
-    amount: Scalars['Float']
-    createdAt: Scalars['DateTime']
-    customerId: Scalars['String']
-    id: Scalars['ID']
-    status: WithdrawalStatusType
-    updatedAt: Scalars['DateTime']
-    withdrawalAccountId: Scalars['String']
-    __typename: 'Withdrawal'
-}
-
-export interface WithdrawalAccount {
-    customerId: Scalars['String']
-    id: Scalars['ID']
-    platform: WithdrawalPlatformTypes
-    platformDetails: Scalars['String']
-    __typename: 'WithdrawalAccount'
-}
-
-export type WithdrawalPlatformTypes = 'BMAC' | 'GITHUB' | 'PAYPAL'
-
-export type WithdrawalStatusType = 'CANCELLED' | 'COMPLETED' | 'FAILED' | 'PENDING'
+export type WithdrawalPlatformTypes = 'BMAC' | 'GITHUB' | 'PAYPAL' | 'STRIPE_CONNECT'
 
 export interface WorkflowId {
-    workflowId: Scalars['String'] | null
+    workflowId: (Scalars['String'] | null)
     __typename: 'WorkflowId'
 }
 
 export interface WorkflowResult {
-    error: Scalars['String'] | null
+    error: (Scalars['String'] | null)
     status: WorkflowStatus
     __typename: 'WorkflowResult'
 }
@@ -2765,24 +3091,104 @@ export interface WorkflowResult {
 export type WorkflowStatus = 'Complete' | 'Error' | 'NotFound' | 'Running'
 
 export interface Workspace {
+    adoptionHistory: AdoptionInfo[]
+    adoptionLevel: Scalars['Float']
+    allowDeprecatedRegions: (Scalars['Boolean'] | null)
+    apiTokenRateLimit: (ApiTokenRateLimit | null)
+    avatar: (Scalars['String'] | null)
+    banReason: (Scalars['String'] | null)
     createdAt: Scalars['DateTime']
     customer: Customer
+    discordRole: (Scalars['String'] | null)
+    hasSAML: Scalars['Boolean']
     id: Scalars['ID']
+    identityProviders: WorkspaceIdentityProvidersConnection
+    members: WorkspaceMember[]
+    name: Scalars['String']
+    partnerProfile: (PartnerProfile | null)
+    plan: Plan
+    preferredRegion: (Scalars['String'] | null)
+    projects: WorkspaceProjectsConnection
+    referredUsers: ReferralUser[]
+    slackChannelId: (Scalars['String'] | null)
+    /** @deprecated Use plan field instead */
     subscriptionModel: SubscriptionModel
-    team: Team | null
+    supportTierOverride: (SupportTierOverride | null)
+    /** @deprecated Teams are being removed from the system, don't use it */
+    team: (Team | null)
+    updatedAt: Scalars['DateTime']
+    /** Get a list of user emails in the workspace who do not have verified 2FA enabled. Returns an empty array if all users have 2FA enabled. */
+    usersWithout2FA: Scalars['String'][]
     __typename: 'Workspace'
 }
 
-export interface AccessRuleGenqlSelection {
+export interface WorkspaceIdPConnection {
+    createdAt: (Scalars['DateTime'] | null)
+    provider: (Scalars['String'] | null)
+    status: WorkspaceIdPConnectionStatus
+    updatedAt: (Scalars['DateTime'] | null)
+    __typename: 'WorkspaceIdPConnection'
+}
+
+export type WorkspaceIdPConnectionStatus = 'ACTIVE' | 'DRAFT' | 'INACTIVE' | 'PENDING' | 'VALIDATING'
+
+export interface WorkspaceIdentityProvider {
+    connection: WorkspaceIdPConnection
+    createdAt: Scalars['DateTime']
+    enforcementEnabledAt: (Scalars['DateTime'] | null)
+    id: Scalars['ID']
+    updatedAt: Scalars['DateTime']
+    workspace: Workspace
+    workspaceId: Scalars['String']
+    __typename: 'WorkspaceIdentityProvider'
+}
+
+export interface WorkspaceIdentityProvidersConnection {
+    edges: WorkspaceIdentityProvidersConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'WorkspaceIdentityProvidersConnection'
+}
+
+export interface WorkspaceIdentityProvidersConnectionEdge {
+    cursor: Scalars['String']
+    node: WorkspaceIdentityProvider
+    __typename: 'WorkspaceIdentityProvidersConnectionEdge'
+}
+
+export interface WorkspaceMember {
+    avatar: (Scalars['String'] | null)
+    email: Scalars['String']
+    /** Only retrieved if requested by an admin */
+    featureFlags: (ActiveFeatureFlag[] | null)
+    id: Scalars['String']
+    name: (Scalars['String'] | null)
+    role: TeamRole
+    /** Only retrieved if requested by an admin */
+    twoFactorAuthEnabled: (Scalars['Boolean'] | null)
+    __typename: 'WorkspaceMember'
+}
+
+export interface WorkspaceProjectsConnection {
+    edges: WorkspaceProjectsConnectionEdge[]
+    pageInfo: PageInfo
+    __typename: 'WorkspaceProjectsConnection'
+}
+
+export interface WorkspaceProjectsConnectionEdge {
+    cursor: Scalars['String']
+    node: Project
+    __typename: 'WorkspaceProjectsConnectionEdge'
+}
+
+export interface AccessRuleGenqlSelection{
     disallowed?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface AdoptionInfoGenqlSelection {
+export interface AdoptionInfoGenqlSelection{
     adoptionLevel?: boolean | number
     createdAt?: boolean | number
-    customer?: TeamGenqlSelection
     deltaLevel?: boolean | number
     id?: boolean | number
     matchedIcpEmail?: boolean | number
@@ -2799,19 +3205,20 @@ export interface AdoptionInfoGenqlSelection {
     numRootDirectory?: boolean | number
     numSeats?: boolean | number
     numServices?: boolean | number
-    numSupportRequests?: boolean | number
     numVariables?: boolean | number
     numWatchPatterns?: boolean | number
     totalCores?: boolean | number
     totalDisk?: boolean | number
     totalNetwork?: boolean | number
     updatedAt?: boolean | number
+    workspace?: WorkspaceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
+
 /** The aggregated usage of a single measurement. */
-export interface AggregatedUsageGenqlSelection {
+export interface AggregatedUsageGenqlSelection{
     /** The measurement that was aggregated. */
     measurement?: boolean | number
     /** The tags that were used to group the metric. Only the tags that were used in the `groupBy` will be present. */
@@ -2822,49 +3229,103 @@ export interface AggregatedUsageGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface AllDomainsGenqlSelection {
+export interface AllDomainsGenqlSelection{
     customDomains?: CustomDomainGenqlSelection
     serviceDomains?: ServiceDomainGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ApiTokenGenqlSelection {
+export interface ApiTokenGenqlSelection{
     displayToken?: boolean | number
     id?: boolean | number
     name?: boolean | number
-    teamId?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ApiTokenCreateInput {
-    name: Scalars['String']
-    teamId?: Scalars['String'] | null
+
+/** Information about the current API token and its accessible workspaces. */
+export interface ApiTokenContextGenqlSelection{
+    /** Workspaces this subject can operate on via this token or session. */
+    workspaces?: ApiTokenWorkspaceGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface BanReasonHistoryGenqlSelection {
-    actor?: UserGenqlSelection
-    banReason?: boolean | number
-    createdAt?: boolean | number
+export interface ApiTokenCreateInput {name: Scalars['String'],workspaceId?: (Scalars['String'] | null)}
+
+export interface ApiTokenRateLimitGenqlSelection{
+    remainingPoints?: boolean | number
+    resetsAt?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface ApiTokenWorkspaceGenqlSelection{
     id?: boolean | number
+    name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface BaseEnvironmentOverrideInput {
-    baseEnvironmentOverrideId?: Scalars['String'] | null
+export interface AppliedByMemberGenqlSelection{
+    avatar?: boolean | number
+    email?: boolean | number
+    id?: boolean | number
+    name?: boolean | number
+    username?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
+
+export interface AuditLogGenqlSelection{
+    context?: boolean | number
+    createdAt?: boolean | number
+    environment?: EnvironmentGenqlSelection
+    environmentId?: boolean | number
+    eventType?: boolean | number
+    id?: boolean | number
+    payload?: boolean | number
+    project?: ProjectGenqlSelection
+    projectId?: boolean | number
+    workspaceId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface AuditLogEventTypeInfoGenqlSelection{
+    description?: boolean | number
+    eventType?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface AuditLogFilterInput {
+/** Filter events created on or before this date */
+endDate?: (Scalars['DateTime'] | null),
+/** Filter events for a single environment */
+environmentId?: (Scalars['String'] | null),
+/** List of event types to filter by */
+eventTypes?: (Scalars['String'][] | null),
+/** Filter events for a single project */
+projectId?: (Scalars['String'] | null),
+/** Filter events created on or after this date */
+startDate?: (Scalars['DateTime'] | null)}
+
+export interface BaseEnvironmentOverrideInput {baseEnvironmentOverrideId?: (Scalars['String'] | null)}
+
 
 /** The billing period for a customers subscription. */
-export interface BillingPeriodGenqlSelection {
+export interface BillingPeriodGenqlSelection{
     end?: boolean | number
     start?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CertificatePublicDataGenqlSelection {
+export interface CertificatePublicDataGenqlSelection{
     domainNames?: boolean | number
     expiresAt?: boolean | number
     fingerprintSha256?: boolean | number
@@ -2874,7 +3335,7 @@ export interface CertificatePublicDataGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface CnameCheckGenqlSelection {
+export interface CnameCheckGenqlSelection{
     link?: boolean | number
     message?: boolean | number
     status?: boolean | number
@@ -2882,7 +3343,16 @@ export interface CnameCheckGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ContainerGenqlSelection {
+export interface ComplianceAgreementsInfoGenqlSelection{
+    /** Whether the workspace has a signed Business Associate Agreement (HIPAA) */
+    hasBAA?: boolean | number
+    /** Whether the workspace has a Data Processing Agreement (GDPR) */
+    hasDPA?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface ContainerGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
     environment?: EnvironmentGenqlSelection
@@ -2895,7 +3365,7 @@ export interface ContainerGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface CreditGenqlSelection {
+export interface CreditGenqlSelection{
     amount?: boolean | number
     createdAt?: boolean | number
     customerId?: boolean | number
@@ -2907,20 +3377,13 @@ export interface CreditGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface CreditTransferMetricsGenqlSelection {
-    creditTransferAvg?: boolean | number
-    creditTransferCount?: boolean | number
-    creditTransferSum?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface CustomDomainGenqlSelection {
+export interface CustomDomainGenqlSelection{
     /** @deprecated Use the `status` field instead. */
     cnameCheck?: CnameCheckGenqlSelection
     createdAt?: boolean | number
     deletedAt?: boolean | number
     domain?: boolean | number
+    edgeId?: boolean | number
     environmentId?: boolean | number
     id?: boolean | number
     projectId?: boolean | number
@@ -2932,38 +3395,32 @@ export interface CustomDomainGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface CustomDomainCreateInput {
-    domain: Scalars['String']
-    environmentId: Scalars['String']
-    projectId: Scalars['String']
-    serviceId: Scalars['String']
-    targetPort?: Scalars['Int'] | null
-}
+export interface CustomDomainCreateInput {domain: Scalars['String'],environmentId: Scalars['String'],projectId: Scalars['String'],serviceId: Scalars['String'],targetPort?: (Scalars['Int'] | null)}
 
-export interface CustomDomainStatusGenqlSelection {
+export interface CustomDomainStatusGenqlSelection{
     cdnProvider?: boolean | number
     certificateStatus?: boolean | number
+    certificateStatusDetailed?: boolean | number
     certificates?: CertificatePublicDataGenqlSelection
     dnsRecords?: DNSRecordsGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CustomerGenqlSelection {
+export interface CustomerGenqlSelection{
+    /** The total amount of credits that have been applied during the current billing period. */
     appliedCredits?: boolean | number
+    billingAddress?: CustomerAddressGenqlSelection
     billingEmail?: boolean | number
     billingPeriod?: BillingPeriodGenqlSelection
+    /** The total amount of unused credits for the customer. */
     creditBalance?: boolean | number
-    credits?: CustomerCreditsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    credits?: (CustomerCreditsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** The current usage for the customer. This value is cached and may not be up to date. */
+    currentUsage?: boolean | number
     defaultPaymentMethod?: PaymentMethodGenqlSelection
     defaultPaymentMethodId?: boolean | number
+    hasExhaustedFreePlan?: boolean | number
     id?: boolean | number
     invoices?: CustomerInvoiceGenqlSelection
     isPrepaying?: boolean | number
@@ -2975,46 +3432,63 @@ export interface CustomerGenqlSelection {
     state?: boolean | number
     stripeCustomerId?: boolean | number
     subscriptions?: CustomerSubscriptionGenqlSelection
-    /** @deprecated A customer is not tied to a team anymore, if you want a team go through the workspace field */
-    teamId?: boolean | number
+    supportedWithdrawalPlatforms?: boolean | number
+    taxIds?: CustomerTaxIdGenqlSelection
+    trialDaysRemaining?: boolean | number
     usageLimit?: UsageLimitGenqlSelection
-    userId?: boolean | number
     workspace?: WorkspaceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CustomerCreditsConnectionGenqlSelection {
+export interface CustomerAddressGenqlSelection{
+    city?: boolean | number
+    country?: boolean | number
+    line1?: boolean | number
+    line2?: boolean | number
+    name?: boolean | number
+    postalCode?: boolean | number
+    state?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface CustomerCreditsConnectionGenqlSelection{
     edges?: CustomerCreditsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CustomerCreditsConnectionEdgeGenqlSelection {
+export interface CustomerCreditsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: CreditGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CustomerInvoiceGenqlSelection {
+export interface CustomerInvoiceGenqlSelection{
+    amountDue?: boolean | number
     amountPaid?: boolean | number
     hostedURL?: boolean | number
     invoiceId?: boolean | number
     items?: SubscriptionItemGenqlSelection
+    lastPaymentError?: boolean | number
     paymentIntentStatus?: boolean | number
     pdfURL?: boolean | number
     periodEnd?: boolean | number
     periodStart?: boolean | number
+    reissuedInvoiceFrom?: boolean | number
+    reissuedInvoiceOf?: boolean | number
     status?: boolean | number
     subscriptionId?: boolean | number
+    subscriptionStatus?: boolean | number
     total?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface CustomerSubscriptionGenqlSelection {
+export interface CustomerSubscriptionGenqlSelection{
     billingCycleAnchor?: boolean | number
     cancelAt?: boolean | number
     cancelAtPeriodEnd?: boolean | number
@@ -3030,7 +3504,15 @@ export interface CustomerSubscriptionGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DNSRecordsGenqlSelection {
+export interface CustomerTaxIdGenqlSelection{
+    id?: boolean | number
+    type?: boolean | number
+    value?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface DNSRecordsGenqlSelection{
     currentValue?: boolean | number
     fqdn?: boolean | number
     hostlabel?: boolean | number
@@ -3043,16 +3525,17 @@ export interface DNSRecordsGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentGenqlSelection {
+export interface DeploymentGenqlSelection{
     canRedeploy?: boolean | number
     canRollback?: boolean | number
     createdAt?: boolean | number
-    creator?: UserGenqlSelection
+    creator?: DeploymentCreatorGenqlSelection
     /** Check if a deployment's instances have all stopped */
     deploymentStopped?: boolean | number
     environment?: EnvironmentGenqlSelection
     environmentId?: boolean | number
     id?: boolean | number
+    instances?: DeploymentDeploymentInstanceGenqlSelection
     meta?: boolean | number
     projectId?: boolean | number
     service?: ServiceGenqlSelection
@@ -3061,6 +3544,7 @@ export interface DeploymentGenqlSelection {
     sockets?: DeploymentSocketGenqlSelection
     staticUrl?: boolean | number
     status?: boolean | number
+    statusUpdatedAt?: boolean | number
     suggestAddServiceDomain?: boolean | number
     updatedAt?: boolean | number
     url?: boolean | number
@@ -3068,7 +3552,23 @@ export interface DeploymentGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentEventGenqlSelection {
+export interface DeploymentCreatorGenqlSelection{
+    avatar?: boolean | number
+    email?: boolean | number
+    id?: boolean | number
+    name?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface DeploymentDeploymentInstanceGenqlSelection{
+    id?: boolean | number
+    status?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface DeploymentEventGenqlSelection{
     completedAt?: boolean | number
     createdAt?: boolean | number
     id?: boolean | number
@@ -3078,13 +3578,13 @@ export interface DeploymentEventGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentEventPayloadGenqlSelection {
+export interface DeploymentEventPayloadGenqlSelection{
     error?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface DeploymentInstanceExecutionGenqlSelection {
+export interface DeploymentInstanceExecutionGenqlSelection{
     completedAt?: boolean | number
     createdAt?: boolean | number
     deploymentId?: boolean | number
@@ -3096,28 +3596,15 @@ export interface DeploymentInstanceExecutionGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentInstanceExecutionCreateInput {
-    serviceInstanceId: Scalars['String']
-}
+export interface DeploymentInstanceExecutionCreateInput {serviceInstanceId: Scalars['String']}
 
-export interface DeploymentInstanceExecutionInput {
-    deploymentId: Scalars['String']
-}
+export interface DeploymentInstanceExecutionInput {deploymentId: Scalars['String']}
 
-export interface DeploymentInstanceExecutionListInput {
-    environmentId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface DeploymentInstanceExecutionListInput {environmentId: Scalars['String'],serviceId: Scalars['String']}
 
-export interface DeploymentListInput {
-    environmentId?: Scalars['String'] | null
-    includeDeleted?: Scalars['Boolean'] | null
-    projectId?: Scalars['String'] | null
-    serviceId?: Scalars['String'] | null
-    status?: DeploymentStatusInput | null
-}
+export interface DeploymentListInput {environmentId?: (Scalars['String'] | null),includeDeleted?: (Scalars['Boolean'] | null),projectId?: (Scalars['String'] | null),serviceId?: (Scalars['String'] | null),status?: (DeploymentStatusInput | null)}
 
-export interface DeploymentSnapshotGenqlSelection {
+export interface DeploymentSnapshotGenqlSelection{
     createdAt?: boolean | number
     id?: boolean | number
     updatedAt?: boolean | number
@@ -3126,7 +3613,7 @@ export interface DeploymentSnapshotGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentSocketGenqlSelection {
+export interface DeploymentSocketGenqlSelection{
     ipv6?: boolean | number
     port?: boolean | number
     processName?: boolean | number
@@ -3135,12 +3622,9 @@ export interface DeploymentSocketGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentStatusInput {
-    in?: DeploymentStatus[] | null
-    notIn?: DeploymentStatus[] | null
-}
+export interface DeploymentStatusInput {in?: (DeploymentStatus[] | null),notIn?: (DeploymentStatus[] | null)}
 
-export interface DeploymentTriggerGenqlSelection {
+export interface DeploymentTriggerGenqlSelection{
     baseEnvironmentOverrideId?: boolean | number
     branch?: boolean | number
     checkSuites?: boolean | number
@@ -3155,28 +3639,22 @@ export interface DeploymentTriggerGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DeploymentTriggerCreateInput {
-    branch: Scalars['String']
-    checkSuites?: Scalars['Boolean'] | null
-    environmentId: Scalars['String']
-    projectId: Scalars['String']
-    provider: Scalars['String']
-    repository: Scalars['String']
-    rootDirectory?: Scalars['String'] | null
-    serviceId: Scalars['String']
+export interface DeploymentTriggerCreateInput {branch: Scalars['String'],checkSuites?: (Scalars['Boolean'] | null),environmentId: Scalars['String'],projectId: Scalars['String'],provider: Scalars['String'],repository: Scalars['String'],rootDirectory?: (Scalars['String'] | null),serviceId: Scalars['String']}
+
+export interface DeploymentTriggerUpdateInput {branch?: (Scalars['String'] | null),checkSuites?: (Scalars['Boolean'] | null),repository?: (Scalars['String'] | null),rootDirectory?: (Scalars['String'] | null)}
+
+export interface DockerComposeImportGenqlSelection{
+    errors?: boolean | number
+    patch?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface DeploymentTriggerUpdateInput {
-    branch?: Scalars['String'] | null
-    checkSuites?: Scalars['Boolean'] | null
-    repository?: Scalars['String'] | null
-    rootDirectory?: Scalars['String'] | null
-}
-
-export interface DomainGenqlSelection {
+export interface DomainGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
     domain?: boolean | number
+    edgeId?: boolean | number
     environmentId?: boolean | number
     id?: boolean | number
     projectId?: boolean | number
@@ -3189,16 +3667,17 @@ export interface DomainGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface DomainAvailableGenqlSelection {
+export interface DomainAvailableGenqlSelection{
     available?: boolean | number
     message?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface DomainWithStatusGenqlSelection {
+export interface DomainWithStatusGenqlSelection{
     cdnProvider?: boolean | number
     certificateStatus?: boolean | number
+    certificateStatusDetailed?: boolean | number
     certificates?: CertificatePublicDataGenqlSelection
     dnsRecords?: DNSRecordsGenqlSelection
     domain?: DomainGenqlSelection
@@ -3206,122 +3685,81 @@ export interface DomainWithStatusGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface EgressGatewayGenqlSelection {
+export interface EgressGatewayGenqlSelection{
     ipv4?: boolean | number
     region?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EgressGatewayCreateInput {
-    environmentId: Scalars['String']
-    region?: Scalars['String'] | null
-    serviceId: Scalars['String']
-}
+export interface EgressGatewayCreateInput {environmentId: Scalars['String'],region?: (Scalars['String'] | null),serviceId: Scalars['String']}
 
-export interface EgressGatewayServiceTargetInput {
-    environmentId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface EgressGatewayServiceTargetInput {environmentId: Scalars['String'],serviceId: Scalars['String']}
 
-export interface EnvironmentGenqlSelection {
+export interface EnvironmentGenqlSelection{
+    canAccess?: boolean | number
+    config?: { __args: {decryptVariables?: (Scalars['Boolean'] | null)} } | boolean | number
     createdAt?: boolean | number
     deletedAt?: boolean | number
-    deploymentTriggers?: EnvironmentDeploymentTriggersConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    deployments?: EnvironmentDeploymentsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    deploymentTriggers?: (EnvironmentDeploymentTriggersConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    deployments?: (EnvironmentDeploymentsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     id?: boolean | number
     isEphemeral?: boolean | number
     meta?: EnvironmentMetaGenqlSelection
     name?: boolean | number
     projectId?: boolean | number
-    serviceInstances?: EnvironmentServiceInstancesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    serviceInstances?: (EnvironmentServiceInstancesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     sourceEnvironment?: EnvironmentGenqlSelection
     unmergedChangesCount?: boolean | number
     updatedAt?: boolean | number
-    variables?: EnvironmentVariablesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    volumeInstances?: EnvironmentVolumeInstancesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    variables?: (EnvironmentVariablesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    volumeInstances?: (EnvironmentVolumeInstancesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
 export interface EnvironmentCreateInput {
-    ephemeral?: Scalars['Boolean'] | null
-    name: Scalars['String']
-    projectId: Scalars['String']
-    /** When committing the changes immediately, skip any initial deployments. */
-    skipInitialDeploys?: Scalars['Boolean'] | null
-    /** Create the environment with all of the services, volumes, configuration, and variables from this source environment. */
-    sourceEnvironmentId?: Scalars['String'] | null
-    /** Stage the initial changes for the environment. If false (default), the changes will be committed immediately. */
-    stageInitialChanges?: Scalars['Boolean'] | null
-}
+/** If true, the changes will be applied in the background and the mutation will return immediately. If false, the mutation will wait for the changes to be applied before returning. */
+applyChangesInBackground?: (Scalars['Boolean'] | null),ephemeral?: (Scalars['Boolean'] | null),name: Scalars['String'],projectId: Scalars['String'],
+/** When committing the changes immediately, skip any initial deployments. */
+skipInitialDeploys?: (Scalars['Boolean'] | null),
+/** Create the environment with all of the services, volumes, configuration, and variables from this source environment. */
+sourceEnvironmentId?: (Scalars['String'] | null),
+/** Stage the initial changes for the environment. If false (default), the changes will be committed immediately. */
+stageInitialChanges?: (Scalars['Boolean'] | null)}
 
-export interface EnvironmentDeploymentTriggersConnectionGenqlSelection {
+export interface EnvironmentDeploymentTriggersConnectionGenqlSelection{
     edges?: EnvironmentDeploymentTriggersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentDeploymentTriggersConnectionEdgeGenqlSelection {
+export interface EnvironmentDeploymentTriggersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentTriggerGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentDeploymentsConnectionGenqlSelection {
+export interface EnvironmentDeploymentsConnectionGenqlSelection{
     edges?: EnvironmentDeploymentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentDeploymentsConnectionEdgeGenqlSelection {
+export interface EnvironmentDeploymentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentMetaGenqlSelection {
+export interface EnvironmentMetaGenqlSelection{
     baseBranch?: boolean | number
     branch?: boolean | number
+    latestSuccessfulGitHubDeploymentId?: boolean | number
     prCommentId?: boolean | number
     prNumber?: boolean | number
     prRepo?: boolean | number
@@ -3330,66 +3768,71 @@ export interface EnvironmentMetaGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface EnvironmentRenameInput {
-    name: Scalars['String']
+export interface EnvironmentPatchGenqlSelection{
+    appliedAt?: boolean | number
+    appliedBy?: AppliedByMemberGenqlSelection
+    createdAt?: boolean | number
+    environment?: EnvironmentGenqlSelection
+    environmentId?: boolean | number
+    id?: boolean | number
+    lastAppliedError?: boolean | number
+    message?: boolean | number
+    patch?: { __args: {decryptVariables?: (Scalars['Boolean'] | null)} } | boolean | number
+    status?: boolean | number
+    updatedAt?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface EnvironmentServiceInstancesConnectionGenqlSelection {
+export interface EnvironmentRenameInput {name: Scalars['String']}
+
+export interface EnvironmentServiceInstancesConnectionGenqlSelection{
     edges?: EnvironmentServiceInstancesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentServiceInstancesConnectionEdgeGenqlSelection {
+export interface EnvironmentServiceInstancesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ServiceInstanceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentTriggersDeployInput {
-    environmentId: Scalars['String']
-    projectId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface EnvironmentTriggersDeployInput {environmentId: Scalars['String'],projectId: Scalars['String'],serviceId: Scalars['String']}
 
-export interface EnvironmentVariablesConnectionGenqlSelection {
+export interface EnvironmentVariablesConnectionGenqlSelection{
     edges?: EnvironmentVariablesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentVariablesConnectionEdgeGenqlSelection {
+export interface EnvironmentVariablesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: VariableGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentVolumeInstancesConnectionGenqlSelection {
+export interface EnvironmentVolumeInstancesConnectionGenqlSelection{
     edges?: EnvironmentVolumeInstancesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EnvironmentVolumeInstancesConnectionEdgeGenqlSelection {
+export interface EnvironmentVolumeInstancesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: VolumeInstanceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ErrorsGenqlSelection {
-    errors?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
 
 /** The estimated usage of a single measurement. */
-export interface EstimatedUsageGenqlSelection {
+export interface EstimatedUsageGenqlSelection{
     /** The estimated value. */
     estimatedValue?: boolean | number
     /** The measurement that was estimated. */
@@ -3399,7 +3842,7 @@ export interface EstimatedUsageGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface EventGenqlSelection {
+export interface EventGenqlSelection{
     action?: boolean | number
     createdAt?: boolean | number
     environment?: EnvironmentGenqlSelection
@@ -3409,79 +3852,100 @@ export interface EventGenqlSelection {
     payload?: boolean | number
     project?: ProjectGenqlSelection
     projectId?: boolean | number
+    severity?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface EventBatchTrackInput {
-    events: EventTrackInput[]
-}
+export interface EventFilterInput {action?: (EventStringListFilter | null),object?: (EventStringListFilter | null)}
 
-export interface EventFilterInput {
-    action?: EventStringListFilter | null
-    object?: EventStringListFilter | null
-}
-
-export interface EventStringListFilter {
-    in?: Scalars['String'][] | null
-    notIn?: Scalars['String'][] | null
-}
-
-export interface EventTrackInput {
-    eventName: Scalars['String']
-    properties?: Scalars['EventProperties'] | null
-    ts: Scalars['String']
-}
+export interface EventStringListFilter {in?: (Scalars['String'][] | null),notIn?: (Scalars['String'][] | null)}
 
 export interface ExplicitOwnerInput {
-    /** The ID of the owner */
-    id: Scalars['String']
-    /** The type of owner */
-    type: ResourceOwnerType
+/** The ID of the owner */
+id: Scalars['String'],
+/** The type of owner */
+type?: (ResourceOwnerType | null)}
+
+export interface ExternalWorkspaceGenqlSelection{
+    allowDeprecatedRegions?: boolean | number
+    avatar?: boolean | number
+    banReason?: boolean | number
+    createdAt?: boolean | number
+    currentSessionHasAccess?: boolean | number
+    customerId?: boolean | number
+    customerState?: boolean | number
+    discordRole?: boolean | number
+    hasBAA?: boolean | number
+    hasRBAC?: boolean | number
+    hasSAML?: boolean | number
+    id?: boolean | number
+    isTrialing?: boolean | number
+    name?: boolean | number
+    plan?: boolean | number
+    preferredRegion?: boolean | number
+    projects?: ProjectGenqlSelection
+    supportTierOverride?: boolean | number
+    teamId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface FeatureFlagToggleInput {
-    flag: ActiveFeatureFlag
+export interface FeatureFlagToggleInput {flag: ActiveFeatureFlag}
+
+export interface FunctionRuntimeGenqlSelection{
+    /** The image of the function runtime */
+    image?: boolean | number
+    /** The latest version of the function runtime */
+    latestVersion?: FunctionRuntimeVersionGenqlSelection
+    /** The name of the function runtime */
+    name?: boolean | number
+    /** The versions of the function runtime */
+    versions?: FunctionRuntimeVersionGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface GitHubAccessGenqlSelection {
+export interface FunctionRuntimeVersionGenqlSelection{
+    image?: boolean | number
+    tag?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface GitHubAccessGenqlSelection{
     hasAccess?: boolean | number
     isPublic?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface GitHubBranchGenqlSelection {
+export interface GitHubBranchGenqlSelection{
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface GitHubRepoGenqlSelection {
+export interface GitHubRepoGenqlSelection{
     defaultBranch?: boolean | number
+    description?: boolean | number
     fullName?: boolean | number
     id?: boolean | number
     installationId?: boolean | number
     isPrivate?: boolean | number
     name?: boolean | number
+    ownerAvatarUrl?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface GitHubRepoDeployInput {
-    branch?: Scalars['String'] | null
-    projectId: Scalars['String']
-    repo: Scalars['String']
-}
+export interface GitHubRepoDeployInput {branch?: (Scalars['String'] | null),environmentId?: (Scalars['String'] | null),projectId: Scalars['String'],repo: Scalars['String']}
 
-export interface GitHubRepoUpdateInput {
-    environmentId: Scalars['String']
-    projectId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface GitHubRepoUpdateInput {environmentId: Scalars['String'],projectId: Scalars['String'],serviceId: Scalars['String']}
 
-export interface GitHubRepoWithoutInstallationGenqlSelection {
+export interface GitHubRepoWithoutInstallationGenqlSelection{
     defaultBranch?: boolean | number
+    description?: boolean | number
     fullName?: boolean | number
     id?: boolean | number
     isPrivate?: boolean | number
@@ -3490,29 +3954,18 @@ export interface GitHubRepoWithoutInstallationGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface HelpStationFormInput {
-    isPrivate: Scalars['Boolean']
-    message: Scalars['String']
-    subject: Scalars['String']
-    topic: Scalars['String']
-}
-
-export interface HerokuAppGenqlSelection {
+export interface HerokuAppGenqlSelection{
     id?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface HerokuImportVariablesInput {
-    environmentId: Scalars['String']
-    herokuAppId: Scalars['String']
-    projectId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface HerokuImportVariablesInput {environmentId: Scalars['String'],herokuAppId: Scalars['String'],projectId: Scalars['String'],serviceId: Scalars['String']}
+
 
 /** The result of a http logs query. */
-export interface HttpLogGenqlSelection {
+export interface HttpLogGenqlSelection{
     /** The client user agent */
     clientUa?: boolean | number
     /** The deployment ID that was requested */
@@ -3547,6 +4000,8 @@ export interface HttpLogGenqlSelection {
     txBytes?: boolean | number
     /** The upstream address */
     upstreamAddress?: boolean | number
+    /** Any upstream errors that occurred */
+    upstreamErrors?: boolean | number
     /** The upstream HTTP protocol version */
     upstreamProto?: boolean | number
     /** How long the upstream request took to respond */
@@ -3555,7 +4010,7 @@ export interface HttpLogGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface IncidentGenqlSelection {
+export interface IncidentGenqlSelection{
     id?: boolean | number
     message?: boolean | number
     status?: boolean | number
@@ -3564,7 +4019,7 @@ export interface IncidentGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface IntegrationGenqlSelection {
+export interface IntegrationGenqlSelection{
     config?: boolean | number
     id?: boolean | number
     name?: boolean | number
@@ -3573,51 +4028,34 @@ export interface IntegrationGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface IntegrationAuthGenqlSelection {
+export interface IntegrationAuthGenqlSelection{
     id?: boolean | number
-    integrations?: IntegrationAuthIntegrationsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    integrations?: (IntegrationAuthIntegrationsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     provider?: boolean | number
     providerId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface IntegrationAuthIntegrationsConnectionGenqlSelection {
+export interface IntegrationAuthIntegrationsConnectionGenqlSelection{
     edges?: IntegrationAuthIntegrationsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface IntegrationAuthIntegrationsConnectionEdgeGenqlSelection {
+export interface IntegrationAuthIntegrationsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: IntegrationGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface IntegrationCreateInput {
-    config: Scalars['JSON']
-    integrationAuthId?: Scalars['String'] | null
-    name: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface IntegrationCreateInput {config: Scalars['JSON'],integrationAuthId?: (Scalars['String'] | null),name: Scalars['String'],projectId: Scalars['String']}
 
-export interface IntegrationUpdateInput {
-    config: Scalars['JSON']
-    integrationAuthId?: Scalars['String'] | null
-    name: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface IntegrationUpdateInput {config: Scalars['JSON'],integrationAuthId?: (Scalars['String'] | null),name: Scalars['String'],projectId: Scalars['String']}
 
-export interface InviteCodeGenqlSelection {
+export interface InviteCodeGenqlSelection{
     code?: boolean | number
     createdAt?: boolean | number
     id?: boolean | number
@@ -3628,15 +4066,11 @@ export interface InviteCodeGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface JobApplicationCreateInput {
-    email: Scalars['String']
-    jobId: Scalars['String']
-    name: Scalars['String']
-    why: Scalars['String']
-}
+export interface JobApplicationCreateInput {email: Scalars['String'],jobId: Scalars['String'],name: Scalars['String'],why: Scalars['String']}
+
 
 /** The result of a logs query. */
-export interface LogGenqlSelection {
+export interface LogGenqlSelection{
     /** The attributes that were parsed from a structured log */
     attributes?: LogAttributeGenqlSelection
     /** The contents of the log message */
@@ -3651,19 +4085,22 @@ export interface LogGenqlSelection {
     __scalar?: boolean | number
 }
 
+
 /** The attributes associated with a structured log */
-export interface LogAttributeGenqlSelection {
+export interface LogAttributeGenqlSelection{
     key?: boolean | number
     value?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
+
 /** The tags associated with a specific log */
-export interface LogTagsGenqlSelection {
+export interface LogTagsGenqlSelection{
     deploymentId?: boolean | number
     deploymentInstanceId?: boolean | number
     environmentId?: boolean | number
+    /** @deprecated Plugins have been removed */
     pluginId?: boolean | number
     projectId?: boolean | number
     serviceId?: boolean | number
@@ -3672,22 +4109,21 @@ export interface LogTagsGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface LoginSessionAuthInput {
-    code: Scalars['String']
-    hostname?: Scalars['String'] | null
-}
+export interface LoginSessionAuthInput {code: Scalars['String'],hostname?: (Scalars['String'] | null)}
 
-export interface MaintenanceGenqlSelection {
+export interface MaintenanceGenqlSelection{
     id?: boolean | number
     message?: boolean | number
+    start?: boolean | number
     status?: boolean | number
     url?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
+
 /** A single sample of a metric. */
-export interface MetricGenqlSelection {
+export interface MetricGenqlSelection{
     /** The timestamp of the sample. Represented has number of seconds since the Unix epoch. */
     ts?: boolean | number
     /** The value of the sample. */
@@ -3696,20 +4132,26 @@ export interface MetricGenqlSelection {
     __scalar?: boolean | number
 }
 
+
 /** The tags that were used to group the metric. */
-export interface MetricTagsGenqlSelection {
+export interface MetricTagsGenqlSelection{
     deploymentId?: boolean | number
+    deploymentInstanceId?: boolean | number
     environmentId?: boolean | number
+    /** @deprecated Plugins have been removed */
     pluginId?: boolean | number
     projectId?: boolean | number
+    region?: boolean | number
     serviceId?: boolean | number
     volumeId?: boolean | number
+    volumeInstanceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
+
 /** The result of a metrics query. */
-export interface MetricsResultGenqlSelection {
+export interface MetricsResultGenqlSelection{
     /** The measurement of the metric. */
     measurement?: boolean | number
     /** The tags that were used to group the metric. Only the tags that were used to by will be present. */
@@ -3720,421 +4162,311 @@ export interface MetricsResultGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface MissingCommandAlertInput {
-    page: Scalars['String']
-    text: Scalars['String']
+export interface MonitorThresholdConfigGenqlSelection{
+    condition?: boolean | number
+    measurement?: boolean | number
+    threshold?: boolean | number
+    type?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface MutationGenqlSelection {
+export interface MutationGenqlSelection{
     /** Creates a new API token. */
-    apiTokenCreate?: { __args: { input: ApiTokenCreateInput } }
+    apiTokenCreate?: { __args: {input: ApiTokenCreateInput} }
     /** Deletes an API token. */
-    apiTokenDelete?: { __args: { id: Scalars['String'] } }
+    apiTokenDelete?: { __args: {id: Scalars['String']} }
     /** Sets the base environment override for a deployment trigger. */
-    baseEnvironmentOverride?: {
-        __args: { id: Scalars['String']; input: BaseEnvironmentOverrideInput }
-    }
+    baseEnvironmentOverride?: { __args: {id: Scalars['String'], input: BaseEnvironmentOverrideInput} }
     /** Creates a new custom domain. */
-    customDomainCreate?: CustomDomainGenqlSelection & { __args: { input: CustomDomainCreateInput } }
+    customDomainCreate?: (CustomDomainGenqlSelection & { __args: {input: CustomDomainCreateInput} })
     /** Deletes a custom domain. */
-    customDomainDelete?: { __args: { id: Scalars['String'] } }
+    customDomainDelete?: { __args: {id: Scalars['String']} }
     /** Updates a custom domain. */
-    customDomainUpdate?: {
-        __args: {
-            environmentId: Scalars['String']
-            id: Scalars['String']
-            targetPort?: Scalars['Int'] | null
-        }
-    }
-    /** Migrate a customer to the hobby plan */
-    customerMigrateToHobbyPlan?: { __args: { id: Scalars['String'] } }
+    customDomainUpdate?: { __args: {environmentId: Scalars['String'], id: Scalars['String'], targetPort?: (Scalars['Int'] | null)} }
+    /** Create a free plan subscription for a customer */
+    customerCreateFreePlanSubscription?: { __args: {id: Scalars['String']} }
     /** Toggle whether a customer is automatically withdrawing to credits */
-    customerTogglePayoutsToCredits?: {
-        __args: { customerId: Scalars['String']; input: customerTogglePayoutsToCreditsInput }
-    }
+    customerTogglePayoutsToCredits?: { __args: {customerId: Scalars['String'], input: customerTogglePayoutsToCreditsInput} }
     /** Approves a deployment. */
-    deploymentApprove?: { __args: { id: Scalars['String'] } }
+    deploymentApprove?: { __args: {id: Scalars['String']} }
     /** Cancels a deployment. */
-    deploymentCancel?: { __args: { id: Scalars['String'] } }
+    deploymentCancel?: { __args: {id: Scalars['String']} }
     /** Invoke a deployment instance execution. */
-    deploymentInstanceExecutionCreate?: {
-        __args: { input: DeploymentInstanceExecutionCreateInput }
-    }
+    deploymentInstanceExecutionCreate?: { __args: {input: DeploymentInstanceExecutionCreateInput} }
     /** Redeploys a deployment. */
-    deploymentRedeploy?: DeploymentGenqlSelection & {
-        __args: { id: Scalars['String']; usePreviousImageTag?: Scalars['Boolean'] | null }
-    }
+    deploymentRedeploy?: (DeploymentGenqlSelection & { __args: {id: Scalars['String'], usePreviousImageTag?: (Scalars['Boolean'] | null)} })
     /** Removes a deployment. */
-    deploymentRemove?: { __args: { id: Scalars['String'] } }
+    deploymentRemove?: { __args: {id: Scalars['String']} }
     /** Restarts a deployment. */
-    deploymentRestart?: { __args: { id: Scalars['String'] } }
+    deploymentRestart?: { __args: {id: Scalars['String']} }
     /** Rolls back to a deployment. */
-    deploymentRollback?: { __args: { id: Scalars['String'] } }
+    deploymentRollback?: { __args: {id: Scalars['String']} }
     /** Stops a deployment. */
-    deploymentStop?: { __args: { id: Scalars['String'] } }
+    deploymentStop?: { __args: {id: Scalars['String']} }
     /** Creates a deployment trigger. */
-    deploymentTriggerCreate?: DeploymentTriggerGenqlSelection & {
-        __args: { input: DeploymentTriggerCreateInput }
-    }
+    deploymentTriggerCreate?: (DeploymentTriggerGenqlSelection & { __args: {input: DeploymentTriggerCreateInput} })
     /** Deletes a deployment trigger. */
-    deploymentTriggerDelete?: { __args: { id: Scalars['String'] } }
+    deploymentTriggerDelete?: { __args: {id: Scalars['String']} }
     /** Updates a deployment trigger. */
-    deploymentTriggerUpdate?: DeploymentTriggerGenqlSelection & {
-        __args: { id: Scalars['String']; input: DeploymentTriggerUpdateInput }
-    }
+    deploymentTriggerUpdate?: (DeploymentTriggerGenqlSelection & { __args: {id: Scalars['String'], input: DeploymentTriggerUpdateInput} })
     /** Create services and volumes from docker compose */
-    dockerComposeImport?: ErrorsGenqlSelection & {
-        __args: {
-            environmentId: Scalars['String']
-            projectId: Scalars['String']
-            yaml: Scalars['String']
-        }
-    }
+    dockerComposeImport?: (DockerComposeImportGenqlSelection & { __args: {environmentId: Scalars['String'], projectId: Scalars['String'], skipStagingPatch?: (Scalars['Boolean'] | null), yaml: Scalars['String']} })
     /** Create a new egress gateway association for a service instance */
-    egressGatewayAssociationCreate?: EgressGatewayGenqlSelection & {
-        __args: { input: EgressGatewayCreateInput }
-    }
+    egressGatewayAssociationCreate?: (EgressGatewayGenqlSelection & { __args: {input: EgressGatewayCreateInput} })
     /** Clear all egress gateway associations for a service instance */
-    egressGatewayAssociationsClear?: { __args: { input: EgressGatewayServiceTargetInput } }
+    egressGatewayAssociationsClear?: { __args: {input: EgressGatewayServiceTargetInput} }
     /** Change the User's account email if there is a valid change email request. */
-    emailChangeConfirm?: { __args: { nonce: Scalars['String'] } }
+    emailChangeConfirm?: { __args: {nonce: Scalars['String']} }
     /** Initiate an email change request for a user */
-    emailChangeInitiate?: { __args: { newEmail: Scalars['String'] } }
+    emailChangeInitiate?: { __args: {newEmail: Scalars['String']} }
     /** Creates a new environment. */
-    environmentCreate?: EnvironmentGenqlSelection & { __args: { input: EnvironmentCreateInput } }
+    environmentCreate?: (EnvironmentGenqlSelection & { __args: {input: EnvironmentCreateInput} })
     /** Deletes an environment. */
-    environmentDelete?: { __args: { id: Scalars['String'] } }
+    environmentDelete?: { __args: {id: Scalars['String']} }
+    /** Commit the provided patch to the environment. */
+    environmentPatchCommit?: { __args: {commitMessage?: (Scalars['String'] | null), environmentId: Scalars['String'], patch?: (Scalars['EnvironmentConfig'] | null)} }
+    /** Commits the staged changes for a single environment. */
+    environmentPatchCommitStaged?: { __args: {commitMessage?: (Scalars['String'] | null), environmentId: Scalars['String'], 
+    /** Skip deploys for services affected by this patch. */
+    skipDeploys?: (Scalars['Boolean'] | null)} }
     /** Renames an environment. */
-    environmentRename?: EnvironmentGenqlSelection & {
-        __args: { id: Scalars['String']; input: EnvironmentRenameInput }
-    }
+    environmentRename?: (EnvironmentGenqlSelection & { __args: {id: Scalars['String'], input: EnvironmentRenameInput} })
+    /** Sets the staged patch for a single environment. */
+    environmentStageChanges?: (EnvironmentPatchGenqlSelection & { __args: {environmentId: Scalars['String'], input: Scalars['EnvironmentConfig']} })
     /** Deploys all connected triggers for an environment. */
-    environmentTriggersDeploy?: { __args: { input: EnvironmentTriggersDeployInput } }
-    /** Track a batch of events for authenticated user */
-    eventBatchTrack?: { __args: { input: EventBatchTrackInput } }
-    /** Track event for authenticated user */
-    eventTrack?: { __args: { input: EventTrackInput } }
+    environmentTriggersDeploy?: { __args: {input: EnvironmentTriggersDeployInput} }
     /** Agree to the fair use policy for the currently authenticated user */
-    fairUseAgree?: { __args: { agree: Scalars['Boolean'] } }
+    fairUseAgree?: { __args: {agree: Scalars['Boolean']} }
     /** Add a feature flag for a user */
-    featureFlagAdd?: { __args: { input: FeatureFlagToggleInput } }
+    featureFlagAdd?: { __args: {input: FeatureFlagToggleInput} }
     /** Remove a feature flag for a user */
-    featureFlagRemove?: { __args: { input: FeatureFlagToggleInput } }
+    featureFlagRemove?: { __args: {input: FeatureFlagToggleInput} }
     /** Deploys a GitHub repo */
-    githubRepoDeploy?: { __args: { input: GitHubRepoDeployInput } }
+    githubRepoDeploy?: { __args: {input: GitHubRepoDeployInput} }
     /** Updates a GitHub repo through the linked template */
-    githubRepoUpdate?: { __args: { input: GitHubRepoUpdateInput } }
-    /** Creates a new help station thread */
-    helpStationCreateThread?: { __args: { input: HelpStationFormInput } }
+    githubRepoUpdate?: { __args: {input: GitHubRepoUpdateInput} }
     /** Import variables from a Heroku app into a Railway service. Returns the number of variables imports */
-    herokuImportVariables?: { __args: { input: HerokuImportVariablesInput } }
-    /** Reject migration from Hobby to Team */
-    hobbyToTeamDenyMigration?: { __args: { teamId: Scalars['String'] } }
-    /** Migrate projects from Hobby to Team and cancel Hobby subscription */
-    hobbyToTeamMigrate?: { __args: { teamId: Scalars['String'] } }
+    herokuImportVariables?: { __args: {input: HerokuImportVariablesInput} }
     /** Create an integration for a project */
-    integrationCreate?: IntegrationGenqlSelection & { __args: { input: IntegrationCreateInput } }
+    integrationCreate?: (IntegrationGenqlSelection & { __args: {input: IntegrationCreateInput} })
     /** Delete an integration for a project */
-    integrationDelete?: { __args: { id: Scalars['String'] } }
+    integrationDelete?: { __args: {id: Scalars['String']} }
     /** Update an integration for a project */
-    integrationUpdate?: IntegrationGenqlSelection & {
-        __args: { id: Scalars['String']; input: IntegrationUpdateInput }
-    }
+    integrationUpdate?: (IntegrationGenqlSelection & { __args: {id: Scalars['String'], input: IntegrationUpdateInput} })
     /** Join a project using an invite code */
-    inviteCodeUse?: ProjectGenqlSelection & { __args: { code: Scalars['String'] } }
+    inviteCodeUse?: (ProjectGenqlSelection & { __args: {code: Scalars['String']} })
     /** Creates a new job application. */
-    jobApplicationCreate?: {
-        __args: { input: JobApplicationCreateInput; resume: Scalars['Upload'] }
-    }
+    jobApplicationCreate?: { __args: {input: JobApplicationCreateInput, resume: Scalars['Upload']} }
     /** Auth a login session for a user */
-    loginSessionAuth?: { __args: { input: LoginSessionAuthInput } }
+    loginSessionAuth?: { __args: {input: LoginSessionAuthInput} }
     /** Cancel a login session */
-    loginSessionCancel?: { __args: { code: Scalars['String'] } }
+    loginSessionCancel?: { __args: {code: Scalars['String']} }
     /** Get a token for a login session if it exists */
-    loginSessionConsume?: { __args: { code: Scalars['String'] } }
+    loginSessionConsume?: { __args: {code: Scalars['String']} }
     /** Start a CLI login session */
     loginSessionCreate?: boolean | number
     /** Verify if a login session is valid */
-    loginSessionVerify?: { __args: { code: Scalars['String'] } }
-    /** Deletes session for current user if it exists */
-    logout?: boolean | number
-    /** Alert the team of a missing command palette command */
-    missingCommandAlert?: { __args: { input: MissingCommandAlertInput } }
+    loginSessionVerify?: { __args: {code: Scalars['String']} }
+    /** Marks notification deliveries as read */
+    notificationDeliveriesMarkAsRead?: { __args: {deliveryIds: Scalars['String'][]} }
     /** Create an observability dashboard */
-    observabilityDashboardCreate?: { __args: { input: ObservabilityDashboardCreateInput } }
+    observabilityDashboardCreate?: { __args: {input: ObservabilityDashboardCreateInput} }
     /** Reset an observability dashboard to default dashboard items */
-    observabilityDashboardReset?: { __args: { id: Scalars['String'] } }
+    observabilityDashboardReset?: { __args: {id: Scalars['String']} }
     /** Update an observability dashboard */
-    observabilityDashboardUpdate?: {
-        __args: { id: Scalars['String']; input: ObservabilityDashboardUpdateInput[] }
-    }
+    observabilityDashboardUpdate?: { __args: {id: Scalars['String'], input: ObservabilityDashboardUpdateInput[]} }
+    /** Deletes a Passkey */
+    passkeyDelete?: { __args: {id: Scalars['String']} }
     /**
      * @deprecated Plugins are deprecated on Railway. Use database templates instead.
      * Creates a new plugin.
      */
-    pluginCreate?: PluginGenqlSelection & { __args: { input: PluginCreateInput } }
-    /** Deletes a plugin. */
-    pluginDelete?: { __args: { environmentId?: Scalars['String'] | null; id: Scalars['String'] } }
-    /** Reset envs and container for a plugin in an environment */
-    pluginReset?: { __args: { id: Scalars['String']; input: ResetPluginInput } }
-    /** Resets the credentials for a plugin in an environment */
-    pluginResetCredentials?: {
-        __args: { id: Scalars['String']; input: ResetPluginCredentialsInput }
-    }
-    /** Restarts a plugin. */
-    pluginRestart?: PluginGenqlSelection & {
-        __args: { id: Scalars['String']; input: PluginRestartInput }
-    }
-    /** Force start a plugin */
-    pluginStart?: { __args: { id: Scalars['String']; input: PluginRestartInput } }
-    /** Updates an existing plugin. */
-    pluginUpdate?: PluginGenqlSelection & {
-        __args: { id: Scalars['String']; input: PluginUpdateInput }
-    }
-    /** Create/Updates preferences overrides for a specific resource belonging to a user */
-    preferenceOverridesCreateUpdate?: { __args: { input: PreferenceOverridesCreateUpdateData } }
-    /** Destroy preferences overrides for a specific resource belonging to a user */
-    preferenceOverridesDestroyForResource?: { __args: { input: PreferenceOverridesDestroyData } }
+    pluginCreate?: (PluginGenqlSelection & { __args: {input: PluginCreateInput} })
+    /**
+     * @deprecated Plugins are deprecated
+     * Deletes a plugin.
+     */
+    pluginDelete?: { __args: {environmentId?: (Scalars['String'] | null), id: Scalars['String']} }
+    /**
+     * @deprecated Plugins are deprecated
+     * Reset envs and container for a plugin in an environment
+     */
+    pluginReset?: { __args: {id: Scalars['String'], input: ResetPluginInput} }
+    /**
+     * @deprecated Plugins are deprecated
+     * Resets the credentials for a plugin in an environment
+     */
+    pluginResetCredentials?: { __args: {id: Scalars['String'], input: ResetPluginCredentialsInput} }
+    /**
+     * @deprecated Plugins are deprecated
+     * Restarts a plugin.
+     */
+    pluginRestart?: (PluginGenqlSelection & { __args: {id: Scalars['String'], input: PluginRestartInput} })
+    /**
+     * @deprecated Plugins are deprecated
+     * Force start a plugin
+     */
+    pluginStart?: { __args: {id: Scalars['String'], input: PluginRestartInput} }
+    /**
+     * @deprecated Plugins are deprecated
+     * Updates an existing plugin.
+     */
+    pluginUpdate?: (PluginGenqlSelection & { __args: {id: Scalars['String'], input: PluginUpdateInput} })
     /** Update the email preferences for a user */
-    preferencesUpdate?: PreferencesGenqlSelection & { __args: { input: PreferencesUpdateData } }
+    preferencesUpdate?: (PreferencesGenqlSelection & { __args: {input: PreferencesUpdateData} })
     /** Create or get a private network. */
-    privateNetworkCreateOrGet?: PrivateNetworkGenqlSelection & {
-        __args: { input: PrivateNetworkCreateOrGetInput }
-    }
+    privateNetworkCreateOrGet?: (PrivateNetworkGenqlSelection & { __args: {input: PrivateNetworkCreateOrGetInput} })
     /** Create or get a private network endpoint. */
-    privateNetworkEndpointCreateOrGet?: PrivateNetworkEndpointGenqlSelection & {
-        __args: { input: PrivateNetworkEndpointCreateOrGetInput }
-    }
+    privateNetworkEndpointCreateOrGet?: (PrivateNetworkEndpointGenqlSelection & { __args: {input: PrivateNetworkEndpointCreateOrGetInput} })
     /** Delete a private network endpoint. */
-    privateNetworkEndpointDelete?: { __args: { id: Scalars['String'] } }
+    privateNetworkEndpointDelete?: { __args: {id: Scalars['String']} }
     /** Rename a private network endpoint. */
-    privateNetworkEndpointRename?: {
-        __args: {
-            dnsName: Scalars['String']
-            id: Scalars['String']
-            privateNetworkId: Scalars['String']
-        }
-    }
+    privateNetworkEndpointRename?: { __args: {dnsName: Scalars['String'], id: Scalars['String'], privateNetworkId: Scalars['String']} }
     /** Delete all private networks for an environment. */
-    privateNetworksForEnvironmentDelete?: { __args: { environmentId: Scalars['String'] } }
+    privateNetworksForEnvironmentDelete?: { __args: {environmentId: Scalars['String']} }
     /** Claims a project. */
-    projectClaim?: ProjectGenqlSelection & { __args: { id: Scalars['String'] } }
+    projectClaim?: (ProjectGenqlSelection & { __args: {id: Scalars['String'], workspaceId: Scalars['String']} })
     /** Creates a new project. */
-    projectCreate?: ProjectGenqlSelection & { __args: { input: ProjectCreateInput } }
+    projectCreate?: (ProjectGenqlSelection & { __args: {input: ProjectCreateInput} })
     /** Deletes a project. */
-    projectDelete?: { __args: { id: Scalars['String'] } }
+    projectDelete?: { __args: {id: Scalars['String']} }
     /** Accept a project invitation using the invite code */
-    projectInvitationAccept?: ProjectPermissionGenqlSelection & {
-        __args: { code: Scalars['String'] }
-    }
+    projectInvitationAccept?: (ProjectPermissionGenqlSelection & { __args: {code: Scalars['String']} })
     /** Create an invitation for a project */
-    projectInvitationCreate?: ProjectInvitationGenqlSelection & {
-        __args: { id: Scalars['String']; input: ProjectInvitee }
-    }
+    projectInvitationCreate?: (ProjectInvitationGenqlSelection & { __args: {id: Scalars['String'], input: ProjectInvitee} })
     /** Delete an invitation for a project */
-    projectInvitationDelete?: { __args: { id: Scalars['String'] } }
+    projectInvitationDelete?: { __args: {id: Scalars['String']} }
     /** Resend an invitation for a project */
-    projectInvitationResend?: ProjectInvitationGenqlSelection & {
-        __args: { id: Scalars['String'] }
-    }
+    projectInvitationResend?: (ProjectInvitationGenqlSelection & { __args: {id: Scalars['String']} })
     /** Invite a user by email to a project */
-    projectInviteUser?: { __args: { id: Scalars['String']; input: ProjectInviteUserInput } }
+    projectInviteUser?: { __args: {id: Scalars['String'], input: ProjectInviteUserInput} }
     /** Leave project as currently authenticated user */
-    projectLeave?: { __args: { id: Scalars['String'] } }
+    projectLeave?: { __args: {id: Scalars['String']} }
     /** Remove user from a project */
-    projectMemberRemove?: ProjectMemberGenqlSelection & {
-        __args: { input: ProjectMemberRemoveInput }
-    }
+    projectMemberRemove?: (ProjectMemberGenqlSelection & { __args: {input: ProjectMemberRemoveInput} })
     /** Change the role for a user within a project */
-    projectMemberUpdate?: ProjectMemberGenqlSelection & {
-        __args: { input: ProjectMemberUpdateInput }
-    }
+    projectMemberUpdate?: (ProjectMemberGenqlSelection & { __args: {input: ProjectMemberUpdateInput} })
+    /** Deletes a project with a 48 hour grace period. */
+    projectScheduleDelete?: { __args: {id: Scalars['String']} }
+    /** Cancel scheduled deletion of a project */
+    projectScheduleDeleteCancel?: { __args: {id: Scalars['String']} }
+    /** Force delete a scheduled deletion of a project (skips the grace period) */
+    projectScheduleDeleteForce?: { __args: {id: Scalars['String']} }
     /** Create a token for a project that has access to a specific environment */
-    projectTokenCreate?: { __args: { input: ProjectTokenCreateInput } }
+    projectTokenCreate?: { __args: {input: ProjectTokenCreateInput} }
     /** Delete a project token */
-    projectTokenDelete?: { __args: { id: Scalars['String'] } }
+    projectTokenDelete?: { __args: {id: Scalars['String']} }
+    /** Transfer a project to a workspace */
+    projectTransfer?: { __args: {input: ProjectTransferInput, projectId: Scalars['String']} }
     /** Confirm the transfer of project ownership */
-    projectTransferConfirm?: { __args: { input: ProjectTransferConfirmInput } }
+    projectTransferConfirm?: { __args: {input: ProjectTransferConfirmInput} }
     /** Initiate the transfer of project ownership */
-    projectTransferInitiate?: { __args: { input: ProjectTransferInitiateInput } }
-    /** Transfer a project to a team */
-    projectTransferToTeam?: { __args: { id: Scalars['String']; input: ProjectTransferToTeamInput } }
-    /** Transfer a project to a user */
-    projectTransferToUser?: { __args: { id: Scalars['String'] } }
+    projectTransferInitiate?: { __args: {input: ProjectTransferInitiateInput} }
+    /**
+     * @deprecated Use projectTransfer instead
+     * Transfer a project to a team
+     */
+    projectTransferToTeam?: { __args: {id: Scalars['String'], input: ProjectTransferToTeamInput} }
     /** Updates a project. */
-    projectUpdate?: ProjectGenqlSelection & {
-        __args: { id: Scalars['String']; input: ProjectUpdateInput }
-    }
+    projectUpdate?: (ProjectGenqlSelection & { __args: {id: Scalars['String'], input: ProjectUpdateInput} })
     /** Deletes a ProviderAuth. */
-    providerAuthRemove?: { __args: { id: Scalars['String'] } }
+    providerAuthRemove?: { __args: {id: Scalars['String']} }
     /** Generates a new set of recovery codes for the authenticated user. */
     recoveryCodeGenerate?: RecoveryCodesGenqlSelection
     /** Validates a recovery code. */
-    recoveryCodeValidate?: { __args: { input: RecoveryCodeValidateInput } }
+    recoveryCodeValidate?: { __args: {input: RecoveryCodeValidateInput} }
     /** Updates the ReferralInfo for the authenticated user. */
-    referralInfoUpdate?: ReferralInfoGenqlSelection & { __args: { input: ReferralInfoUpdateInput } }
-    /** Send a community thread notification email */
-    sendCommunityThreadNotificationEmail?: {
-        __args: { input: SendCommunityThreadNotificationEmailInput }
-    }
+    referralInfoUpdate?: (ReferralInfoGenqlSelection & { __args: {input: ReferralInfoUpdateInput} })
     /** Connect a service to a source */
-    serviceConnect?: ServiceGenqlSelection & {
-        __args: { id: Scalars['String']; input: ServiceConnectInput }
-    }
+    serviceConnect?: (ServiceGenqlSelection & { __args: {id: Scalars['String'], input: ServiceConnectInput} })
     /** Creates a new service. */
-    serviceCreate?: ServiceGenqlSelection & { __args: { input: ServiceCreateInput } }
+    serviceCreate?: (ServiceGenqlSelection & { __args: {input: ServiceCreateInput} })
     /** Deletes a service. */
-    serviceDelete?: {
-        __args: {
-            /** [Experimental] Environment ID. If the environment is a forked environment, the service will only be deleted in the specified environment, otherwise it will deleted in all environments that are not forks of other environments */
-            environmentId?: Scalars['String'] | null
-            id: Scalars['String']
-        }
-    }
+    serviceDelete?: { __args: {
+    /** [Experimental] Environment ID. If the environment is a forked environment, the service will only be deleted in the specified environment, otherwise it will deleted in all environments that are not forks of other environments */
+    environmentId?: (Scalars['String'] | null), id: Scalars['String']} }
     /** Disconnect a service from a repo */
-    serviceDisconnect?: ServiceGenqlSelection & { __args: { id: Scalars['String'] } }
+    serviceDisconnect?: (ServiceGenqlSelection & { __args: {id: Scalars['String']} })
     /** Creates a new service domain. */
-    serviceDomainCreate?: ServiceDomainGenqlSelection & {
-        __args: { input: ServiceDomainCreateInput }
-    }
+    serviceDomainCreate?: (ServiceDomainGenqlSelection & { __args: {input: ServiceDomainCreateInput} })
     /** Deletes a service domain. */
-    serviceDomainDelete?: { __args: { id: Scalars['String'] } }
+    serviceDomainDelete?: { __args: {id: Scalars['String']} }
     /** Updates a service domain. */
-    serviceDomainUpdate?: { __args: { input: ServiceDomainUpdateInput } }
+    serviceDomainUpdate?: { __args: {input: ServiceDomainUpdateInput} }
+    /**
+     * @deprecated This API route is used only by the CLI. We plan to remove it in a future version. Please use the UI to duplicate services.
+     * Duplicate a service, including its configuration, variables, and volumes.
+     */
+    serviceDuplicate?: (ServiceGenqlSelection & { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} })
     /** Add a feature flag for a service */
-    serviceFeatureFlagAdd?: { __args: { input: ServiceFeatureFlagToggleInput } }
+    serviceFeatureFlagAdd?: { __args: {input: ServiceFeatureFlagToggleInput} }
     /** Remove a feature flag for a service */
-    serviceFeatureFlagRemove?: { __args: { input: ServiceFeatureFlagToggleInput } }
+    serviceFeatureFlagRemove?: { __args: {input: ServiceFeatureFlagToggleInput} }
     /** Deploy a service instance */
-    serviceInstanceDeploy?: {
-        __args: {
-            commitSha?: Scalars['String'] | null
-            environmentId: Scalars['String']
-            latestCommit?: Scalars['Boolean'] | null
-            serviceId: Scalars['String']
-        }
-    }
+    serviceInstanceDeploy?: { __args: {commitSha?: (Scalars['String'] | null), environmentId: Scalars['String'], latestCommit?: (Scalars['Boolean'] | null), serviceId: Scalars['String']} }
     /** Deploy a service instance. Returns a deployment ID */
-    serviceInstanceDeployV2?: {
-        __args: {
-            commitSha?: Scalars['String'] | null
-            environmentId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    serviceInstanceDeployV2?: { __args: {commitSha?: (Scalars['String'] | null), environmentId: Scalars['String'], serviceId: Scalars['String']} }
     /** Update the resource limits for a service instance */
-    serviceInstanceLimitsUpdate?: { __args: { input: ServiceInstanceLimitsUpdateInput } }
+    serviceInstanceLimitsUpdate?: { __args: {input: ServiceInstanceLimitsUpdateInput} }
     /** Redeploy a service instance */
-    serviceInstanceRedeploy?: {
-        __args: { environmentId: Scalars['String']; serviceId: Scalars['String'] }
-    }
+    serviceInstanceRedeploy?: { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} }
     /** Update a service instance */
-    serviceInstanceUpdate?: {
-        __args: {
-            /** [Experimental] Environment ID. If the environment is a fork, the service will only be updated in it. Otherwise it will updated in all environments that are not forks of other environments */
-            environmentId?: Scalars['String'] | null
-            input: ServiceInstanceUpdateInput
-            serviceId: Scalars['String']
-        }
-    }
+    serviceInstanceUpdate?: { __args: {
+    /** [Experimental] Environment ID. If the environment is a fork, the service will only be updated in it. Otherwise it will updated in all environments that are not forks of other environments */
+    environmentId?: (Scalars['String'] | null), input: ServiceInstanceUpdateInput, serviceId: Scalars['String']} }
     /** Remove the upstream URL from all service instances for this service */
-    serviceRemoveUpstreamUrl?: ServiceGenqlSelection & { __args: { id: Scalars['String'] } }
+    serviceRemoveUpstreamUrl?: (ServiceGenqlSelection & { __args: {id: Scalars['String']} })
     /** Updates a service. */
-    serviceUpdate?: ServiceGenqlSelection & {
-        __args: { id: Scalars['String']; input: ServiceUpdateInput }
-    }
+    serviceUpdate?: (ServiceGenqlSelection & { __args: {id: Scalars['String'], input: ServiceUpdateInput} })
     /** Deletes a session. */
-    sessionDelete?: { __args: { id: Scalars['String'] } }
+    sessionDelete?: { __args: {id: Scalars['String']} }
     /** Configure a shared variable. */
-    sharedVariableConfigure?: VariableGenqlSelection & {
-        __args: { input: SharedVariableConfigureInput }
-    }
-    /** Creates a new TCP proxy for a service instance. */
-    tcpProxyCreate?: TCPProxyGenqlSelection & { __args: { input: TCPProxyCreateInput } }
+    sharedVariableConfigure?: (VariableGenqlSelection & { __args: {input: SharedVariableConfigureInput} })
+    /**
+     * @deprecated Use staged changes and apply them. Creating a TCP proxy with this endpoint requires you to redeploy the service for it to be active.
+     * Creates a new TCP proxy for a service instance.
+     */
+    tcpProxyCreate?: (TCPProxyGenqlSelection & { __args: {input: TCPProxyCreateInput} })
     /** Deletes a TCP proxy by id */
-    tcpProxyDelete?: { __args: { id: Scalars['String'] } }
-    /** Bulk transfer projects from user to team */
-    teamBulkProjectTransfer?: { __args: { input: TeamBulkProjectTransferInput } }
-    /**
-     * @deprecated Use teamCreateAndSubscribe
-     * Create a team
-     */
-    teamCreate?: TeamGenqlSelection & { __args: { input: TeamCreateInput } }
-    /** Create a team and subscribe to the Pro plan */
-    teamCreateAndSubscribe?: TeamCreateAndSubscribeResponseGenqlSelection & {
-        __args: { input: TeamCreateAndSubscribeInput }
-    }
-    /**
-     * @deprecated Use workspaceDelete
-     * Delete a team and all data associated with it
-     */
-    teamDelete?: { __args: { id: Scalars['String'] } }
-    /** Get an invite code for a team and role */
-    teamInviteCodeCreate?: { __args: { id: Scalars['String']; input: TeamInviteCodeCreateInput } }
-    /** Use an invite code to join a team */
-    teamInviteCodeUse?: TeamGenqlSelection & { __args: { code: Scalars['String'] } }
-    /** Leave a team */
-    teamLeave?: { __args: { id: Scalars['String'] } }
-    /** Changes a user team permissions. */
-    teamPermissionChange?: { __args: { input: TeamPermissionChangeInput } }
-    /** Create a new team trusted domain for this team */
-    teamTrustedDomainCreate?: { __args: { input: TeamTrustedDomainCreateInput } }
-    /** Delete a team trusted domain */
-    teamTrustedDomainDelete?: { __args: { id: Scalars['String'] } }
-    /**
-     * @deprecated Use workspaceUpdate
-     * Update a team by id
-     */
-    teamUpdate?: TeamGenqlSelection & { __args: { id: Scalars['String']; input: TeamUpdateInput } }
-    /** Invite a user by email to a team */
-    teamUserInvite?: { __args: { id: Scalars['String']; input: TeamUserInviteInput } }
-    /** Remove a user from a team */
-    teamUserRemove?: { __args: { id: Scalars['String']; input: TeamUserRemoveInput } }
-    /** Logs panics from CLI to Datadog */
-    telemetrySend?: { __args: { input: TelemetrySendInput } }
+    tcpProxyDelete?: { __args: {id: Scalars['String']} }
     /** Duplicates an existing template */
-    templateClone?: TemplateGenqlSelection & { __args: { input: TemplateCloneInput } }
+    templateClone?: (TemplateGenqlSelection & { __args: {input: TemplateCloneInput} })
     /** Deletes a template. */
-    templateDelete?: { __args: { id: Scalars['String']; input: TemplateDeleteInput } }
+    templateDelete?: { __args: {id: Scalars['String'], input: TemplateDeleteInput} }
     /**
      * @deprecated Deprecated in favor of templateDeployV2
      * Deploys a template.
      */
-    templateDeploy?: TemplateDeployPayloadGenqlSelection & {
-        __args: { input: TemplateDeployInput }
-    }
+    templateDeploy?: (TemplateDeployPayloadGenqlSelection & { __args: {input: TemplateDeployInput} })
     /** Deploys a template using the serialized template config */
-    templateDeployV2?: TemplateDeployPayloadGenqlSelection & {
-        __args: { input: TemplateDeployV2Input }
-    }
+    templateDeployV2?: (TemplateDeployPayloadGenqlSelection & { __args: {input: TemplateDeployV2Input} })
     /** Generate a template for a project */
-    templateGenerate?: TemplateGenqlSelection & { __args: { input: TemplateGenerateInput } }
-    /** Nullify the community thread slug for a template, if one is found with the provided slug */
-    templateMaybeUnsetCommunityThreadSlug?: { __args: { communityThreadSlug: Scalars['String'] } }
+    templateGenerate?: (TemplateGenqlSelection & { __args: {input: TemplateGenerateInput} })
     /** Publishes a template. */
-    templatePublish?: TemplateGenqlSelection & {
-        __args: { id: Scalars['String']; input: TemplatePublishInput }
-    }
+    templatePublish?: (TemplateGenqlSelection & { __args: {id: Scalars['String'], input: TemplatePublishInput} })
     /** Ejects a service from the template and creates a new repo in the provided org. */
-    templateServiceSourceEject?: { __args: { input: TemplateServiceSourceEjectInput } }
+    templateServiceSourceEject?: { __args: {input: TemplateServiceSourceEjectInput} }
     /** Unpublishes a template. */
-    templateUnpublish?: { __args: { id: Scalars['String'] } }
+    templateUnpublish?: { __args: {id: Scalars['String']} }
+    /** Create a new trusted domain for this workspace */
+    trustedDomainCreate?: { __args: {input: WorkspaceTrustedDomainCreateInput} }
+    /** Delete a trusted domain */
+    trustedDomainDelete?: { __args: {id: Scalars['String']} }
     /** Setup 2FA authorization for authenticated user. */
-    twoFactorInfoCreate?: RecoveryCodesGenqlSelection & {
-        __args: { input: TwoFactorInfoCreateInput }
-    }
+    twoFactorInfoCreate?: (RecoveryCodesGenqlSelection & { __args: {input: TwoFactorInfoCreateInput} })
     /** Deletes the TwoFactorInfo for the authenticated user. */
     twoFactorInfoDelete?: boolean | number
     /** Generates the 2FA app secret for the authenticated user. */
     twoFactorInfoSecret?: TwoFactorInfoSecretGenqlSelection
     /** Validates the token for a 2FA action or for a login request. */
-    twoFactorInfoValidate?: { __args: { input: TwoFactorInfoValidateInput } }
-    /** Generate a Slack channel for a team */
-    upsertSlackChannelForTeam?: { __args: { teamId: Scalars['String'] } }
+    twoFactorInfoValidate?: { __args: {input: TwoFactorInfoValidateInput} }
+    /** Generate a Slack channel for a workspace */
+    upsertSlackChannel?: { __args: {workspaceId: Scalars['String']} }
     /** Remove the usage limit for a customer */
-    usageLimitRemove?: { __args: { input: UsageLimitRemoveInput } }
+    usageLimitRemove?: { __args: {input: UsageLimitRemoveInput} }
     /** Set the usage limit for a customer */
-    usageLimitSet?: { __args: { input: UsageLimitSetInput } }
+    usageLimitSet?: { __args: {input: UsageLimitSetInput} }
     /** Unsubscribe from the Beta program. */
     userBetaLeave?: boolean | number
     /** Delete the currently authenticated user */
@@ -4142,109 +4474,88 @@ export interface MutationGenqlSelection {
     /** Disconnect your Railway account from Discord. */
     userDiscordDisconnect?: boolean | number
     /** Remove a flag on the user. */
-    userFlagsRemove?: { __args: { input: UserFlagsRemoveInput } }
+    userFlagsRemove?: { __args: {input: UserFlagsRemoveInput} }
     /** Set flags on the authenticated user. */
-    userFlagsSet?: { __args: { input: UserFlagsSetInput } }
+    userFlagsSet?: { __args: {input: UserFlagsSetInput} }
     /** Updates the profile for the authenticated user */
-    userProfileUpdate?: { __args: { input: UserProfileUpdateInput } }
-    /** Disconnect your Railway account from Slack. */
-    userSlackDisconnect?: boolean | number
+    userProfileUpdate?: { __args: {input: UserProfileUpdateInput} }
     /** Update date of TermsAgreedOn */
     userTermsUpdate?: UserGenqlSelection
-    /** Update currently logged in user */
-    userUpdate?: UserGenqlSelection & { __args: { input: UserUpdateInput } }
     /** Upserts a collection of variables. */
-    variableCollectionUpsert?: { __args: { input: VariableCollectionUpsertInput } }
+    variableCollectionUpsert?: { __args: {input: VariableCollectionUpsertInput} }
     /** Deletes a variable. */
-    variableDelete?: { __args: { input: VariableDeleteInput } }
+    variableDelete?: { __args: {input: VariableDeleteInput} }
     /** Upserts a variable. */
-    variableUpsert?: { __args: { input: VariableUpsertInput } }
+    variableUpsert?: { __args: {input: VariableUpsertInput} }
     /** Create a persistent volume in a project */
-    volumeCreate?: VolumeGenqlSelection & { __args: { input: VolumeCreateInput } }
+    volumeCreate?: (VolumeGenqlSelection & { __args: {input: VolumeCreateInput} })
     /** Delete a persistent volume in a project */
-    volumeDelete?: { __args: { volumeId: Scalars['String'] } }
+    volumeDelete?: { __args: {volumeId: Scalars['String']} }
     /** Create backup of a volume instance */
-    volumeInstanceBackupCreate?: WorkflowIdGenqlSelection & {
-        __args: {
-            /** The id of the volume instance to create a backup of */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupCreate?: (WorkflowIdGenqlSelection & { __args: {
+    /** Optional name/label for the backup. Defaults to 'Manual' if not provided. */
+    name?: (Scalars['String'] | null), 
+    /** The id of the volume instance to create a backup of */
+    volumeInstanceId: Scalars['String']} })
     /** Deletes volume instance backup */
-    volumeInstanceBackupDelete?: WorkflowIdGenqlSelection & {
-        __args: {
-            /** The volume instance's backup id */
-            volumeInstanceBackupId: Scalars['String']
-            /** The volume instance's id */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupDelete?: (WorkflowIdGenqlSelection & { __args: {
+    /** The volume instance's backup id */
+    volumeInstanceBackupId: Scalars['String'], 
+    /** The volume instance's id */
+    volumeInstanceId: Scalars['String']} })
     /** Removes backup expiration date */
-    volumeInstanceBackupLock?: {
-        __args: {
-            /** The id of the backup to lock */
-            volumeInstanceBackupId: Scalars['String']
-            /** The id of the volume instance to be restored from */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupLock?: { __args: {
+    /** The id of the backup to lock */
+    volumeInstanceBackupId: Scalars['String'], 
+    /** The id of the volume instance to be restored from */
+    volumeInstanceId: Scalars['String']} }
     /** Restore a volume instance from a backup */
-    volumeInstanceBackupRestore?: WorkflowIdGenqlSelection & {
-        __args: {
-            /** The id of the backup to be restored from */
-            volumeInstanceBackupId: Scalars['String']
-            /** The id of the volume instance to be restored from */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupRestore?: (WorkflowIdGenqlSelection & { __args: {
+    /** The id of the backup to be restored from */
+    volumeInstanceBackupId: Scalars['String'], 
+    /** The id of the volume instance to be restored from */
+    volumeInstanceId: Scalars['String']} })
     /** Manage schedule for backups of a volume instance */
-    volumeInstanceBackupScheduleUpdate?: {
-        __args: {
-            /** The frequency/retention of the backups */
-            kinds: VolumeInstanceBackupScheduleKind[]
-            /** The id of the volume instance to create a backup of */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupScheduleUpdate?: { __args: {
+    /** The frequency/retention of the backups */
+    kinds: VolumeInstanceBackupScheduleKind[], 
+    /** The id of the volume instance to create a backup of */
+    volumeInstanceId: Scalars['String']} }
     /** Update a volume instance. If no environmentId is provided, all volume instances for the volume will be updated. */
-    volumeInstanceUpdate?: {
-        __args: {
-            /** The environment of the volume instance to update. If null, all instances for the volume will be updated */
-            environmentId?: Scalars['String'] | null
-            input: VolumeInstanceUpdateInput
-            /** The id of the volume to update */
-            volumeId: Scalars['String']
-        }
-    }
+    volumeInstanceUpdate?: { __args: {
+    /** The environment of the volume instance to update. If null, all instances for the volume will be updated */
+    environmentId?: (Scalars['String'] | null), input: VolumeInstanceUpdateInput, 
+    /** The id of the volume to update */
+    volumeId: Scalars['String']} }
     /** Update a persistent volume in a project */
-    volumeUpdate?: VolumeGenqlSelection & {
-        __args: { input: VolumeUpdateInput; volumeId: Scalars['String'] }
-    }
-    /** Create a webhook on a project */
-    webhookCreate?: ProjectWebhookGenqlSelection & { __args: { input: WebhookCreateInput } }
-    /** Delete a webhook from a project */
-    webhookDelete?: { __args: { id: Scalars['String'] } }
-    /** Update a webhook on a project */
-    webhookUpdate?: ProjectWebhookGenqlSelection & {
-        __args: { id: Scalars['String']; input: WebhookUpdateInput }
-    }
+    volumeUpdate?: (VolumeGenqlSelection & { __args: {input: VolumeUpdateInput, volumeId: Scalars['String']} })
     /** Delete a workspace and all data associated with it */
-    workspaceDelete?: { __args: { id: Scalars['String'] } }
+    workspaceDelete?: { __args: {id: Scalars['String']} }
+    /** Get an invite code for a workspace and role */
+    workspaceInviteCodeCreate?: { __args: {input: WorkspaceInviteCodeCreateInput, workspaceId: Scalars['String']} }
+    /** Use an invite code to join a workspace */
+    workspaceInviteCodeUse?: (WorkspaceGenqlSelection & { __args: {code: Scalars['String']} })
     /** Leave a workspace */
-    workspaceLeave?: { __args: { id: Scalars['String'] } }
+    workspaceLeave?: { __args: {id: Scalars['String']} }
+    /** Changes a user workspace permissions. */
+    workspacePermissionChange?: { __args: {input: WorkspacePermissionChangeInput} }
     /** Update a workspace by id */
-    workspaceUpdate?: { __args: { id: Scalars['String']; input: WorkspaceUpdateInput } }
+    workspaceUpdate?: { __args: {id: Scalars['String'], input: WorkspaceUpdateInput} }
     /** Generate a Slack channel for a workspace */
-    workspaceUpsertSlackChannel?: { __args: { id: Scalars['String'] } }
+    workspaceUpsertSlackChannel?: { __args: {id: Scalars['String']} }
+    /** Invite a user by email to a workspace */
+    workspaceUserInvite?: { __args: {input: WorkspaceUserInviteInput, workspaceId: Scalars['String']} }
+    /** Remove a user from a workspace */
+    workspaceUserRemove?: { __args: {input: WorkspaceUserRemoveInput, workspaceId: Scalars['String']} }
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface NodeGenqlSelection {
+export interface NodeGenqlSelection{
     id?: boolean | number
     on_AdoptionInfo?: AdoptionInfoGenqlSelection
     on_ApiToken?: ApiTokenGenqlSelection
-    on_BanReasonHistory?: BanReasonHistoryGenqlSelection
+    on_AuditLog?: AuditLogGenqlSelection
     on_Container?: ContainerGenqlSelection
     on_Credit?: CreditGenqlSelection
     on_Customer?: CustomerGenqlSelection
@@ -4254,70 +4565,137 @@ export interface NodeGenqlSelection {
     on_DeploymentSnapshot?: DeploymentSnapshotGenqlSelection
     on_DeploymentTrigger?: DeploymentTriggerGenqlSelection
     on_Environment?: EnvironmentGenqlSelection
+    on_EnvironmentPatch?: EnvironmentPatchGenqlSelection
     on_Event?: EventGenqlSelection
     on_Integration?: IntegrationGenqlSelection
     on_IntegrationAuth?: IntegrationAuthGenqlSelection
     on_InviteCode?: InviteCodeGenqlSelection
+    on_NotificationDelivery?: NotificationDeliveryGenqlSelection
+    on_NotificationInstance?: NotificationInstanceGenqlSelection
     on_ObservabilityDashboard?: ObservabilityDashboardGenqlSelection
+    on_ObservabilityDashboardAlert?: ObservabilityDashboardAlertGenqlSelection
     on_ObservabilityDashboardItem?: ObservabilityDashboardItemGenqlSelection
     on_ObservabilityDashboardItemInstance?: ObservabilityDashboardItemInstanceGenqlSelection
+    on_ObservabilityDashboardMonitor?: ObservabilityDashboardMonitorGenqlSelection
+    on_Passkey?: PasskeyGenqlSelection
     on_PlanLimitOverride?: PlanLimitOverrideGenqlSelection
     on_Plugin?: PluginGenqlSelection
-    on_PreferenceOverride?: PreferenceOverrideGenqlSelection
     on_Preferences?: PreferencesGenqlSelection
     on_Project?: ProjectGenqlSelection
     on_ProjectPermission?: ProjectPermissionGenqlSelection
     on_ProjectToken?: ProjectTokenGenqlSelection
-    on_ProjectWebhook?: ProjectWebhookGenqlSelection
     on_ProviderAuth?: ProviderAuthGenqlSelection
     on_ReferralInfo?: ReferralInfoGenqlSelection
-    on_RefundRequest?: RefundRequestGenqlSelection
     on_Service?: ServiceGenqlSelection
     on_ServiceInstance?: ServiceInstanceGenqlSelection
     on_Session?: SessionGenqlSelection
     on_Team?: TeamGenqlSelection
     on_TeamPermission?: TeamPermissionGenqlSelection
-    on_TeamTrustedDomain?: TeamTrustedDomainGenqlSelection
     on_Template?: TemplateGenqlSelection
     on_TemplateService?: TemplateServiceGenqlSelection
-    on_UsageAnomaly?: UsageAnomalyGenqlSelection
     on_UsageLimit?: UsageLimitGenqlSelection
     on_User?: UserGenqlSelection
     on_Variable?: VariableGenqlSelection
     on_Volume?: VolumeGenqlSelection
     on_VolumeInstance?: VolumeInstanceGenqlSelection
     on_VolumeInstanceBackupSchedule?: VolumeInstanceBackupScheduleGenqlSelection
-    on_Withdrawal?: WithdrawalGenqlSelection
-    on_WithdrawalAccount?: WithdrawalAccountGenqlSelection
     on_Workspace?: WorkspaceGenqlSelection
+    on_WorkspaceIdentityProvider?: WorkspaceIdentityProviderGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardGenqlSelection {
+export interface NotificationDeliveryGenqlSelection{
+    createdAt?: boolean | number
+    id?: boolean | number
+    notificationInstance?: NotificationInstanceGenqlSelection
+    readAt?: boolean | number
+    status?: boolean | number
+    type?: boolean | number
+    updatedAt?: boolean | number
+    userId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface NotificationDeliveryCreatedGenqlSelection{
+    delivery?: NotificationDeliveryGenqlSelection
+    type?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface NotificationDeliveryFilterInput {environmentId?: (Scalars['String'] | null),onlyUnread?: (Scalars['Boolean'] | null),projectId?: (Scalars['String'] | null),status?: (NotificationStatus | null),type?: (NotificationDeliveryType | null),workspaceId?: (Scalars['String'] | null)}
+
+export interface NotificationDeliveryResolvedGenqlSelection{
+    deliveryIds?: boolean | number
+    type?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface NotificationDeliveryUpdateGenqlSelection{
+    on_NotificationDeliveryCreated?:NotificationDeliveryCreatedGenqlSelection,
+    on_NotificationDeliveryResolved?:NotificationDeliveryResolvedGenqlSelection,
+    __typename?: boolean | number
+}
+
+export interface NotificationInstanceGenqlSelection{
+    createdAt?: boolean | number
+    environmentId?: boolean | number
+    event?: EventGenqlSelection
+    eventId?: boolean | number
+    eventType?: boolean | number
+    id?: boolean | number
+    payload?: boolean | number
+    projectId?: boolean | number
+    resolvedAt?: boolean | number
+    resourceId?: boolean | number
+    resourceType?: boolean | number
+    serviceId?: boolean | number
+    severity?: boolean | number
+    status?: boolean | number
+    updatedAt?: boolean | number
+    volumeId?: boolean | number
+    workspaceId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface ObservabilityDashboardGenqlSelection{
     id?: boolean | number
     items?: ObservabilityDashboardItemInstanceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardCreateInput {
-    environmentId: Scalars['String']
-    /** If no items are provided, a default dashboard will be created. */
-    items?: ObservabilityDashboardUpdateInput[] | null
+export interface ObservabilityDashboardAlertGenqlSelection{
+    createdAt?: boolean | number
+    id?: boolean | number
+    resolvedAt?: boolean | number
+    resourceId?: boolean | number
+    resourceType?: boolean | number
+    status?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardItemGenqlSelection {
+export interface ObservabilityDashboardCreateInput {environmentId: Scalars['String'],
+/** If no items are provided, a default dashboard will be created. */
+items?: (ObservabilityDashboardUpdateInput[] | null)}
+
+export interface ObservabilityDashboardItemGenqlSelection{
     config?: ObservabilityDashboardItemConfigGenqlSelection
     description?: boolean | number
     id?: boolean | number
+    monitors?: ObservabilityDashboardMonitorGenqlSelection
     name?: boolean | number
     type?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardItemConfigGenqlSelection {
+export interface ObservabilityDashboardItemConfigGenqlSelection{
     logsFilter?: boolean | number
     measurements?: boolean | number
     projectUsageProperties?: boolean | number
@@ -4326,22 +4704,11 @@ export interface ObservabilityDashboardItemConfigGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardItemConfigInput {
-    logsFilter?: Scalars['String'] | null
-    measurements?: MetricMeasurement[] | null
-    projectUsageProperties?: ProjectUsageProperty[] | null
-    resourceIds?: Scalars['String'][] | null
-}
+export interface ObservabilityDashboardItemConfigInput {logsFilter?: (Scalars['String'] | null),measurements?: (MetricMeasurement[] | null),projectUsageProperties?: (ProjectUsageProperty[] | null),resourceIds?: (Scalars['String'][] | null)}
 
-export interface ObservabilityDashboardItemCreateInput {
-    config: ObservabilityDashboardItemConfigInput
-    description?: Scalars['String'] | null
-    id: Scalars['String']
-    name: Scalars['String']
-    type: ObservabilityDashboardItemType
-}
+export interface ObservabilityDashboardItemCreateInput {config: ObservabilityDashboardItemConfigInput,description?: (Scalars['String'] | null),id: Scalars['String'],name: Scalars['String'],type: ObservabilityDashboardItemType}
 
-export interface ObservabilityDashboardItemInstanceGenqlSelection {
+export interface ObservabilityDashboardItemInstanceGenqlSelection{
     dashboardItem?: ObservabilityDashboardItemGenqlSelection
     displayConfig?: boolean | number
     id?: boolean | number
@@ -4349,20 +4716,24 @@ export interface ObservabilityDashboardItemInstanceGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ObservabilityDashboardUpdateInput {
-    dashboardItem: ObservabilityDashboardItemCreateInput
-    displayConfig: Scalars['DisplayConfig']
-    id: Scalars['String']
+export interface ObservabilityDashboardMonitorGenqlSelection{
+    alerts?: (ObservabilityDashboardAlertGenqlSelection & { __args?: {endDate?: (Scalars['DateTime'] | null), startDate?: (Scalars['DateTime'] | null)} })
+    config?: ObservabilityDashboardMonitorConfigGenqlSelection
+    createdAt?: boolean | number
+    id?: boolean | number
+    updatedAt?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface OverrideInput {
-    enabled: Scalars['Boolean']
-    name: Scalars['String']
-    resource: Scalars['String']
-    resourceId: Scalars['String']
+export interface ObservabilityDashboardMonitorConfigGenqlSelection{
+    on_MonitorThresholdConfig?:MonitorThresholdConfigGenqlSelection,
+    __typename?: boolean | number
 }
 
-export interface PageInfoGenqlSelection {
+export interface ObservabilityDashboardUpdateInput {dashboardItem: ObservabilityDashboardItemCreateInput,displayConfig: Scalars['DisplayConfig'],id: Scalars['String']}
+
+export interface PageInfoGenqlSelection{
     endCursor?: boolean | number
     hasNextPage?: boolean | number
     hasPreviousPage?: boolean | number
@@ -4371,14 +4742,41 @@ export interface PageInfoGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PaymentMethodGenqlSelection {
+export interface PartnerProfileGenqlSelection{
+    category?: boolean | number
+    description?: boolean | number
+    slug?: boolean | number
+    type?: boolean | number
+    website?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface PasskeyGenqlSelection{
+    aaguid?: boolean | number
+    backedUp?: boolean | number
+    createdAt?: boolean | number
+    credentialId?: boolean | number
+    deviceName?: boolean | number
+    deviceType?: boolean | number
+    displayName?: boolean | number
+    id?: boolean | number
+    lastUsedAt?: boolean | number
+    lastUsedDevice?: boolean | number
+    transports?: boolean | number
+    updatedAt?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface PaymentMethodGenqlSelection{
     card?: PaymentMethodCardGenqlSelection
     id?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PaymentMethodCardGenqlSelection {
+export interface PaymentMethodCardGenqlSelection{
     brand?: boolean | number
     country?: boolean | number
     last4?: boolean | number
@@ -4386,14 +4784,23 @@ export interface PaymentMethodCardGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PlanLimitOverrideGenqlSelection {
+export interface PlanLimitOverrideGenqlSelection{
     config?: boolean | number
     id?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PlatformStatusGenqlSelection {
+export interface PlatformFeatureFlagStatusGenqlSelection{
+    flag?: boolean | number
+    rolloutPercentage?: boolean | number
+    status?: boolean | number
+    type?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface PlatformStatusGenqlSelection{
     incident?: IncidentGenqlSelection
     isStable?: boolean | number
     maintenance?: MaintenanceGenqlSelection
@@ -4401,15 +4808,8 @@ export interface PlatformStatusGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PluginGenqlSelection {
-    containers?: PluginContainersConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+export interface PluginGenqlSelection{
+    containers?: (PluginContainersConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     createdAt?: boolean | number
     deletedAt?: boolean | number
     deprecatedAt?: boolean | number
@@ -4420,81 +4820,46 @@ export interface PluginGenqlSelection {
     name?: boolean | number
     project?: ProjectGenqlSelection
     status?: boolean | number
-    variables?: PluginVariablesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    variables?: (PluginVariablesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PluginContainersConnectionGenqlSelection {
+export interface PluginContainersConnectionGenqlSelection{
     edges?: PluginContainersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PluginContainersConnectionEdgeGenqlSelection {
+export interface PluginContainersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ContainerGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PluginCreateInput {
-    environmentId?: Scalars['String'] | null
-    friendlyName?: Scalars['String'] | null
-    name: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface PluginCreateInput {environmentId?: (Scalars['String'] | null),friendlyName?: (Scalars['String'] | null),name: Scalars['String'],projectId: Scalars['String']}
 
-export interface PluginRestartInput {
-    environmentId?: Scalars['String'] | null
-}
+export interface PluginRestartInput {environmentId?: (Scalars['String'] | null)}
 
-export interface PluginUpdateInput {
-    friendlyName: Scalars['String']
-}
+export interface PluginUpdateInput {friendlyName: Scalars['String']}
 
-export interface PluginVariablesConnectionGenqlSelection {
+export interface PluginVariablesConnectionGenqlSelection{
     edges?: PluginVariablesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PluginVariablesConnectionEdgeGenqlSelection {
+export interface PluginVariablesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: VariableGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PreferenceOverrideGenqlSelection {
-    enabled?: boolean | number
-    id?: boolean | number
-    name?: boolean | number
-    resource?: boolean | number
-    resourceId?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface PreferenceOverridesCreateUpdateData {
-    overrides: OverrideInput[]
-}
-
-export interface PreferenceOverridesDestroyData {
-    resource: Scalars['String']
-    resourceId: Scalars['String']
-}
-
-export interface PreferencesGenqlSelection {
+export interface PreferencesGenqlSelection{
     buildFailedEmail?: boolean | number
     changelogEmail?: boolean | number
     communityEmail?: boolean | number
@@ -4502,26 +4867,16 @@ export interface PreferencesGenqlSelection {
     ephemeralEnvironmentEmail?: boolean | number
     id?: boolean | number
     marketingEmail?: boolean | number
-    preferenceOverrides?: PreferenceOverrideGenqlSelection
     subprocessorUpdatesEmail?: boolean | number
+    templateQueueEmail?: boolean | number
     usageEmail?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PreferencesUpdateData {
-    buildFailedEmail?: Scalars['Boolean'] | null
-    changelogEmail?: Scalars['Boolean'] | null
-    communityEmail?: Scalars['Boolean'] | null
-    deployCrashedEmail?: Scalars['Boolean'] | null
-    ephemeralEnvironmentEmail?: Scalars['Boolean'] | null
-    marketingEmail?: Scalars['Boolean'] | null
-    subprocessorUpdatesEmail?: Scalars['Boolean'] | null
-    token?: Scalars['String'] | null
-    usageEmail?: Scalars['Boolean'] | null
-}
+export interface PreferencesUpdateData {buildFailedEmail?: (Scalars['Boolean'] | null),changelogEmail?: (Scalars['Boolean'] | null),communityEmail?: (Scalars['Boolean'] | null),deployCrashedEmail?: (Scalars['Boolean'] | null),ephemeralEnvironmentEmail?: (Scalars['Boolean'] | null),marketingEmail?: (Scalars['Boolean'] | null),subprocessorUpdatesEmail?: (Scalars['Boolean'] | null),templateQueueEmail?: (Scalars['Boolean'] | null),token?: (Scalars['String'] | null),usageEmail?: (Scalars['Boolean'] | null)}
 
-export interface PrivateNetworkGenqlSelection {
+export interface PrivateNetworkGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
     dnsName?: boolean | number
@@ -4535,14 +4890,9 @@ export interface PrivateNetworkGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PrivateNetworkCreateOrGetInput {
-    environmentId: Scalars['String']
-    name: Scalars['String']
-    projectId: Scalars['String']
-    tags: Scalars['String'][]
-}
+export interface PrivateNetworkCreateOrGetInput {environmentId: Scalars['String'],name: Scalars['String'],projectId: Scalars['String'],tags: Scalars['String'][]}
 
-export interface PrivateNetworkEndpointGenqlSelection {
+export interface PrivateNetworkEndpointGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
     dnsName?: boolean | number
@@ -4554,183 +4904,134 @@ export interface PrivateNetworkEndpointGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PrivateNetworkEndpointCreateOrGetInput {
-    environmentId: Scalars['String']
-    privateNetworkId: Scalars['String']
-    serviceId: Scalars['String']
-    serviceName: Scalars['String']
-    tags: Scalars['String'][]
-}
+export interface PrivateNetworkEndpointCreateOrGetInput {environmentId: Scalars['String'],privateNetworkId: Scalars['String'],serviceId: Scalars['String'],serviceName: Scalars['String'],tags: Scalars['String'][]}
 
-export interface ProjectGenqlSelection {
+export interface ProjectGenqlSelection{
     baseEnvironment?: EnvironmentGenqlSelection
     baseEnvironmentId?: boolean | number
     botPrEnvironments?: boolean | number
+    buckets?: (ProjectBucketsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     createdAt?: boolean | number
     deletedAt?: boolean | number
-    deploymentTriggers?: ProjectDeploymentTriggersConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    deployments?: ProjectDeploymentsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    /** @deprecated Use environment.deploymentTriggers for properly scoped access control */
+    deploymentTriggers?: (ProjectDeploymentTriggersConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** @deprecated Use environment.deployments for properly scoped access control */
+    deployments?: (ProjectDeploymentsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     description?: boolean | number
-    environments?: ProjectEnvironmentsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    environments?: (ProjectEnvironmentsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     expiredAt?: boolean | number
-    groups?: ProjectGroupsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    groups?: (ProjectGroupsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     id?: boolean | number
     isPublic?: boolean | number
     isTempProject?: boolean | number
     members?: ProjectMemberGenqlSelection
     name?: boolean | number
-    plugins?: ProjectPluginsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    /** @deprecated Plugins have been removed */
+    plugins?: (ProjectPluginsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     prDeploys?: boolean | number
-    prEnvCopyVolData?: boolean | number
-    projectPermissions?: ProjectProjectPermissionsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    services?: ProjectServicesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    projectPermissions?: (ProjectProjectPermissionsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    services?: (ProjectServicesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     subscriptionPlanLimit?: boolean | number
     subscriptionType?: boolean | number
+    /** @deprecated Use workspace */
     team?: TeamGenqlSelection
+    /** @deprecated Use workspaceId */
     teamId?: boolean | number
     updatedAt?: boolean | number
-    volumes?: ProjectVolumesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    webhooks?: ProjectWebhooksConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    volumes?: (ProjectVolumesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    workspace?: WorkspaceGenqlSelection
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectCreateInput {
-    defaultEnvironmentName?: Scalars['String'] | null
-    description?: Scalars['String'] | null
-    isPublic?: Scalars['Boolean'] | null
-    name?: Scalars['String'] | null
-    plugins?: Scalars['String'][] | null
-    prDeploys?: Scalars['Boolean'] | null
-    repo?: ProjectCreateRepo | null
-    runtime?: PublicRuntime | null
-    teamId?: Scalars['String'] | null
+export interface ProjectBucketsConnectionGenqlSelection{
+    edges?: ProjectBucketsConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface ProjectCreateRepo {
-    branch: Scalars['String']
-    fullRepoName: Scalars['String']
+export interface ProjectBucketsConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface ProjectDeploymentTriggersConnectionGenqlSelection {
+export interface ProjectComplianceInfoGenqlSelection{
+    /** Permissions for each project member */
+    memberPermissions?: ProjectMemberPermissionsInfoGenqlSelection
+    projectId?: boolean | number
+    projectName?: boolean | number
+    /** Backup schedules for database services */
+    serviceBackups?: ServiceBackupInfoGenqlSelection
+    /** 2FA status for each project member */
+    twoFactorMembers?: ProjectMemberTwoFactorInfoGenqlSelection
+    workspaceId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface ProjectCreateInput {defaultEnvironmentName?: (Scalars['String'] | null),description?: (Scalars['String'] | null),isMonorepo?: (Scalars['Boolean'] | null),isPublic?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),prDeploys?: (Scalars['Boolean'] | null),repo?: (ProjectCreateRepo | null),runtime?: (PublicRuntime | null),workspaceId?: (Scalars['String'] | null)}
+
+export interface ProjectCreateRepo {branch: Scalars['String'],fullRepoName: Scalars['String']}
+
+export interface ProjectDeploymentTriggersConnectionGenqlSelection{
     edges?: ProjectDeploymentTriggersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectDeploymentTriggersConnectionEdgeGenqlSelection {
+export interface ProjectDeploymentTriggersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentTriggerGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectDeploymentsConnectionGenqlSelection {
+export interface ProjectDeploymentsConnectionGenqlSelection{
     edges?: ProjectDeploymentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectDeploymentsConnectionEdgeGenqlSelection {
+export interface ProjectDeploymentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectEnvironmentsConnectionGenqlSelection {
+export interface ProjectEnvironmentsConnectionGenqlSelection{
     edges?: ProjectEnvironmentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectEnvironmentsConnectionEdgeGenqlSelection {
+export interface ProjectEnvironmentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: EnvironmentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectGroupsConnectionGenqlSelection {
+export interface ProjectGroupsConnectionGenqlSelection{
     edges?: ProjectGroupsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectGroupsConnectionEdgeGenqlSelection {
+export interface ProjectGroupsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectInvitationGenqlSelection {
+export interface ProjectInvitationGenqlSelection{
     email?: boolean | number
     expiresAt?: boolean | number
     id?: boolean | number
@@ -4741,24 +5042,18 @@ export interface ProjectInvitationGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ProjectInvitationInviterGenqlSelection {
+export interface ProjectInvitationInviterGenqlSelection{
     email?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectInviteUserInput {
-    email: Scalars['String']
-    link: Scalars['String']
-}
+export interface ProjectInviteUserInput {email: Scalars['String'],link: Scalars['String']}
 
-export interface ProjectInvitee {
-    email: Scalars['String']
-    role: ProjectRole
-}
+export interface ProjectInvitee {email: Scalars['String'],role: ProjectRole}
 
-export interface ProjectMemberGenqlSelection {
+export interface ProjectMemberGenqlSelection{
     avatar?: boolean | number
     email?: boolean | number
     id?: boolean | number
@@ -4768,18 +5063,29 @@ export interface ProjectMemberGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ProjectMemberRemoveInput {
-    projectId: Scalars['String']
-    userId: Scalars['String']
+export interface ProjectMemberPermissionsInfoGenqlSelection{
+    email?: boolean | number
+    name?: boolean | number
+    role?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface ProjectMemberUpdateInput {
-    projectId: Scalars['String']
-    role: ProjectRole
-    userId: Scalars['String']
+export interface ProjectMemberRemoveInput {projectId: Scalars['String'],userId: Scalars['String']}
+
+export interface ProjectMemberTwoFactorInfoGenqlSelection{
+    email?: boolean | number
+    /** List of enabled 2FA methods (AUTHENTICATOR, PASSKEY) */
+    enabledMethods?: boolean | number
+    name?: boolean | number
+    twoFactorAuthEnabled?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface ProjectPermissionGenqlSelection {
+export interface ProjectMemberUpdateInput {projectId: Scalars['String'],role: ProjectRole,userId: Scalars['String']}
+
+export interface ProjectPermissionGenqlSelection{
     id?: boolean | number
     projectId?: boolean | number
     role?: boolean | number
@@ -4788,59 +5094,60 @@ export interface ProjectPermissionGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ProjectPluginsConnectionGenqlSelection {
+export interface ProjectPluginsConnectionGenqlSelection{
     edges?: ProjectPluginsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectPluginsConnectionEdgeGenqlSelection {
+export interface ProjectPluginsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: PluginGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectProjectPermissionsConnectionGenqlSelection {
+export interface ProjectProjectPermissionsConnectionGenqlSelection{
     edges?: ProjectProjectPermissionsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectProjectPermissionsConnectionEdgeGenqlSelection {
+export interface ProjectProjectPermissionsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectPermissionGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectResourceAccessGenqlSelection {
+export interface ProjectResourceAccessGenqlSelection{
     customDomain?: AccessRuleGenqlSelection
     databaseDeployment?: AccessRuleGenqlSelection
     deployment?: AccessRuleGenqlSelection
     environment?: AccessRuleGenqlSelection
+    /** @deprecated Plugins have been removed */
     plugin?: AccessRuleGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectServicesConnectionGenqlSelection {
+export interface ProjectServicesConnectionGenqlSelection{
     edges?: ProjectServicesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectServicesConnectionEdgeGenqlSelection {
+export interface ProjectServicesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ServiceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectTokenGenqlSelection {
+export interface ProjectTokenGenqlSelection{
     createdAt?: boolean | number
     displayToken?: boolean | number
     environment?: EnvironmentGenqlSelection
@@ -4853,79 +5160,57 @@ export interface ProjectTokenGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ProjectTokenCreateInput {
-    environmentId: Scalars['String']
-    name: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface ProjectTokenCreateInput {environmentId: Scalars['String'],name: Scalars['String'],projectId: Scalars['String']}
 
-export interface ProjectTransferConfirmInput {
-    ownershipTransferId: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface ProjectTransferConfirmInput {destinationWorkspaceId?: (Scalars['String'] | null),ownershipTransferId: Scalars['String'],projectId: Scalars['String']}
 
-export interface ProjectTransferInitiateInput {
-    memberId: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface ProjectTransferInitiateInput {memberId: Scalars['String'],projectId: Scalars['String']}
 
-export interface ProjectTransferToTeamInput {
-    teamId: Scalars['String']
-}
+export interface ProjectTransferInput {workspaceId: Scalars['String']}
 
-export interface ProjectUpdateInput {
-    baseEnvironmentId?: Scalars['String'] | null
-    /** Enable/disable pull request environments for PRs created by bots */
-    botPrEnvironments?: Scalars['Boolean'] | null
-    description?: Scalars['String'] | null
-    isPublic?: Scalars['Boolean'] | null
-    name?: Scalars['String'] | null
-    prDeploys?: Scalars['Boolean'] | null
-    /** Enable/disable copying volume data to PR environment from the base environment */
-    prEnvCopyVolData?: Scalars['Boolean'] | null
-}
+export interface ProjectTransferToTeamInput {teamId: Scalars['String']}
 
-export interface ProjectVolumesConnectionGenqlSelection {
+export interface ProjectUpdateInput {baseEnvironmentId?: (Scalars['String'] | null),
+/** Enable/disable pull request environments for PRs created by bots */
+botPrEnvironments?: (Scalars['Boolean'] | null),description?: (Scalars['String'] | null),isPublic?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),prDeploys?: (Scalars['Boolean'] | null)}
+
+export interface ProjectVolumesConnectionGenqlSelection{
     edges?: ProjectVolumesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectVolumesConnectionEdgeGenqlSelection {
+export interface ProjectVolumesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: VolumeGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectWebhookGenqlSelection {
-    filters?: boolean | number
-    id?: boolean | number
-    lastStatus?: boolean | number
+export interface ProjectWorkspaceMemberGenqlSelection{
+    email?: boolean | number
+    /** List of enabled 2FA methods (AUTHENTICATOR, PASSKEY) */
+    enabledMethods?: boolean | number
+    name?: boolean | number
+    twoFactorAuthEnabled?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface ProjectWorkspaceMembersResponseGenqlSelection{
+    members?: ProjectWorkspaceMemberGenqlSelection
     projectId?: boolean | number
-    url?: boolean | number
+    projectName?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ProjectWebhooksConnectionGenqlSelection {
-    edges?: ProjectWebhooksConnectionEdgeGenqlSelection
-    pageInfo?: PageInfoGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface ProjectWebhooksConnectionEdgeGenqlSelection {
-    cursor?: boolean | number
-    node?: ProjectWebhookGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface ProviderAuthGenqlSelection {
+export interface ProviderAuthGenqlSelection{
     email?: boolean | number
     id?: boolean | number
+    isAuthEnabled?: boolean | number
     metadata?: boolean | number
     provider?: boolean | number
     userId?: boolean | number
@@ -4933,21 +5218,21 @@ export interface ProviderAuthGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface PublicProjectInformationGenqlSelection {
+export interface PublicProjectInformationGenqlSelection{
     id?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface PublicProjectInvitationGenqlSelection {
-    on_InviteCode?: InviteCodeGenqlSelection
-    on_ProjectInvitation?: ProjectInvitationGenqlSelection
-    on_Node?: NodeGenqlSelection
+export interface PublicProjectInvitationGenqlSelection{
+    on_InviteCode?:InviteCodeGenqlSelection,
+    on_ProjectInvitation?:ProjectInvitationGenqlSelection,
+    on_Node?: NodeGenqlSelection,
     __typename?: boolean | number
 }
 
-export interface PublicStatsGenqlSelection {
+export interface PublicStatsGenqlSelection{
     totalDeploymentsLastMonth?: boolean | number
     totalLogsLastMonth?: boolean | number
     totalProjects?: boolean | number
@@ -4958,201 +5243,110 @@ export interface PublicStatsGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface QueryGenqlSelection {
+export interface QueryGenqlSelection{
     /** Get all volume instances for a given volume */
-    adminVolumeInstancesForVolume?: VolumeInstanceGenqlSelection & {
-        __args: { volumeId: Scalars['String'] }
-    }
+    adminVolumeInstancesForVolume?: (VolumeInstanceGenqlSelection & { __args: {volumeId: Scalars['String']} })
+    /** Returns the platform feature flags enabled for the current user */
+    allPlatformFeatureFlags?: PlatformFeatureFlagStatusGenqlSelection
+    /** Introspect the current API token and its accessible workspaces. */
+    apiToken?: ApiTokenContextGenqlSelection
     /** Gets all API tokens for the authenticated user. */
-    apiTokens?: QueryApiTokensConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    apiTokens?: (QueryApiTokensConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** Get an audit log by ID */
+    auditLog?: (AuditLogGenqlSelection & { __args: {
+    /** The ID of the audit log entry */
+    id: Scalars['String'], 
+    /** The ID of the workspace */
+    workspaceId: Scalars['String']} })
+    /** Get a list of all audit log event types and their description */
+    auditLogEventTypeInfo?: AuditLogEventTypeInfoGenqlSelection
+    /** Gets audit logs for a workspace. */
+    auditLogs?: (QueryAuditLogsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), filter?: (AuditLogFilterInput | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), sort?: (SortOrder | null), workspaceId: Scalars['String']} })
     /** Fetch logs for a build */
-    buildLogs?: LogGenqlSelection & {
-        __args: {
-            deploymentId: Scalars['String']
-            endDate?: Scalars['DateTime'] | null
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-            startDate?: Scalars['DateTime'] | null
-        }
-    }
+    buildLogs?: (LogGenqlSelection & { __args: {deploymentId: Scalars['String'], endDate?: (Scalars['DateTime'] | null), 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null), startDate?: (Scalars['DateTime'] | null)} })
     /** Gets the image URL for a Notion image block */
-    changelogBlockImage?: { __args: { id: Scalars['String'] } }
-    /** Get the total count and sum of transfers to date. */
-    creditTransferMetrics?: CreditTransferMetricsGenqlSelection
+    changelogBlockImage?: { __args: {id: Scalars['String']} }
+    /** Get compliance agreements for a workspace including HIPAA BAA and GDPR DPA status. */
+    complianceAgreements?: (ComplianceAgreementsInfoGenqlSelection & { __args: {workspaceId: Scalars['String']} })
     /** Fetch details for a custom domain */
-    customDomain?: CustomDomainGenqlSelection & {
-        __args: { id: Scalars['String']; projectId: Scalars['String'] }
-    }
+    customDomain?: (CustomDomainGenqlSelection & { __args: {id: Scalars['String'], projectId: Scalars['String']} })
     /** Checks if a custom domain is available. */
-    customDomainAvailable?: DomainAvailableGenqlSelection & {
-        __args: { domain: Scalars['String'] }
-    }
+    customDomainAvailable?: (DomainAvailableGenqlSelection & { __args: {domain: Scalars['String']} })
     /** Find a single deployment */
-    deployment?: DeploymentGenqlSelection & { __args: { id: Scalars['String'] } }
+    deployment?: (DeploymentGenqlSelection & { __args: {id: Scalars['String']} })
     /** Get the deployment events for a deployment */
-    deploymentEvents?: QueryDeploymentEventsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            id: Scalars['String']
-            last?: Scalars['Int'] | null
-        }
-    }
+    deploymentEvents?: (QueryDeploymentEventsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), id: Scalars['String'], last?: (Scalars['Int'] | null)} })
     /** Get the deployment instance executions for a deployment. */
-    deploymentInstanceExecutions?: QueryDeploymentInstanceExecutionsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            input: DeploymentInstanceExecutionListInput
-            last?: Scalars['Int'] | null
-        }
-    }
+    deploymentInstanceExecutions?: (QueryDeploymentInstanceExecutionsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), input: DeploymentInstanceExecutionListInput, last?: (Scalars['Int'] | null)} })
     /** Fetch logs for a deployment */
-    deploymentLogs?: LogGenqlSelection & {
-        __args: {
-            deploymentId: Scalars['String']
-            endDate?: Scalars['DateTime'] | null
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-            startDate?: Scalars['DateTime'] | null
-        }
-    }
+    deploymentLogs?: (LogGenqlSelection & { __args: {deploymentId: Scalars['String'], endDate?: (Scalars['DateTime'] | null), 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null), startDate?: (Scalars['DateTime'] | null)} })
     /** Find a single DeploymentSnapshot */
-    deploymentSnapshot?: DeploymentSnapshotGenqlSelection & {
-        __args: { deploymentId: Scalars['String'] }
-    }
+    deploymentSnapshot?: (DeploymentSnapshotGenqlSelection & { __args: {deploymentId: Scalars['String']} })
     /** All deployment triggers. */
-    deploymentTriggers?: QueryDeploymentTriggersConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            environmentId: Scalars['String']
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    deploymentTriggers?: (QueryDeploymentTriggersConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), environmentId: Scalars['String'], first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), projectId: Scalars['String'], serviceId: Scalars['String']} })
     /** Get all deployments */
-    deployments?: QueryDeploymentsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            input: DeploymentListInput
-            last?: Scalars['Int'] | null
-        }
-    }
+    deployments?: (QueryDeploymentsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), input: DeploymentListInput, last?: (Scalars['Int'] | null)} })
     /**
      * @deprecated Use the `status` field within the `domain` query instead
      * Domain with status
      */
-    domainStatus?: DomainWithStatusGenqlSelection & {
-        __args: { id: Scalars['String']; projectId: Scalars['String'] }
-    }
+    domainStatus?: (DomainWithStatusGenqlSelection & { __args: {id: Scalars['String'], projectId: Scalars['String']} })
     /** All domains for a service instance */
-    domains?: AllDomainsGenqlSelection & {
-        __args: {
-            environmentId: Scalars['String']
-            projectId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    domains?: (AllDomainsGenqlSelection & { __args: {environmentId: Scalars['String'], projectId: Scalars['String'], serviceId: Scalars['String']} })
     /** All egress gateways assigned to a service instance */
-    egressGateways?: EgressGatewayGenqlSelection & {
-        __args: { environmentId: Scalars['String']; serviceId: Scalars['String'] }
-    }
+    egressGateways?: (EgressGatewayGenqlSelection & { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} })
     /** Find a single environment */
-    environment?: EnvironmentGenqlSelection & { __args: { id: Scalars['String'] } }
+    environment?: (EnvironmentGenqlSelection & { __args: {id: Scalars['String'], projectId?: (Scalars['String'] | null)} })
     /** Fetch logs for a project environment. Build logs are excluded unless a snapshot ID is explicitly provided in the filter */
-    environmentLogs?: LogGenqlSelection & {
-        __args: {
-            /** Latest date to look for logs after the anchor */
-            afterDate?: Scalars['String'] | null
-            /** Limit the number of logs returned after the anchor */
-            afterLimit?: Scalars['Int'] | null
-            /** Target date time to look for logs */
-            anchorDate?: Scalars['String'] | null
-            /** Oldest date to look for logs before the anchor */
-            beforeDate?: Scalars['String'] | null
-            /** Limit the number of logs returned before the anchor */
-            beforeLimit?: Scalars['Int'] | null
-            environmentId: Scalars['String']
-            /** Filter logs using a query syntax */
-            filter?: Scalars['String'] | null
-        }
-    }
+    environmentLogs?: (LogGenqlSelection & { __args: {
+    /** Latest date to look for logs after the anchor */
+    afterDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned after the anchor */
+    afterLimit?: (Scalars['Int'] | null), 
+    /** Target date time to look for logs */
+    anchorDate?: (Scalars['String'] | null), 
+    /** Oldest date to look for logs before the anchor */
+    beforeDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned before the anchor */
+    beforeLimit?: (Scalars['Int'] | null), environmentId: Scalars['String'], 
+    /** Filter logs using a query syntax */
+    filter?: (Scalars['String'] | null)} })
+    /** Get a single environment patch by ID */
+    environmentPatch?: (EnvironmentPatchGenqlSelection & { __args: {id: Scalars['String']} })
     /** Get the patches for an environment */
-    environmentPatches?: QueryEnvironmentPatchesConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            environmentId: Scalars['String']
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    environmentPatches?: (QueryEnvironmentPatchesConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), environmentId: Scalars['String'], first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** Get the latest staged commit for a single environment. */
+    environmentStagedChanges?: (EnvironmentPatchGenqlSelection & { __args: {environmentId: Scalars['String']} })
     /** Gets all environments for a project. */
-    environments?: QueryEnvironmentsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            isEphemeral?: Scalars['Boolean'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-        }
-    }
+    environments?: (QueryEnvironmentsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), isEphemeral?: (Scalars['Boolean'] | null), last?: (Scalars['Int'] | null), projectId: Scalars['String']} })
     /** Get the estimated total cost of the project at the end of the current billing cycle. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
-    estimatedUsage?: EstimatedUsageGenqlSelection & {
-        __args: {
-            /** Whether to include deleted projects in estimations. */
-            includeDeleted?: Scalars['Boolean'] | null
-            measurements: MetricMeasurement[]
-            projectId?: Scalars['String'] | null
-            teamId?: Scalars['String'] | null
-            userId?: Scalars['String'] | null
-        }
-    }
+    estimatedUsage?: (EstimatedUsageGenqlSelection & { __args: {
+    /** Whether to include deleted projects in estimations. */
+    includeDeleted?: (Scalars['Boolean'] | null), measurements: MetricMeasurement[], projectId?: (Scalars['String'] | null), workspaceId?: (Scalars['String'] | null)} })
     /** Gets the events for a project. */
-    events?: QueryEventsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            environmentId?: Scalars['String'] | null
-            filter?: EventFilterInput | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-        }
-    }
+    events?: (QueryEventsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), environmentId?: (Scalars['String'] | null), filter?: (EventFilterInput | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), projectId: Scalars['String']} })
+    /** Get the workspaces the user doesn't belong to, but needs access (like when invited to a project) */
+    externalWorkspaces?: (ExternalWorkspaceGenqlSelection & { __args?: {projectId?: (Scalars['String'] | null)} })
+    /** Get information about a specific function runtime */
+    functionRuntime?: (FunctionRuntimeGenqlSelection & { __args: {name: FunctionRuntimeName} })
+    /** List available function runtimes */
+    functionRuntimes?: FunctionRuntimeGenqlSelection
     /** Checks if user has access to GitHub repository */
-    gitHubRepoAccessAvailable?: GitHubAccessGenqlSelection & {
-        __args: { fullRepoName: Scalars['String'] }
-    }
+    gitHubRepoAccessAvailable?: (GitHubAccessGenqlSelection & { __args: {fullRepoName: Scalars['String']} })
     /** Check if a repo name is available */
-    githubIsRepoNameAvailable?: { __args: { fullRepoName: Scalars['String'] } }
+    githubIsRepoNameAvailable?: { __args: {fullRepoName: Scalars['String']} }
     /** Checks if user has access to GitHub repository */
-    githubRepo?: GitHubRepoWithoutInstallationGenqlSelection & {
-        __args: { fullRepoName: Scalars['String'] }
-    }
+    githubRepo?: (GitHubRepoWithoutInstallationGenqlSelection & { __args: {fullRepoName: Scalars['String']} })
     /** Get branches for a GitHub repo that the authenticated user has access to */
-    githubRepoBranches?: GitHubBranchGenqlSelection & {
-        __args: { owner: Scalars['String']; repo: Scalars['String'] }
-    }
+    githubRepoBranches?: (GitHubBranchGenqlSelection & { __args: {owner: Scalars['String'], repo: Scalars['String']} })
     /** Get a list of repos for a user that Railway has access to */
     githubRepos?: GitHubRepoGenqlSelection
     /** Get a list of scopes the user has installed the installation to */
@@ -5160,646 +5354,530 @@ export interface QueryGenqlSelection {
     /** Get the Herokus apps for the current user */
     herokuApps?: HerokuAppGenqlSelection
     /** Fetch HTTP logs for a deployment */
-    httpLogs?: HttpLogGenqlSelection & {
-        __args: {
-            /** Latest date to look for logs after the anchor */
-            afterDate?: Scalars['String'] | null
-            /** Limit the number of logs returned after the anchor */
-            afterLimit?: Scalars['Int'] | null
-            /** Target date time to look for logs */
-            anchorDate?: Scalars['String'] | null
-            /** Oldest date to look for logs before the anchor */
-            beforeDate?: Scalars['String'] | null
-            /** Limit the number of logs returned before the anchor */
-            beforeLimit?: Scalars['Int'] | null
-            deploymentId: Scalars['String']
-            endDate?: Scalars['String'] | null
-            /** Filter logs using a query syntax */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-            startDate?: Scalars['String'] | null
-        }
-    }
+    httpLogs?: (HttpLogGenqlSelection & { __args: {
+    /** Latest date to look for logs after the anchor */
+    afterDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned after the anchor */
+    afterLimit?: (Scalars['Int'] | null), 
+    /** Target date time to look for logs */
+    anchorDate?: (Scalars['String'] | null), 
+    /** Oldest date to look for logs before the anchor */
+    beforeDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned before the anchor */
+    beforeLimit?: (Scalars['Int'] | null), deploymentId: Scalars['String'], endDate?: (Scalars['String'] | null), 
+    /** Filter logs using a query syntax */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null), startDate?: (Scalars['String'] | null)} })
     /** Get an integration auth by provider providerId */
-    integrationAuth?: IntegrationAuthGenqlSelection & {
-        __args: { provider: Scalars['String']; providerId: Scalars['String'] }
-    }
+    integrationAuth?: (IntegrationAuthGenqlSelection & { __args: {provider: Scalars['String'], providerId: Scalars['String']} })
     /** Get all integration auths for a user */
-    integrationAuths?: QueryIntegrationAuthsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    integrationAuths?: (QueryIntegrationAuthsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     /** Get all integrations for a project */
-    integrations?: QueryIntegrationsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-        }
-    }
+    integrations?: (QueryIntegrationsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), projectId: Scalars['String']} })
     /** Get an invite code by the code */
-    inviteCode?: InviteCodeGenqlSelection & { __args: { code: Scalars['String'] } }
+    inviteCode?: (InviteCodeGenqlSelection & { __args: {code: Scalars['String']} })
     /** Gets the authenticated user. */
     me?: UserGenqlSelection
     /** Get metrics for a project, environment, and service */
-    metrics?: MetricsResultGenqlSelection & {
-        __args: {
-            /** The averaging window when computing CPU usage. By default, it is the same as the `sampleRateSeconds`. */
-            averagingWindowSeconds?: Scalars['Int'] | null
-            /** The end of the period to get metrics for. If not provided, the current datetime is used. */
-            endDate?: Scalars['DateTime'] | null
-            environmentId?: Scalars['String'] | null
-            /** What to group the aggregated usage by. By default, it is grouped over the entire project. */
-            groupBy?: MetricTag[] | null
-            /** Whether or not to include deleted projects in the results */
-            includeDeleted?: Scalars['Boolean'] | null
-            measurements: MetricMeasurement[]
-            pluginId?: Scalars['String'] | null
-            projectId?: Scalars['String'] | null
-            /** The frequency of data points in the response. If the `sampleRateSeconds` is 60, then the response will contain one data point per minute. */
-            sampleRateSeconds?: Scalars['Int'] | null
-            serviceId?: Scalars['String'] | null
-            /** The start of the period to get metrics for. */
-            startDate: Scalars['DateTime']
-            teamId?: Scalars['String'] | null
-            userId?: Scalars['String'] | null
-            volumeId?: Scalars['String'] | null
-        }
-    }
-    node?: NodeGenqlSelection & { __args: { id: Scalars['ID'] } }
-    nodes?: NodeGenqlSelection & { __args: { ids: Scalars['ID'][] } }
+    metrics?: (MetricsResultGenqlSelection & { __args: {
+    /** The averaging window when computing CPU usage. By default, it is the same as the `sampleRateSeconds`. */
+    averagingWindowSeconds?: (Scalars['Int'] | null), 
+    /** The end of the period to get metrics for. If not provided, the current datetime is used. */
+    endDate?: (Scalars['DateTime'] | null), environmentId?: (Scalars['String'] | null), 
+    /** What to group the aggregated usage by. By default, it is grouped over the entire project. */
+    groupBy?: (MetricTag[] | null), 
+    /** Whether or not to include deleted projects in the results */
+    includeDeleted?: (Scalars['Boolean'] | null), measurements: MetricMeasurement[], projectId?: (Scalars['String'] | null), 
+    /** The frequency of data points in the response. If the `sampleRateSeconds` is 60, then the response will contain one data point per minute. */
+    sampleRateSeconds?: (Scalars['Int'] | null), serviceId?: (Scalars['String'] | null), 
+    /** The start of the period to get metrics for. */
+    startDate: Scalars['DateTime'], volumeId?: (Scalars['String'] | null), volumeInstanceExternalId?: (Scalars['String'] | null), workspaceId?: (Scalars['String'] | null)} })
+    /** Gets notification deliveries for the authenticated user */
+    notificationDeliveries?: (QueryNotificationDeliveriesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), filter?: (NotificationDeliveryFilterInput | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     /** Get all observability dashboards for an environment */
-    observabilityDashboards?: QueryObservabilityDashboardsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            environmentId: Scalars['String']
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    observabilityDashboards?: (QueryObservabilityDashboardsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), environmentId: Scalars['String'], first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** Gets all passkeys for the authenticated user */
+    passkeys?: (QueryPasskeysConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     /** Get the current status of the platform */
     platformStatus?: PlatformStatusGenqlSelection
-    /** Get a plugin by ID. */
-    plugin?: PluginGenqlSelection & { __args: { id: Scalars['String'] } }
-    /** Fetch logs for a plugin */
-    pluginLogs?: LogGenqlSelection & {
-        __args: {
-            endDate?: Scalars['DateTime'] | null
-            environmentId: Scalars['String']
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-            pluginId: Scalars['String']
-            startDate?: Scalars['DateTime'] | null
-        }
-    }
+    /**
+     * @deprecated Plugins are deprecated
+     * Get a plugin by ID.
+     */
+    plugin?: (PluginGenqlSelection & { __args: {id: Scalars['String']} })
+    /**
+     * @deprecated Plugins are deprecated
+     * Fetch logs for a plugin
+     */
+    pluginLogs?: (LogGenqlSelection & { __args: {endDate?: (Scalars['DateTime'] | null), environmentId: Scalars['String'], 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null), pluginId: Scalars['String'], startDate?: (Scalars['DateTime'] | null)} })
     /** Get the email preferences for a user */
-    preferences?: PreferencesGenqlSelection & { __args?: { token?: Scalars['String'] | null } }
+    preferences?: (PreferencesGenqlSelection & { __args?: {token?: (Scalars['String'] | null)} })
     /** Get a private network endpoint for a service instance. */
-    privateNetworkEndpoint?: PrivateNetworkEndpointGenqlSelection & {
-        __args: {
-            environmentId: Scalars['String']
-            privateNetworkId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    privateNetworkEndpoint?: (PrivateNetworkEndpointGenqlSelection & { __args: {environmentId: Scalars['String'], privateNetworkId: Scalars['String'], serviceId: Scalars['String']} })
     /** Check if an endpoint name is available. */
-    privateNetworkEndpointNameAvailable?: {
-        __args: {
-            environmentId: Scalars['String']
-            prefix: Scalars['String']
-            privateNetworkId: Scalars['String']
-        }
-    }
+    privateNetworkEndpointNameAvailable?: { __args: {environmentId: Scalars['String'], prefix: Scalars['String'], privateNetworkId: Scalars['String']} }
     /** List private networks for an environment. */
-    privateNetworks?: PrivateNetworkGenqlSelection & {
-        __args: { environmentId: Scalars['String'] }
-    }
+    privateNetworks?: (PrivateNetworkGenqlSelection & { __args: {environmentId: Scalars['String']} })
     /** Get a project by ID */
-    project?: ProjectGenqlSelection & { __args: { id: Scalars['String'] } }
+    project?: (ProjectGenqlSelection & { __args: {id: Scalars['String']} })
+    /** Get comprehensive compliance information for a project including 2FA status, member permissions, backup schedules, and compliance agreements. Requires workspace API token with admin access. */
+    projectCompliance?: (ProjectComplianceInfoGenqlSelection & { __args: {projectId: Scalars['String']} })
     /** Get a project invitation by code */
-    projectInvitation?: PublicProjectInvitationGenqlSelection & {
-        __args: { code: Scalars['String'] }
-    }
+    projectInvitation?: (PublicProjectInvitationGenqlSelection & { __args: {code: Scalars['String']} })
     /** Get invitations for a project */
-    projectInvitations?: ProjectInvitationGenqlSelection & { __args: { id: Scalars['String'] } }
+    projectInvitations?: (ProjectInvitationGenqlSelection & { __args: {id: Scalars['String']} })
     /** Get an invite code for a project for a specifc role */
-    projectInviteCode?: InviteCodeGenqlSelection & {
-        __args: { projectId: Scalars['String']; role: ProjectRole }
-    }
+    projectInviteCode?: (InviteCodeGenqlSelection & { __args: {projectId: Scalars['String'], role: ProjectRole} })
     /** Gets users who belong to a project along with their role */
-    projectMembers?: ProjectMemberGenqlSelection & { __args: { projectId: Scalars['String'] } }
+    projectMembers?: (ProjectMemberGenqlSelection & { __args: {projectId: Scalars['String']} })
     /** Get resource access rules for project-specific actions */
-    projectResourceAccess?: ProjectResourceAccessGenqlSelection & {
-        __args: { projectId: Scalars['String'] }
-    }
+    projectResourceAccess?: (ProjectResourceAccessGenqlSelection & { __args: {projectId: Scalars['String']} })
     /** Get a single project token by the value in the header */
     projectToken?: ProjectTokenGenqlSelection
     /** Get all project tokens for a project */
-    projectTokens?: QueryProjectTokensConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-        }
-    }
-    /** Gets all projects for a user or a team. */
-    projects?: QueryProjectsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            includeDeleted?: Scalars['Boolean'] | null
-            last?: Scalars['Int'] | null
-            teamId?: Scalars['String'] | null
-            userId?: Scalars['String'] | null
-        }
-    }
+    projectTokens?: (QueryProjectTokensConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), projectId: Scalars['String']} })
+    /** Get workspace members for a project with 2FA details */
+    projectWorkspaceMembers?: (ProjectWorkspaceMembersResponseGenqlSelection & { __args: {projectId: Scalars['String']} })
+    /** Gets all projects for a user or workspace. */
+    projects?: (QueryProjectsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), includeDeleted?: (Scalars['Boolean'] | null), last?: (Scalars['Int'] | null), userId?: (Scalars['String'] | null), workspaceId?: (Scalars['String'] | null)} })
     /** Get public Railway stats. */
     publicStats?: PublicStatsGenqlSelection
     /** Gets the ReferralInfo for the authenticated user. */
-    referralInfo?: ReferralInfoGenqlSelection
+    referralInfo?: (ReferralInfoGenqlSelection & { __args: {workspaceId: Scalars['String']} })
     /** List available regions */
-    regions?: RegionGenqlSelection & { __args?: { projectId?: Scalars['String'] | null } }
-    /** Get resource access for the current user or team */
-    resourceAccess?: ResourceAccessGenqlSelection & {
-        __args?: { explicitResourceOwner?: ExplicitOwnerInput | null }
-    }
+    regions?: (RegionGenqlSelection & { __args?: {projectId?: (Scalars['String'] | null)} })
+    /** Get resource access for the current user or workspace */
+    resourceAccess?: (ResourceAccessGenqlSelection & { __args: {explicitResourceOwner: ExplicitOwnerInput} })
     /** Get a service by ID */
-    service?: ServiceGenqlSelection & { __args: { id: Scalars['String'] } }
+    service?: (ServiceGenqlSelection & { __args: {id: Scalars['String']} })
     /** Checks if a service domain is available */
-    serviceDomainAvailable?: DomainAvailableGenqlSelection & {
-        __args: { domain: Scalars['String'] }
-    }
+    serviceDomainAvailable?: (DomainAvailableGenqlSelection & { __args: {domain: Scalars['String']} })
     /** Get a service instance belonging to a service and environment */
-    serviceInstance?: ServiceInstanceGenqlSelection & {
-        __args: { environmentId: Scalars['String']; serviceId: Scalars['String'] }
-    }
+    serviceInstance?: (ServiceInstanceGenqlSelection & { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} })
     /** Check if the upstream repo for a service has an update available */
-    serviceInstanceIsUpdatable?: {
-        __args: { environmentId: Scalars['String']; serviceId: Scalars['String'] }
-    }
-    /** Get the resource limits for a service instance */
-    serviceInstanceLimitOverride?: {
-        __args: {
-            environmentId: Scalars['String']
-            projectId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
-    /** Get the resource limits for a service instance */
-    serviceInstanceLimits?: {
-        __args: {
-            environmentId: Scalars['String']
-            projectId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    serviceInstanceIsUpdatable?: { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} }
+    /** Get the service instance resource limit overrides (null if no overrides set) */
+    serviceInstanceLimitOverride?: { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} }
+    /** Get the merged resource limits for a service instance (includes plan defaults) */
+    serviceInstanceLimits?: { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} }
     /** Gets all sessions for authenticated user. */
-    sessions?: QuerySessionsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    sessions?: (QuerySessionsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     /** All TCP proxies for a service instance */
-    tcpProxies?: TCPProxyGenqlSelection & {
-        __args: { environmentId: Scalars['String']; serviceId: Scalars['String'] }
-    }
-    /** Find a team by ID */
-    team?: TeamGenqlSelection & { __args: { id: Scalars['String'] } }
-    /** Find a team by invite code */
-    teamByCode?: TeamGenqlSelection & { __args: { code: Scalars['String'] } }
-    /** Get all templates for a team. */
-    teamTemplates?: QueryTeamTemplatesConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            teamId: Scalars['String']
-        }
-    }
-    /** Get all team trusted domains */
-    teamTrustedDomains?: QueryTeamTrustedDomainsConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            teamId: Scalars['String']
-        }
-    }
-    /** Get a template by code or GitHub owner and repo. */
-    template?: TemplateGenqlSelection & {
-        __args?: {
-            code?: Scalars['String'] | null
-            owner?: Scalars['String'] | null
-            repo?: Scalars['String'] | null
-        }
-    }
-    /** Get the top 25 users with the most template kickback earnings. */
-    templateKickbacksLeaderboard?: TemplateKickbacksLeaderboardGenqlSelection
+    tcpProxies?: (TCPProxyGenqlSelection & { __args: {environmentId: Scalars['String'], serviceId: Scalars['String']} })
+    /**
+     * @deprecated Teams are now workspaces. Use the workspace query instead.
+     * Find a team by ID
+     */
+    team?: (TeamGenqlSelection & { __args: {id: Scalars['String']} })
+    /**
+     * @deprecated Use templates instead - teams are now workspaces
+     * Get all templates for a team.
+     */
+    teamTemplates?: (QueryTeamTemplatesConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), teamId: Scalars['String']} })
+    /** Get a template by code or ID or GitHub owner and repo. */
+    template?: (TemplateGenqlSelection & { __args?: {code?: (Scalars['String'] | null), id?: (Scalars['String'] | null), owner?: (Scalars['String'] | null), repo?: (Scalars['String'] | null)} })
+    /** Get the metrics for a template. */
+    templateMetrics?: (TemplateMetricsGenqlSelection & { __args: {id: Scalars['String']} })
     /** Get the source template for a project. */
-    templateSourceForProject?: TemplateGenqlSelection & { __args: { projectId: Scalars['String'] } }
-    /** Get the all-time sum of template kickbacks. */
-    templatekickbacksTotal?: boolean | number
+    templateSourceForProject?: (TemplateGenqlSelection & { __args: {projectId: Scalars['String']} })
     /** Get all published templates. */
-    templates?: QueryTemplatesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            /** If set to true, only recommended templates will be returned. */
-            recommended?: Scalars['Boolean'] | null
-        }
-    }
+    templates?: (QueryTemplatesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), 
+    /** If set to true, only recommended templates will be returned. */
+    recommended?: (Scalars['Boolean'] | null), 
+    /** If set to true, only verified templates will be returned. */
+    verified?: (Scalars['Boolean'] | null)} })
+    /** Count all published templates. */
+    templatesCount?: boolean | number
+    /** Get all trusted domains for a workspace */
+    trustedDomains?: (QueryTrustedDomainsConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), workspaceId: Scalars['String']} })
     /** Gets the TwoFactorInfo for the authenticated user. */
     twoFactorInfo?: TwoFactorInfoGenqlSelection
-    /** Get the usage for a single project or all projects for a user/team. If no `projectId` or `teamId` is provided, the usage for the current user is returned. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
-    usage?: AggregatedUsageGenqlSelection & {
-        __args: {
-            endDate?: Scalars['DateTime'] | null
-            /** What to group the aggregated usage by. By default, it is grouped over the entire project. */
-            groupBy?: MetricTag[] | null
-            /** Whether to include deleted projects in the usage. */
-            includeDeleted?: Scalars['Boolean'] | null
-            measurements: MetricMeasurement[]
-            projectId?: Scalars['String'] | null
-            startDate?: Scalars['DateTime'] | null
-            teamId?: Scalars['String'] | null
-            userId?: Scalars['String'] | null
-        }
-    }
-    /** Get the user id corresponding to a Discord id */
-    userIdForDiscordId?: { __args: { discordId: Scalars['String'] } }
-    /** Get the user id corresponding to a Slack id */
-    userIdForSlackId?: { __args: { slackId: Scalars['String'] } }
+    /** Get the usage for a single project or all projects for a user/workspace. If no `projectId` or `workspaceId` is provided, the usage for the current user is returned. If no `startDate` is provided, the usage for the current billing period of the project owner is returned. */
+    usage?: (AggregatedUsageGenqlSelection & { __args: {endDate?: (Scalars['DateTime'] | null), 
+    /** What to group the aggregated usage by. By default, it is grouped over the entire project. */
+    groupBy?: (MetricTag[] | null), 
+    /** Whether to include deleted projects in the usage. */
+    includeDeleted?: (Scalars['Boolean'] | null), measurements: MetricMeasurement[], projectId?: (Scalars['String'] | null), startDate?: (Scalars['DateTime'] | null), workspaceId?: (Scalars['String'] | null)} })
     /**
      * @deprecated This field is deprecated and will be removed in future versions.
      * Get the total kickback earnings for a user.
      */
-    userKickbackEarnings?: UserKickbackEarningsGenqlSelection & {
-        __args: { userId: Scalars['String'] }
-    }
+    userKickbackEarnings?: (UserKickbackEarningsGenqlSelection & { __args: {userId: Scalars['String']} })
     /** Get the public profile for a user */
-    userProfile?: UserProfileResponseGenqlSelection & { __args: { username: Scalars['String'] } }
-    /** Get all templates for the current user. */
-    userTemplates?: QueryUserTemplatesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    userProfile?: (UserProfileResponseGenqlSelection & { __args: {username: Scalars['String']} })
+    /**
+     * @deprecated Users don't have personal templates anymore, they belong to their team now
+     * Get all templates for the current user.
+     */
+    userTemplates?: (QueryUserTemplatesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     /** All variables by pluginId or serviceId. If neither are provided, all shared variables are returned. */
-    variables?: {
-        __args: {
-            environmentId: Scalars['String']
-            /** Provide a pluginId to get all variables for a specific plugin. */
-            pluginId?: Scalars['String'] | null
-            projectId: Scalars['String']
-            /** Provide a serviceId to get all variables for a specific service. */
-            serviceId?: Scalars['String'] | null
-            unrendered?: Scalars['Boolean'] | null
-        }
-    }
+    variables?: { __args: {environmentId: Scalars['String'], projectId: Scalars['String'], 
+    /** Provide a serviceId to get all variables for a specific service. */
+    serviceId?: (Scalars['String'] | null), unrendered?: (Scalars['Boolean'] | null)} }
     /** All rendered variables that are required for a service deployment. */
-    variablesForServiceDeployment?: {
-        __args: {
-            environmentId: Scalars['String']
-            projectId: Scalars['String']
-            serviceId: Scalars['String']
-        }
-    }
+    variablesForServiceDeployment?: { __args: {environmentId: Scalars['String'], projectId: Scalars['String'], serviceId: Scalars['String']} }
     /** Get information about the user's Vercel accounts */
     vercelInfo?: VercelInfoGenqlSelection
     /** Get a single volume instance by id */
-    volumeInstance?: VolumeInstanceGenqlSelection & { __args: { id: Scalars['String'] } }
+    volumeInstance?: (VolumeInstanceGenqlSelection & { __args: {id: Scalars['String']} })
     /** List backups of a volume instance */
-    volumeInstanceBackupList?: VolumeInstanceBackupGenqlSelection & {
-        __args: {
-            /** The id of the volume instance to list the backups of */
-            volumeInstanceId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupList?: (VolumeInstanceBackupGenqlSelection & { __args: {
+    /** The id of the volume instance to list the backups of */
+    volumeInstanceId: Scalars['String']} })
     /** List backups schedules of a volume instance */
-    volumeInstanceBackupScheduleList?: VolumeInstanceBackupScheduleGenqlSelection & {
-        __args: {
-            /** The id of the volume instance to list the schedules of */
-            volumeInstanceId: Scalars['String']
-        }
-    }
-    /** Get all webhooks for a project */
-    webhooks?: QueryWebhooksConnectionGenqlSelection & {
-        __args: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-            projectId: Scalars['String']
-        }
-    }
+    volumeInstanceBackupScheduleList?: (VolumeInstanceBackupScheduleGenqlSelection & { __args: {
+    /** The id of the volume instance to list the schedules of */
+    volumeInstanceId: Scalars['String']} })
     /** Gets the status of a workflow */
-    workflowStatus?: WorkflowResultGenqlSelection & { __args: { workflowId: Scalars['String'] } }
+    workflowStatus?: (WorkflowResultGenqlSelection & { __args: {workflowId: Scalars['String']} })
     /** Get the workspace */
-    workspace?: WorkspaceGenqlSelection & { __args: { workspaceId: Scalars['String'] } }
+    workspace?: (WorkspaceGenqlSelection & { __args: {workspaceId: Scalars['String']} })
+    /** Find a workspace by invite code */
+    workspaceByCode?: (WorkspaceGenqlSelection & { __args: {code: Scalars['String']} })
+    /** Gets all identity providers of a workspace */
+    workspaceIdentityProviders?: (QueryWorkspaceIdentityProvidersConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), workspaceId: Scalars['String']} })
+    /** Get all templates for a workspace. */
+    workspaceTemplates?: (QueryWorkspaceTemplatesConnectionGenqlSelection & { __args: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null), workspaceId: Scalars['String']} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryApiTokensConnectionGenqlSelection {
+export interface QueryApiTokensConnectionGenqlSelection{
     edges?: QueryApiTokensConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryApiTokensConnectionEdgeGenqlSelection {
+export interface QueryApiTokensConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ApiTokenGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentEventsConnectionGenqlSelection {
+export interface QueryAuditLogsConnectionGenqlSelection{
+    edges?: QueryAuditLogsConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryAuditLogsConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: AuditLogGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryDeploymentEventsConnectionGenqlSelection{
     edges?: QueryDeploymentEventsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentEventsConnectionEdgeGenqlSelection {
+export interface QueryDeploymentEventsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentEventGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentInstanceExecutionsConnectionGenqlSelection {
+export interface QueryDeploymentInstanceExecutionsConnectionGenqlSelection{
     edges?: QueryDeploymentInstanceExecutionsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentInstanceExecutionsConnectionEdgeGenqlSelection {
+export interface QueryDeploymentInstanceExecutionsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentInstanceExecutionGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentTriggersConnectionGenqlSelection {
+export interface QueryDeploymentTriggersConnectionGenqlSelection{
     edges?: QueryDeploymentTriggersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentTriggersConnectionEdgeGenqlSelection {
+export interface QueryDeploymentTriggersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentTriggerGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentsConnectionGenqlSelection {
+export interface QueryDeploymentsConnectionGenqlSelection{
     edges?: QueryDeploymentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryDeploymentsConnectionEdgeGenqlSelection {
+export interface QueryDeploymentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEnvironmentPatchesConnectionGenqlSelection {
+export interface QueryEnvironmentPatchesConnectionGenqlSelection{
     edges?: QueryEnvironmentPatchesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEnvironmentPatchesConnectionEdgeGenqlSelection {
+export interface QueryEnvironmentPatchesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
+    node?: EnvironmentPatchGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEnvironmentsConnectionGenqlSelection {
+export interface QueryEnvironmentsConnectionGenqlSelection{
     edges?: QueryEnvironmentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEnvironmentsConnectionEdgeGenqlSelection {
+export interface QueryEnvironmentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: EnvironmentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEventsConnectionGenqlSelection {
+export interface QueryEventsConnectionGenqlSelection{
     edges?: QueryEventsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryEventsConnectionEdgeGenqlSelection {
+export interface QueryEventsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: EventGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryIntegrationAuthsConnectionGenqlSelection {
+export interface QueryIntegrationAuthsConnectionGenqlSelection{
     edges?: QueryIntegrationAuthsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryIntegrationAuthsConnectionEdgeGenqlSelection {
+export interface QueryIntegrationAuthsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: IntegrationAuthGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryIntegrationsConnectionGenqlSelection {
+export interface QueryIntegrationsConnectionGenqlSelection{
     edges?: QueryIntegrationsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryIntegrationsConnectionEdgeGenqlSelection {
+export interface QueryIntegrationsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: IntegrationGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryObservabilityDashboardsConnectionGenqlSelection {
+export interface QueryNotificationDeliveriesConnectionGenqlSelection{
+    edges?: QueryNotificationDeliveriesConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryNotificationDeliveriesConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: NotificationDeliveryGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryObservabilityDashboardsConnectionGenqlSelection{
     edges?: QueryObservabilityDashboardsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryObservabilityDashboardsConnectionEdgeGenqlSelection {
+export interface QueryObservabilityDashboardsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ObservabilityDashboardGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryProjectTokensConnectionGenqlSelection {
+export interface QueryPasskeysConnectionGenqlSelection{
+    edges?: QueryPasskeysConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryPasskeysConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: PasskeyGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryProjectTokensConnectionGenqlSelection{
     edges?: QueryProjectTokensConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryProjectTokensConnectionEdgeGenqlSelection {
+export interface QueryProjectTokensConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectTokenGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryProjectsConnectionGenqlSelection {
+export interface QueryProjectsConnectionGenqlSelection{
     edges?: QueryProjectsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryProjectsConnectionEdgeGenqlSelection {
+export interface QueryProjectsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QuerySessionsConnectionGenqlSelection {
+export interface QuerySessionsConnectionGenqlSelection{
     edges?: QuerySessionsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QuerySessionsConnectionEdgeGenqlSelection {
+export interface QuerySessionsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: SessionGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryTeamTemplatesConnectionGenqlSelection {
+export interface QueryTeamTemplatesConnectionGenqlSelection{
     edges?: QueryTeamTemplatesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryTeamTemplatesConnectionEdgeGenqlSelection {
+export interface QueryTeamTemplatesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: TemplateGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryTeamTrustedDomainsConnectionGenqlSelection {
-    edges?: QueryTeamTrustedDomainsConnectionEdgeGenqlSelection
-    pageInfo?: PageInfoGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface QueryTeamTrustedDomainsConnectionEdgeGenqlSelection {
-    cursor?: boolean | number
-    node?: TeamTrustedDomainGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface QueryTemplatesConnectionGenqlSelection {
+export interface QueryTemplatesConnectionGenqlSelection{
     edges?: QueryTemplatesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryTemplatesConnectionEdgeGenqlSelection {
+export interface QueryTemplatesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: TemplateGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryUserTemplatesConnectionGenqlSelection {
+export interface QueryTrustedDomainsConnectionGenqlSelection{
+    edges?: QueryTrustedDomainsConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryTrustedDomainsConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: TrustedDomainGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface QueryUserTemplatesConnectionGenqlSelection{
     edges?: QueryUserTemplatesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryUserTemplatesConnectionEdgeGenqlSelection {
+export interface QueryUserTemplatesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: TemplateGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryWebhooksConnectionGenqlSelection {
-    edges?: QueryWebhooksConnectionEdgeGenqlSelection
+export interface QueryWorkspaceIdentityProvidersConnectionGenqlSelection{
+    edges?: QueryWorkspaceIdentityProvidersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface QueryWebhooksConnectionEdgeGenqlSelection {
+export interface QueryWorkspaceIdentityProvidersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
-    node?: ProjectWebhookGenqlSelection
+    node?: WorkspaceIdentityProviderGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface RecoveryCodeValidateInput {
-    code: Scalars['String']
-    twoFactorLinkingKey?: Scalars['String'] | null
+export interface QueryWorkspaceTemplatesConnectionGenqlSelection{
+    edges?: QueryWorkspaceTemplatesConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface RecoveryCodesGenqlSelection {
+export interface QueryWorkspaceTemplatesConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: TemplateGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface RecoveryCodeValidateInput {code: Scalars['String'],twoFactorLinkingKey?: (Scalars['String'] | null)}
+
+export interface RecoveryCodesGenqlSelection{
     recoveryCodes?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ReferralInfoGenqlSelection {
+export interface ReferralInfoGenqlSelection{
     code?: boolean | number
     id?: boolean | number
     referralStats?: ReferralStatsGenqlSelection
@@ -5808,18 +5886,16 @@ export interface ReferralInfoGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ReferralInfoUpdateInput {
-    code: Scalars['String']
-}
+export interface ReferralInfoUpdateInput {code: Scalars['String'],workspaceId: Scalars['String']}
 
-export interface ReferralStatsGenqlSelection {
+export interface ReferralStatsGenqlSelection{
     credited?: boolean | number
     pending?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ReferralUserGenqlSelection {
+export interface ReferralUserGenqlSelection{
     code?: boolean | number
     id?: boolean | number
     status?: boolean | number
@@ -5827,22 +5903,7 @@ export interface ReferralUserGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface RefundRequestGenqlSelection {
-    amount?: boolean | number
-    decision?: boolean | number
-    id?: boolean | number
-    invoiceId?: boolean | number
-    plainThreadId?: boolean | number
-    reason?: boolean | number
-    teamId?: boolean | number
-    userId?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface RegionGenqlSelection {
-    /** @deprecated Use deploymentConstraints.adminOnly */
-    adminOnly?: boolean | number
+export interface RegionGenqlSelection{
     /** Region country */
     country?: boolean | number
     deploymentConstraints?: RegionDeploymentConstraintsGenqlSelection
@@ -5851,16 +5912,16 @@ export interface RegionGenqlSelection {
     /** Region is on Railway Metal */
     railwayMetal?: boolean | number
     region?: boolean | number
-    teamId?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface RegionDeploymentConstraintsGenqlSelection {
+export interface RegionDeploymentConstraintsGenqlSelection{
     /** Admin only region */
     adminOnly?: boolean | number
-    /** Region doesn't allow volumes */
-    computeOnly?: boolean | number
+    /** Deprecation information for the region */
+    deprecationInfo?: RegionDeprecationInfoGenqlSelection
     runtimeExclusivity?: boolean | number
     /** Staging only region */
     stagingOnly?: boolean | number
@@ -5868,66 +5929,44 @@ export interface RegionDeploymentConstraintsGenqlSelection {
     __scalar?: boolean | number
 }
 
+export interface RegionDeprecationInfoGenqlSelection{
+    /** Specifies if the region is deprecated */
+    isDeprecated?: boolean | number
+    /** Replacement region for the deprecated region */
+    replacementRegion?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
 /** Private Docker registry credentials. Only available for Pro plan deployments. */
-export interface RegistryCredentialsInput {
-    password: Scalars['String']
-    username: Scalars['String']
-}
+export interface RegistryCredentialsInput {password: Scalars['String'],username: Scalars['String']}
 
-export interface ResetPluginCredentialsInput {
-    environmentId: Scalars['String']
-}
+export interface ResetPluginCredentialsInput {environmentId: Scalars['String']}
 
-export interface ResetPluginInput {
-    environmentId: Scalars['String']
-}
+export interface ResetPluginInput {environmentId: Scalars['String']}
 
-export interface ResourceAccessGenqlSelection {
+export interface ResourceAccessGenqlSelection{
+    deployment?: AccessRuleGenqlSelection
     project?: AccessRuleGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface SendCommunityThreadNotificationEmailInput {
-    postEntryContent?: Scalars['String'] | null
-    threadTitle: Scalars['String']
-    threadUrl: Scalars['String']
-    userIds: Scalars['String'][]
-}
-
-export interface ServiceGenqlSelection {
+export interface ServiceGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
-    deployments?: ServiceDeploymentsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    /** @deprecated Use environment.deployments for properly scoped access control */
+    deployments?: (ServiceDeploymentsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     featureFlags?: boolean | number
     icon?: boolean | number
     id?: boolean | number
     name?: boolean | number
     project?: ProjectGenqlSelection
     projectId?: boolean | number
-    repoTriggers?: ServiceRepoTriggersConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    serviceInstances?: ServiceServiceInstancesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    repoTriggers?: (ServiceRepoTriggersConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** @deprecated Use environment.serviceInstances for properly scoped access control */
+    serviceInstances?: (ServiceServiceInstancesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     templateServiceId?: boolean | number
     templateThreadSlug?: boolean | number
     updatedAt?: boolean | number
@@ -5935,46 +5974,46 @@ export interface ServiceGenqlSelection {
     __scalar?: boolean | number
 }
 
+export interface ServiceBackupInfoGenqlSelection{
+    /** List of enabled backup schedule kinds (DAILY, WEEKLY, MONTHLY) */
+    schedules?: boolean | number
+    serviceId?: boolean | number
+    serviceName?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface ServiceConnectInput {
-    /** The branch to connect to. e.g. 'main' */
-    branch?: Scalars['String'] | null
-    /** Name of the Dockerhub or GHCR image to connect this service to. */
-    image?: Scalars['String'] | null
-    /** The full name of the repo to connect to. e.g. 'railwayapp/starters' */
-    repo?: Scalars['String'] | null
-}
+/** The branch to connect to. e.g. 'main' */
+branch?: (Scalars['String'] | null),
+/** Name of the Dockerhub or GHCR image to connect this service to. */
+image?: (Scalars['String'] | null),
+/** The full name of the repo to connect to. e.g. 'railwayapp/starters' */
+repo?: (Scalars['String'] | null)}
 
-export interface ServiceCreateInput {
-    branch?: Scalars['String'] | null
-    /** Environment ID. If the specified environment is a fork, the service will only be created in it. Otherwise it will created in all environments that are not forks of other environments */
-    environmentId?: Scalars['String'] | null
-    icon?: Scalars['String'] | null
-    name?: Scalars['String'] | null
-    projectId: Scalars['String']
-    registryCredentials?: RegistryCredentialsInput | null
-    source?: ServiceSourceInput | null
-    templateServiceId?: Scalars['String'] | null
-    variables?: Scalars['EnvironmentVariables'] | null
-}
+export interface ServiceCreateInput {branch?: (Scalars['String'] | null),
+/** Environment ID. If the specified environment is a fork, the service will only be created in it. Otherwise it will created in all environments that are not forks of other environments */
+environmentId?: (Scalars['String'] | null),icon?: (Scalars['String'] | null),name?: (Scalars['String'] | null),projectId: Scalars['String'],registryCredentials?: (RegistryCredentialsInput | null),source?: (ServiceSourceInput | null),templateServiceId?: (Scalars['String'] | null),variables?: (Scalars['EnvironmentVariables'] | null)}
 
-export interface ServiceDeploymentsConnectionGenqlSelection {
+export interface ServiceDeploymentsConnectionGenqlSelection{
     edges?: ServiceDeploymentsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceDeploymentsConnectionEdgeGenqlSelection {
+export interface ServiceDeploymentsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceDomainGenqlSelection {
+export interface ServiceDomainGenqlSelection{
     createdAt?: boolean | number
     deletedAt?: boolean | number
     domain?: boolean | number
+    edgeId?: boolean | number
     environmentId?: boolean | number
     id?: boolean | number
     projectId?: boolean | number
@@ -5986,32 +6025,21 @@ export interface ServiceDomainGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ServiceDomainCreateInput {
-    environmentId: Scalars['String']
-    serviceId: Scalars['String']
-    targetPort?: Scalars['Int'] | null
-}
+export interface ServiceDomainCreateInput {environmentId: Scalars['String'],serviceId: Scalars['String'],targetPort?: (Scalars['Int'] | null)}
 
-export interface ServiceDomainUpdateInput {
-    domain: Scalars['String']
-    environmentId: Scalars['String']
-    serviceDomainId?: Scalars['String'] | null
-    serviceId: Scalars['String']
-    targetPort?: Scalars['Int'] | null
-}
+export interface ServiceDomainUpdateInput {domain: Scalars['String'],environmentId: Scalars['String'],serviceDomainId: Scalars['String'],serviceId: Scalars['String'],targetPort?: (Scalars['Int'] | null)}
 
-export interface ServiceFeatureFlagToggleInput {
-    flag: ActiveServiceFeatureFlag
-    serviceId: Scalars['String']
-}
+export interface ServiceFeatureFlagToggleInput {flag: ActiveServiceFeatureFlag,serviceId: Scalars['String']}
 
-export interface ServiceInstanceGenqlSelection {
+export interface ServiceInstanceGenqlSelection{
     buildCommand?: boolean | number
     builder?: boolean | number
     createdAt?: boolean | number
     cronSchedule?: boolean | number
     deletedAt?: boolean | number
+    dockerfilePath?: boolean | number
     domains?: AllDomainsGenqlSelection
+    drainingSeconds?: boolean | number
     environmentId?: boolean | number
     healthcheckPath?: boolean | number
     healthcheckTimeout?: boolean | number
@@ -6021,7 +6049,9 @@ export interface ServiceInstanceGenqlSelection {
     nextCronRunAt?: boolean | number
     nixpacksPlan?: boolean | number
     numReplicas?: boolean | number
+    overlapSeconds?: boolean | number
     preDeployCommand?: boolean | number
+    railpackInfo?: boolean | number
     railwayConfigFile?: boolean | number
     region?: boolean | number
     restartPolicyMaxRetries?: boolean | number
@@ -6039,83 +6069,54 @@ export interface ServiceInstanceGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface ServiceInstanceLimitsUpdateInput {
-    environmentId: Scalars['String']
-    /** Amount of memory in GB to allocate to the service instance */
-    memoryGB?: Scalars['Float'] | null
-    serviceId: Scalars['String']
-    /** Number of vCPUs to allocate to the service instance */
-    vCPUs?: Scalars['Float'] | null
-}
+export interface ServiceInstanceLimitsUpdateInput {environmentId: Scalars['String'],
+/** Amount of memory in GB to allocate to the service instance */
+memoryGB?: (Scalars['Float'] | null),serviceId: Scalars['String'],
+/** Number of vCPUs to allocate to the service instance */
+vCPUs?: (Scalars['Float'] | null)}
 
-export interface ServiceInstanceUpdateInput {
-    buildCommand?: Scalars['String'] | null
-    builder?: Builder | null
-    cronSchedule?: Scalars['String'] | null
-    healthcheckPath?: Scalars['String'] | null
-    healthcheckTimeout?: Scalars['Int'] | null
-    multiRegionConfig?: Scalars['JSON'] | null
-    nixpacksPlan?: Scalars['JSON'] | null
-    numReplicas?: Scalars['Int'] | null
-    preDeployCommand?: Scalars['String'][] | null
-    railwayConfigFile?: Scalars['String'] | null
-    region?: Scalars['String'] | null
-    registryCredentials?: RegistryCredentialsInput | null
-    restartPolicyMaxRetries?: Scalars['Int'] | null
-    restartPolicyType?: RestartPolicyType | null
-    rootDirectory?: Scalars['String'] | null
-    sleepApplication?: Scalars['Boolean'] | null
-    source?: ServiceSourceInput | null
-    startCommand?: Scalars['String'] | null
-    watchPatterns?: Scalars['String'][] | null
-}
+export interface ServiceInstanceUpdateInput {buildCommand?: (Scalars['String'] | null),builder?: (Builder | null),cronSchedule?: (Scalars['String'] | null),dockerfilePath?: (Scalars['String'] | null),drainingSeconds?: (Scalars['Int'] | null),healthcheckPath?: (Scalars['String'] | null),healthcheckTimeout?: (Scalars['Int'] | null),multiRegionConfig?: (Scalars['JSON'] | null),nixpacksPlan?: (Scalars['JSON'] | null),numReplicas?: (Scalars['Int'] | null),overlapSeconds?: (Scalars['Int'] | null),preDeployCommand?: (Scalars['String'][] | null),railwayConfigFile?: (Scalars['String'] | null),region?: (Scalars['String'] | null),registryCredentials?: (RegistryCredentialsInput | null),restartPolicyMaxRetries?: (Scalars['Int'] | null),restartPolicyType?: (RestartPolicyType | null),rootDirectory?: (Scalars['String'] | null),sleepApplication?: (Scalars['Boolean'] | null),source?: (ServiceSourceInput | null),startCommand?: (Scalars['String'] | null),watchPatterns?: (Scalars['String'][] | null)}
 
-export interface ServiceRepoTriggersConnectionGenqlSelection {
+export interface ServiceRepoTriggersConnectionGenqlSelection{
     edges?: ServiceRepoTriggersConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceRepoTriggersConnectionEdgeGenqlSelection {
+export interface ServiceRepoTriggersConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: DeploymentTriggerGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceServiceInstancesConnectionGenqlSelection {
+export interface ServiceServiceInstancesConnectionGenqlSelection{
     edges?: ServiceServiceInstancesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceServiceInstancesConnectionEdgeGenqlSelection {
+export interface ServiceServiceInstancesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ServiceInstanceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceSourceGenqlSelection {
+export interface ServiceSourceGenqlSelection{
     image?: boolean | number
     repo?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface ServiceSourceInput {
-    image?: Scalars['String'] | null
-    repo?: Scalars['String'] | null
-}
+export interface ServiceSourceInput {image?: (Scalars['String'] | null),repo?: (Scalars['String'] | null)}
 
-export interface ServiceUpdateInput {
-    icon?: Scalars['String'] | null
-    name?: Scalars['String'] | null
-}
+export interface ServiceUpdateInput {icon?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
 
-export interface SessionGenqlSelection {
+export interface SessionGenqlSelection{
     createdAt?: boolean | number
     expiredAt?: boolean | number
     id?: boolean | number
@@ -6127,15 +6128,9 @@ export interface SessionGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface SharedVariableConfigureInput {
-    disabledServiceIds: Scalars['String'][]
-    enabledServiceIds: Scalars['String'][]
-    environmentId: Scalars['String']
-    name: Scalars['String']
-    projectId: Scalars['String']
-}
+export interface SharedVariableConfigureInput {disabledServiceIds: Scalars['String'][],enabledServiceIds: Scalars['String'][],environmentId: Scalars['String'],name: Scalars['String'],projectId: Scalars['String']}
 
-export interface SimilarTemplateGenqlSelection {
+export interface SimilarTemplateGenqlSelection{
     code?: boolean | number
     createdAt?: boolean | number
     creator?: TemplateCreatorGenqlSelection
@@ -6144,100 +6139,90 @@ export interface SimilarTemplateGenqlSelection {
     health?: boolean | number
     image?: boolean | number
     name?: boolean | number
+    /** @deprecated Use workspaceId */
     teamId?: boolean | number
     userId?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface SubscriptionGenqlSelection {
+export interface SubscriptionGenqlSelection{
     /** Stream logs for a build */
-    buildLogs?: LogGenqlSelection & {
-        __args: {
-            deploymentId: Scalars['String']
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-        }
-    }
+    buildLogs?: (LogGenqlSelection & { __args: {deploymentId: Scalars['String'], 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null)} })
     /** Subscribe to updates for a specific deployment */
-    deployment?: DeploymentGenqlSelection & { __args: { id: Scalars['String'] } }
+    deployment?: (DeploymentGenqlSelection & { __args: {id: Scalars['String']} })
     /** Subscribe to deployment events for a specific deployment */
-    deploymentEvents?: DeploymentEventGenqlSelection & { __args: { id: Scalars['String'] } }
+    deploymentEvents?: (DeploymentEventGenqlSelection & { __args: {id: Scalars['String']} })
     /** Subscribe to deployment instance executions for a specific deployment */
-    deploymentInstanceExecutions?: DeploymentInstanceExecutionGenqlSelection & {
-        __args: { input: DeploymentInstanceExecutionInput }
-    }
+    deploymentInstanceExecutions?: (DeploymentInstanceExecutionGenqlSelection & { __args: {input: DeploymentInstanceExecutionInput} })
     /** Stream logs for a deployment */
-    deploymentLogs?: LogGenqlSelection & {
-        __args: {
-            deploymentId: Scalars['String']
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-        }
-    }
+    deploymentLogs?: (LogGenqlSelection & { __args: {deploymentId: Scalars['String'], 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null)} })
     /** Stream logs for a project environment */
-    environmentLogs?: LogGenqlSelection & {
-        __args: {
-            /** Latest date to look for logs after the anchor */
-            afterDate?: Scalars['String'] | null
-            /** Limit the number of logs returned after the anchor */
-            afterLimit?: Scalars['Int'] | null
-            /** Target date time to look for logs */
-            anchorDate?: Scalars['String'] | null
-            /** Oldest date to look for logs before the anchor */
-            beforeDate?: Scalars['String'] | null
-            /** Limit the number of logs returned before the anchor */
-            beforeLimit?: Scalars['Int'] | null
-            environmentId: Scalars['String']
-            /** Filter logs using a query syntax */
-            filter?: Scalars['String'] | null
-        }
-    }
+    environmentLogs?: (LogGenqlSelection & { __args: {
+    /** Latest date to look for logs after the anchor */
+    afterDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned after the anchor */
+    afterLimit?: (Scalars['Int'] | null), 
+    /** Target date time to look for logs */
+    anchorDate?: (Scalars['String'] | null), 
+    /** Oldest date to look for logs before the anchor */
+    beforeDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned before the anchor */
+    beforeLimit?: (Scalars['Int'] | null), environmentId: Scalars['String'], 
+    /** Filter logs using a query syntax */
+    filter?: (Scalars['String'] | null)} })
+    /** Subscribe to updates for the staged patch for a single environment. */
+    environmentStagedPatch?: (EnvironmentPatchGenqlSelection & { __args: {environmentId: Scalars['String']} })
     /** Stream HTTP logs for a deployment */
-    httpLogs?: HttpLogGenqlSelection & {
-        __args: {
-            /** Latest date to look for logs after the anchor */
-            afterDate?: Scalars['String'] | null
-            /** Limit the number of logs returned after the anchor */
-            afterLimit?: Scalars['Int'] | null
-            /** Target date time to look for logs */
-            anchorDate?: Scalars['String'] | null
-            /** Oldest date to look for logs before the anchor */
-            beforeDate?: Scalars['String'] | null
-            /** Limit the number of logs returned before the anchor */
-            beforeLimit?: Scalars['Int'] | null
-            deploymentId: Scalars['String']
-            /** Filter logs using a query syntax */
-            filter?: Scalars['String'] | null
-        }
-    }
-    /** Stream logs for a plugin */
-    pluginLogs?: LogGenqlSelection & {
-        __args: {
-            environmentId: Scalars['String']
-            /** Filter logs by a string. Providing an empty value will match all logs. */
-            filter?: Scalars['String'] | null
-            /** Limit the number of logs returned (defaults 100, max 5000) */
-            limit?: Scalars['Int'] | null
-            pluginId: Scalars['String']
-        }
-    }
+    httpLogs?: (HttpLogGenqlSelection & { __args: {
+    /** Latest date to look for logs after the anchor */
+    afterDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned after the anchor */
+    afterLimit?: (Scalars['Int'] | null), 
+    /** Target date time to look for logs */
+    anchorDate?: (Scalars['String'] | null), 
+    /** Oldest date to look for logs before the anchor */
+    beforeDate?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned before the anchor */
+    beforeLimit?: (Scalars['Int'] | null), deploymentId: Scalars['String'], 
+    /** Filter logs using a query syntax */
+    filter?: (Scalars['String'] | null)} })
+    /** Subscribe to notification delivery updates (created and resolved) for the authenticated user */
+    notificationDeliveryUpdated?: NotificationDeliveryUpdateGenqlSelection
+    /**
+     * @deprecated Plugins are deprecated
+     * Stream logs for a plugin
+     */
+    pluginLogs?: (LogGenqlSelection & { __args: {environmentId: Scalars['String'], 
+    /** Filter logs by a string. Providing an empty value will match all logs. */
+    filter?: (Scalars['String'] | null), 
+    /** Limit the number of logs returned (defaults 100, max 5000) */
+    limit?: (Scalars['Int'] | null), pluginId: Scalars['String']} })
+    /** Subscribe to migration progress updates for a volume */
+    replicationProgress?: (VolumeReplicationProgressUpdateGenqlSelection & { __args: {volumeInstanceId: Scalars['String']} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface SubscriptionDiscountGenqlSelection {
+export interface SubscriptionDiscountGenqlSelection{
     couponId?: boolean | number
+    couponName?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface SubscriptionItemGenqlSelection {
+export interface SubscriptionItemGenqlSelection{
     itemId?: boolean | number
+    priceDollars?: boolean | number
     priceId?: boolean | number
     productId?: boolean | number
     quantity?: boolean | number
@@ -6245,7 +6230,7 @@ export interface SubscriptionItemGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface TCPProxyGenqlSelection {
+export interface TCPProxyGenqlSelection{
     applicationPort?: boolean | number
     createdAt?: boolean | number
     deletedAt?: boolean | number
@@ -6259,72 +6244,46 @@ export interface TCPProxyGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface TCPProxyCreateInput {
-    applicationPort: Scalars['Int']
-    environmentId: Scalars['String']
-    serviceId: Scalars['String']
-}
+export interface TCPProxyCreateInput {applicationPort: Scalars['Int'],environmentId: Scalars['String'],serviceId: Scalars['String']}
 
-export interface TeamGenqlSelection {
+export interface TeamGenqlSelection{
+    /** @deprecated Use workspace object instead */
     adoptionHistory?: AdoptionInfoGenqlSelection
+    /** @deprecated Use workspace object instead */
     adoptionLevel?: boolean | number
+    /** @deprecated Use workspace object instead */
+    apiTokenRateLimit?: ApiTokenRateLimitGenqlSelection
+    /** @deprecated Use workspace object instead */
     avatar?: boolean | number
-    banReason?: boolean | number
+    /** @deprecated Use workspace object instead */
     createdAt?: boolean | number
-    /** @deprecated Access the customer through the workspace */
+    /** @deprecated Use workspace object instead */
     customer?: CustomerGenqlSelection
-    discordRole?: boolean | number
+    /** @deprecated Use workspace object instead */
     id?: boolean | number
+    /** @deprecated Use workspace object instead */
     members?: TeamMemberGenqlSelection
+    /** @deprecated Use workspace object instead */
     name?: boolean | number
+    /** @deprecated Use workspace object instead */
     preferredRegion?: boolean | number
-    projects?: TeamProjectsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    promptUpgrade?: boolean | number
+    /** @deprecated Use workspace object instead */
+    projects?: (TeamProjectsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** @deprecated Use workspace object instead */
     slackChannelId?: boolean | number
+    /** @deprecated Use workspace object instead */
     supportTierOverride?: boolean | number
+    /** @deprecated Use workspace object instead */
     teamPermissions?: TeamPermissionGenqlSelection
+    /** @deprecated Use workspace object instead */
     updatedAt?: boolean | number
+    /** @deprecated Use workspace object instead */
     workspace?: WorkspaceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TeamBulkProjectTransferInput {
-    projectIds: Scalars['String'][]
-    teamId: Scalars['String']
-}
-
-export interface TeamCreateAndSubscribeInput {
-    avatar?: Scalars['String'] | null
-    name: Scalars['String']
-    paymentMethodId: Scalars['String']
-}
-
-export interface TeamCreateAndSubscribeResponseGenqlSelection {
-    customerId?: boolean | number
-    paymentIntent?: boolean | number
-    teamId?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface TeamCreateInput {
-    avatar?: Scalars['String'] | null
-    name: Scalars['String']
-}
-
-export interface TeamInviteCodeCreateInput {
-    role: Scalars['String']
-}
-
-export interface TeamMemberGenqlSelection {
+export interface TeamMemberGenqlSelection{
     avatar?: boolean | number
     email?: boolean | number
     /** Only retrieved if requested by an admin */
@@ -6336,84 +6295,38 @@ export interface TeamMemberGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface TeamPermissionGenqlSelection {
+export interface TeamPermissionGenqlSelection{
     createdAt?: boolean | number
     id?: boolean | number
     role?: boolean | number
-    teamId?: boolean | number
     updatedAt?: boolean | number
     userId?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TeamPermissionChangeInput {
-    role: TeamRole
-    teamId: Scalars['String']
-    userId: Scalars['String']
-}
-
-export interface TeamProjectsConnectionGenqlSelection {
+export interface TeamProjectsConnectionGenqlSelection{
     edges?: TeamProjectsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TeamProjectsConnectionEdgeGenqlSelection {
+export interface TeamProjectsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TeamTrustedDomainGenqlSelection {
-    domainName?: boolean | number
-    id?: boolean | number
-    teamId?: boolean | number
-    teamRole?: boolean | number
-    verificationData?: TrustedDomainVerificationDataGenqlSelection
-    verificationType?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface TeamTrustedDomainCreateInput {
-    domainName: Scalars['String']
-    teamId: Scalars['String']
-    teamRole: Scalars['String']
-}
-
-export interface TeamUpdateInput {
-    avatar?: Scalars['String'] | null
-    name?: Scalars['String'] | null
-    preferredRegion?: Scalars['String'] | null
-}
-
-export interface TeamUserInviteInput {
-    code: Scalars['String']
-    email: Scalars['String']
-}
-
-export interface TeamUserRemoveInput {
-    userId: Scalars['String']
-}
-
-export interface TelemetrySendInput {
-    command: Scalars['String']
-    environmentId?: Scalars['String'] | null
-    error: Scalars['String']
-    projectId?: Scalars['String'] | null
-    stacktrace: Scalars['String']
-    version?: Scalars['String'] | null
-}
-
-export interface TemplateGenqlSelection {
+export interface TemplateGenqlSelection{
     activeProjects?: boolean | number
     canvasConfig?: boolean | number
     category?: boolean | number
     code?: boolean | number
     communityThreadSlug?: boolean | number
+    /** @deprecated Use serializedConfig instead */
     config?: boolean | number
     createdAt?: boolean | number
     creator?: TemplateCreatorGenqlSelection
@@ -6425,37 +6338,31 @@ export interface TemplateGenqlSelection {
     image?: boolean | number
     isApproved?: boolean | number
     isV2Template?: boolean | number
+    isVerified?: boolean | number
     languages?: boolean | number
     /** @deprecated Deprecated in favor of listing the fields individually. */
     metadata?: boolean | number
     name?: boolean | number
     projects?: boolean | number
     readme?: boolean | number
+    recentProjects?: boolean | number
     serializedConfig?: boolean | number
-    services?: TemplateServicesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    services?: (TemplateServicesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     similarTemplates?: SimilarTemplateGenqlSelection
     status?: boolean | number
+    supportHealthMetrics?: boolean | number
     tags?: boolean | number
+    /** @deprecated Use workspaceId */
     teamId?: boolean | number
     totalPayout?: boolean | number
-    userId?: boolean | number
+    workspaceId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TemplateCloneInput {
-    code: Scalars['String']
-    teamId?: Scalars['String'] | null
-}
+export interface TemplateCloneInput {code: Scalars['String'],workspaceId?: (Scalars['String'] | null)}
 
-export interface TemplateCreatorGenqlSelection {
+export interface TemplateCreatorGenqlSelection{
     avatar?: boolean | number
     hasPublicProfile?: boolean | number
     name?: boolean | number
@@ -6464,82 +6371,47 @@ export interface TemplateCreatorGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface TemplateDeleteInput {
-    teamId?: Scalars['String'] | null
-}
+export interface TemplateDeleteInput {workspaceId?: (Scalars['String'] | null)}
 
-export interface TemplateDeployInput {
-    environmentId?: Scalars['String'] | null
-    projectId?: Scalars['String'] | null
-    services: TemplateDeployService[]
-    teamId?: Scalars['String'] | null
-    templateCode?: Scalars['String'] | null
-}
+export interface TemplateDeployInput {environmentId?: (Scalars['String'] | null),projectId?: (Scalars['String'] | null),services: TemplateDeployService[],templateCode?: (Scalars['String'] | null),workspaceId?: (Scalars['String'] | null)}
 
-export interface TemplateDeployPayloadGenqlSelection {
+export interface TemplateDeployPayloadGenqlSelection{
     projectId?: boolean | number
     workflowId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TemplateDeployService {
-    commit?: Scalars['String'] | null
-    hasDomain?: Scalars['Boolean'] | null
-    healthcheckPath?: Scalars['String'] | null
-    id: Scalars['String']
-    isPrivate?: Scalars['Boolean'] | null
-    name?: Scalars['String'] | null
-    owner?: Scalars['String'] | null
-    preDeployCommand?: Scalars['String'][] | null
-    rootDirectory?: Scalars['String'] | null
-    serviceIcon?: Scalars['String'] | null
-    serviceName: Scalars['String']
-    startCommand?: Scalars['String'] | null
-    tcpProxyApplicationPort?: Scalars['Int'] | null
-    template: Scalars['String']
-    variables?: Scalars['EnvironmentVariables'] | null
-    volumes?: Scalars['TemplateVolume'][] | null
-}
+export interface TemplateDeployService {commit?: (Scalars['String'] | null),hasDomain?: (Scalars['Boolean'] | null),healthcheckPath?: (Scalars['String'] | null),id: Scalars['String'],isPrivate?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),owner?: (Scalars['String'] | null),preDeployCommand?: (Scalars['String'][] | null),rootDirectory?: (Scalars['String'] | null),serviceIcon?: (Scalars['String'] | null),serviceName: Scalars['String'],startCommand?: (Scalars['String'] | null),tcpProxyApplicationPort?: (Scalars['Int'] | null),template: Scalars['String'],variables?: (Scalars['EnvironmentVariables'] | null),volumes?: (Scalars['TemplateVolume'][] | null)}
 
-export interface TemplateDeployV2Input {
-    environmentId?: Scalars['String'] | null
-    projectId?: Scalars['String'] | null
-    serializedConfig: Scalars['SerializedTemplateConfig']
-    teamId?: Scalars['String'] | null
-    templateId: Scalars['String']
-}
+export interface TemplateDeployV2Input {environmentId?: (Scalars['String'] | null),projectId?: (Scalars['String'] | null),serializedConfig: Scalars['SerializedTemplateConfig'],templateId: Scalars['String'],workspaceId?: (Scalars['String'] | null)}
 
-export interface TemplateGenerateInput {
-    environmentId?: Scalars['String'] | null
-    projectId: Scalars['String']
-    teamId?: Scalars['String'] | null
-}
+export interface TemplateGenerateInput {environmentId?: (Scalars['String'] | null),projectId: Scalars['String']}
 
-export interface TemplateGuideGenqlSelection {
+export interface TemplateGuideGenqlSelection{
     post?: boolean | number
     video?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TemplateKickbacksLeaderboardGenqlSelection {
-    total_amount?: boolean | number
-    userId?: boolean | number
+export interface TemplateMetricsGenqlSelection{
+    activeDeployments?: boolean | number
+    deploymentsLast90Days?: boolean | number
+    earningsLast30Days?: boolean | number
+    earningsLast90Days?: boolean | number
+    eligibleForSupportBonus?: boolean | number
+    supportHealth?: boolean | number
+    templateHealth?: boolean | number
+    totalDeployments?: boolean | number
+    totalEarnings?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TemplatePublishInput {
-    category: Scalars['String']
-    demoProjectId?: Scalars['String'] | null
-    description: Scalars['String']
-    image?: Scalars['String'] | null
-    readme: Scalars['String']
-    teamId?: Scalars['String'] | null
-}
+export interface TemplatePublishInput {category: Scalars['String'],demoProjectId?: (Scalars['String'] | null),description: Scalars['String'],image?: (Scalars['String'] | null),readme: Scalars['String'],workspaceId?: (Scalars['String'] | null)}
 
-export interface TemplateServiceGenqlSelection {
+export interface TemplateServiceGenqlSelection{
     config?: boolean | number
     createdAt?: boolean | number
     id?: boolean | number
@@ -6549,71 +6421,61 @@ export interface TemplateServiceGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface TemplateServiceSourceEjectInput {
-    projectId: Scalars['String']
-    repoName: Scalars['String']
-    repoOwner: Scalars['String']
-    /** Provide multiple serviceIds when ejecting services from a monorepo. */
-    serviceIds: Scalars['String'][]
-    upstreamUrl: Scalars['String']
-}
+export interface TemplateServiceSourceEjectInput {projectId: Scalars['String'],repoName: Scalars['String'],repoOwner: Scalars['String'],
+/** Provide multiple serviceIds when ejecting services from a monorepo. */
+serviceIds: Scalars['String'][],upstreamUrl: Scalars['String']}
 
-export interface TemplateServicesConnectionGenqlSelection {
+export interface TemplateServicesConnectionGenqlSelection{
     edges?: TemplateServicesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TemplateServicesConnectionEdgeGenqlSelection {
+export interface TemplateServicesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: TemplateServiceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TrustedDomainVerificationDataGenqlSelection {
+export interface TrustedDomainGenqlSelection{
+    domainName?: boolean | number
+    id?: boolean | number
+    role?: boolean | number
+    verificationData?: TrustedDomainVerificationDataGenqlSelection
+    verificationType?: boolean | number
+    workspaceId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface TrustedDomainVerificationDataGenqlSelection{
     domainMatch?: DomainGenqlSelection
     domainStatus?: CustomDomainStatusGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TwoFactorInfoGenqlSelection {
+export interface TwoFactorInfoGenqlSelection{
     hasRecoveryCodes?: boolean | number
     isVerified?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TwoFactorInfoCreateInput {
-    token: Scalars['String']
-}
+export interface TwoFactorInfoCreateInput {token: Scalars['String']}
 
-export interface TwoFactorInfoSecretGenqlSelection {
+export interface TwoFactorInfoSecretGenqlSelection{
     secret?: boolean | number
     uri?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface TwoFactorInfoValidateInput {
-    token: Scalars['String']
-    twoFactorLinkingKey?: Scalars['String'] | null
-}
+export interface TwoFactorInfoValidateInput {token: Scalars['String'],twoFactorLinkingKey?: (Scalars['String'] | null)}
 
-export interface UsageAnomalyGenqlSelection {
-    actedOn?: boolean | number
-    action?: boolean | number
-    actorId?: boolean | number
-    flaggedAt?: boolean | number
-    flaggedFor?: boolean | number
-    id?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface UsageLimitGenqlSelection {
+export interface UsageLimitGenqlSelection{
     customerId?: boolean | number
     hardLimit?: boolean | number
     id?: boolean | number
@@ -6623,67 +6485,38 @@ export interface UsageLimitGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface UsageLimitRemoveInput {
-    customerId: Scalars['String']
-}
+export interface UsageLimitRemoveInput {customerId: Scalars['String']}
 
-export interface UsageLimitSetInput {
-    customerId: Scalars['String']
-    hardLimitDollars?: Scalars['Int'] | null
-    softLimitDollars: Scalars['Int']
-}
+export interface UsageLimitSetInput {customerId: Scalars['String'],hardLimitDollars?: (Scalars['Int'] | null),softLimitDollars: Scalars['Int']}
 
-export interface UserGenqlSelection {
+export interface UserGenqlSelection{
     agreedFairUse?: boolean | number
+    apiTokenRateLimit?: ApiTokenRateLimitGenqlSelection
     avatar?: boolean | number
     banReason?: boolean | number
-    cost?: UserCostGenqlSelection
     createdAt?: boolean | number
-    customer?: CustomerGenqlSelection
     email?: boolean | number
     featureFlags?: boolean | number
     flags?: boolean | number
+    githubProviderId?: boolean | number
+    githubUsername?: boolean | number
     has2FA?: boolean | number
     id?: boolean | number
     isAdmin?: boolean | number
     isConductor?: boolean | number
-    isDevPlan?: boolean | number
-    isEligibleForFreeHobbyPlan?: boolean | number
-    isOnHobbyPlan?: boolean | number
     isVerified?: boolean | number
     lastLogin?: boolean | number
     name?: boolean | number
+    platformFeatureFlags?: boolean | number
     profile?: UserProfileGenqlSelection
-    projects?: UserProjectsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    providerAuths?: UserProviderAuthsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
-    referredUsers?: ReferralUserGenqlSelection
+    /** @deprecated This field will not return anything anymore, go through the workspace's projects */
+    projects?: (UserProjectsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    providerAuths?: (UserProviderAuthsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     registrationStatus?: boolean | number
     riskLevel?: boolean | number
-    /** @deprecated Use the workspaces relation to access the teams */
-    teams?: UserTeamsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
     termsAgreedOn?: boolean | number
     username?: boolean | number
+    /** @deprecated Use user.workspaces instead, no user are associated to a workspace */
     workspace?: WorkspaceGenqlSelection
     /** Workspaces user is member of */
     workspaces?: WorkspaceGenqlSelection
@@ -6691,30 +6524,17 @@ export interface UserGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface UserCostGenqlSelection {
-    current?: boolean | number
-    estimated?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
+export interface UserFlagsRemoveInput {flags: UserFlag[],userId?: (Scalars['String'] | null)}
 
-export interface UserFlagsRemoveInput {
-    flags: UserFlag[]
-    userId?: Scalars['String'] | null
-}
+export interface UserFlagsSetInput {flags: UserFlag[],userId?: (Scalars['String'] | null)}
 
-export interface UserFlagsSetInput {
-    flags: UserFlag[]
-    userId?: Scalars['String'] | null
-}
-
-export interface UserKickbackEarningsGenqlSelection {
+export interface UserKickbackEarningsGenqlSelection{
     total_amount?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProfileGenqlSelection {
+export interface UserProfileGenqlSelection{
     bio?: boolean | number
     isPublic?: boolean | number
     website?: boolean | number
@@ -6722,7 +6542,7 @@ export interface UserProfileGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface UserProfileResponseGenqlSelection {
+export interface UserProfileResponseGenqlSelection{
     avatar?: boolean | number
     createdAt?: boolean | number
     customerId?: boolean | number
@@ -6731,14 +6551,8 @@ export interface UserProfileResponseGenqlSelection {
     name?: boolean | number
     profile?: UserProfileGenqlSelection
     /** Gets all public projects for a user. */
-    publicProjects?: UserProfileResponsePublicProjectsConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    publicProjects?: (UserProfileResponsePublicProjectsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    /** @deprecated There are no personal templates anymore, they all belong to a workspace */
     publishedTemplates?: SimilarTemplateGenqlSelection
     state?: boolean | number
     totalDeploys?: boolean | number
@@ -6747,75 +6561,51 @@ export interface UserProfileResponseGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface UserProfileResponsePublicProjectsConnectionGenqlSelection {
+export interface UserProfileResponsePublicProjectsConnectionGenqlSelection{
     edges?: UserProfileResponsePublicProjectsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProfileResponsePublicProjectsConnectionEdgeGenqlSelection {
+export interface UserProfileResponsePublicProjectsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProfileUpdateInput {
-    bio?: Scalars['String'] | null
-    isPublic: Scalars['Boolean']
-    website?: Scalars['String'] | null
-}
+export interface UserProfileUpdateInput {bio?: (Scalars['String'] | null),isPublic: Scalars['Boolean'],website?: (Scalars['String'] | null)}
 
-export interface UserProjectsConnectionGenqlSelection {
+export interface UserProjectsConnectionGenqlSelection{
     edges?: UserProjectsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProjectsConnectionEdgeGenqlSelection {
+export interface UserProjectsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProjectGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProviderAuthsConnectionGenqlSelection {
+export interface UserProviderAuthsConnectionGenqlSelection{
     edges?: UserProviderAuthsConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserProviderAuthsConnectionEdgeGenqlSelection {
+export interface UserProviderAuthsConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: ProviderAuthGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface UserTeamsConnectionGenqlSelection {
-    edges?: UserTeamsConnectionEdgeGenqlSelection
-    pageInfo?: PageInfoGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface UserTeamsConnectionEdgeGenqlSelection {
-    cursor?: boolean | number
-    node?: TeamGenqlSelection
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface UserUpdateInput {
-    avatar?: Scalars['String'] | null
-    name?: Scalars['String'] | null
-    username?: Scalars['String'] | null
-}
-
-export interface VariableGenqlSelection {
+export interface VariableGenqlSelection{
     createdAt?: boolean | number
     environment?: EnvironmentGenqlSelection
     environmentId?: boolean | number
@@ -6823,6 +6613,7 @@ export interface VariableGenqlSelection {
     isSealed?: boolean | number
     name?: boolean | number
     plugin?: PluginGenqlSelection
+    /** @deprecated Plugins have been removed */
     pluginId?: boolean | number
     references?: boolean | number
     service?: ServiceGenqlSelection
@@ -6832,31 +6623,19 @@ export interface VariableGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface VariableCollectionUpsertInput {
-    environmentId: Scalars['String']
-    projectId: Scalars['String']
-    /** When set to true, removes all existing variables before upserting the new collection. */
-    replace?: Scalars['Boolean'] | null
-    serviceId?: Scalars['String'] | null
-    variables: Scalars['EnvironmentVariables']
-}
+export interface VariableCollectionUpsertInput {environmentId: Scalars['String'],projectId: Scalars['String'],
+/** When set to true, removes all existing variables before upserting the new collection. */
+replace?: (Scalars['Boolean'] | null),serviceId?: (Scalars['String'] | null),
+/** Skip deploys for affected services */
+skipDeploys?: (Scalars['Boolean'] | null),variables: Scalars['EnvironmentVariables']}
 
-export interface VariableDeleteInput {
-    environmentId: Scalars['String']
-    name: Scalars['String']
-    projectId: Scalars['String']
-    serviceId?: Scalars['String'] | null
-}
+export interface VariableDeleteInput {environmentId: Scalars['String'],name: Scalars['String'],projectId: Scalars['String'],serviceId?: (Scalars['String'] | null)}
 
-export interface VariableUpsertInput {
-    environmentId: Scalars['String']
-    name: Scalars['String']
-    projectId: Scalars['String']
-    serviceId?: Scalars['String'] | null
-    value: Scalars['String']
-}
+export interface VariableUpsertInput {environmentId: Scalars['String'],name: Scalars['String'],projectId: Scalars['String'],serviceId?: (Scalars['String'] | null),
+/** Skip deploys for affected services */
+skipDeploys?: (Scalars['Boolean'] | null),value: Scalars['String']}
 
-export interface VercelAccountGenqlSelection {
+export interface VercelAccountGenqlSelection{
     id?: boolean | number
     integrationAuthId?: boolean | number
     isUser?: boolean | number
@@ -6867,13 +6646,13 @@ export interface VercelAccountGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface VercelInfoGenqlSelection {
+export interface VercelInfoGenqlSelection{
     accounts?: VercelAccountGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface VercelProjectGenqlSelection {
+export interface VercelProjectGenqlSelection{
     accountId?: boolean | number
     id?: boolean | number
     name?: boolean | number
@@ -6881,36 +6660,31 @@ export interface VercelProjectGenqlSelection {
     __scalar?: boolean | number
 }
 
-export interface VolumeGenqlSelection {
+export interface VolumeGenqlSelection{
     createdAt?: boolean | number
     id?: boolean | number
     name?: boolean | number
     project?: ProjectGenqlSelection
     projectId?: boolean | number
-    volumeInstances?: VolumeVolumeInstancesConnectionGenqlSelection & {
-        __args?: {
-            after?: Scalars['String'] | null
-            before?: Scalars['String'] | null
-            first?: Scalars['Int'] | null
-            last?: Scalars['Int'] | null
-        }
-    }
+    /** @deprecated Use environment.volumeInstances for properly scoped access control */
+    volumeInstances?: (VolumeVolumeInstancesConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
 export interface VolumeCreateInput {
-    /** The environment to deploy the volume instances into. If `null`, the volume will not be deployed to any environment. `undefined` will deploy to all environments. */
-    environmentId?: Scalars['String'] | null
-    /** The path in the container to mount the volume to */
-    mountPath: Scalars['String']
-    /** The project to create the volume in */
-    projectId: Scalars['String']
-    /** The service to attach the volume to. If not provided, the volume will be disconnected. */
-    serviceId?: Scalars['String'] | null
-}
+/** The environment to deploy the volume instances into. If `null`, the volume will not be deployed to any environment. `undefined` will deploy to all environments. */
+environmentId?: (Scalars['String'] | null),
+/** The path in the container to mount the volume to */
+mountPath: Scalars['String'],
+/** The project to create the volume in */
+projectId: Scalars['String'],
+/** The region to create the volume instances in. If not provided, the default region will be used. */
+region?: (Scalars['String'] | null),
+/** The service to attach the volume to. If not provided, the volume will be disconnected. */
+serviceId?: (Scalars['String'] | null)}
 
-export interface VolumeInstanceGenqlSelection {
+export interface VolumeInstanceGenqlSelection{
     createdAt?: boolean | number
     currentSizeMB?: boolean | number
     environment?: EnvironmentGenqlSelection
@@ -6923,14 +6697,13 @@ export interface VolumeInstanceGenqlSelection {
     serviceId?: boolean | number
     sizeMB?: boolean | number
     state?: boolean | number
-    type?: boolean | number
     volume?: VolumeGenqlSelection
     volumeId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface VolumeInstanceBackupGenqlSelection {
+export interface VolumeInstanceBackupGenqlSelection{
     createdAt?: boolean | number
     creatorId?: boolean | number
     expiresAt?: boolean | number
@@ -6938,12 +6711,14 @@ export interface VolumeInstanceBackupGenqlSelection {
     id?: boolean | number
     name?: boolean | number
     referencedMB?: boolean | number
+    scheduleId?: boolean | number
     usedMB?: boolean | number
+    volumeInstanceSizeMB?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface VolumeInstanceBackupScheduleGenqlSelection {
+export interface VolumeInstanceBackupScheduleGenqlSelection{
     createdAt?: boolean | number
     cron?: boolean | number
     id?: boolean | number
@@ -6954,2262 +6729,2809 @@ export interface VolumeInstanceBackupScheduleGenqlSelection {
     __scalar?: boolean | number
 }
 
+export interface VolumeInstanceReplicationProgressGenqlSelection{
+    bytesTransferred?: boolean | number
+    percentComplete?: boolean | number
+    timestamp?: boolean | number
+    transferRateMbps?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface VolumeInstanceUpdateInput {
-    /** The mount path of the volume instance. If not provided, the mount path will not be updated. */
-    mountPath?: Scalars['String'] | null
-    /** The service to attach the volume to. If not provided, the volume will be disconnected. */
-    serviceId?: Scalars['String'] | null
-    /** The state of the volume instance. If not provided, the state will not be updated. */
-    state?: VolumeState | null
-    /** The type of the volume instance. If not provided, the type will not be updated. */
-    type?: VolumeInstanceType | null
+/** The mount path of the volume instance. If not provided, the mount path will not be updated. */
+mountPath?: (Scalars['String'] | null),
+/** The service to attach the volume to. If not provided, the volume will be disconnected. */
+serviceId?: (Scalars['String'] | null),
+/** The state of the volume instance. If not provided, the state will not be updated. */
+state?: (VolumeState | null)}
+
+export interface VolumeReplicationProgressUpdateGenqlSelection{
+    currentSnapshot?: VolumeSnapshotReplicationProgressUpdateGenqlSelection
+    destExternalId?: boolean | number
+    destRegion?: boolean | number
+    destStackerId?: boolean | number
+    error?: boolean | number
+    estimatedTimeRemainingMs?: boolean | number
+    history?: VolumeInstanceReplicationProgressGenqlSelection
+    nbSnapshots?: boolean | number
+    offlineBytesTransferred?: boolean | number
+    offlineTotalBytes?: boolean | number
+    onlineBytesTransferred?: boolean | number
+    onlineTotalBytes?: boolean | number
+    percentComplete?: boolean | number
+    snapshotsSizes?: boolean | number
+    srcExternalId?: boolean | number
+    srcRegion?: boolean | number
+    srcStackerId?: boolean | number
+    status?: boolean | number
+    transferRateMbps?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface VolumeSnapshotReplicationProgressUpdateGenqlSelection{
+    bytesTransferred?: boolean | number
+    compressedBytesTransferred?: boolean | number
+    compressedTransferRateMbps?: boolean | number
+    elapsedMs?: boolean | number
+    error?: boolean | number
+    estimatedTimeRemainingMs?: boolean | number
+    index?: boolean | number
+    percentComplete?: boolean | number
+    startedAt?: boolean | number
+    status?: boolean | number
+    totalBytes?: boolean | number
+    transferRateMbps?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
 export interface VolumeUpdateInput {
-    /** The name of the volume */
-    name?: Scalars['String'] | null
-}
+/** The name of the volume */
+name?: (Scalars['String'] | null)}
 
-export interface VolumeVolumeInstancesConnectionGenqlSelection {
+export interface VolumeVolumeInstancesConnectionGenqlSelection{
     edges?: VolumeVolumeInstancesConnectionEdgeGenqlSelection
     pageInfo?: PageInfoGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface VolumeVolumeInstancesConnectionEdgeGenqlSelection {
+export interface VolumeVolumeInstancesConnectionEdgeGenqlSelection{
     cursor?: boolean | number
     node?: VolumeInstanceGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface WebhookCreateInput {
-    filters?: Scalars['String'][] | null
-    projectId: Scalars['String']
-    url: Scalars['String']
-}
-
-export interface WebhookUpdateInput {
-    filters?: Scalars['String'][] | null
-    url: Scalars['String']
-}
-
-export interface WithdrawalGenqlSelection {
-    amount?: boolean | number
-    createdAt?: boolean | number
-    customerId?: boolean | number
-    id?: boolean | number
-    status?: boolean | number
-    updatedAt?: boolean | number
-    withdrawalAccountId?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface WithdrawalAccountGenqlSelection {
-    customerId?: boolean | number
-    id?: boolean | number
-    platform?: boolean | number
-    platformDetails?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-export interface WorkflowIdGenqlSelection {
+export interface WorkflowIdGenqlSelection{
     workflowId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface WorkflowResultGenqlSelection {
+export interface WorkflowResultGenqlSelection{
     error?: boolean | number
     status?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface WorkspaceGenqlSelection {
+export interface WorkspaceGenqlSelection{
+    adoptionHistory?: AdoptionInfoGenqlSelection
+    adoptionLevel?: boolean | number
+    allowDeprecatedRegions?: boolean | number
+    apiTokenRateLimit?: ApiTokenRateLimitGenqlSelection
+    avatar?: boolean | number
+    banReason?: boolean | number
     createdAt?: boolean | number
     customer?: CustomerGenqlSelection
+    discordRole?: boolean | number
+    hasSAML?: boolean | number
     id?: boolean | number
+    identityProviders?: (WorkspaceIdentityProvidersConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    members?: WorkspaceMemberGenqlSelection
+    name?: boolean | number
+    partnerProfile?: PartnerProfileGenqlSelection
+    plan?: boolean | number
+    preferredRegion?: boolean | number
+    projects?: (WorkspaceProjectsConnectionGenqlSelection & { __args?: {after?: (Scalars['String'] | null), before?: (Scalars['String'] | null), first?: (Scalars['Int'] | null), last?: (Scalars['Int'] | null)} })
+    referredUsers?: ReferralUserGenqlSelection
+    slackChannelId?: boolean | number
+    /** @deprecated Use plan field instead */
     subscriptionModel?: boolean | number
+    supportTierOverride?: boolean | number
+    /** @deprecated Teams are being removed from the system, don't use it */
     team?: TeamGenqlSelection
+    updatedAt?: boolean | number
+    /** Get a list of user emails in the workspace who do not have verified 2FA enabled. Returns an empty array if all users have 2FA enabled. */
+    usersWithout2FA?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
-export interface WorkspaceUpdateInput {
-    avatar?: Scalars['String'] | null
-    name?: Scalars['String'] | null
-    preferredRegion?: Scalars['String'] | null
+export interface WorkspaceIdPConnectionGenqlSelection{
+    createdAt?: boolean | number
+    provider?: boolean | number
+    status?: boolean | number
+    updatedAt?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-export interface customerTogglePayoutsToCreditsInput {
-    isWithdrawingToCredits: Scalars['Boolean']
+export interface WorkspaceIdentityProviderGenqlSelection{
+    connection?: WorkspaceIdPConnectionGenqlSelection
+    createdAt?: boolean | number
+    enforcementEnabledAt?: boolean | number
+    id?: boolean | number
+    updatedAt?: boolean | number
+    workspace?: WorkspaceGenqlSelection
+    workspaceId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const AccessRule_possibleTypes: string[] = ['AccessRule']
-export const isAccessRule = (obj?: { __typename?: any } | null): obj is AccessRule => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isAccessRule"')
-    return AccessRule_possibleTypes.includes(obj.__typename)
+export interface WorkspaceIdentityProvidersConnectionGenqlSelection{
+    edges?: WorkspaceIdentityProvidersConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const AdoptionInfo_possibleTypes: string[] = ['AdoptionInfo']
-export const isAdoptionInfo = (obj?: { __typename?: any } | null): obj is AdoptionInfo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isAdoptionInfo"')
-    return AdoptionInfo_possibleTypes.includes(obj.__typename)
+export interface WorkspaceIdentityProvidersConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: WorkspaceIdentityProviderGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const AggregatedUsage_possibleTypes: string[] = ['AggregatedUsage']
-export const isAggregatedUsage = (obj?: { __typename?: any } | null): obj is AggregatedUsage => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isAggregatedUsage"')
-    return AggregatedUsage_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspaceInviteCodeCreateInput {role: Scalars['String']}
 
-const AllDomains_possibleTypes: string[] = ['AllDomains']
-export const isAllDomains = (obj?: { __typename?: any } | null): obj is AllDomains => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isAllDomains"')
-    return AllDomains_possibleTypes.includes(obj.__typename)
+export interface WorkspaceMemberGenqlSelection{
+    avatar?: boolean | number
+    email?: boolean | number
+    /** Only retrieved if requested by an admin */
+    featureFlags?: boolean | number
+    id?: boolean | number
+    name?: boolean | number
+    role?: boolean | number
+    /** Only retrieved if requested by an admin */
+    twoFactorAuthEnabled?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const ApiToken_possibleTypes: string[] = ['ApiToken']
-export const isApiToken = (obj?: { __typename?: any } | null): obj is ApiToken => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isApiToken"')
-    return ApiToken_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspacePermissionChangeInput {role: TeamRole,userId: Scalars['String'],workspaceId: Scalars['String']}
 
-const BanReasonHistory_possibleTypes: string[] = ['BanReasonHistory']
-export const isBanReasonHistory = (obj?: { __typename?: any } | null): obj is BanReasonHistory => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isBanReasonHistory"')
-    return BanReasonHistory_possibleTypes.includes(obj.__typename)
+export interface WorkspaceProjectsConnectionGenqlSelection{
+    edges?: WorkspaceProjectsConnectionEdgeGenqlSelection
+    pageInfo?: PageInfoGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const BillingPeriod_possibleTypes: string[] = ['BillingPeriod']
-export const isBillingPeriod = (obj?: { __typename?: any } | null): obj is BillingPeriod => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isBillingPeriod"')
-    return BillingPeriod_possibleTypes.includes(obj.__typename)
+export interface WorkspaceProjectsConnectionEdgeGenqlSelection{
+    cursor?: boolean | number
+    node?: ProjectGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
 }
 
-const CertificatePublicData_possibleTypes: string[] = ['CertificatePublicData']
-export const isCertificatePublicData = (
-    obj?: { __typename?: any } | null
-): obj is CertificatePublicData => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCertificatePublicData"')
-    return CertificatePublicData_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspaceTrustedDomainCreateInput {domainName: Scalars['String'],role: Scalars['String'],workspaceId: Scalars['String']}
 
-const CnameCheck_possibleTypes: string[] = ['CnameCheck']
-export const isCnameCheck = (obj?: { __typename?: any } | null): obj is CnameCheck => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCnameCheck"')
-    return CnameCheck_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspaceUpdateInput {avatar?: (Scalars['String'] | null),name?: (Scalars['String'] | null),preferredRegion?: (Scalars['String'] | null)}
 
-const Container_possibleTypes: string[] = ['Container']
-export const isContainer = (obj?: { __typename?: any } | null): obj is Container => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isContainer"')
-    return Container_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspaceUserInviteInput {code: Scalars['String'],email: Scalars['String']}
 
-const Credit_possibleTypes: string[] = ['Credit']
-export const isCredit = (obj?: { __typename?: any } | null): obj is Credit => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCredit"')
-    return Credit_possibleTypes.includes(obj.__typename)
-}
+export interface WorkspaceUserRemoveInput {userId: Scalars['String']}
 
-const CreditTransferMetrics_possibleTypes: string[] = ['CreditTransferMetrics']
-export const isCreditTransferMetrics = (
-    obj?: { __typename?: any } | null
-): obj is CreditTransferMetrics => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCreditTransferMetrics"')
-    return CreditTransferMetrics_possibleTypes.includes(obj.__typename)
-}
+export interface customerTogglePayoutsToCreditsInput {isWithdrawingToCredits: Scalars['Boolean']}
 
-const CustomDomain_possibleTypes: string[] = ['CustomDomain']
-export const isCustomDomain = (obj?: { __typename?: any } | null): obj is CustomDomain => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomDomain"')
-    return CustomDomain_possibleTypes.includes(obj.__typename)
-}
 
-const CustomDomainStatus_possibleTypes: string[] = ['CustomDomainStatus']
-export const isCustomDomainStatus = (
-    obj?: { __typename?: any } | null
-): obj is CustomDomainStatus => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomDomainStatus"')
-    return CustomDomainStatus_possibleTypes.includes(obj.__typename)
-}
+    const AccessRule_possibleTypes: string[] = ['AccessRule']
+    export const isAccessRule = (obj?: { __typename?: any } | null): obj is AccessRule => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAccessRule"')
+      return AccessRule_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Customer_possibleTypes: string[] = ['Customer']
-export const isCustomer = (obj?: { __typename?: any } | null): obj is Customer => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomer"')
-    return Customer_possibleTypes.includes(obj.__typename)
-}
 
-const CustomerCreditsConnection_possibleTypes: string[] = ['CustomerCreditsConnection']
-export const isCustomerCreditsConnection = (
-    obj?: { __typename?: any } | null
-): obj is CustomerCreditsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerCreditsConnection"')
-    return CustomerCreditsConnection_possibleTypes.includes(obj.__typename)
-}
+    const AdoptionInfo_possibleTypes: string[] = ['AdoptionInfo']
+    export const isAdoptionInfo = (obj?: { __typename?: any } | null): obj is AdoptionInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAdoptionInfo"')
+      return AdoptionInfo_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const CustomerCreditsConnectionEdge_possibleTypes: string[] = ['CustomerCreditsConnectionEdge']
-export const isCustomerCreditsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is CustomerCreditsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isCustomerCreditsConnectionEdge"')
-    return CustomerCreditsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const CustomerInvoice_possibleTypes: string[] = ['CustomerInvoice']
-export const isCustomerInvoice = (obj?: { __typename?: any } | null): obj is CustomerInvoice => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerInvoice"')
-    return CustomerInvoice_possibleTypes.includes(obj.__typename)
-}
+    const AggregatedUsage_possibleTypes: string[] = ['AggregatedUsage']
+    export const isAggregatedUsage = (obj?: { __typename?: any } | null): obj is AggregatedUsage => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAggregatedUsage"')
+      return AggregatedUsage_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const CustomerSubscription_possibleTypes: string[] = ['CustomerSubscription']
-export const isCustomerSubscription = (
-    obj?: { __typename?: any } | null
-): obj is CustomerSubscription => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerSubscription"')
-    return CustomerSubscription_possibleTypes.includes(obj.__typename)
-}
 
-const DNSRecords_possibleTypes: string[] = ['DNSRecords']
-export const isDNSRecords = (obj?: { __typename?: any } | null): obj is DNSRecords => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDNSRecords"')
-    return DNSRecords_possibleTypes.includes(obj.__typename)
-}
+    const AllDomains_possibleTypes: string[] = ['AllDomains']
+    export const isAllDomains = (obj?: { __typename?: any } | null): obj is AllDomains => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAllDomains"')
+      return AllDomains_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Deployment_possibleTypes: string[] = ['Deployment']
-export const isDeployment = (obj?: { __typename?: any } | null): obj is Deployment => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeployment"')
-    return Deployment_possibleTypes.includes(obj.__typename)
-}
 
-const DeploymentEvent_possibleTypes: string[] = ['DeploymentEvent']
-export const isDeploymentEvent = (obj?: { __typename?: any } | null): obj is DeploymentEvent => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentEvent"')
-    return DeploymentEvent_possibleTypes.includes(obj.__typename)
-}
+    const ApiToken_possibleTypes: string[] = ['ApiToken']
+    export const isApiToken = (obj?: { __typename?: any } | null): obj is ApiToken => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isApiToken"')
+      return ApiToken_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const DeploymentEventPayload_possibleTypes: string[] = ['DeploymentEventPayload']
-export const isDeploymentEventPayload = (
-    obj?: { __typename?: any } | null
-): obj is DeploymentEventPayload => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentEventPayload"')
-    return DeploymentEventPayload_possibleTypes.includes(obj.__typename)
-}
 
-const DeploymentInstanceExecution_possibleTypes: string[] = ['DeploymentInstanceExecution']
-export const isDeploymentInstanceExecution = (
-    obj?: { __typename?: any } | null
-): obj is DeploymentInstanceExecution => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isDeploymentInstanceExecution"')
-    return DeploymentInstanceExecution_possibleTypes.includes(obj.__typename)
-}
+    const ApiTokenContext_possibleTypes: string[] = ['ApiTokenContext']
+    export const isApiTokenContext = (obj?: { __typename?: any } | null): obj is ApiTokenContext => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isApiTokenContext"')
+      return ApiTokenContext_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const DeploymentSnapshot_possibleTypes: string[] = ['DeploymentSnapshot']
-export const isDeploymentSnapshot = (
-    obj?: { __typename?: any } | null
-): obj is DeploymentSnapshot => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentSnapshot"')
-    return DeploymentSnapshot_possibleTypes.includes(obj.__typename)
-}
 
-const DeploymentSocket_possibleTypes: string[] = ['DeploymentSocket']
-export const isDeploymentSocket = (obj?: { __typename?: any } | null): obj is DeploymentSocket => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentSocket"')
-    return DeploymentSocket_possibleTypes.includes(obj.__typename)
-}
+    const ApiTokenRateLimit_possibleTypes: string[] = ['ApiTokenRateLimit']
+    export const isApiTokenRateLimit = (obj?: { __typename?: any } | null): obj is ApiTokenRateLimit => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isApiTokenRateLimit"')
+      return ApiTokenRateLimit_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const DeploymentTrigger_possibleTypes: string[] = ['DeploymentTrigger']
-export const isDeploymentTrigger = (
-    obj?: { __typename?: any } | null
-): obj is DeploymentTrigger => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentTrigger"')
-    return DeploymentTrigger_possibleTypes.includes(obj.__typename)
-}
 
-const Domain_possibleTypes: string[] = ['CustomDomain', 'ServiceDomain']
-export const isDomain = (obj?: { __typename?: any } | null): obj is Domain => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDomain"')
-    return Domain_possibleTypes.includes(obj.__typename)
-}
+    const ApiTokenWorkspace_possibleTypes: string[] = ['ApiTokenWorkspace']
+    export const isApiTokenWorkspace = (obj?: { __typename?: any } | null): obj is ApiTokenWorkspace => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isApiTokenWorkspace"')
+      return ApiTokenWorkspace_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const DomainAvailable_possibleTypes: string[] = ['DomainAvailable']
-export const isDomainAvailable = (obj?: { __typename?: any } | null): obj is DomainAvailable => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDomainAvailable"')
-    return DomainAvailable_possibleTypes.includes(obj.__typename)
-}
 
-const DomainWithStatus_possibleTypes: string[] = ['DomainWithStatus']
-export const isDomainWithStatus = (obj?: { __typename?: any } | null): obj is DomainWithStatus => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isDomainWithStatus"')
-    return DomainWithStatus_possibleTypes.includes(obj.__typename)
-}
+    const AppliedByMember_possibleTypes: string[] = ['AppliedByMember']
+    export const isAppliedByMember = (obj?: { __typename?: any } | null): obj is AppliedByMember => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAppliedByMember"')
+      return AppliedByMember_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EgressGateway_possibleTypes: string[] = ['EgressGateway']
-export const isEgressGateway = (obj?: { __typename?: any } | null): obj is EgressGateway => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isEgressGateway"')
-    return EgressGateway_possibleTypes.includes(obj.__typename)
-}
 
-const Environment_possibleTypes: string[] = ['Environment']
-export const isEnvironment = (obj?: { __typename?: any } | null): obj is Environment => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironment"')
-    return Environment_possibleTypes.includes(obj.__typename)
-}
+    const AuditLog_possibleTypes: string[] = ['AuditLog']
+    export const isAuditLog = (obj?: { __typename?: any } | null): obj is AuditLog => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAuditLog"')
+      return AuditLog_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentDeploymentTriggersConnection_possibleTypes: string[] = [
-    'EnvironmentDeploymentTriggersConnection',
-]
-export const isEnvironmentDeploymentTriggersConnection = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentDeploymentTriggersConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentDeploymentTriggersConnection"')
-    return EnvironmentDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
-}
 
-const EnvironmentDeploymentTriggersConnectionEdge_possibleTypes: string[] = [
-    'EnvironmentDeploymentTriggersConnectionEdge',
-]
-export const isEnvironmentDeploymentTriggersConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentDeploymentTriggersConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentDeploymentTriggersConnectionEdge"')
-    return EnvironmentDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const AuditLogEventTypeInfo_possibleTypes: string[] = ['AuditLogEventTypeInfo']
+    export const isAuditLogEventTypeInfo = (obj?: { __typename?: any } | null): obj is AuditLogEventTypeInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isAuditLogEventTypeInfo"')
+      return AuditLogEventTypeInfo_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentDeploymentsConnection_possibleTypes: string[] = [
-    'EnvironmentDeploymentsConnection',
-]
-export const isEnvironmentDeploymentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentDeploymentsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentDeploymentsConnection"')
-    return EnvironmentDeploymentsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const EnvironmentDeploymentsConnectionEdge_possibleTypes: string[] = [
-    'EnvironmentDeploymentsConnectionEdge',
-]
-export const isEnvironmentDeploymentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentDeploymentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentDeploymentsConnectionEdge"')
-    return EnvironmentDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const BillingPeriod_possibleTypes: string[] = ['BillingPeriod']
+    export const isBillingPeriod = (obj?: { __typename?: any } | null): obj is BillingPeriod => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isBillingPeriod"')
+      return BillingPeriod_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentMeta_possibleTypes: string[] = ['EnvironmentMeta']
-export const isEnvironmentMeta = (obj?: { __typename?: any } | null): obj is EnvironmentMeta => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentMeta"')
-    return EnvironmentMeta_possibleTypes.includes(obj.__typename)
-}
 
-const EnvironmentServiceInstancesConnection_possibleTypes: string[] = [
-    'EnvironmentServiceInstancesConnection',
-]
-export const isEnvironmentServiceInstancesConnection = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentServiceInstancesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentServiceInstancesConnection"')
-    return EnvironmentServiceInstancesConnection_possibleTypes.includes(obj.__typename)
-}
+    const CertificatePublicData_possibleTypes: string[] = ['CertificatePublicData']
+    export const isCertificatePublicData = (obj?: { __typename?: any } | null): obj is CertificatePublicData => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCertificatePublicData"')
+      return CertificatePublicData_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentServiceInstancesConnectionEdge_possibleTypes: string[] = [
-    'EnvironmentServiceInstancesConnectionEdge',
-]
-export const isEnvironmentServiceInstancesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentServiceInstancesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentServiceInstancesConnectionEdge"')
-    return EnvironmentServiceInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const EnvironmentVariablesConnection_possibleTypes: string[] = ['EnvironmentVariablesConnection']
-export const isEnvironmentVariablesConnection = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentVariablesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentVariablesConnection"')
-    return EnvironmentVariablesConnection_possibleTypes.includes(obj.__typename)
-}
+    const CnameCheck_possibleTypes: string[] = ['CnameCheck']
+    export const isCnameCheck = (obj?: { __typename?: any } | null): obj is CnameCheck => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCnameCheck"')
+      return CnameCheck_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentVariablesConnectionEdge_possibleTypes: string[] = [
-    'EnvironmentVariablesConnectionEdge',
-]
-export const isEnvironmentVariablesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentVariablesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentVariablesConnectionEdge"')
-    return EnvironmentVariablesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const EnvironmentVolumeInstancesConnection_possibleTypes: string[] = [
-    'EnvironmentVolumeInstancesConnection',
-]
-export const isEnvironmentVolumeInstancesConnection = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentVolumeInstancesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentVolumeInstancesConnection"')
-    return EnvironmentVolumeInstancesConnection_possibleTypes.includes(obj.__typename)
-}
+    const ComplianceAgreementsInfo_possibleTypes: string[] = ['ComplianceAgreementsInfo']
+    export const isComplianceAgreementsInfo = (obj?: { __typename?: any } | null): obj is ComplianceAgreementsInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isComplianceAgreementsInfo"')
+      return ComplianceAgreementsInfo_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EnvironmentVolumeInstancesConnectionEdge_possibleTypes: string[] = [
-    'EnvironmentVolumeInstancesConnectionEdge',
-]
-export const isEnvironmentVolumeInstancesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is EnvironmentVolumeInstancesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isEnvironmentVolumeInstancesConnectionEdge"')
-    return EnvironmentVolumeInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const Errors_possibleTypes: string[] = ['Errors']
-export const isErrors = (obj?: { __typename?: any } | null): obj is Errors => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isErrors"')
-    return Errors_possibleTypes.includes(obj.__typename)
-}
+    const Container_possibleTypes: string[] = ['Container']
+    export const isContainer = (obj?: { __typename?: any } | null): obj is Container => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isContainer"')
+      return Container_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const EstimatedUsage_possibleTypes: string[] = ['EstimatedUsage']
-export const isEstimatedUsage = (obj?: { __typename?: any } | null): obj is EstimatedUsage => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isEstimatedUsage"')
-    return EstimatedUsage_possibleTypes.includes(obj.__typename)
-}
 
-const Event_possibleTypes: string[] = ['Event']
-export const isEvent = (obj?: { __typename?: any } | null): obj is Event => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isEvent"')
-    return Event_possibleTypes.includes(obj.__typename)
-}
+    const Credit_possibleTypes: string[] = ['Credit']
+    export const isCredit = (obj?: { __typename?: any } | null): obj is Credit => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCredit"')
+      return Credit_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const GitHubAccess_possibleTypes: string[] = ['GitHubAccess']
-export const isGitHubAccess = (obj?: { __typename?: any } | null): obj is GitHubAccess => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubAccess"')
-    return GitHubAccess_possibleTypes.includes(obj.__typename)
-}
 
-const GitHubBranch_possibleTypes: string[] = ['GitHubBranch']
-export const isGitHubBranch = (obj?: { __typename?: any } | null): obj is GitHubBranch => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubBranch"')
-    return GitHubBranch_possibleTypes.includes(obj.__typename)
-}
+    const CustomDomain_possibleTypes: string[] = ['CustomDomain']
+    export const isCustomDomain = (obj?: { __typename?: any } | null): obj is CustomDomain => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomDomain"')
+      return CustomDomain_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const GitHubRepo_possibleTypes: string[] = ['GitHubRepo']
-export const isGitHubRepo = (obj?: { __typename?: any } | null): obj is GitHubRepo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubRepo"')
-    return GitHubRepo_possibleTypes.includes(obj.__typename)
-}
 
-const GitHubRepoWithoutInstallation_possibleTypes: string[] = ['GitHubRepoWithoutInstallation']
-export const isGitHubRepoWithoutInstallation = (
-    obj?: { __typename?: any } | null
-): obj is GitHubRepoWithoutInstallation => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isGitHubRepoWithoutInstallation"')
-    return GitHubRepoWithoutInstallation_possibleTypes.includes(obj.__typename)
-}
+    const CustomDomainStatus_possibleTypes: string[] = ['CustomDomainStatus']
+    export const isCustomDomainStatus = (obj?: { __typename?: any } | null): obj is CustomDomainStatus => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomDomainStatus"')
+      return CustomDomainStatus_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const HerokuApp_possibleTypes: string[] = ['HerokuApp']
-export const isHerokuApp = (obj?: { __typename?: any } | null): obj is HerokuApp => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isHerokuApp"')
-    return HerokuApp_possibleTypes.includes(obj.__typename)
-}
 
-const HttpLog_possibleTypes: string[] = ['HttpLog']
-export const isHttpLog = (obj?: { __typename?: any } | null): obj is HttpLog => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isHttpLog"')
-    return HttpLog_possibleTypes.includes(obj.__typename)
-}
+    const Customer_possibleTypes: string[] = ['Customer']
+    export const isCustomer = (obj?: { __typename?: any } | null): obj is Customer => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomer"')
+      return Customer_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Incident_possibleTypes: string[] = ['Incident']
-export const isIncident = (obj?: { __typename?: any } | null): obj is Incident => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isIncident"')
-    return Incident_possibleTypes.includes(obj.__typename)
-}
 
-const Integration_possibleTypes: string[] = ['Integration']
-export const isIntegration = (obj?: { __typename?: any } | null): obj is Integration => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isIntegration"')
-    return Integration_possibleTypes.includes(obj.__typename)
-}
+    const CustomerAddress_possibleTypes: string[] = ['CustomerAddress']
+    export const isCustomerAddress = (obj?: { __typename?: any } | null): obj is CustomerAddress => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerAddress"')
+      return CustomerAddress_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const IntegrationAuth_possibleTypes: string[] = ['IntegrationAuth']
-export const isIntegrationAuth = (obj?: { __typename?: any } | null): obj is IntegrationAuth => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isIntegrationAuth"')
-    return IntegrationAuth_possibleTypes.includes(obj.__typename)
-}
 
-const IntegrationAuthIntegrationsConnection_possibleTypes: string[] = [
-    'IntegrationAuthIntegrationsConnection',
-]
-export const isIntegrationAuthIntegrationsConnection = (
-    obj?: { __typename?: any } | null
-): obj is IntegrationAuthIntegrationsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isIntegrationAuthIntegrationsConnection"')
-    return IntegrationAuthIntegrationsConnection_possibleTypes.includes(obj.__typename)
-}
+    const CustomerCreditsConnection_possibleTypes: string[] = ['CustomerCreditsConnection']
+    export const isCustomerCreditsConnection = (obj?: { __typename?: any } | null): obj is CustomerCreditsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerCreditsConnection"')
+      return CustomerCreditsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const IntegrationAuthIntegrationsConnectionEdge_possibleTypes: string[] = [
-    'IntegrationAuthIntegrationsConnectionEdge',
-]
-export const isIntegrationAuthIntegrationsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is IntegrationAuthIntegrationsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isIntegrationAuthIntegrationsConnectionEdge"')
-    return IntegrationAuthIntegrationsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const InviteCode_possibleTypes: string[] = ['InviteCode']
-export const isInviteCode = (obj?: { __typename?: any } | null): obj is InviteCode => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isInviteCode"')
-    return InviteCode_possibleTypes.includes(obj.__typename)
-}
+    const CustomerCreditsConnectionEdge_possibleTypes: string[] = ['CustomerCreditsConnectionEdge']
+    export const isCustomerCreditsConnectionEdge = (obj?: { __typename?: any } | null): obj is CustomerCreditsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerCreditsConnectionEdge"')
+      return CustomerCreditsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Log_possibleTypes: string[] = ['Log']
-export const isLog = (obj?: { __typename?: any } | null): obj is Log => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isLog"')
-    return Log_possibleTypes.includes(obj.__typename)
-}
 
-const LogAttribute_possibleTypes: string[] = ['LogAttribute']
-export const isLogAttribute = (obj?: { __typename?: any } | null): obj is LogAttribute => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isLogAttribute"')
-    return LogAttribute_possibleTypes.includes(obj.__typename)
-}
+    const CustomerInvoice_possibleTypes: string[] = ['CustomerInvoice']
+    export const isCustomerInvoice = (obj?: { __typename?: any } | null): obj is CustomerInvoice => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerInvoice"')
+      return CustomerInvoice_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const LogTags_possibleTypes: string[] = ['LogTags']
-export const isLogTags = (obj?: { __typename?: any } | null): obj is LogTags => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isLogTags"')
-    return LogTags_possibleTypes.includes(obj.__typename)
-}
 
-const Maintenance_possibleTypes: string[] = ['Maintenance']
-export const isMaintenance = (obj?: { __typename?: any } | null): obj is Maintenance => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isMaintenance"')
-    return Maintenance_possibleTypes.includes(obj.__typename)
-}
+    const CustomerSubscription_possibleTypes: string[] = ['CustomerSubscription']
+    export const isCustomerSubscription = (obj?: { __typename?: any } | null): obj is CustomerSubscription => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerSubscription"')
+      return CustomerSubscription_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Metric_possibleTypes: string[] = ['Metric']
-export const isMetric = (obj?: { __typename?: any } | null): obj is Metric => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isMetric"')
-    return Metric_possibleTypes.includes(obj.__typename)
-}
 
-const MetricTags_possibleTypes: string[] = ['MetricTags']
-export const isMetricTags = (obj?: { __typename?: any } | null): obj is MetricTags => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isMetricTags"')
-    return MetricTags_possibleTypes.includes(obj.__typename)
-}
+    const CustomerTaxId_possibleTypes: string[] = ['CustomerTaxId']
+    export const isCustomerTaxId = (obj?: { __typename?: any } | null): obj is CustomerTaxId => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCustomerTaxId"')
+      return CustomerTaxId_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const MetricsResult_possibleTypes: string[] = ['MetricsResult']
-export const isMetricsResult = (obj?: { __typename?: any } | null): obj is MetricsResult => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isMetricsResult"')
-    return MetricsResult_possibleTypes.includes(obj.__typename)
-}
 
-const Mutation_possibleTypes: string[] = ['Mutation']
-export const isMutation = (obj?: { __typename?: any } | null): obj is Mutation => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isMutation"')
-    return Mutation_possibleTypes.includes(obj.__typename)
-}
+    const DNSRecords_possibleTypes: string[] = ['DNSRecords']
+    export const isDNSRecords = (obj?: { __typename?: any } | null): obj is DNSRecords => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDNSRecords"')
+      return DNSRecords_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Node_possibleTypes: string[] = [
-    'AdoptionInfo',
-    'ApiToken',
-    'BanReasonHistory',
-    'Container',
-    'Credit',
-    'Customer',
-    'Deployment',
-    'DeploymentEvent',
-    'DeploymentInstanceExecution',
-    'DeploymentSnapshot',
-    'DeploymentTrigger',
-    'Environment',
-    'Event',
-    'Integration',
-    'IntegrationAuth',
-    'InviteCode',
-    'ObservabilityDashboard',
-    'ObservabilityDashboardItem',
-    'ObservabilityDashboardItemInstance',
-    'PlanLimitOverride',
-    'Plugin',
-    'PreferenceOverride',
-    'Preferences',
-    'Project',
-    'ProjectPermission',
-    'ProjectToken',
-    'ProjectWebhook',
-    'ProviderAuth',
-    'ReferralInfo',
-    'RefundRequest',
-    'Service',
-    'ServiceInstance',
-    'Session',
-    'Team',
-    'TeamPermission',
-    'TeamTrustedDomain',
-    'Template',
-    'TemplateService',
-    'UsageAnomaly',
-    'UsageLimit',
-    'User',
-    'Variable',
-    'Volume',
-    'VolumeInstance',
-    'VolumeInstanceBackupSchedule',
-    'Withdrawal',
-    'WithdrawalAccount',
-    'Workspace',
-]
-export const isNode = (obj?: { __typename?: any } | null): obj is Node => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isNode"')
-    return Node_possibleTypes.includes(obj.__typename)
-}
 
-const ObservabilityDashboard_possibleTypes: string[] = ['ObservabilityDashboard']
-export const isObservabilityDashboard = (
-    obj?: { __typename?: any } | null
-): obj is ObservabilityDashboard => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboard"')
-    return ObservabilityDashboard_possibleTypes.includes(obj.__typename)
-}
+    const Deployment_possibleTypes: string[] = ['Deployment']
+    export const isDeployment = (obj?: { __typename?: any } | null): obj is Deployment => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeployment"')
+      return Deployment_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ObservabilityDashboardItem_possibleTypes: string[] = ['ObservabilityDashboardItem']
-export const isObservabilityDashboardItem = (
-    obj?: { __typename?: any } | null
-): obj is ObservabilityDashboardItem => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardItem"')
-    return ObservabilityDashboardItem_possibleTypes.includes(obj.__typename)
-}
 
-const ObservabilityDashboardItemConfig_possibleTypes: string[] = [
-    'ObservabilityDashboardItemConfig',
-]
-export const isObservabilityDashboardItemConfig = (
-    obj?: { __typename?: any } | null
-): obj is ObservabilityDashboardItemConfig => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isObservabilityDashboardItemConfig"')
-    return ObservabilityDashboardItemConfig_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentCreator_possibleTypes: string[] = ['DeploymentCreator']
+    export const isDeploymentCreator = (obj?: { __typename?: any } | null): obj is DeploymentCreator => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentCreator"')
+      return DeploymentCreator_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ObservabilityDashboardItemInstance_possibleTypes: string[] = [
-    'ObservabilityDashboardItemInstance',
-]
-export const isObservabilityDashboardItemInstance = (
-    obj?: { __typename?: any } | null
-): obj is ObservabilityDashboardItemInstance => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isObservabilityDashboardItemInstance"')
-    return ObservabilityDashboardItemInstance_possibleTypes.includes(obj.__typename)
-}
 
-const PageInfo_possibleTypes: string[] = ['PageInfo']
-export const isPageInfo = (obj?: { __typename?: any } | null): obj is PageInfo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPageInfo"')
-    return PageInfo_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentDeploymentInstance_possibleTypes: string[] = ['DeploymentDeploymentInstance']
+    export const isDeploymentDeploymentInstance = (obj?: { __typename?: any } | null): obj is DeploymentDeploymentInstance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentDeploymentInstance"')
+      return DeploymentDeploymentInstance_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PaymentMethod_possibleTypes: string[] = ['PaymentMethod']
-export const isPaymentMethod = (obj?: { __typename?: any } | null): obj is PaymentMethod => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPaymentMethod"')
-    return PaymentMethod_possibleTypes.includes(obj.__typename)
-}
 
-const PaymentMethodCard_possibleTypes: string[] = ['PaymentMethodCard']
-export const isPaymentMethodCard = (
-    obj?: { __typename?: any } | null
-): obj is PaymentMethodCard => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPaymentMethodCard"')
-    return PaymentMethodCard_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentEvent_possibleTypes: string[] = ['DeploymentEvent']
+    export const isDeploymentEvent = (obj?: { __typename?: any } | null): obj is DeploymentEvent => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentEvent"')
+      return DeploymentEvent_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PlanLimitOverride_possibleTypes: string[] = ['PlanLimitOverride']
-export const isPlanLimitOverride = (
-    obj?: { __typename?: any } | null
-): obj is PlanLimitOverride => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPlanLimitOverride"')
-    return PlanLimitOverride_possibleTypes.includes(obj.__typename)
-}
 
-const PlatformStatus_possibleTypes: string[] = ['PlatformStatus']
-export const isPlatformStatus = (obj?: { __typename?: any } | null): obj is PlatformStatus => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPlatformStatus"')
-    return PlatformStatus_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentEventPayload_possibleTypes: string[] = ['DeploymentEventPayload']
+    export const isDeploymentEventPayload = (obj?: { __typename?: any } | null): obj is DeploymentEventPayload => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentEventPayload"')
+      return DeploymentEventPayload_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Plugin_possibleTypes: string[] = ['Plugin']
-export const isPlugin = (obj?: { __typename?: any } | null): obj is Plugin => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPlugin"')
-    return Plugin_possibleTypes.includes(obj.__typename)
-}
 
-const PluginContainersConnection_possibleTypes: string[] = ['PluginContainersConnection']
-export const isPluginContainersConnection = (
-    obj?: { __typename?: any } | null
-): obj is PluginContainersConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPluginContainersConnection"')
-    return PluginContainersConnection_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentInstanceExecution_possibleTypes: string[] = ['DeploymentInstanceExecution']
+    export const isDeploymentInstanceExecution = (obj?: { __typename?: any } | null): obj is DeploymentInstanceExecution => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentInstanceExecution"')
+      return DeploymentInstanceExecution_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PluginContainersConnectionEdge_possibleTypes: string[] = ['PluginContainersConnectionEdge']
-export const isPluginContainersConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is PluginContainersConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isPluginContainersConnectionEdge"')
-    return PluginContainersConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const PluginVariablesConnection_possibleTypes: string[] = ['PluginVariablesConnection']
-export const isPluginVariablesConnection = (
-    obj?: { __typename?: any } | null
-): obj is PluginVariablesConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPluginVariablesConnection"')
-    return PluginVariablesConnection_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentSnapshot_possibleTypes: string[] = ['DeploymentSnapshot']
+    export const isDeploymentSnapshot = (obj?: { __typename?: any } | null): obj is DeploymentSnapshot => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentSnapshot"')
+      return DeploymentSnapshot_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PluginVariablesConnectionEdge_possibleTypes: string[] = ['PluginVariablesConnectionEdge']
-export const isPluginVariablesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is PluginVariablesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isPluginVariablesConnectionEdge"')
-    return PluginVariablesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const PreferenceOverride_possibleTypes: string[] = ['PreferenceOverride']
-export const isPreferenceOverride = (
-    obj?: { __typename?: any } | null
-): obj is PreferenceOverride => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPreferenceOverride"')
-    return PreferenceOverride_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentSocket_possibleTypes: string[] = ['DeploymentSocket']
+    export const isDeploymentSocket = (obj?: { __typename?: any } | null): obj is DeploymentSocket => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentSocket"')
+      return DeploymentSocket_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Preferences_possibleTypes: string[] = ['Preferences']
-export const isPreferences = (obj?: { __typename?: any } | null): obj is Preferences => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPreferences"')
-    return Preferences_possibleTypes.includes(obj.__typename)
-}
 
-const PrivateNetwork_possibleTypes: string[] = ['PrivateNetwork']
-export const isPrivateNetwork = (obj?: { __typename?: any } | null): obj is PrivateNetwork => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPrivateNetwork"')
-    return PrivateNetwork_possibleTypes.includes(obj.__typename)
-}
+    const DeploymentTrigger_possibleTypes: string[] = ['DeploymentTrigger']
+    export const isDeploymentTrigger = (obj?: { __typename?: any } | null): obj is DeploymentTrigger => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDeploymentTrigger"')
+      return DeploymentTrigger_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PrivateNetworkEndpoint_possibleTypes: string[] = ['PrivateNetworkEndpoint']
-export const isPrivateNetworkEndpoint = (
-    obj?: { __typename?: any } | null
-): obj is PrivateNetworkEndpoint => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPrivateNetworkEndpoint"')
-    return PrivateNetworkEndpoint_possibleTypes.includes(obj.__typename)
-}
 
-const Project_possibleTypes: string[] = ['Project']
-export const isProject = (obj?: { __typename?: any } | null): obj is Project => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProject"')
-    return Project_possibleTypes.includes(obj.__typename)
-}
+    const DockerComposeImport_possibleTypes: string[] = ['DockerComposeImport']
+    export const isDockerComposeImport = (obj?: { __typename?: any } | null): obj is DockerComposeImport => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDockerComposeImport"')
+      return DockerComposeImport_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectDeploymentTriggersConnection_possibleTypes: string[] = [
-    'ProjectDeploymentTriggersConnection',
-]
-export const isProjectDeploymentTriggersConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectDeploymentTriggersConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectDeploymentTriggersConnection"')
-    return ProjectDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectDeploymentTriggersConnectionEdge_possibleTypes: string[] = [
-    'ProjectDeploymentTriggersConnectionEdge',
-]
-export const isProjectDeploymentTriggersConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectDeploymentTriggersConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectDeploymentTriggersConnectionEdge"')
-    return ProjectDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const Domain_possibleTypes: string[] = ['CustomDomain','ServiceDomain']
+    export const isDomain = (obj?: { __typename?: any } | null): obj is Domain => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDomain"')
+      return Domain_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectDeploymentsConnection_possibleTypes: string[] = ['ProjectDeploymentsConnection']
-export const isProjectDeploymentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectDeploymentsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectDeploymentsConnection"')
-    return ProjectDeploymentsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectDeploymentsConnectionEdge_possibleTypes: string[] = [
-    'ProjectDeploymentsConnectionEdge',
-]
-export const isProjectDeploymentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectDeploymentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectDeploymentsConnectionEdge"')
-    return ProjectDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const DomainAvailable_possibleTypes: string[] = ['DomainAvailable']
+    export const isDomainAvailable = (obj?: { __typename?: any } | null): obj is DomainAvailable => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDomainAvailable"')
+      return DomainAvailable_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectEnvironmentsConnection_possibleTypes: string[] = ['ProjectEnvironmentsConnection']
-export const isProjectEnvironmentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectEnvironmentsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectEnvironmentsConnection"')
-    return ProjectEnvironmentsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectEnvironmentsConnectionEdge_possibleTypes: string[] = [
-    'ProjectEnvironmentsConnectionEdge',
-]
-export const isProjectEnvironmentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectEnvironmentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectEnvironmentsConnectionEdge"')
-    return ProjectEnvironmentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const DomainWithStatus_possibleTypes: string[] = ['DomainWithStatus']
+    export const isDomainWithStatus = (obj?: { __typename?: any } | null): obj is DomainWithStatus => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isDomainWithStatus"')
+      return DomainWithStatus_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectGroupsConnection_possibleTypes: string[] = ['ProjectGroupsConnection']
-export const isProjectGroupsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectGroupsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectGroupsConnection"')
-    return ProjectGroupsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectGroupsConnectionEdge_possibleTypes: string[] = ['ProjectGroupsConnectionEdge']
-export const isProjectGroupsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectGroupsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectGroupsConnectionEdge"')
-    return ProjectGroupsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EgressGateway_possibleTypes: string[] = ['EgressGateway']
+    export const isEgressGateway = (obj?: { __typename?: any } | null): obj is EgressGateway => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEgressGateway"')
+      return EgressGateway_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectInvitation_possibleTypes: string[] = ['ProjectInvitation']
-export const isProjectInvitation = (
-    obj?: { __typename?: any } | null
-): obj is ProjectInvitation => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectInvitation"')
-    return ProjectInvitation_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectInvitationInviter_possibleTypes: string[] = ['ProjectInvitationInviter']
-export const isProjectInvitationInviter = (
-    obj?: { __typename?: any } | null
-): obj is ProjectInvitationInviter => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectInvitationInviter"')
-    return ProjectInvitationInviter_possibleTypes.includes(obj.__typename)
-}
+    const Environment_possibleTypes: string[] = ['Environment']
+    export const isEnvironment = (obj?: { __typename?: any } | null): obj is Environment => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironment"')
+      return Environment_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectMember_possibleTypes: string[] = ['ProjectMember']
-export const isProjectMember = (obj?: { __typename?: any } | null): obj is ProjectMember => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectMember"')
-    return ProjectMember_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectPermission_possibleTypes: string[] = ['ProjectPermission']
-export const isProjectPermission = (
-    obj?: { __typename?: any } | null
-): obj is ProjectPermission => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectPermission"')
-    return ProjectPermission_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentDeploymentTriggersConnection_possibleTypes: string[] = ['EnvironmentDeploymentTriggersConnection']
+    export const isEnvironmentDeploymentTriggersConnection = (obj?: { __typename?: any } | null): obj is EnvironmentDeploymentTriggersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentDeploymentTriggersConnection"')
+      return EnvironmentDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectPluginsConnection_possibleTypes: string[] = ['ProjectPluginsConnection']
-export const isProjectPluginsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectPluginsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectPluginsConnection"')
-    return ProjectPluginsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectPluginsConnectionEdge_possibleTypes: string[] = ['ProjectPluginsConnectionEdge']
-export const isProjectPluginsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectPluginsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectPluginsConnectionEdge"')
-    return ProjectPluginsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentDeploymentTriggersConnectionEdge_possibleTypes: string[] = ['EnvironmentDeploymentTriggersConnectionEdge']
+    export const isEnvironmentDeploymentTriggersConnectionEdge = (obj?: { __typename?: any } | null): obj is EnvironmentDeploymentTriggersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentDeploymentTriggersConnectionEdge"')
+      return EnvironmentDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectProjectPermissionsConnection_possibleTypes: string[] = [
-    'ProjectProjectPermissionsConnection',
-]
-export const isProjectProjectPermissionsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectProjectPermissionsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectProjectPermissionsConnection"')
-    return ProjectProjectPermissionsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectProjectPermissionsConnectionEdge_possibleTypes: string[] = [
-    'ProjectProjectPermissionsConnectionEdge',
-]
-export const isProjectProjectPermissionsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectProjectPermissionsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectProjectPermissionsConnectionEdge"')
-    return ProjectProjectPermissionsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentDeploymentsConnection_possibleTypes: string[] = ['EnvironmentDeploymentsConnection']
+    export const isEnvironmentDeploymentsConnection = (obj?: { __typename?: any } | null): obj is EnvironmentDeploymentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentDeploymentsConnection"')
+      return EnvironmentDeploymentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectResourceAccess_possibleTypes: string[] = ['ProjectResourceAccess']
-export const isProjectResourceAccess = (
-    obj?: { __typename?: any } | null
-): obj is ProjectResourceAccess => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectResourceAccess"')
-    return ProjectResourceAccess_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectServicesConnection_possibleTypes: string[] = ['ProjectServicesConnection']
-export const isProjectServicesConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectServicesConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectServicesConnection"')
-    return ProjectServicesConnection_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentDeploymentsConnectionEdge_possibleTypes: string[] = ['EnvironmentDeploymentsConnectionEdge']
+    export const isEnvironmentDeploymentsConnectionEdge = (obj?: { __typename?: any } | null): obj is EnvironmentDeploymentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentDeploymentsConnectionEdge"')
+      return EnvironmentDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectServicesConnectionEdge_possibleTypes: string[] = ['ProjectServicesConnectionEdge']
-export const isProjectServicesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectServicesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectServicesConnectionEdge"')
-    return ProjectServicesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectToken_possibleTypes: string[] = ['ProjectToken']
-export const isProjectToken = (obj?: { __typename?: any } | null): obj is ProjectToken => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectToken"')
-    return ProjectToken_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentMeta_possibleTypes: string[] = ['EnvironmentMeta']
+    export const isEnvironmentMeta = (obj?: { __typename?: any } | null): obj is EnvironmentMeta => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentMeta"')
+      return EnvironmentMeta_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectVolumesConnection_possibleTypes: string[] = ['ProjectVolumesConnection']
-export const isProjectVolumesConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectVolumesConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectVolumesConnection"')
-    return ProjectVolumesConnection_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectVolumesConnectionEdge_possibleTypes: string[] = ['ProjectVolumesConnectionEdge']
-export const isProjectVolumesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectVolumesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectVolumesConnectionEdge"')
-    return ProjectVolumesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentPatch_possibleTypes: string[] = ['EnvironmentPatch']
+    export const isEnvironmentPatch = (obj?: { __typename?: any } | null): obj is EnvironmentPatch => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentPatch"')
+      return EnvironmentPatch_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectWebhook_possibleTypes: string[] = ['ProjectWebhook']
-export const isProjectWebhook = (obj?: { __typename?: any } | null): obj is ProjectWebhook => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectWebhook"')
-    return ProjectWebhook_possibleTypes.includes(obj.__typename)
-}
 
-const ProjectWebhooksConnection_possibleTypes: string[] = ['ProjectWebhooksConnection']
-export const isProjectWebhooksConnection = (
-    obj?: { __typename?: any } | null
-): obj is ProjectWebhooksConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProjectWebhooksConnection"')
-    return ProjectWebhooksConnection_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentServiceInstancesConnection_possibleTypes: string[] = ['EnvironmentServiceInstancesConnection']
+    export const isEnvironmentServiceInstancesConnection = (obj?: { __typename?: any } | null): obj is EnvironmentServiceInstancesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentServiceInstancesConnection"')
+      return EnvironmentServiceInstancesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ProjectWebhooksConnectionEdge_possibleTypes: string[] = ['ProjectWebhooksConnectionEdge']
-export const isProjectWebhooksConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ProjectWebhooksConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isProjectWebhooksConnectionEdge"')
-    return ProjectWebhooksConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const ProviderAuth_possibleTypes: string[] = ['ProviderAuth']
-export const isProviderAuth = (obj?: { __typename?: any } | null): obj is ProviderAuth => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isProviderAuth"')
-    return ProviderAuth_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentServiceInstancesConnectionEdge_possibleTypes: string[] = ['EnvironmentServiceInstancesConnectionEdge']
+    export const isEnvironmentServiceInstancesConnectionEdge = (obj?: { __typename?: any } | null): obj is EnvironmentServiceInstancesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentServiceInstancesConnectionEdge"')
+      return EnvironmentServiceInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PublicProjectInformation_possibleTypes: string[] = ['PublicProjectInformation']
-export const isPublicProjectInformation = (
-    obj?: { __typename?: any } | null
-): obj is PublicProjectInformation => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPublicProjectInformation"')
-    return PublicProjectInformation_possibleTypes.includes(obj.__typename)
-}
 
-const PublicProjectInvitation_possibleTypes: string[] = ['InviteCode', 'ProjectInvitation']
-export const isPublicProjectInvitation = (
-    obj?: { __typename?: any } | null
-): obj is PublicProjectInvitation => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPublicProjectInvitation"')
-    return PublicProjectInvitation_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentVariablesConnection_possibleTypes: string[] = ['EnvironmentVariablesConnection']
+    export const isEnvironmentVariablesConnection = (obj?: { __typename?: any } | null): obj is EnvironmentVariablesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentVariablesConnection"')
+      return EnvironmentVariablesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const PublicStats_possibleTypes: string[] = ['PublicStats']
-export const isPublicStats = (obj?: { __typename?: any } | null): obj is PublicStats => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isPublicStats"')
-    return PublicStats_possibleTypes.includes(obj.__typename)
-}
 
-const Query_possibleTypes: string[] = ['Query']
-export const isQuery = (obj?: { __typename?: any } | null): obj is Query => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQuery"')
-    return Query_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentVariablesConnectionEdge_possibleTypes: string[] = ['EnvironmentVariablesConnectionEdge']
+    export const isEnvironmentVariablesConnectionEdge = (obj?: { __typename?: any } | null): obj is EnvironmentVariablesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentVariablesConnectionEdge"')
+      return EnvironmentVariablesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryApiTokensConnection_possibleTypes: string[] = ['QueryApiTokensConnection']
-export const isQueryApiTokensConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryApiTokensConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryApiTokensConnection"')
-    return QueryApiTokensConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryApiTokensConnectionEdge_possibleTypes: string[] = ['QueryApiTokensConnectionEdge']
-export const isQueryApiTokensConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryApiTokensConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryApiTokensConnectionEdge"')
-    return QueryApiTokensConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentVolumeInstancesConnection_possibleTypes: string[] = ['EnvironmentVolumeInstancesConnection']
+    export const isEnvironmentVolumeInstancesConnection = (obj?: { __typename?: any } | null): obj is EnvironmentVolumeInstancesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentVolumeInstancesConnection"')
+      return EnvironmentVolumeInstancesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryDeploymentEventsConnection_possibleTypes: string[] = ['QueryDeploymentEventsConnection']
-export const isQueryDeploymentEventsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentEventsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentEventsConnection"')
-    return QueryDeploymentEventsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryDeploymentEventsConnectionEdge_possibleTypes: string[] = [
-    'QueryDeploymentEventsConnectionEdge',
-]
-export const isQueryDeploymentEventsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentEventsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentEventsConnectionEdge"')
-    return QueryDeploymentEventsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EnvironmentVolumeInstancesConnectionEdge_possibleTypes: string[] = ['EnvironmentVolumeInstancesConnectionEdge']
+    export const isEnvironmentVolumeInstancesConnectionEdge = (obj?: { __typename?: any } | null): obj is EnvironmentVolumeInstancesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEnvironmentVolumeInstancesConnectionEdge"')
+      return EnvironmentVolumeInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryDeploymentInstanceExecutionsConnection_possibleTypes: string[] = [
-    'QueryDeploymentInstanceExecutionsConnection',
-]
-export const isQueryDeploymentInstanceExecutionsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentInstanceExecutionsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentInstanceExecutionsConnection"')
-    return QueryDeploymentInstanceExecutionsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryDeploymentInstanceExecutionsConnectionEdge_possibleTypes: string[] = [
-    'QueryDeploymentInstanceExecutionsConnectionEdge',
-]
-export const isQueryDeploymentInstanceExecutionsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentInstanceExecutionsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error(
-            '__typename is missing in "isQueryDeploymentInstanceExecutionsConnectionEdge"'
-        )
-    return QueryDeploymentInstanceExecutionsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const EstimatedUsage_possibleTypes: string[] = ['EstimatedUsage']
+    export const isEstimatedUsage = (obj?: { __typename?: any } | null): obj is EstimatedUsage => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEstimatedUsage"')
+      return EstimatedUsage_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryDeploymentTriggersConnection_possibleTypes: string[] = [
-    'QueryDeploymentTriggersConnection',
-]
-export const isQueryDeploymentTriggersConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentTriggersConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentTriggersConnection"')
-    return QueryDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryDeploymentTriggersConnectionEdge_possibleTypes: string[] = [
-    'QueryDeploymentTriggersConnectionEdge',
-]
-export const isQueryDeploymentTriggersConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentTriggersConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentTriggersConnectionEdge"')
-    return QueryDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const Event_possibleTypes: string[] = ['Event']
+    export const isEvent = (obj?: { __typename?: any } | null): obj is Event => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isEvent"')
+      return Event_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryDeploymentsConnection_possibleTypes: string[] = ['QueryDeploymentsConnection']
-export const isQueryDeploymentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentsConnection"')
-    return QueryDeploymentsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryDeploymentsConnectionEdge_possibleTypes: string[] = ['QueryDeploymentsConnectionEdge']
-export const isQueryDeploymentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryDeploymentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryDeploymentsConnectionEdge"')
-    return QueryDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const ExternalWorkspace_possibleTypes: string[] = ['ExternalWorkspace']
+    export const isExternalWorkspace = (obj?: { __typename?: any } | null): obj is ExternalWorkspace => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isExternalWorkspace"')
+      return ExternalWorkspace_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryEnvironmentPatchesConnection_possibleTypes: string[] = [
-    'QueryEnvironmentPatchesConnection',
-]
-export const isQueryEnvironmentPatchesConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryEnvironmentPatchesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryEnvironmentPatchesConnection"')
-    return QueryEnvironmentPatchesConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryEnvironmentPatchesConnectionEdge_possibleTypes: string[] = [
-    'QueryEnvironmentPatchesConnectionEdge',
-]
-export const isQueryEnvironmentPatchesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryEnvironmentPatchesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryEnvironmentPatchesConnectionEdge"')
-    return QueryEnvironmentPatchesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const FunctionRuntime_possibleTypes: string[] = ['FunctionRuntime']
+    export const isFunctionRuntime = (obj?: { __typename?: any } | null): obj is FunctionRuntime => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isFunctionRuntime"')
+      return FunctionRuntime_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryEnvironmentsConnection_possibleTypes: string[] = ['QueryEnvironmentsConnection']
-export const isQueryEnvironmentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryEnvironmentsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryEnvironmentsConnection"')
-    return QueryEnvironmentsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryEnvironmentsConnectionEdge_possibleTypes: string[] = ['QueryEnvironmentsConnectionEdge']
-export const isQueryEnvironmentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryEnvironmentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryEnvironmentsConnectionEdge"')
-    return QueryEnvironmentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const FunctionRuntimeVersion_possibleTypes: string[] = ['FunctionRuntimeVersion']
+    export const isFunctionRuntimeVersion = (obj?: { __typename?: any } | null): obj is FunctionRuntimeVersion => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isFunctionRuntimeVersion"')
+      return FunctionRuntimeVersion_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryEventsConnection_possibleTypes: string[] = ['QueryEventsConnection']
-export const isQueryEventsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryEventsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEventsConnection"')
-    return QueryEventsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryEventsConnectionEdge_possibleTypes: string[] = ['QueryEventsConnectionEdge']
-export const isQueryEventsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryEventsConnectionEdge => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEventsConnectionEdge"')
-    return QueryEventsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const GitHubAccess_possibleTypes: string[] = ['GitHubAccess']
+    export const isGitHubAccess = (obj?: { __typename?: any } | null): obj is GitHubAccess => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubAccess"')
+      return GitHubAccess_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryIntegrationAuthsConnection_possibleTypes: string[] = ['QueryIntegrationAuthsConnection']
-export const isQueryIntegrationAuthsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryIntegrationAuthsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryIntegrationAuthsConnection"')
-    return QueryIntegrationAuthsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryIntegrationAuthsConnectionEdge_possibleTypes: string[] = [
-    'QueryIntegrationAuthsConnectionEdge',
-]
-export const isQueryIntegrationAuthsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryIntegrationAuthsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryIntegrationAuthsConnectionEdge"')
-    return QueryIntegrationAuthsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const GitHubBranch_possibleTypes: string[] = ['GitHubBranch']
+    export const isGitHubBranch = (obj?: { __typename?: any } | null): obj is GitHubBranch => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubBranch"')
+      return GitHubBranch_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryIntegrationsConnection_possibleTypes: string[] = ['QueryIntegrationsConnection']
-export const isQueryIntegrationsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryIntegrationsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryIntegrationsConnection"')
-    return QueryIntegrationsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryIntegrationsConnectionEdge_possibleTypes: string[] = ['QueryIntegrationsConnectionEdge']
-export const isQueryIntegrationsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryIntegrationsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryIntegrationsConnectionEdge"')
-    return QueryIntegrationsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const GitHubRepo_possibleTypes: string[] = ['GitHubRepo']
+    export const isGitHubRepo = (obj?: { __typename?: any } | null): obj is GitHubRepo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubRepo"')
+      return GitHubRepo_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryObservabilityDashboardsConnection_possibleTypes: string[] = [
-    'QueryObservabilityDashboardsConnection',
-]
-export const isQueryObservabilityDashboardsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryObservabilityDashboardsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryObservabilityDashboardsConnection"')
-    return QueryObservabilityDashboardsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryObservabilityDashboardsConnectionEdge_possibleTypes: string[] = [
-    'QueryObservabilityDashboardsConnectionEdge',
-]
-export const isQueryObservabilityDashboardsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryObservabilityDashboardsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryObservabilityDashboardsConnectionEdge"')
-    return QueryObservabilityDashboardsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const GitHubRepoWithoutInstallation_possibleTypes: string[] = ['GitHubRepoWithoutInstallation']
+    export const isGitHubRepoWithoutInstallation = (obj?: { __typename?: any } | null): obj is GitHubRepoWithoutInstallation => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isGitHubRepoWithoutInstallation"')
+      return GitHubRepoWithoutInstallation_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryProjectTokensConnection_possibleTypes: string[] = ['QueryProjectTokensConnection']
-export const isQueryProjectTokensConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryProjectTokensConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryProjectTokensConnection"')
-    return QueryProjectTokensConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryProjectTokensConnectionEdge_possibleTypes: string[] = [
-    'QueryProjectTokensConnectionEdge',
-]
-export const isQueryProjectTokensConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryProjectTokensConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryProjectTokensConnectionEdge"')
-    return QueryProjectTokensConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const HerokuApp_possibleTypes: string[] = ['HerokuApp']
+    export const isHerokuApp = (obj?: { __typename?: any } | null): obj is HerokuApp => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isHerokuApp"')
+      return HerokuApp_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryProjectsConnection_possibleTypes: string[] = ['QueryProjectsConnection']
-export const isQueryProjectsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryProjectsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryProjectsConnection"')
-    return QueryProjectsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryProjectsConnectionEdge_possibleTypes: string[] = ['QueryProjectsConnectionEdge']
-export const isQueryProjectsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryProjectsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryProjectsConnectionEdge"')
-    return QueryProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const HttpLog_possibleTypes: string[] = ['HttpLog']
+    export const isHttpLog = (obj?: { __typename?: any } | null): obj is HttpLog => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isHttpLog"')
+      return HttpLog_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QuerySessionsConnection_possibleTypes: string[] = ['QuerySessionsConnection']
-export const isQuerySessionsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QuerySessionsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQuerySessionsConnection"')
-    return QuerySessionsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QuerySessionsConnectionEdge_possibleTypes: string[] = ['QuerySessionsConnectionEdge']
-export const isQuerySessionsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QuerySessionsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQuerySessionsConnectionEdge"')
-    return QuerySessionsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const Incident_possibleTypes: string[] = ['Incident']
+    export const isIncident = (obj?: { __typename?: any } | null): obj is Incident => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isIncident"')
+      return Incident_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryTeamTemplatesConnection_possibleTypes: string[] = ['QueryTeamTemplatesConnection']
-export const isQueryTeamTemplatesConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryTeamTemplatesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryTeamTemplatesConnection"')
-    return QueryTeamTemplatesConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryTeamTemplatesConnectionEdge_possibleTypes: string[] = [
-    'QueryTeamTemplatesConnectionEdge',
-]
-export const isQueryTeamTemplatesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryTeamTemplatesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryTeamTemplatesConnectionEdge"')
-    return QueryTeamTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const Integration_possibleTypes: string[] = ['Integration']
+    export const isIntegration = (obj?: { __typename?: any } | null): obj is Integration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isIntegration"')
+      return Integration_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryTeamTrustedDomainsConnection_possibleTypes: string[] = [
-    'QueryTeamTrustedDomainsConnection',
-]
-export const isQueryTeamTrustedDomainsConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryTeamTrustedDomainsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryTeamTrustedDomainsConnection"')
-    return QueryTeamTrustedDomainsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryTeamTrustedDomainsConnectionEdge_possibleTypes: string[] = [
-    'QueryTeamTrustedDomainsConnectionEdge',
-]
-export const isQueryTeamTrustedDomainsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryTeamTrustedDomainsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryTeamTrustedDomainsConnectionEdge"')
-    return QueryTeamTrustedDomainsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const IntegrationAuth_possibleTypes: string[] = ['IntegrationAuth']
+    export const isIntegrationAuth = (obj?: { __typename?: any } | null): obj is IntegrationAuth => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isIntegrationAuth"')
+      return IntegrationAuth_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryTemplatesConnection_possibleTypes: string[] = ['QueryTemplatesConnection']
-export const isQueryTemplatesConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryTemplatesConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTemplatesConnection"')
-    return QueryTemplatesConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryTemplatesConnectionEdge_possibleTypes: string[] = ['QueryTemplatesConnectionEdge']
-export const isQueryTemplatesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryTemplatesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryTemplatesConnectionEdge"')
-    return QueryTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const IntegrationAuthIntegrationsConnection_possibleTypes: string[] = ['IntegrationAuthIntegrationsConnection']
+    export const isIntegrationAuthIntegrationsConnection = (obj?: { __typename?: any } | null): obj is IntegrationAuthIntegrationsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isIntegrationAuthIntegrationsConnection"')
+      return IntegrationAuthIntegrationsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryUserTemplatesConnection_possibleTypes: string[] = ['QueryUserTemplatesConnection']
-export const isQueryUserTemplatesConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryUserTemplatesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryUserTemplatesConnection"')
-    return QueryUserTemplatesConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryUserTemplatesConnectionEdge_possibleTypes: string[] = [
-    'QueryUserTemplatesConnectionEdge',
-]
-export const isQueryUserTemplatesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryUserTemplatesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryUserTemplatesConnectionEdge"')
-    return QueryUserTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const IntegrationAuthIntegrationsConnectionEdge_possibleTypes: string[] = ['IntegrationAuthIntegrationsConnectionEdge']
+    export const isIntegrationAuthIntegrationsConnectionEdge = (obj?: { __typename?: any } | null): obj is IntegrationAuthIntegrationsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isIntegrationAuthIntegrationsConnectionEdge"')
+      return IntegrationAuthIntegrationsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const QueryWebhooksConnection_possibleTypes: string[] = ['QueryWebhooksConnection']
-export const isQueryWebhooksConnection = (
-    obj?: { __typename?: any } | null
-): obj is QueryWebhooksConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isQueryWebhooksConnection"')
-    return QueryWebhooksConnection_possibleTypes.includes(obj.__typename)
-}
 
-const QueryWebhooksConnectionEdge_possibleTypes: string[] = ['QueryWebhooksConnectionEdge']
-export const isQueryWebhooksConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is QueryWebhooksConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isQueryWebhooksConnectionEdge"')
-    return QueryWebhooksConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const InviteCode_possibleTypes: string[] = ['InviteCode']
+    export const isInviteCode = (obj?: { __typename?: any } | null): obj is InviteCode => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isInviteCode"')
+      return InviteCode_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const RecoveryCodes_possibleTypes: string[] = ['RecoveryCodes']
-export const isRecoveryCodes = (obj?: { __typename?: any } | null): obj is RecoveryCodes => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isRecoveryCodes"')
-    return RecoveryCodes_possibleTypes.includes(obj.__typename)
-}
 
-const ReferralInfo_possibleTypes: string[] = ['ReferralInfo']
-export const isReferralInfo = (obj?: { __typename?: any } | null): obj is ReferralInfo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isReferralInfo"')
-    return ReferralInfo_possibleTypes.includes(obj.__typename)
-}
+    const Log_possibleTypes: string[] = ['Log']
+    export const isLog = (obj?: { __typename?: any } | null): obj is Log => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isLog"')
+      return Log_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ReferralStats_possibleTypes: string[] = ['ReferralStats']
-export const isReferralStats = (obj?: { __typename?: any } | null): obj is ReferralStats => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isReferralStats"')
-    return ReferralStats_possibleTypes.includes(obj.__typename)
-}
 
-const ReferralUser_possibleTypes: string[] = ['ReferralUser']
-export const isReferralUser = (obj?: { __typename?: any } | null): obj is ReferralUser => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isReferralUser"')
-    return ReferralUser_possibleTypes.includes(obj.__typename)
-}
+    const LogAttribute_possibleTypes: string[] = ['LogAttribute']
+    export const isLogAttribute = (obj?: { __typename?: any } | null): obj is LogAttribute => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isLogAttribute"')
+      return LogAttribute_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const RefundRequest_possibleTypes: string[] = ['RefundRequest']
-export const isRefundRequest = (obj?: { __typename?: any } | null): obj is RefundRequest => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isRefundRequest"')
-    return RefundRequest_possibleTypes.includes(obj.__typename)
-}
 
-const Region_possibleTypes: string[] = ['Region']
-export const isRegion = (obj?: { __typename?: any } | null): obj is Region => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isRegion"')
-    return Region_possibleTypes.includes(obj.__typename)
-}
+    const LogTags_possibleTypes: string[] = ['LogTags']
+    export const isLogTags = (obj?: { __typename?: any } | null): obj is LogTags => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isLogTags"')
+      return LogTags_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const RegionDeploymentConstraints_possibleTypes: string[] = ['RegionDeploymentConstraints']
-export const isRegionDeploymentConstraints = (
-    obj?: { __typename?: any } | null
-): obj is RegionDeploymentConstraints => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isRegionDeploymentConstraints"')
-    return RegionDeploymentConstraints_possibleTypes.includes(obj.__typename)
-}
 
-const ResourceAccess_possibleTypes: string[] = ['ResourceAccess']
-export const isResourceAccess = (obj?: { __typename?: any } | null): obj is ResourceAccess => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isResourceAccess"')
-    return ResourceAccess_possibleTypes.includes(obj.__typename)
-}
+    const Maintenance_possibleTypes: string[] = ['Maintenance']
+    export const isMaintenance = (obj?: { __typename?: any } | null): obj is Maintenance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMaintenance"')
+      return Maintenance_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Service_possibleTypes: string[] = ['Service']
-export const isService = (obj?: { __typename?: any } | null): obj is Service => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isService"')
-    return Service_possibleTypes.includes(obj.__typename)
-}
 
-const ServiceDeploymentsConnection_possibleTypes: string[] = ['ServiceDeploymentsConnection']
-export const isServiceDeploymentsConnection = (
-    obj?: { __typename?: any } | null
-): obj is ServiceDeploymentsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceDeploymentsConnection"')
-    return ServiceDeploymentsConnection_possibleTypes.includes(obj.__typename)
-}
+    const Metric_possibleTypes: string[] = ['Metric']
+    export const isMetric = (obj?: { __typename?: any } | null): obj is Metric => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMetric"')
+      return Metric_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ServiceDeploymentsConnectionEdge_possibleTypes: string[] = [
-    'ServiceDeploymentsConnectionEdge',
-]
-export const isServiceDeploymentsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ServiceDeploymentsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceDeploymentsConnectionEdge"')
-    return ServiceDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const ServiceDomain_possibleTypes: string[] = ['ServiceDomain']
-export const isServiceDomain = (obj?: { __typename?: any } | null): obj is ServiceDomain => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isServiceDomain"')
-    return ServiceDomain_possibleTypes.includes(obj.__typename)
-}
+    const MetricTags_possibleTypes: string[] = ['MetricTags']
+    export const isMetricTags = (obj?: { __typename?: any } | null): obj is MetricTags => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMetricTags"')
+      return MetricTags_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ServiceInstance_possibleTypes: string[] = ['ServiceInstance']
-export const isServiceInstance = (obj?: { __typename?: any } | null): obj is ServiceInstance => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isServiceInstance"')
-    return ServiceInstance_possibleTypes.includes(obj.__typename)
-}
 
-const ServiceRepoTriggersConnection_possibleTypes: string[] = ['ServiceRepoTriggersConnection']
-export const isServiceRepoTriggersConnection = (
-    obj?: { __typename?: any } | null
-): obj is ServiceRepoTriggersConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceRepoTriggersConnection"')
-    return ServiceRepoTriggersConnection_possibleTypes.includes(obj.__typename)
-}
+    const MetricsResult_possibleTypes: string[] = ['MetricsResult']
+    export const isMetricsResult = (obj?: { __typename?: any } | null): obj is MetricsResult => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMetricsResult"')
+      return MetricsResult_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ServiceRepoTriggersConnectionEdge_possibleTypes: string[] = [
-    'ServiceRepoTriggersConnectionEdge',
-]
-export const isServiceRepoTriggersConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ServiceRepoTriggersConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceRepoTriggersConnectionEdge"')
-    return ServiceRepoTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const ServiceServiceInstancesConnection_possibleTypes: string[] = [
-    'ServiceServiceInstancesConnection',
-]
-export const isServiceServiceInstancesConnection = (
-    obj?: { __typename?: any } | null
-): obj is ServiceServiceInstancesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceServiceInstancesConnection"')
-    return ServiceServiceInstancesConnection_possibleTypes.includes(obj.__typename)
-}
+    const MonitorThresholdConfig_possibleTypes: string[] = ['MonitorThresholdConfig']
+    export const isMonitorThresholdConfig = (obj?: { __typename?: any } | null): obj is MonitorThresholdConfig => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMonitorThresholdConfig"')
+      return MonitorThresholdConfig_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const ServiceServiceInstancesConnectionEdge_possibleTypes: string[] = [
-    'ServiceServiceInstancesConnectionEdge',
-]
-export const isServiceServiceInstancesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is ServiceServiceInstancesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isServiceServiceInstancesConnectionEdge"')
-    return ServiceServiceInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const ServiceSource_possibleTypes: string[] = ['ServiceSource']
-export const isServiceSource = (obj?: { __typename?: any } | null): obj is ServiceSource => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isServiceSource"')
-    return ServiceSource_possibleTypes.includes(obj.__typename)
-}
+    const Mutation_possibleTypes: string[] = ['Mutation']
+    export const isMutation = (obj?: { __typename?: any } | null): obj is Mutation => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMutation"')
+      return Mutation_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Session_possibleTypes: string[] = ['Session']
-export const isSession = (obj?: { __typename?: any } | null): obj is Session => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isSession"')
-    return Session_possibleTypes.includes(obj.__typename)
-}
 
-const SimilarTemplate_possibleTypes: string[] = ['SimilarTemplate']
-export const isSimilarTemplate = (obj?: { __typename?: any } | null): obj is SimilarTemplate => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isSimilarTemplate"')
-    return SimilarTemplate_possibleTypes.includes(obj.__typename)
-}
+    const Node_possibleTypes: string[] = ['AdoptionInfo','ApiToken','AuditLog','Container','Credit','Customer','Deployment','DeploymentEvent','DeploymentInstanceExecution','DeploymentSnapshot','DeploymentTrigger','Environment','EnvironmentPatch','Event','Integration','IntegrationAuth','InviteCode','NotificationDelivery','NotificationInstance','ObservabilityDashboard','ObservabilityDashboardAlert','ObservabilityDashboardItem','ObservabilityDashboardItemInstance','ObservabilityDashboardMonitor','Passkey','PlanLimitOverride','Plugin','Preferences','Project','ProjectPermission','ProjectToken','ProviderAuth','ReferralInfo','Service','ServiceInstance','Session','Team','TeamPermission','Template','TemplateService','UsageLimit','User','Variable','Volume','VolumeInstance','VolumeInstanceBackupSchedule','Workspace','WorkspaceIdentityProvider']
+    export const isNode = (obj?: { __typename?: any } | null): obj is Node => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNode"')
+      return Node_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Subscription_possibleTypes: string[] = ['Subscription']
-export const isSubscription = (obj?: { __typename?: any } | null): obj is Subscription => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isSubscription"')
-    return Subscription_possibleTypes.includes(obj.__typename)
-}
 
-const SubscriptionDiscount_possibleTypes: string[] = ['SubscriptionDiscount']
-export const isSubscriptionDiscount = (
-    obj?: { __typename?: any } | null
-): obj is SubscriptionDiscount => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isSubscriptionDiscount"')
-    return SubscriptionDiscount_possibleTypes.includes(obj.__typename)
-}
+    const NotificationDelivery_possibleTypes: string[] = ['NotificationDelivery']
+    export const isNotificationDelivery = (obj?: { __typename?: any } | null): obj is NotificationDelivery => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNotificationDelivery"')
+      return NotificationDelivery_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const SubscriptionItem_possibleTypes: string[] = ['SubscriptionItem']
-export const isSubscriptionItem = (obj?: { __typename?: any } | null): obj is SubscriptionItem => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isSubscriptionItem"')
-    return SubscriptionItem_possibleTypes.includes(obj.__typename)
-}
 
-const TCPProxy_possibleTypes: string[] = ['TCPProxy']
-export const isTCPProxy = (obj?: { __typename?: any } | null): obj is TCPProxy => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTCPProxy"')
-    return TCPProxy_possibleTypes.includes(obj.__typename)
-}
+    const NotificationDeliveryCreated_possibleTypes: string[] = ['NotificationDeliveryCreated']
+    export const isNotificationDeliveryCreated = (obj?: { __typename?: any } | null): obj is NotificationDeliveryCreated => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNotificationDeliveryCreated"')
+      return NotificationDeliveryCreated_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const Team_possibleTypes: string[] = ['Team']
-export const isTeam = (obj?: { __typename?: any } | null): obj is Team => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeam"')
-    return Team_possibleTypes.includes(obj.__typename)
-}
 
-const TeamCreateAndSubscribeResponse_possibleTypes: string[] = ['TeamCreateAndSubscribeResponse']
-export const isTeamCreateAndSubscribeResponse = (
-    obj?: { __typename?: any } | null
-): obj is TeamCreateAndSubscribeResponse => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isTeamCreateAndSubscribeResponse"')
-    return TeamCreateAndSubscribeResponse_possibleTypes.includes(obj.__typename)
-}
+    const NotificationDeliveryResolved_possibleTypes: string[] = ['NotificationDeliveryResolved']
+    export const isNotificationDeliveryResolved = (obj?: { __typename?: any } | null): obj is NotificationDeliveryResolved => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNotificationDeliveryResolved"')
+      return NotificationDeliveryResolved_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TeamMember_possibleTypes: string[] = ['TeamMember']
-export const isTeamMember = (obj?: { __typename?: any } | null): obj is TeamMember => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeamMember"')
-    return TeamMember_possibleTypes.includes(obj.__typename)
-}
 
-const TeamPermission_possibleTypes: string[] = ['TeamPermission']
-export const isTeamPermission = (obj?: { __typename?: any } | null): obj is TeamPermission => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeamPermission"')
-    return TeamPermission_possibleTypes.includes(obj.__typename)
-}
+    const NotificationDeliveryUpdate_possibleTypes: string[] = ['NotificationDeliveryCreated','NotificationDeliveryResolved']
+    export const isNotificationDeliveryUpdate = (obj?: { __typename?: any } | null): obj is NotificationDeliveryUpdate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNotificationDeliveryUpdate"')
+      return NotificationDeliveryUpdate_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TeamProjectsConnection_possibleTypes: string[] = ['TeamProjectsConnection']
-export const isTeamProjectsConnection = (
-    obj?: { __typename?: any } | null
-): obj is TeamProjectsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeamProjectsConnection"')
-    return TeamProjectsConnection_possibleTypes.includes(obj.__typename)
-}
 
-const TeamProjectsConnectionEdge_possibleTypes: string[] = ['TeamProjectsConnectionEdge']
-export const isTeamProjectsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is TeamProjectsConnectionEdge => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeamProjectsConnectionEdge"')
-    return TeamProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
+    const NotificationInstance_possibleTypes: string[] = ['NotificationInstance']
+    export const isNotificationInstance = (obj?: { __typename?: any } | null): obj is NotificationInstance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isNotificationInstance"')
+      return NotificationInstance_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TeamTrustedDomain_possibleTypes: string[] = ['TeamTrustedDomain']
-export const isTeamTrustedDomain = (
-    obj?: { __typename?: any } | null
-): obj is TeamTrustedDomain => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTeamTrustedDomain"')
-    return TeamTrustedDomain_possibleTypes.includes(obj.__typename)
-}
 
-const Template_possibleTypes: string[] = ['Template']
-export const isTemplate = (obj?: { __typename?: any } | null): obj is Template => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplate"')
-    return Template_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboard_possibleTypes: string[] = ['ObservabilityDashboard']
+    export const isObservabilityDashboard = (obj?: { __typename?: any } | null): obj is ObservabilityDashboard => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboard"')
+      return ObservabilityDashboard_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TemplateCreator_possibleTypes: string[] = ['TemplateCreator']
-export const isTemplateCreator = (obj?: { __typename?: any } | null): obj is TemplateCreator => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateCreator"')
-    return TemplateCreator_possibleTypes.includes(obj.__typename)
-}
 
-const TemplateDeployPayload_possibleTypes: string[] = ['TemplateDeployPayload']
-export const isTemplateDeployPayload = (
-    obj?: { __typename?: any } | null
-): obj is TemplateDeployPayload => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateDeployPayload"')
-    return TemplateDeployPayload_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardAlert_possibleTypes: string[] = ['ObservabilityDashboardAlert']
+    export const isObservabilityDashboardAlert = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardAlert => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardAlert"')
+      return ObservabilityDashboardAlert_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TemplateGuide_possibleTypes: string[] = ['TemplateGuide']
-export const isTemplateGuide = (obj?: { __typename?: any } | null): obj is TemplateGuide => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateGuide"')
-    return TemplateGuide_possibleTypes.includes(obj.__typename)
-}
 
-const TemplateKickbacksLeaderboard_possibleTypes: string[] = ['TemplateKickbacksLeaderboard']
-export const isTemplateKickbacksLeaderboard = (
-    obj?: { __typename?: any } | null
-): obj is TemplateKickbacksLeaderboard => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isTemplateKickbacksLeaderboard"')
-    return TemplateKickbacksLeaderboard_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardItem_possibleTypes: string[] = ['ObservabilityDashboardItem']
+    export const isObservabilityDashboardItem = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardItem => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardItem"')
+      return ObservabilityDashboardItem_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TemplateService_possibleTypes: string[] = ['TemplateService']
-export const isTemplateService = (obj?: { __typename?: any } | null): obj is TemplateService => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateService"')
-    return TemplateService_possibleTypes.includes(obj.__typename)
-}
 
-const TemplateServicesConnection_possibleTypes: string[] = ['TemplateServicesConnection']
-export const isTemplateServicesConnection = (
-    obj?: { __typename?: any } | null
-): obj is TemplateServicesConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateServicesConnection"')
-    return TemplateServicesConnection_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardItemConfig_possibleTypes: string[] = ['ObservabilityDashboardItemConfig']
+    export const isObservabilityDashboardItemConfig = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardItemConfig => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardItemConfig"')
+      return ObservabilityDashboardItemConfig_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TemplateServicesConnectionEdge_possibleTypes: string[] = ['TemplateServicesConnectionEdge']
-export const isTemplateServicesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is TemplateServicesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isTemplateServicesConnectionEdge"')
-    return TemplateServicesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const TrustedDomainVerificationData_possibleTypes: string[] = ['TrustedDomainVerificationData']
-export const isTrustedDomainVerificationData = (
-    obj?: { __typename?: any } | null
-): obj is TrustedDomainVerificationData => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isTrustedDomainVerificationData"')
-    return TrustedDomainVerificationData_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardItemInstance_possibleTypes: string[] = ['ObservabilityDashboardItemInstance']
+    export const isObservabilityDashboardItemInstance = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardItemInstance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardItemInstance"')
+      return ObservabilityDashboardItemInstance_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const TwoFactorInfo_possibleTypes: string[] = ['TwoFactorInfo']
-export const isTwoFactorInfo = (obj?: { __typename?: any } | null): obj is TwoFactorInfo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTwoFactorInfo"')
-    return TwoFactorInfo_possibleTypes.includes(obj.__typename)
-}
 
-const TwoFactorInfoSecret_possibleTypes: string[] = ['TwoFactorInfoSecret']
-export const isTwoFactorInfoSecret = (
-    obj?: { __typename?: any } | null
-): obj is TwoFactorInfoSecret => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isTwoFactorInfoSecret"')
-    return TwoFactorInfoSecret_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardMonitor_possibleTypes: string[] = ['ObservabilityDashboardMonitor']
+    export const isObservabilityDashboardMonitor = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardMonitor => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardMonitor"')
+      return ObservabilityDashboardMonitor_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UsageAnomaly_possibleTypes: string[] = ['UsageAnomaly']
-export const isUsageAnomaly = (obj?: { __typename?: any } | null): obj is UsageAnomaly => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUsageAnomaly"')
-    return UsageAnomaly_possibleTypes.includes(obj.__typename)
-}
 
-const UsageLimit_possibleTypes: string[] = ['UsageLimit']
-export const isUsageLimit = (obj?: { __typename?: any } | null): obj is UsageLimit => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUsageLimit"')
-    return UsageLimit_possibleTypes.includes(obj.__typename)
-}
+    const ObservabilityDashboardMonitorConfig_possibleTypes: string[] = ['MonitorThresholdConfig']
+    export const isObservabilityDashboardMonitorConfig = (obj?: { __typename?: any } | null): obj is ObservabilityDashboardMonitorConfig => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isObservabilityDashboardMonitorConfig"')
+      return ObservabilityDashboardMonitorConfig_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const User_possibleTypes: string[] = ['User']
-export const isUser = (obj?: { __typename?: any } | null): obj is User => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUser"')
-    return User_possibleTypes.includes(obj.__typename)
-}
 
-const UserCost_possibleTypes: string[] = ['UserCost']
-export const isUserCost = (obj?: { __typename?: any } | null): obj is UserCost => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserCost"')
-    return UserCost_possibleTypes.includes(obj.__typename)
-}
+    const PageInfo_possibleTypes: string[] = ['PageInfo']
+    export const isPageInfo = (obj?: { __typename?: any } | null): obj is PageInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPageInfo"')
+      return PageInfo_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserKickbackEarnings_possibleTypes: string[] = ['UserKickbackEarnings']
-export const isUserKickbackEarnings = (
-    obj?: { __typename?: any } | null
-): obj is UserKickbackEarnings => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserKickbackEarnings"')
-    return UserKickbackEarnings_possibleTypes.includes(obj.__typename)
-}
 
-const UserProfile_possibleTypes: string[] = ['UserProfile']
-export const isUserProfile = (obj?: { __typename?: any } | null): obj is UserProfile => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfile"')
-    return UserProfile_possibleTypes.includes(obj.__typename)
-}
+    const PartnerProfile_possibleTypes: string[] = ['PartnerProfile']
+    export const isPartnerProfile = (obj?: { __typename?: any } | null): obj is PartnerProfile => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPartnerProfile"')
+      return PartnerProfile_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserProfileResponse_possibleTypes: string[] = ['UserProfileResponse']
-export const isUserProfileResponse = (
-    obj?: { __typename?: any } | null
-): obj is UserProfileResponse => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfileResponse"')
-    return UserProfileResponse_possibleTypes.includes(obj.__typename)
-}
 
-const UserProfileResponsePublicProjectsConnection_possibleTypes: string[] = [
-    'UserProfileResponsePublicProjectsConnection',
-]
-export const isUserProfileResponsePublicProjectsConnection = (
-    obj?: { __typename?: any } | null
-): obj is UserProfileResponsePublicProjectsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isUserProfileResponsePublicProjectsConnection"')
-    return UserProfileResponsePublicProjectsConnection_possibleTypes.includes(obj.__typename)
-}
+    const Passkey_possibleTypes: string[] = ['Passkey']
+    export const isPasskey = (obj?: { __typename?: any } | null): obj is Passkey => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPasskey"')
+      return Passkey_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserProfileResponsePublicProjectsConnectionEdge_possibleTypes: string[] = [
-    'UserProfileResponsePublicProjectsConnectionEdge',
-]
-export const isUserProfileResponsePublicProjectsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is UserProfileResponsePublicProjectsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error(
-            '__typename is missing in "isUserProfileResponsePublicProjectsConnectionEdge"'
-        )
-    return UserProfileResponsePublicProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const UserProjectsConnection_possibleTypes: string[] = ['UserProjectsConnection']
-export const isUserProjectsConnection = (
-    obj?: { __typename?: any } | null
-): obj is UserProjectsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserProjectsConnection"')
-    return UserProjectsConnection_possibleTypes.includes(obj.__typename)
-}
+    const PaymentMethod_possibleTypes: string[] = ['PaymentMethod']
+    export const isPaymentMethod = (obj?: { __typename?: any } | null): obj is PaymentMethod => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPaymentMethod"')
+      return PaymentMethod_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserProjectsConnectionEdge_possibleTypes: string[] = ['UserProjectsConnectionEdge']
-export const isUserProjectsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is UserProjectsConnectionEdge => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserProjectsConnectionEdge"')
-    return UserProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const UserProviderAuthsConnection_possibleTypes: string[] = ['UserProviderAuthsConnection']
-export const isUserProviderAuthsConnection = (
-    obj?: { __typename?: any } | null
-): obj is UserProviderAuthsConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isUserProviderAuthsConnection"')
-    return UserProviderAuthsConnection_possibleTypes.includes(obj.__typename)
-}
+    const PaymentMethodCard_possibleTypes: string[] = ['PaymentMethodCard']
+    export const isPaymentMethodCard = (obj?: { __typename?: any } | null): obj is PaymentMethodCard => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPaymentMethodCard"')
+      return PaymentMethodCard_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserProviderAuthsConnectionEdge_possibleTypes: string[] = ['UserProviderAuthsConnectionEdge']
-export const isUserProviderAuthsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is UserProviderAuthsConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isUserProviderAuthsConnectionEdge"')
-    return UserProviderAuthsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const UserTeamsConnection_possibleTypes: string[] = ['UserTeamsConnection']
-export const isUserTeamsConnection = (
-    obj?: { __typename?: any } | null
-): obj is UserTeamsConnection => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserTeamsConnection"')
-    return UserTeamsConnection_possibleTypes.includes(obj.__typename)
-}
+    const PlanLimitOverride_possibleTypes: string[] = ['PlanLimitOverride']
+    export const isPlanLimitOverride = (obj?: { __typename?: any } | null): obj is PlanLimitOverride => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPlanLimitOverride"')
+      return PlanLimitOverride_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const UserTeamsConnectionEdge_possibleTypes: string[] = ['UserTeamsConnectionEdge']
-export const isUserTeamsConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is UserTeamsConnectionEdge => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isUserTeamsConnectionEdge"')
-    return UserTeamsConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const Variable_possibleTypes: string[] = ['Variable']
-export const isVariable = (obj?: { __typename?: any } | null): obj is Variable => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVariable"')
-    return Variable_possibleTypes.includes(obj.__typename)
-}
+    const PlatformFeatureFlagStatus_possibleTypes: string[] = ['PlatformFeatureFlagStatus']
+    export const isPlatformFeatureFlagStatus = (obj?: { __typename?: any } | null): obj is PlatformFeatureFlagStatus => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPlatformFeatureFlagStatus"')
+      return PlatformFeatureFlagStatus_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const VercelAccount_possibleTypes: string[] = ['VercelAccount']
-export const isVercelAccount = (obj?: { __typename?: any } | null): obj is VercelAccount => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVercelAccount"')
-    return VercelAccount_possibleTypes.includes(obj.__typename)
-}
 
-const VercelInfo_possibleTypes: string[] = ['VercelInfo']
-export const isVercelInfo = (obj?: { __typename?: any } | null): obj is VercelInfo => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVercelInfo"')
-    return VercelInfo_possibleTypes.includes(obj.__typename)
-}
+    const PlatformStatus_possibleTypes: string[] = ['PlatformStatus']
+    export const isPlatformStatus = (obj?: { __typename?: any } | null): obj is PlatformStatus => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPlatformStatus"')
+      return PlatformStatus_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const VercelProject_possibleTypes: string[] = ['VercelProject']
-export const isVercelProject = (obj?: { __typename?: any } | null): obj is VercelProject => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVercelProject"')
-    return VercelProject_possibleTypes.includes(obj.__typename)
-}
 
-const Volume_possibleTypes: string[] = ['Volume']
-export const isVolume = (obj?: { __typename?: any } | null): obj is Volume => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVolume"')
-    return Volume_possibleTypes.includes(obj.__typename)
-}
+    const Plugin_possibleTypes: string[] = ['Plugin']
+    export const isPlugin = (obj?: { __typename?: any } | null): obj is Plugin => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPlugin"')
+      return Plugin_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const VolumeInstance_possibleTypes: string[] = ['VolumeInstance']
-export const isVolumeInstance = (obj?: { __typename?: any } | null): obj is VolumeInstance => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstance"')
-    return VolumeInstance_possibleTypes.includes(obj.__typename)
-}
 
-const VolumeInstanceBackup_possibleTypes: string[] = ['VolumeInstanceBackup']
-export const isVolumeInstanceBackup = (
-    obj?: { __typename?: any } | null
-): obj is VolumeInstanceBackup => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstanceBackup"')
-    return VolumeInstanceBackup_possibleTypes.includes(obj.__typename)
-}
+    const PluginContainersConnection_possibleTypes: string[] = ['PluginContainersConnection']
+    export const isPluginContainersConnection = (obj?: { __typename?: any } | null): obj is PluginContainersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPluginContainersConnection"')
+      return PluginContainersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const VolumeInstanceBackupSchedule_possibleTypes: string[] = ['VolumeInstanceBackupSchedule']
-export const isVolumeInstanceBackupSchedule = (
-    obj?: { __typename?: any } | null
-): obj is VolumeInstanceBackupSchedule => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isVolumeInstanceBackupSchedule"')
-    return VolumeInstanceBackupSchedule_possibleTypes.includes(obj.__typename)
-}
 
-const VolumeVolumeInstancesConnection_possibleTypes: string[] = ['VolumeVolumeInstancesConnection']
-export const isVolumeVolumeInstancesConnection = (
-    obj?: { __typename?: any } | null
-): obj is VolumeVolumeInstancesConnection => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isVolumeVolumeInstancesConnection"')
-    return VolumeVolumeInstancesConnection_possibleTypes.includes(obj.__typename)
-}
+    const PluginContainersConnectionEdge_possibleTypes: string[] = ['PluginContainersConnectionEdge']
+    export const isPluginContainersConnectionEdge = (obj?: { __typename?: any } | null): obj is PluginContainersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPluginContainersConnectionEdge"')
+      return PluginContainersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const VolumeVolumeInstancesConnectionEdge_possibleTypes: string[] = [
-    'VolumeVolumeInstancesConnectionEdge',
-]
-export const isVolumeVolumeInstancesConnectionEdge = (
-    obj?: { __typename?: any } | null
-): obj is VolumeVolumeInstancesConnectionEdge => {
-    if (!obj?.__typename)
-        throw new Error('__typename is missing in "isVolumeVolumeInstancesConnectionEdge"')
-    return VolumeVolumeInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
-}
 
-const Withdrawal_possibleTypes: string[] = ['Withdrawal']
-export const isWithdrawal = (obj?: { __typename?: any } | null): obj is Withdrawal => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isWithdrawal"')
-    return Withdrawal_possibleTypes.includes(obj.__typename)
-}
+    const PluginVariablesConnection_possibleTypes: string[] = ['PluginVariablesConnection']
+    export const isPluginVariablesConnection = (obj?: { __typename?: any } | null): obj is PluginVariablesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPluginVariablesConnection"')
+      return PluginVariablesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const WithdrawalAccount_possibleTypes: string[] = ['WithdrawalAccount']
-export const isWithdrawalAccount = (
-    obj?: { __typename?: any } | null
-): obj is WithdrawalAccount => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isWithdrawalAccount"')
-    return WithdrawalAccount_possibleTypes.includes(obj.__typename)
-}
 
-const WorkflowId_possibleTypes: string[] = ['WorkflowId']
-export const isWorkflowId = (obj?: { __typename?: any } | null): obj is WorkflowId => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isWorkflowId"')
-    return WorkflowId_possibleTypes.includes(obj.__typename)
-}
+    const PluginVariablesConnectionEdge_possibleTypes: string[] = ['PluginVariablesConnectionEdge']
+    export const isPluginVariablesConnectionEdge = (obj?: { __typename?: any } | null): obj is PluginVariablesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPluginVariablesConnectionEdge"')
+      return PluginVariablesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
-const WorkflowResult_possibleTypes: string[] = ['WorkflowResult']
-export const isWorkflowResult = (obj?: { __typename?: any } | null): obj is WorkflowResult => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isWorkflowResult"')
-    return WorkflowResult_possibleTypes.includes(obj.__typename)
-}
 
-const Workspace_possibleTypes: string[] = ['Workspace']
-export const isWorkspace = (obj?: { __typename?: any } | null): obj is Workspace => {
-    if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspace"')
-    return Workspace_possibleTypes.includes(obj.__typename)
-}
+    const Preferences_possibleTypes: string[] = ['Preferences']
+    export const isPreferences = (obj?: { __typename?: any } | null): obj is Preferences => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPreferences"')
+      return Preferences_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PrivateNetwork_possibleTypes: string[] = ['PrivateNetwork']
+    export const isPrivateNetwork = (obj?: { __typename?: any } | null): obj is PrivateNetwork => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPrivateNetwork"')
+      return PrivateNetwork_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PrivateNetworkEndpoint_possibleTypes: string[] = ['PrivateNetworkEndpoint']
+    export const isPrivateNetworkEndpoint = (obj?: { __typename?: any } | null): obj is PrivateNetworkEndpoint => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPrivateNetworkEndpoint"')
+      return PrivateNetworkEndpoint_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Project_possibleTypes: string[] = ['Project']
+    export const isProject = (obj?: { __typename?: any } | null): obj is Project => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProject"')
+      return Project_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectBucketsConnection_possibleTypes: string[] = ['ProjectBucketsConnection']
+    export const isProjectBucketsConnection = (obj?: { __typename?: any } | null): obj is ProjectBucketsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectBucketsConnection"')
+      return ProjectBucketsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectBucketsConnectionEdge_possibleTypes: string[] = ['ProjectBucketsConnectionEdge']
+    export const isProjectBucketsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectBucketsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectBucketsConnectionEdge"')
+      return ProjectBucketsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectComplianceInfo_possibleTypes: string[] = ['ProjectComplianceInfo']
+    export const isProjectComplianceInfo = (obj?: { __typename?: any } | null): obj is ProjectComplianceInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectComplianceInfo"')
+      return ProjectComplianceInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectDeploymentTriggersConnection_possibleTypes: string[] = ['ProjectDeploymentTriggersConnection']
+    export const isProjectDeploymentTriggersConnection = (obj?: { __typename?: any } | null): obj is ProjectDeploymentTriggersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectDeploymentTriggersConnection"')
+      return ProjectDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectDeploymentTriggersConnectionEdge_possibleTypes: string[] = ['ProjectDeploymentTriggersConnectionEdge']
+    export const isProjectDeploymentTriggersConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectDeploymentTriggersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectDeploymentTriggersConnectionEdge"')
+      return ProjectDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectDeploymentsConnection_possibleTypes: string[] = ['ProjectDeploymentsConnection']
+    export const isProjectDeploymentsConnection = (obj?: { __typename?: any } | null): obj is ProjectDeploymentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectDeploymentsConnection"')
+      return ProjectDeploymentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectDeploymentsConnectionEdge_possibleTypes: string[] = ['ProjectDeploymentsConnectionEdge']
+    export const isProjectDeploymentsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectDeploymentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectDeploymentsConnectionEdge"')
+      return ProjectDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectEnvironmentsConnection_possibleTypes: string[] = ['ProjectEnvironmentsConnection']
+    export const isProjectEnvironmentsConnection = (obj?: { __typename?: any } | null): obj is ProjectEnvironmentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectEnvironmentsConnection"')
+      return ProjectEnvironmentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectEnvironmentsConnectionEdge_possibleTypes: string[] = ['ProjectEnvironmentsConnectionEdge']
+    export const isProjectEnvironmentsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectEnvironmentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectEnvironmentsConnectionEdge"')
+      return ProjectEnvironmentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectGroupsConnection_possibleTypes: string[] = ['ProjectGroupsConnection']
+    export const isProjectGroupsConnection = (obj?: { __typename?: any } | null): obj is ProjectGroupsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectGroupsConnection"')
+      return ProjectGroupsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectGroupsConnectionEdge_possibleTypes: string[] = ['ProjectGroupsConnectionEdge']
+    export const isProjectGroupsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectGroupsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectGroupsConnectionEdge"')
+      return ProjectGroupsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectInvitation_possibleTypes: string[] = ['ProjectInvitation']
+    export const isProjectInvitation = (obj?: { __typename?: any } | null): obj is ProjectInvitation => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectInvitation"')
+      return ProjectInvitation_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectInvitationInviter_possibleTypes: string[] = ['ProjectInvitationInviter']
+    export const isProjectInvitationInviter = (obj?: { __typename?: any } | null): obj is ProjectInvitationInviter => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectInvitationInviter"')
+      return ProjectInvitationInviter_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectMember_possibleTypes: string[] = ['ProjectMember']
+    export const isProjectMember = (obj?: { __typename?: any } | null): obj is ProjectMember => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectMember"')
+      return ProjectMember_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectMemberPermissionsInfo_possibleTypes: string[] = ['ProjectMemberPermissionsInfo']
+    export const isProjectMemberPermissionsInfo = (obj?: { __typename?: any } | null): obj is ProjectMemberPermissionsInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectMemberPermissionsInfo"')
+      return ProjectMemberPermissionsInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectMemberTwoFactorInfo_possibleTypes: string[] = ['ProjectMemberTwoFactorInfo']
+    export const isProjectMemberTwoFactorInfo = (obj?: { __typename?: any } | null): obj is ProjectMemberTwoFactorInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectMemberTwoFactorInfo"')
+      return ProjectMemberTwoFactorInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectPermission_possibleTypes: string[] = ['ProjectPermission']
+    export const isProjectPermission = (obj?: { __typename?: any } | null): obj is ProjectPermission => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectPermission"')
+      return ProjectPermission_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectPluginsConnection_possibleTypes: string[] = ['ProjectPluginsConnection']
+    export const isProjectPluginsConnection = (obj?: { __typename?: any } | null): obj is ProjectPluginsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectPluginsConnection"')
+      return ProjectPluginsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectPluginsConnectionEdge_possibleTypes: string[] = ['ProjectPluginsConnectionEdge']
+    export const isProjectPluginsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectPluginsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectPluginsConnectionEdge"')
+      return ProjectPluginsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectProjectPermissionsConnection_possibleTypes: string[] = ['ProjectProjectPermissionsConnection']
+    export const isProjectProjectPermissionsConnection = (obj?: { __typename?: any } | null): obj is ProjectProjectPermissionsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectProjectPermissionsConnection"')
+      return ProjectProjectPermissionsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectProjectPermissionsConnectionEdge_possibleTypes: string[] = ['ProjectProjectPermissionsConnectionEdge']
+    export const isProjectProjectPermissionsConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectProjectPermissionsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectProjectPermissionsConnectionEdge"')
+      return ProjectProjectPermissionsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectResourceAccess_possibleTypes: string[] = ['ProjectResourceAccess']
+    export const isProjectResourceAccess = (obj?: { __typename?: any } | null): obj is ProjectResourceAccess => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectResourceAccess"')
+      return ProjectResourceAccess_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectServicesConnection_possibleTypes: string[] = ['ProjectServicesConnection']
+    export const isProjectServicesConnection = (obj?: { __typename?: any } | null): obj is ProjectServicesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectServicesConnection"')
+      return ProjectServicesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectServicesConnectionEdge_possibleTypes: string[] = ['ProjectServicesConnectionEdge']
+    export const isProjectServicesConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectServicesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectServicesConnectionEdge"')
+      return ProjectServicesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectToken_possibleTypes: string[] = ['ProjectToken']
+    export const isProjectToken = (obj?: { __typename?: any } | null): obj is ProjectToken => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectToken"')
+      return ProjectToken_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectVolumesConnection_possibleTypes: string[] = ['ProjectVolumesConnection']
+    export const isProjectVolumesConnection = (obj?: { __typename?: any } | null): obj is ProjectVolumesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectVolumesConnection"')
+      return ProjectVolumesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectVolumesConnectionEdge_possibleTypes: string[] = ['ProjectVolumesConnectionEdge']
+    export const isProjectVolumesConnectionEdge = (obj?: { __typename?: any } | null): obj is ProjectVolumesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectVolumesConnectionEdge"')
+      return ProjectVolumesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectWorkspaceMember_possibleTypes: string[] = ['ProjectWorkspaceMember']
+    export const isProjectWorkspaceMember = (obj?: { __typename?: any } | null): obj is ProjectWorkspaceMember => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectWorkspaceMember"')
+      return ProjectWorkspaceMember_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProjectWorkspaceMembersResponse_possibleTypes: string[] = ['ProjectWorkspaceMembersResponse']
+    export const isProjectWorkspaceMembersResponse = (obj?: { __typename?: any } | null): obj is ProjectWorkspaceMembersResponse => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProjectWorkspaceMembersResponse"')
+      return ProjectWorkspaceMembersResponse_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ProviderAuth_possibleTypes: string[] = ['ProviderAuth']
+    export const isProviderAuth = (obj?: { __typename?: any } | null): obj is ProviderAuth => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isProviderAuth"')
+      return ProviderAuth_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PublicProjectInformation_possibleTypes: string[] = ['PublicProjectInformation']
+    export const isPublicProjectInformation = (obj?: { __typename?: any } | null): obj is PublicProjectInformation => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPublicProjectInformation"')
+      return PublicProjectInformation_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PublicProjectInvitation_possibleTypes: string[] = ['InviteCode','ProjectInvitation']
+    export const isPublicProjectInvitation = (obj?: { __typename?: any } | null): obj is PublicProjectInvitation => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPublicProjectInvitation"')
+      return PublicProjectInvitation_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PublicStats_possibleTypes: string[] = ['PublicStats']
+    export const isPublicStats = (obj?: { __typename?: any } | null): obj is PublicStats => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPublicStats"')
+      return PublicStats_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Query_possibleTypes: string[] = ['Query']
+    export const isQuery = (obj?: { __typename?: any } | null): obj is Query => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQuery"')
+      return Query_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryApiTokensConnection_possibleTypes: string[] = ['QueryApiTokensConnection']
+    export const isQueryApiTokensConnection = (obj?: { __typename?: any } | null): obj is QueryApiTokensConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryApiTokensConnection"')
+      return QueryApiTokensConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryApiTokensConnectionEdge_possibleTypes: string[] = ['QueryApiTokensConnectionEdge']
+    export const isQueryApiTokensConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryApiTokensConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryApiTokensConnectionEdge"')
+      return QueryApiTokensConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryAuditLogsConnection_possibleTypes: string[] = ['QueryAuditLogsConnection']
+    export const isQueryAuditLogsConnection = (obj?: { __typename?: any } | null): obj is QueryAuditLogsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryAuditLogsConnection"')
+      return QueryAuditLogsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryAuditLogsConnectionEdge_possibleTypes: string[] = ['QueryAuditLogsConnectionEdge']
+    export const isQueryAuditLogsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryAuditLogsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryAuditLogsConnectionEdge"')
+      return QueryAuditLogsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentEventsConnection_possibleTypes: string[] = ['QueryDeploymentEventsConnection']
+    export const isQueryDeploymentEventsConnection = (obj?: { __typename?: any } | null): obj is QueryDeploymentEventsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentEventsConnection"')
+      return QueryDeploymentEventsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentEventsConnectionEdge_possibleTypes: string[] = ['QueryDeploymentEventsConnectionEdge']
+    export const isQueryDeploymentEventsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryDeploymentEventsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentEventsConnectionEdge"')
+      return QueryDeploymentEventsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentInstanceExecutionsConnection_possibleTypes: string[] = ['QueryDeploymentInstanceExecutionsConnection']
+    export const isQueryDeploymentInstanceExecutionsConnection = (obj?: { __typename?: any } | null): obj is QueryDeploymentInstanceExecutionsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentInstanceExecutionsConnection"')
+      return QueryDeploymentInstanceExecutionsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentInstanceExecutionsConnectionEdge_possibleTypes: string[] = ['QueryDeploymentInstanceExecutionsConnectionEdge']
+    export const isQueryDeploymentInstanceExecutionsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryDeploymentInstanceExecutionsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentInstanceExecutionsConnectionEdge"')
+      return QueryDeploymentInstanceExecutionsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentTriggersConnection_possibleTypes: string[] = ['QueryDeploymentTriggersConnection']
+    export const isQueryDeploymentTriggersConnection = (obj?: { __typename?: any } | null): obj is QueryDeploymentTriggersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentTriggersConnection"')
+      return QueryDeploymentTriggersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentTriggersConnectionEdge_possibleTypes: string[] = ['QueryDeploymentTriggersConnectionEdge']
+    export const isQueryDeploymentTriggersConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryDeploymentTriggersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentTriggersConnectionEdge"')
+      return QueryDeploymentTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentsConnection_possibleTypes: string[] = ['QueryDeploymentsConnection']
+    export const isQueryDeploymentsConnection = (obj?: { __typename?: any } | null): obj is QueryDeploymentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentsConnection"')
+      return QueryDeploymentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryDeploymentsConnectionEdge_possibleTypes: string[] = ['QueryDeploymentsConnectionEdge']
+    export const isQueryDeploymentsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryDeploymentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryDeploymentsConnectionEdge"')
+      return QueryDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEnvironmentPatchesConnection_possibleTypes: string[] = ['QueryEnvironmentPatchesConnection']
+    export const isQueryEnvironmentPatchesConnection = (obj?: { __typename?: any } | null): obj is QueryEnvironmentPatchesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEnvironmentPatchesConnection"')
+      return QueryEnvironmentPatchesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEnvironmentPatchesConnectionEdge_possibleTypes: string[] = ['QueryEnvironmentPatchesConnectionEdge']
+    export const isQueryEnvironmentPatchesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryEnvironmentPatchesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEnvironmentPatchesConnectionEdge"')
+      return QueryEnvironmentPatchesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEnvironmentsConnection_possibleTypes: string[] = ['QueryEnvironmentsConnection']
+    export const isQueryEnvironmentsConnection = (obj?: { __typename?: any } | null): obj is QueryEnvironmentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEnvironmentsConnection"')
+      return QueryEnvironmentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEnvironmentsConnectionEdge_possibleTypes: string[] = ['QueryEnvironmentsConnectionEdge']
+    export const isQueryEnvironmentsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryEnvironmentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEnvironmentsConnectionEdge"')
+      return QueryEnvironmentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEventsConnection_possibleTypes: string[] = ['QueryEventsConnection']
+    export const isQueryEventsConnection = (obj?: { __typename?: any } | null): obj is QueryEventsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEventsConnection"')
+      return QueryEventsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryEventsConnectionEdge_possibleTypes: string[] = ['QueryEventsConnectionEdge']
+    export const isQueryEventsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryEventsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryEventsConnectionEdge"')
+      return QueryEventsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryIntegrationAuthsConnection_possibleTypes: string[] = ['QueryIntegrationAuthsConnection']
+    export const isQueryIntegrationAuthsConnection = (obj?: { __typename?: any } | null): obj is QueryIntegrationAuthsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryIntegrationAuthsConnection"')
+      return QueryIntegrationAuthsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryIntegrationAuthsConnectionEdge_possibleTypes: string[] = ['QueryIntegrationAuthsConnectionEdge']
+    export const isQueryIntegrationAuthsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryIntegrationAuthsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryIntegrationAuthsConnectionEdge"')
+      return QueryIntegrationAuthsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryIntegrationsConnection_possibleTypes: string[] = ['QueryIntegrationsConnection']
+    export const isQueryIntegrationsConnection = (obj?: { __typename?: any } | null): obj is QueryIntegrationsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryIntegrationsConnection"')
+      return QueryIntegrationsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryIntegrationsConnectionEdge_possibleTypes: string[] = ['QueryIntegrationsConnectionEdge']
+    export const isQueryIntegrationsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryIntegrationsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryIntegrationsConnectionEdge"')
+      return QueryIntegrationsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryNotificationDeliveriesConnection_possibleTypes: string[] = ['QueryNotificationDeliveriesConnection']
+    export const isQueryNotificationDeliveriesConnection = (obj?: { __typename?: any } | null): obj is QueryNotificationDeliveriesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryNotificationDeliveriesConnection"')
+      return QueryNotificationDeliveriesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryNotificationDeliveriesConnectionEdge_possibleTypes: string[] = ['QueryNotificationDeliveriesConnectionEdge']
+    export const isQueryNotificationDeliveriesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryNotificationDeliveriesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryNotificationDeliveriesConnectionEdge"')
+      return QueryNotificationDeliveriesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryObservabilityDashboardsConnection_possibleTypes: string[] = ['QueryObservabilityDashboardsConnection']
+    export const isQueryObservabilityDashboardsConnection = (obj?: { __typename?: any } | null): obj is QueryObservabilityDashboardsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryObservabilityDashboardsConnection"')
+      return QueryObservabilityDashboardsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryObservabilityDashboardsConnectionEdge_possibleTypes: string[] = ['QueryObservabilityDashboardsConnectionEdge']
+    export const isQueryObservabilityDashboardsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryObservabilityDashboardsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryObservabilityDashboardsConnectionEdge"')
+      return QueryObservabilityDashboardsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryPasskeysConnection_possibleTypes: string[] = ['QueryPasskeysConnection']
+    export const isQueryPasskeysConnection = (obj?: { __typename?: any } | null): obj is QueryPasskeysConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryPasskeysConnection"')
+      return QueryPasskeysConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryPasskeysConnectionEdge_possibleTypes: string[] = ['QueryPasskeysConnectionEdge']
+    export const isQueryPasskeysConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryPasskeysConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryPasskeysConnectionEdge"')
+      return QueryPasskeysConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryProjectTokensConnection_possibleTypes: string[] = ['QueryProjectTokensConnection']
+    export const isQueryProjectTokensConnection = (obj?: { __typename?: any } | null): obj is QueryProjectTokensConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryProjectTokensConnection"')
+      return QueryProjectTokensConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryProjectTokensConnectionEdge_possibleTypes: string[] = ['QueryProjectTokensConnectionEdge']
+    export const isQueryProjectTokensConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryProjectTokensConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryProjectTokensConnectionEdge"')
+      return QueryProjectTokensConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryProjectsConnection_possibleTypes: string[] = ['QueryProjectsConnection']
+    export const isQueryProjectsConnection = (obj?: { __typename?: any } | null): obj is QueryProjectsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryProjectsConnection"')
+      return QueryProjectsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryProjectsConnectionEdge_possibleTypes: string[] = ['QueryProjectsConnectionEdge']
+    export const isQueryProjectsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryProjectsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryProjectsConnectionEdge"')
+      return QueryProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QuerySessionsConnection_possibleTypes: string[] = ['QuerySessionsConnection']
+    export const isQuerySessionsConnection = (obj?: { __typename?: any } | null): obj is QuerySessionsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQuerySessionsConnection"')
+      return QuerySessionsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QuerySessionsConnectionEdge_possibleTypes: string[] = ['QuerySessionsConnectionEdge']
+    export const isQuerySessionsConnectionEdge = (obj?: { __typename?: any } | null): obj is QuerySessionsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQuerySessionsConnectionEdge"')
+      return QuerySessionsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTeamTemplatesConnection_possibleTypes: string[] = ['QueryTeamTemplatesConnection']
+    export const isQueryTeamTemplatesConnection = (obj?: { __typename?: any } | null): obj is QueryTeamTemplatesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTeamTemplatesConnection"')
+      return QueryTeamTemplatesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTeamTemplatesConnectionEdge_possibleTypes: string[] = ['QueryTeamTemplatesConnectionEdge']
+    export const isQueryTeamTemplatesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryTeamTemplatesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTeamTemplatesConnectionEdge"')
+      return QueryTeamTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTemplatesConnection_possibleTypes: string[] = ['QueryTemplatesConnection']
+    export const isQueryTemplatesConnection = (obj?: { __typename?: any } | null): obj is QueryTemplatesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTemplatesConnection"')
+      return QueryTemplatesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTemplatesConnectionEdge_possibleTypes: string[] = ['QueryTemplatesConnectionEdge']
+    export const isQueryTemplatesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryTemplatesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTemplatesConnectionEdge"')
+      return QueryTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTrustedDomainsConnection_possibleTypes: string[] = ['QueryTrustedDomainsConnection']
+    export const isQueryTrustedDomainsConnection = (obj?: { __typename?: any } | null): obj is QueryTrustedDomainsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTrustedDomainsConnection"')
+      return QueryTrustedDomainsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryTrustedDomainsConnectionEdge_possibleTypes: string[] = ['QueryTrustedDomainsConnectionEdge']
+    export const isQueryTrustedDomainsConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryTrustedDomainsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryTrustedDomainsConnectionEdge"')
+      return QueryTrustedDomainsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryUserTemplatesConnection_possibleTypes: string[] = ['QueryUserTemplatesConnection']
+    export const isQueryUserTemplatesConnection = (obj?: { __typename?: any } | null): obj is QueryUserTemplatesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryUserTemplatesConnection"')
+      return QueryUserTemplatesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryUserTemplatesConnectionEdge_possibleTypes: string[] = ['QueryUserTemplatesConnectionEdge']
+    export const isQueryUserTemplatesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryUserTemplatesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryUserTemplatesConnectionEdge"')
+      return QueryUserTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryWorkspaceIdentityProvidersConnection_possibleTypes: string[] = ['QueryWorkspaceIdentityProvidersConnection']
+    export const isQueryWorkspaceIdentityProvidersConnection = (obj?: { __typename?: any } | null): obj is QueryWorkspaceIdentityProvidersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryWorkspaceIdentityProvidersConnection"')
+      return QueryWorkspaceIdentityProvidersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryWorkspaceIdentityProvidersConnectionEdge_possibleTypes: string[] = ['QueryWorkspaceIdentityProvidersConnectionEdge']
+    export const isQueryWorkspaceIdentityProvidersConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryWorkspaceIdentityProvidersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryWorkspaceIdentityProvidersConnectionEdge"')
+      return QueryWorkspaceIdentityProvidersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryWorkspaceTemplatesConnection_possibleTypes: string[] = ['QueryWorkspaceTemplatesConnection']
+    export const isQueryWorkspaceTemplatesConnection = (obj?: { __typename?: any } | null): obj is QueryWorkspaceTemplatesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryWorkspaceTemplatesConnection"')
+      return QueryWorkspaceTemplatesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const QueryWorkspaceTemplatesConnectionEdge_possibleTypes: string[] = ['QueryWorkspaceTemplatesConnectionEdge']
+    export const isQueryWorkspaceTemplatesConnectionEdge = (obj?: { __typename?: any } | null): obj is QueryWorkspaceTemplatesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isQueryWorkspaceTemplatesConnectionEdge"')
+      return QueryWorkspaceTemplatesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const RecoveryCodes_possibleTypes: string[] = ['RecoveryCodes']
+    export const isRecoveryCodes = (obj?: { __typename?: any } | null): obj is RecoveryCodes => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isRecoveryCodes"')
+      return RecoveryCodes_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ReferralInfo_possibleTypes: string[] = ['ReferralInfo']
+    export const isReferralInfo = (obj?: { __typename?: any } | null): obj is ReferralInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isReferralInfo"')
+      return ReferralInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ReferralStats_possibleTypes: string[] = ['ReferralStats']
+    export const isReferralStats = (obj?: { __typename?: any } | null): obj is ReferralStats => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isReferralStats"')
+      return ReferralStats_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ReferralUser_possibleTypes: string[] = ['ReferralUser']
+    export const isReferralUser = (obj?: { __typename?: any } | null): obj is ReferralUser => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isReferralUser"')
+      return ReferralUser_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Region_possibleTypes: string[] = ['Region']
+    export const isRegion = (obj?: { __typename?: any } | null): obj is Region => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isRegion"')
+      return Region_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const RegionDeploymentConstraints_possibleTypes: string[] = ['RegionDeploymentConstraints']
+    export const isRegionDeploymentConstraints = (obj?: { __typename?: any } | null): obj is RegionDeploymentConstraints => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isRegionDeploymentConstraints"')
+      return RegionDeploymentConstraints_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const RegionDeprecationInfo_possibleTypes: string[] = ['RegionDeprecationInfo']
+    export const isRegionDeprecationInfo = (obj?: { __typename?: any } | null): obj is RegionDeprecationInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isRegionDeprecationInfo"')
+      return RegionDeprecationInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ResourceAccess_possibleTypes: string[] = ['ResourceAccess']
+    export const isResourceAccess = (obj?: { __typename?: any } | null): obj is ResourceAccess => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isResourceAccess"')
+      return ResourceAccess_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Service_possibleTypes: string[] = ['Service']
+    export const isService = (obj?: { __typename?: any } | null): obj is Service => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isService"')
+      return Service_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceBackupInfo_possibleTypes: string[] = ['ServiceBackupInfo']
+    export const isServiceBackupInfo = (obj?: { __typename?: any } | null): obj is ServiceBackupInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceBackupInfo"')
+      return ServiceBackupInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceDeploymentsConnection_possibleTypes: string[] = ['ServiceDeploymentsConnection']
+    export const isServiceDeploymentsConnection = (obj?: { __typename?: any } | null): obj is ServiceDeploymentsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceDeploymentsConnection"')
+      return ServiceDeploymentsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceDeploymentsConnectionEdge_possibleTypes: string[] = ['ServiceDeploymentsConnectionEdge']
+    export const isServiceDeploymentsConnectionEdge = (obj?: { __typename?: any } | null): obj is ServiceDeploymentsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceDeploymentsConnectionEdge"')
+      return ServiceDeploymentsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceDomain_possibleTypes: string[] = ['ServiceDomain']
+    export const isServiceDomain = (obj?: { __typename?: any } | null): obj is ServiceDomain => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceDomain"')
+      return ServiceDomain_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceInstance_possibleTypes: string[] = ['ServiceInstance']
+    export const isServiceInstance = (obj?: { __typename?: any } | null): obj is ServiceInstance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceInstance"')
+      return ServiceInstance_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceRepoTriggersConnection_possibleTypes: string[] = ['ServiceRepoTriggersConnection']
+    export const isServiceRepoTriggersConnection = (obj?: { __typename?: any } | null): obj is ServiceRepoTriggersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceRepoTriggersConnection"')
+      return ServiceRepoTriggersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceRepoTriggersConnectionEdge_possibleTypes: string[] = ['ServiceRepoTriggersConnectionEdge']
+    export const isServiceRepoTriggersConnectionEdge = (obj?: { __typename?: any } | null): obj is ServiceRepoTriggersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceRepoTriggersConnectionEdge"')
+      return ServiceRepoTriggersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceServiceInstancesConnection_possibleTypes: string[] = ['ServiceServiceInstancesConnection']
+    export const isServiceServiceInstancesConnection = (obj?: { __typename?: any } | null): obj is ServiceServiceInstancesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceServiceInstancesConnection"')
+      return ServiceServiceInstancesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceServiceInstancesConnectionEdge_possibleTypes: string[] = ['ServiceServiceInstancesConnectionEdge']
+    export const isServiceServiceInstancesConnectionEdge = (obj?: { __typename?: any } | null): obj is ServiceServiceInstancesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceServiceInstancesConnectionEdge"')
+      return ServiceServiceInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const ServiceSource_possibleTypes: string[] = ['ServiceSource']
+    export const isServiceSource = (obj?: { __typename?: any } | null): obj is ServiceSource => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isServiceSource"')
+      return ServiceSource_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Session_possibleTypes: string[] = ['Session']
+    export const isSession = (obj?: { __typename?: any } | null): obj is Session => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isSession"')
+      return Session_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const SimilarTemplate_possibleTypes: string[] = ['SimilarTemplate']
+    export const isSimilarTemplate = (obj?: { __typename?: any } | null): obj is SimilarTemplate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isSimilarTemplate"')
+      return SimilarTemplate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Subscription_possibleTypes: string[] = ['Subscription']
+    export const isSubscription = (obj?: { __typename?: any } | null): obj is Subscription => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isSubscription"')
+      return Subscription_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const SubscriptionDiscount_possibleTypes: string[] = ['SubscriptionDiscount']
+    export const isSubscriptionDiscount = (obj?: { __typename?: any } | null): obj is SubscriptionDiscount => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isSubscriptionDiscount"')
+      return SubscriptionDiscount_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const SubscriptionItem_possibleTypes: string[] = ['SubscriptionItem']
+    export const isSubscriptionItem = (obj?: { __typename?: any } | null): obj is SubscriptionItem => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isSubscriptionItem"')
+      return SubscriptionItem_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TCPProxy_possibleTypes: string[] = ['TCPProxy']
+    export const isTCPProxy = (obj?: { __typename?: any } | null): obj is TCPProxy => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTCPProxy"')
+      return TCPProxy_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Team_possibleTypes: string[] = ['Team']
+    export const isTeam = (obj?: { __typename?: any } | null): obj is Team => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTeam"')
+      return Team_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TeamMember_possibleTypes: string[] = ['TeamMember']
+    export const isTeamMember = (obj?: { __typename?: any } | null): obj is TeamMember => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTeamMember"')
+      return TeamMember_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TeamPermission_possibleTypes: string[] = ['TeamPermission']
+    export const isTeamPermission = (obj?: { __typename?: any } | null): obj is TeamPermission => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTeamPermission"')
+      return TeamPermission_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TeamProjectsConnection_possibleTypes: string[] = ['TeamProjectsConnection']
+    export const isTeamProjectsConnection = (obj?: { __typename?: any } | null): obj is TeamProjectsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTeamProjectsConnection"')
+      return TeamProjectsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TeamProjectsConnectionEdge_possibleTypes: string[] = ['TeamProjectsConnectionEdge']
+    export const isTeamProjectsConnectionEdge = (obj?: { __typename?: any } | null): obj is TeamProjectsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTeamProjectsConnectionEdge"')
+      return TeamProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Template_possibleTypes: string[] = ['Template']
+    export const isTemplate = (obj?: { __typename?: any } | null): obj is Template => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplate"')
+      return Template_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateCreator_possibleTypes: string[] = ['TemplateCreator']
+    export const isTemplateCreator = (obj?: { __typename?: any } | null): obj is TemplateCreator => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateCreator"')
+      return TemplateCreator_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateDeployPayload_possibleTypes: string[] = ['TemplateDeployPayload']
+    export const isTemplateDeployPayload = (obj?: { __typename?: any } | null): obj is TemplateDeployPayload => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateDeployPayload"')
+      return TemplateDeployPayload_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateGuide_possibleTypes: string[] = ['TemplateGuide']
+    export const isTemplateGuide = (obj?: { __typename?: any } | null): obj is TemplateGuide => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateGuide"')
+      return TemplateGuide_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateMetrics_possibleTypes: string[] = ['TemplateMetrics']
+    export const isTemplateMetrics = (obj?: { __typename?: any } | null): obj is TemplateMetrics => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateMetrics"')
+      return TemplateMetrics_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateService_possibleTypes: string[] = ['TemplateService']
+    export const isTemplateService = (obj?: { __typename?: any } | null): obj is TemplateService => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateService"')
+      return TemplateService_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateServicesConnection_possibleTypes: string[] = ['TemplateServicesConnection']
+    export const isTemplateServicesConnection = (obj?: { __typename?: any } | null): obj is TemplateServicesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateServicesConnection"')
+      return TemplateServicesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TemplateServicesConnectionEdge_possibleTypes: string[] = ['TemplateServicesConnectionEdge']
+    export const isTemplateServicesConnectionEdge = (obj?: { __typename?: any } | null): obj is TemplateServicesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTemplateServicesConnectionEdge"')
+      return TemplateServicesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TrustedDomain_possibleTypes: string[] = ['TrustedDomain']
+    export const isTrustedDomain = (obj?: { __typename?: any } | null): obj is TrustedDomain => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTrustedDomain"')
+      return TrustedDomain_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TrustedDomainVerificationData_possibleTypes: string[] = ['TrustedDomainVerificationData']
+    export const isTrustedDomainVerificationData = (obj?: { __typename?: any } | null): obj is TrustedDomainVerificationData => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTrustedDomainVerificationData"')
+      return TrustedDomainVerificationData_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TwoFactorInfo_possibleTypes: string[] = ['TwoFactorInfo']
+    export const isTwoFactorInfo = (obj?: { __typename?: any } | null): obj is TwoFactorInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTwoFactorInfo"')
+      return TwoFactorInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TwoFactorInfoSecret_possibleTypes: string[] = ['TwoFactorInfoSecret']
+    export const isTwoFactorInfoSecret = (obj?: { __typename?: any } | null): obj is TwoFactorInfoSecret => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTwoFactorInfoSecret"')
+      return TwoFactorInfoSecret_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UsageLimit_possibleTypes: string[] = ['UsageLimit']
+    export const isUsageLimit = (obj?: { __typename?: any } | null): obj is UsageLimit => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUsageLimit"')
+      return UsageLimit_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const User_possibleTypes: string[] = ['User']
+    export const isUser = (obj?: { __typename?: any } | null): obj is User => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUser"')
+      return User_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserKickbackEarnings_possibleTypes: string[] = ['UserKickbackEarnings']
+    export const isUserKickbackEarnings = (obj?: { __typename?: any } | null): obj is UserKickbackEarnings => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserKickbackEarnings"')
+      return UserKickbackEarnings_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProfile_possibleTypes: string[] = ['UserProfile']
+    export const isUserProfile = (obj?: { __typename?: any } | null): obj is UserProfile => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfile"')
+      return UserProfile_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProfileResponse_possibleTypes: string[] = ['UserProfileResponse']
+    export const isUserProfileResponse = (obj?: { __typename?: any } | null): obj is UserProfileResponse => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfileResponse"')
+      return UserProfileResponse_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProfileResponsePublicProjectsConnection_possibleTypes: string[] = ['UserProfileResponsePublicProjectsConnection']
+    export const isUserProfileResponsePublicProjectsConnection = (obj?: { __typename?: any } | null): obj is UserProfileResponsePublicProjectsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfileResponsePublicProjectsConnection"')
+      return UserProfileResponsePublicProjectsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProfileResponsePublicProjectsConnectionEdge_possibleTypes: string[] = ['UserProfileResponsePublicProjectsConnectionEdge']
+    export const isUserProfileResponsePublicProjectsConnectionEdge = (obj?: { __typename?: any } | null): obj is UserProfileResponsePublicProjectsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProfileResponsePublicProjectsConnectionEdge"')
+      return UserProfileResponsePublicProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProjectsConnection_possibleTypes: string[] = ['UserProjectsConnection']
+    export const isUserProjectsConnection = (obj?: { __typename?: any } | null): obj is UserProjectsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProjectsConnection"')
+      return UserProjectsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProjectsConnectionEdge_possibleTypes: string[] = ['UserProjectsConnectionEdge']
+    export const isUserProjectsConnectionEdge = (obj?: { __typename?: any } | null): obj is UserProjectsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProjectsConnectionEdge"')
+      return UserProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProviderAuthsConnection_possibleTypes: string[] = ['UserProviderAuthsConnection']
+    export const isUserProviderAuthsConnection = (obj?: { __typename?: any } | null): obj is UserProviderAuthsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProviderAuthsConnection"')
+      return UserProviderAuthsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const UserProviderAuthsConnectionEdge_possibleTypes: string[] = ['UserProviderAuthsConnectionEdge']
+    export const isUserProviderAuthsConnectionEdge = (obj?: { __typename?: any } | null): obj is UserProviderAuthsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isUserProviderAuthsConnectionEdge"')
+      return UserProviderAuthsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Variable_possibleTypes: string[] = ['Variable']
+    export const isVariable = (obj?: { __typename?: any } | null): obj is Variable => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVariable"')
+      return Variable_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VercelAccount_possibleTypes: string[] = ['VercelAccount']
+    export const isVercelAccount = (obj?: { __typename?: any } | null): obj is VercelAccount => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVercelAccount"')
+      return VercelAccount_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VercelInfo_possibleTypes: string[] = ['VercelInfo']
+    export const isVercelInfo = (obj?: { __typename?: any } | null): obj is VercelInfo => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVercelInfo"')
+      return VercelInfo_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VercelProject_possibleTypes: string[] = ['VercelProject']
+    export const isVercelProject = (obj?: { __typename?: any } | null): obj is VercelProject => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVercelProject"')
+      return VercelProject_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Volume_possibleTypes: string[] = ['Volume']
+    export const isVolume = (obj?: { __typename?: any } | null): obj is Volume => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolume"')
+      return Volume_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeInstance_possibleTypes: string[] = ['VolumeInstance']
+    export const isVolumeInstance = (obj?: { __typename?: any } | null): obj is VolumeInstance => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstance"')
+      return VolumeInstance_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeInstanceBackup_possibleTypes: string[] = ['VolumeInstanceBackup']
+    export const isVolumeInstanceBackup = (obj?: { __typename?: any } | null): obj is VolumeInstanceBackup => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstanceBackup"')
+      return VolumeInstanceBackup_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeInstanceBackupSchedule_possibleTypes: string[] = ['VolumeInstanceBackupSchedule']
+    export const isVolumeInstanceBackupSchedule = (obj?: { __typename?: any } | null): obj is VolumeInstanceBackupSchedule => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstanceBackupSchedule"')
+      return VolumeInstanceBackupSchedule_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeInstanceReplicationProgress_possibleTypes: string[] = ['VolumeInstanceReplicationProgress']
+    export const isVolumeInstanceReplicationProgress = (obj?: { __typename?: any } | null): obj is VolumeInstanceReplicationProgress => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeInstanceReplicationProgress"')
+      return VolumeInstanceReplicationProgress_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeReplicationProgressUpdate_possibleTypes: string[] = ['VolumeReplicationProgressUpdate']
+    export const isVolumeReplicationProgressUpdate = (obj?: { __typename?: any } | null): obj is VolumeReplicationProgressUpdate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeReplicationProgressUpdate"')
+      return VolumeReplicationProgressUpdate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeSnapshotReplicationProgressUpdate_possibleTypes: string[] = ['VolumeSnapshotReplicationProgressUpdate']
+    export const isVolumeSnapshotReplicationProgressUpdate = (obj?: { __typename?: any } | null): obj is VolumeSnapshotReplicationProgressUpdate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeSnapshotReplicationProgressUpdate"')
+      return VolumeSnapshotReplicationProgressUpdate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeVolumeInstancesConnection_possibleTypes: string[] = ['VolumeVolumeInstancesConnection']
+    export const isVolumeVolumeInstancesConnection = (obj?: { __typename?: any } | null): obj is VolumeVolumeInstancesConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeVolumeInstancesConnection"')
+      return VolumeVolumeInstancesConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const VolumeVolumeInstancesConnectionEdge_possibleTypes: string[] = ['VolumeVolumeInstancesConnectionEdge']
+    export const isVolumeVolumeInstancesConnectionEdge = (obj?: { __typename?: any } | null): obj is VolumeVolumeInstancesConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isVolumeVolumeInstancesConnectionEdge"')
+      return VolumeVolumeInstancesConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkflowId_possibleTypes: string[] = ['WorkflowId']
+    export const isWorkflowId = (obj?: { __typename?: any } | null): obj is WorkflowId => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkflowId"')
+      return WorkflowId_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkflowResult_possibleTypes: string[] = ['WorkflowResult']
+    export const isWorkflowResult = (obj?: { __typename?: any } | null): obj is WorkflowResult => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkflowResult"')
+      return WorkflowResult_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const Workspace_possibleTypes: string[] = ['Workspace']
+    export const isWorkspace = (obj?: { __typename?: any } | null): obj is Workspace => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspace"')
+      return Workspace_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceIdPConnection_possibleTypes: string[] = ['WorkspaceIdPConnection']
+    export const isWorkspaceIdPConnection = (obj?: { __typename?: any } | null): obj is WorkspaceIdPConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceIdPConnection"')
+      return WorkspaceIdPConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceIdentityProvider_possibleTypes: string[] = ['WorkspaceIdentityProvider']
+    export const isWorkspaceIdentityProvider = (obj?: { __typename?: any } | null): obj is WorkspaceIdentityProvider => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceIdentityProvider"')
+      return WorkspaceIdentityProvider_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceIdentityProvidersConnection_possibleTypes: string[] = ['WorkspaceIdentityProvidersConnection']
+    export const isWorkspaceIdentityProvidersConnection = (obj?: { __typename?: any } | null): obj is WorkspaceIdentityProvidersConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceIdentityProvidersConnection"')
+      return WorkspaceIdentityProvidersConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceIdentityProvidersConnectionEdge_possibleTypes: string[] = ['WorkspaceIdentityProvidersConnectionEdge']
+    export const isWorkspaceIdentityProvidersConnectionEdge = (obj?: { __typename?: any } | null): obj is WorkspaceIdentityProvidersConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceIdentityProvidersConnectionEdge"')
+      return WorkspaceIdentityProvidersConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceMember_possibleTypes: string[] = ['WorkspaceMember']
+    export const isWorkspaceMember = (obj?: { __typename?: any } | null): obj is WorkspaceMember => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceMember"')
+      return WorkspaceMember_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceProjectsConnection_possibleTypes: string[] = ['WorkspaceProjectsConnection']
+    export const isWorkspaceProjectsConnection = (obj?: { __typename?: any } | null): obj is WorkspaceProjectsConnection => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceProjectsConnection"')
+      return WorkspaceProjectsConnection_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const WorkspaceProjectsConnectionEdge_possibleTypes: string[] = ['WorkspaceProjectsConnectionEdge']
+    export const isWorkspaceProjectsConnectionEdge = (obj?: { __typename?: any } | null): obj is WorkspaceProjectsConnectionEdge => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isWorkspaceProjectsConnectionEdge"')
+      return WorkspaceProjectsConnectionEdge_possibleTypes.includes(obj.__typename)
+    }
+    
 
 export const enumActiveFeatureFlag = {
-    METAL_VOLUME_CREATION: 'METAL_VOLUME_CREATION' as const,
-    PRIORITY_BOARDING: 'PRIORITY_BOARDING' as const,
-    V2_NEW_PROJECT_PAGE: 'V2_NEW_PROJECT_PAGE' as const,
+   AUDIT_LOGS: 'AUDIT_LOGS' as const,
+   BUCKET_FILE_BROWSER: 'BUCKET_FILE_BROWSER' as const,
+   CONVERSATIONAL_UI: 'CONVERSATIONAL_UI' as const,
+   MAGIC_CONFIG: 'MAGIC_CONFIG' as const,
+   POSTGRES_HA: 'POSTGRES_HA' as const,
+   PRIORITY_BOARDING: 'PRIORITY_BOARDING' as const,
+   RAW_SQL_QUERIES: 'RAW_SQL_QUERIES' as const
+}
+
+export const enumActivePlatformFlag = {
+   ALLOW_REPLICA_METRICS: 'ALLOW_REPLICA_METRICS' as const,
+   BUILDER_V3_ROLLOUT_EXISTING_SERVICES: 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES' as const,
+   BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO: 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO' as const,
+   BUILDER_V3_ROLLOUT_NEW_SERVICES: 'BUILDER_V3_ROLLOUT_NEW_SERVICES' as const,
+   BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO: 'BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO' as const,
+   CTRD_IMAGE_STORE_ROLLOUT: 'CTRD_IMAGE_STORE_ROLLOUT' as const,
+   DEMO_PERCENTAGE_ROLLOUT: 'DEMO_PERCENTAGE_ROLLOUT' as const,
+   ENABLE_RAW_SQL_QUERIES: 'ENABLE_RAW_SQL_QUERIES' as const,
+   SCYLLADB_ROUTING_ENABLED: 'SCYLLADB_ROUTING_ENABLED' as const,
+   SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL: 'SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL' as const,
+   SPLIT_USAGE_QUERIES: 'SPLIT_USAGE_QUERIES' as const,
+   UPDATED_VM_QUERIES: 'UPDATED_VM_QUERIES' as const,
+   USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION: 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' as const,
+   VM_TIME_RANGE_QUERY: 'VM_TIME_RANGE_QUERY' as const
 }
 
 export const enumActiveServiceFeatureFlag = {
-    COPY_VOLUME_TO_ENVIRONMENT: 'COPY_VOLUME_TO_ENVIRONMENT' as const,
-    LEGACY_CRONS: 'LEGACY_CRONS' as const,
-    PLACEHOLDER: 'PLACEHOLDER' as const,
+   COPY_VOLUME_TO_ENVIRONMENT: 'COPY_VOLUME_TO_ENVIRONMENT' as const,
+   ENABLE_DOCKER_EXTENSION: 'ENABLE_DOCKER_EXTENSION' as const,
+   ENABLE_ONLINE_VOLUME_RESIZING: 'ENABLE_ONLINE_VOLUME_RESIZING' as const,
+   PLACEHOLDER: 'PLACEHOLDER' as const,
+   USE_BUILDER_V3_FOR_CLI_DEPLOYS: 'USE_BUILDER_V3_FOR_CLI_DEPLOYS' as const,
+   USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION: 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' as const,
+   USE_VM_RUNTIME: 'USE_VM_RUNTIME' as const
 }
 
 export const enumBuilder = {
-    HEROKU: 'HEROKU' as const,
-    NIXPACKS: 'NIXPACKS' as const,
-    PAKETO: 'PAKETO' as const,
+   HEROKU: 'HEROKU' as const,
+   NIXPACKS: 'NIXPACKS' as const,
+   PAKETO: 'PAKETO' as const,
+   RAILPACK: 'RAILPACK' as const
 }
 
 export const enumCdnProvider = {
-    DETECTED_CDN_PROVIDER_CLOUDFLARE: 'DETECTED_CDN_PROVIDER_CLOUDFLARE' as const,
-    DETECTED_CDN_PROVIDER_UNSPECIFIED: 'DETECTED_CDN_PROVIDER_UNSPECIFIED' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   DETECTED_CDN_PROVIDER_CLOUDFLARE: 'DETECTED_CDN_PROVIDER_CLOUDFLARE' as const,
+   DETECTED_CDN_PROVIDER_UNSPECIFIED: 'DETECTED_CDN_PROVIDER_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumCertificateStatus = {
-    CERTIFICATE_STATUS_TYPE_ISSUE_FAILED: 'CERTIFICATE_STATUS_TYPE_ISSUE_FAILED' as const,
-    CERTIFICATE_STATUS_TYPE_ISSUING: 'CERTIFICATE_STATUS_TYPE_ISSUING' as const,
-    CERTIFICATE_STATUS_TYPE_UNSPECIFIED: 'CERTIFICATE_STATUS_TYPE_UNSPECIFIED' as const,
-    CERTIFICATE_STATUS_TYPE_VALID: 'CERTIFICATE_STATUS_TYPE_VALID' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   CERTIFICATE_STATUS_TYPE_ISSUE_FAILED: 'CERTIFICATE_STATUS_TYPE_ISSUE_FAILED' as const,
+   CERTIFICATE_STATUS_TYPE_ISSUING: 'CERTIFICATE_STATUS_TYPE_ISSUING' as const,
+   CERTIFICATE_STATUS_TYPE_UNSPECIFIED: 'CERTIFICATE_STATUS_TYPE_UNSPECIFIED' as const,
+   CERTIFICATE_STATUS_TYPE_VALID: 'CERTIFICATE_STATUS_TYPE_VALID' as const,
+   CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP: 'CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
+}
+
+export const enumCertificateStatusDetailed = {
+   CERTIFICATE_STATUS_TYPE_DETAILED_CLEANING_UP: 'CERTIFICATE_STATUS_TYPE_DETAILED_CLEANING_UP' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_COMPLETE: 'CERTIFICATE_STATUS_TYPE_DETAILED_COMPLETE' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_CREATING_ORDER: 'CERTIFICATE_STATUS_TYPE_DETAILED_CREATING_ORDER' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_DOWNLOADING_CERTIFICATE: 'CERTIFICATE_STATUS_TYPE_DETAILED_DOWNLOADING_CERTIFICATE' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_FAILED: 'CERTIFICATE_STATUS_TYPE_DETAILED_FAILED' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_FETCHING_AUTHORIZATIONS: 'CERTIFICATE_STATUS_TYPE_DETAILED_FETCHING_AUTHORIZATIONS' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_FINALIZING_ORDER: 'CERTIFICATE_STATUS_TYPE_DETAILED_FINALIZING_ORDER' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_GENERATING_KEYS: 'CERTIFICATE_STATUS_TYPE_DETAILED_GENERATING_KEYS' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_INITIATING_CHALLENGES: 'CERTIFICATE_STATUS_TYPE_DETAILED_INITIATING_CHALLENGES' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_POLLING_AUTHORIZATIONS: 'CERTIFICATE_STATUS_TYPE_DETAILED_POLLING_AUTHORIZATIONS' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_PRESENTING_CHALLENGES: 'CERTIFICATE_STATUS_TYPE_DETAILED_PRESENTING_CHALLENGES' as const,
+   CERTIFICATE_STATUS_TYPE_DETAILED_UNSPECIFIED: 'CERTIFICATE_STATUS_TYPE_DETAILED_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumCnameCheckStatus = {
-    ERROR: 'ERROR' as const,
-    INFO: 'INFO' as const,
-    INVALID: 'INVALID' as const,
-    VALID: 'VALID' as const,
-    WAITING: 'WAITING' as const,
+   ERROR: 'ERROR' as const,
+   INFO: 'INFO' as const,
+   INVALID: 'INVALID' as const,
+   VALID: 'VALID' as const,
+   WAITING: 'WAITING' as const
 }
 
 export const enumCreditType = {
-    APPLIED: 'APPLIED' as const,
-    CREDIT: 'CREDIT' as const,
-    DEBIT: 'DEBIT' as const,
-    STRIPE: 'STRIPE' as const,
-    TRANSFER: 'TRANSFER' as const,
-    WAIVED: 'WAIVED' as const,
+   APPLIED: 'APPLIED' as const,
+   CREDIT: 'CREDIT' as const,
+   DEBIT: 'DEBIT' as const,
+   STRIPE: 'STRIPE' as const,
+   TRANSFER: 'TRANSFER' as const,
+   WAIVED: 'WAIVED' as const
 }
 
 export const enumDnsRecordPurpose = {
-    DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE: 'DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE' as const,
-    DNS_RECORD_PURPOSE_TRAFFIC_ROUTE: 'DNS_RECORD_PURPOSE_TRAFFIC_ROUTE' as const,
-    DNS_RECORD_PURPOSE_UNSPECIFIED: 'DNS_RECORD_PURPOSE_UNSPECIFIED' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE: 'DNS_RECORD_PURPOSE_ACME_DNS01_CHALLENGE' as const,
+   DNS_RECORD_PURPOSE_TRAFFIC_ROUTE: 'DNS_RECORD_PURPOSE_TRAFFIC_ROUTE' as const,
+   DNS_RECORD_PURPOSE_UNSPECIFIED: 'DNS_RECORD_PURPOSE_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumDnsRecordStatus = {
-    DNS_RECORD_STATUS_PROPAGATED: 'DNS_RECORD_STATUS_PROPAGATED' as const,
-    DNS_RECORD_STATUS_REQUIRES_UPDATE: 'DNS_RECORD_STATUS_REQUIRES_UPDATE' as const,
-    DNS_RECORD_STATUS_UNSPECIFIED: 'DNS_RECORD_STATUS_UNSPECIFIED' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   DNS_RECORD_STATUS_PROPAGATED: 'DNS_RECORD_STATUS_PROPAGATED' as const,
+   DNS_RECORD_STATUS_REQUIRES_UPDATE: 'DNS_RECORD_STATUS_REQUIRES_UPDATE' as const,
+   DNS_RECORD_STATUS_UNSPECIFIED: 'DNS_RECORD_STATUS_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumDnsRecordType = {
-    DNS_RECORD_TYPE_A: 'DNS_RECORD_TYPE_A' as const,
-    DNS_RECORD_TYPE_CNAME: 'DNS_RECORD_TYPE_CNAME' as const,
-    DNS_RECORD_TYPE_NS: 'DNS_RECORD_TYPE_NS' as const,
-    DNS_RECORD_TYPE_UNSPECIFIED: 'DNS_RECORD_TYPE_UNSPECIFIED' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   DNS_RECORD_TYPE_A: 'DNS_RECORD_TYPE_A' as const,
+   DNS_RECORD_TYPE_CNAME: 'DNS_RECORD_TYPE_CNAME' as const,
+   DNS_RECORD_TYPE_NS: 'DNS_RECORD_TYPE_NS' as const,
+   DNS_RECORD_TYPE_UNSPECIFIED: 'DNS_RECORD_TYPE_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumDeploymentEventStep = {
-    BUILD_IMAGE: 'BUILD_IMAGE' as const,
-    CREATE_CONTAINER: 'CREATE_CONTAINER' as const,
-    DRAIN_INSTANCES: 'DRAIN_INSTANCES' as const,
-    HEALTHCHECK: 'HEALTHCHECK' as const,
-    MIGRATE_VOLUMES: 'MIGRATE_VOLUMES' as const,
-    PRE_DEPLOY_COMMAND: 'PRE_DEPLOY_COMMAND' as const,
-    PUBLISH_IMAGE: 'PUBLISH_IMAGE' as const,
-    SNAPSHOT_CODE: 'SNAPSHOT_CODE' as const,
-    WAIT_FOR_DEPENDENCIES: 'WAIT_FOR_DEPENDENCIES' as const,
+   BUILD_IMAGE: 'BUILD_IMAGE' as const,
+   CREATE_CONTAINER: 'CREATE_CONTAINER' as const,
+   DRAIN_INSTANCES: 'DRAIN_INSTANCES' as const,
+   HEALTHCHECK: 'HEALTHCHECK' as const,
+   MIGRATE_VOLUMES: 'MIGRATE_VOLUMES' as const,
+   PRE_DEPLOY_COMMAND: 'PRE_DEPLOY_COMMAND' as const,
+   PUBLISH_IMAGE: 'PUBLISH_IMAGE' as const,
+   SNAPSHOT_CODE: 'SNAPSHOT_CODE' as const,
+   WAIT_FOR_DEPENDENCIES: 'WAIT_FOR_DEPENDENCIES' as const
 }
 
 export const enumDeploymentInstanceStatus = {
-    CRASHED: 'CRASHED' as const,
-    CREATED: 'CREATED' as const,
-    EXITED: 'EXITED' as const,
-    INITIALIZING: 'INITIALIZING' as const,
-    REMOVED: 'REMOVED' as const,
-    REMOVING: 'REMOVING' as const,
-    RESTARTING: 'RESTARTING' as const,
-    RUNNING: 'RUNNING' as const,
-    SKIPPED: 'SKIPPED' as const,
-    STOPPED: 'STOPPED' as const,
+   CRASHED: 'CRASHED' as const,
+   CREATED: 'CREATED' as const,
+   EXITED: 'EXITED' as const,
+   INITIALIZING: 'INITIALIZING' as const,
+   REMOVED: 'REMOVED' as const,
+   REMOVING: 'REMOVING' as const,
+   RESTARTING: 'RESTARTING' as const,
+   RUNNING: 'RUNNING' as const,
+   SKIPPED: 'SKIPPED' as const,
+   STOPPED: 'STOPPED' as const
 }
 
 export const enumDeploymentStatus = {
-    BUILDING: 'BUILDING' as const,
-    CRASHED: 'CRASHED' as const,
-    DEPLOYING: 'DEPLOYING' as const,
-    FAILED: 'FAILED' as const,
-    INITIALIZING: 'INITIALIZING' as const,
-    NEEDS_APPROVAL: 'NEEDS_APPROVAL' as const,
-    QUEUED: 'QUEUED' as const,
-    REMOVED: 'REMOVED' as const,
-    REMOVING: 'REMOVING' as const,
-    SKIPPED: 'SKIPPED' as const,
-    SLEEPING: 'SLEEPING' as const,
-    SUCCESS: 'SUCCESS' as const,
-    WAITING: 'WAITING' as const,
+   BUILDING: 'BUILDING' as const,
+   CRASHED: 'CRASHED' as const,
+   DEPLOYING: 'DEPLOYING' as const,
+   FAILED: 'FAILED' as const,
+   INITIALIZING: 'INITIALIZING' as const,
+   NEEDS_APPROVAL: 'NEEDS_APPROVAL' as const,
+   QUEUED: 'QUEUED' as const,
+   REMOVED: 'REMOVED' as const,
+   REMOVING: 'REMOVING' as const,
+   SKIPPED: 'SKIPPED' as const,
+   SLEEPING: 'SLEEPING' as const,
+   SUCCESS: 'SUCCESS' as const,
+   WAITING: 'WAITING' as const
+}
+
+export const enumEnvironmentPatchStatus = {
+   APPLYING: 'APPLYING' as const,
+   COMMITTED: 'COMMITTED' as const,
+   STAGED: 'STAGED' as const
+}
+
+export const enumEventSeverity = {
+   CRITICAL: 'CRITICAL' as const,
+   INFO: 'INFO' as const,
+   NOTICE: 'NOTICE' as const,
+   WARNING: 'WARNING' as const
+}
+
+export const enumFunctionRuntimeName = {
+   bun: 'bun' as const
 }
 
 export const enumIncidentStatus = {
-    IDENTIFIED: 'IDENTIFIED' as const,
-    INVESTIGATING: 'INVESTIGATING' as const,
-    MONITORING: 'MONITORING' as const,
-    RESOLVED: 'RESOLVED' as const,
+   IDENTIFIED: 'IDENTIFIED' as const,
+   INVESTIGATING: 'INVESTIGATING' as const,
+   MONITORING: 'MONITORING' as const,
+   RESOLVED: 'RESOLVED' as const
 }
 
 export const enumKeyType = {
-    KEY_TYPE_ECDSA: 'KEY_TYPE_ECDSA' as const,
-    KEY_TYPE_RSA_2048: 'KEY_TYPE_RSA_2048' as const,
-    KEY_TYPE_RSA_4096: 'KEY_TYPE_RSA_4096' as const,
-    KEY_TYPE_UNSPECIFIED: 'KEY_TYPE_UNSPECIFIED' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   KEY_TYPE_ECDSA: 'KEY_TYPE_ECDSA' as const,
+   KEY_TYPE_RSA_2048: 'KEY_TYPE_RSA_2048' as const,
+   KEY_TYPE_RSA_4096: 'KEY_TYPE_RSA_4096' as const,
+   KEY_TYPE_UNSPECIFIED: 'KEY_TYPE_UNSPECIFIED' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumMaintenanceStatus = {
-    COMPLETED: 'COMPLETED' as const,
-    INPROGRESS: 'INPROGRESS' as const,
-    NOTSTARTEDYET: 'NOTSTARTEDYET' as const,
+   COMPLETED: 'COMPLETED' as const,
+   INPROGRESS: 'INPROGRESS' as const,
+   NOTSTARTEDYET: 'NOTSTARTEDYET' as const
 }
 
 export const enumMetricMeasurement = {
-    BACKUP_USAGE_GB: 'BACKUP_USAGE_GB' as const,
-    CPU_LIMIT: 'CPU_LIMIT' as const,
-    CPU_USAGE: 'CPU_USAGE' as const,
-    CPU_USAGE_2: 'CPU_USAGE_2' as const,
-    DISK_USAGE_GB: 'DISK_USAGE_GB' as const,
-    EPHEMERAL_DISK_USAGE_GB: 'EPHEMERAL_DISK_USAGE_GB' as const,
-    MEASUREMENT_UNSPECIFIED: 'MEASUREMENT_UNSPECIFIED' as const,
-    MEMORY_LIMIT_GB: 'MEMORY_LIMIT_GB' as const,
-    MEMORY_USAGE_GB: 'MEMORY_USAGE_GB' as const,
-    NETWORK_RX_GB: 'NETWORK_RX_GB' as const,
-    NETWORK_TX_GB: 'NETWORK_TX_GB' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   BACKUP_USAGE_GB: 'BACKUP_USAGE_GB' as const,
+   CPU_LIMIT: 'CPU_LIMIT' as const,
+   CPU_USAGE: 'CPU_USAGE' as const,
+   CPU_USAGE_2: 'CPU_USAGE_2' as const,
+   DISK_USAGE_GB: 'DISK_USAGE_GB' as const,
+   EPHEMERAL_DISK_USAGE_GB: 'EPHEMERAL_DISK_USAGE_GB' as const,
+   MEASUREMENT_UNSPECIFIED: 'MEASUREMENT_UNSPECIFIED' as const,
+   MEMORY_LIMIT_GB: 'MEMORY_LIMIT_GB' as const,
+   MEMORY_USAGE_GB: 'MEMORY_USAGE_GB' as const,
+   NETWORK_RX_GB: 'NETWORK_RX_GB' as const,
+   NETWORK_TX_GB: 'NETWORK_TX_GB' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
 }
 
 export const enumMetricTag = {
-    DEPLOYMENT_ID: 'DEPLOYMENT_ID' as const,
-    DEPLOYMENT_INSTANCE_ID: 'DEPLOYMENT_INSTANCE_ID' as const,
-    ENVIRONMENT_ID: 'ENVIRONMENT_ID' as const,
-    KEY_UNSPECIFIED: 'KEY_UNSPECIFIED' as const,
-    PLUGIN_ID: 'PLUGIN_ID' as const,
-    PROJECT_ID: 'PROJECT_ID' as const,
-    SERVICE_ID: 'SERVICE_ID' as const,
-    UNRECOGNIZED: 'UNRECOGNIZED' as const,
-    VOLUME_ID: 'VOLUME_ID' as const,
+   DEPLOYMENT_ID: 'DEPLOYMENT_ID' as const,
+   DEPLOYMENT_INSTANCE_ID: 'DEPLOYMENT_INSTANCE_ID' as const,
+   ENVIRONMENT_ID: 'ENVIRONMENT_ID' as const,
+   HOST_TYPE: 'HOST_TYPE' as const,
+   KEY_UNSPECIFIED: 'KEY_UNSPECIFIED' as const,
+   PLUGIN_ID: 'PLUGIN_ID' as const,
+   PROJECT_ID: 'PROJECT_ID' as const,
+   REGION: 'REGION' as const,
+   SERVICE_ID: 'SERVICE_ID' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const,
+   VOLUME_ID: 'VOLUME_ID' as const,
+   VOLUME_INSTANCE_ID: 'VOLUME_INSTANCE_ID' as const
+}
+
+export const enumMonitorAlertResourceType = {
+   SERVICE: 'SERVICE' as const,
+   VOLUME: 'VOLUME' as const
+}
+
+export const enumMonitorStatus = {
+   ALERT: 'ALERT' as const,
+   OK: 'OK' as const
+}
+
+export const enumMonitorThresholdCondition = {
+   above: 'above' as const,
+   below: 'below' as const
+}
+
+export const enumNotificationDeliveryStatus = {
+   FAILED: 'FAILED' as const,
+   PENDING: 'PENDING' as const,
+   SENT: 'SENT' as const
+}
+
+export const enumNotificationDeliveryType = {
+   EMAIL: 'EMAIL' as const,
+   INAPP: 'INAPP' as const,
+   WEBHOOK: 'WEBHOOK' as const
+}
+
+export const enumNotificationSeverity = {
+   CRITICAL: 'CRITICAL' as const,
+   INFO: 'INFO' as const,
+   NOTICE: 'NOTICE' as const,
+   WARNING: 'WARNING' as const
+}
+
+export const enumNotificationStatus = {
+   ACTIVE: 'ACTIVE' as const,
+   RESOLVED: 'RESOLVED' as const
 }
 
 export const enumObservabilityDashboardItemType = {
-    PROJECT_USAGE_ITEM: 'PROJECT_USAGE_ITEM' as const,
-    SERVICE_LOGS_ITEM: 'SERVICE_LOGS_ITEM' as const,
-    SERVICE_METRICS_ITEM: 'SERVICE_METRICS_ITEM' as const,
-    VOLUME_METRICS_ITEM: 'VOLUME_METRICS_ITEM' as const,
+   PROJECT_USAGE_ITEM: 'PROJECT_USAGE_ITEM' as const,
+   SERVICE_LOGS_ITEM: 'SERVICE_LOGS_ITEM' as const,
+   SERVICE_METRICS_ITEM: 'SERVICE_METRICS_ITEM' as const,
+   VOLUME_METRICS_ITEM: 'VOLUME_METRICS_ITEM' as const
+}
+
+export const enumPartnerProfileType = {
+   BASIC_PARTNER: 'BASIC_PARTNER' as const,
+   LIMITED_PARTNER: 'LIMITED_PARTNER' as const,
+   TEMPLATE_MAINTAINER: 'TEMPLATE_MAINTAINER' as const
+}
+
+export const enumPlan = {
+   FREE: 'FREE' as const,
+   HOBBY: 'HOBBY' as const,
+   PRO: 'PRO' as const
+}
+
+export const enumPlatformFeatureFlag = {
+   ALLOW_REPLICA_METRICS: 'ALLOW_REPLICA_METRICS' as const,
+   BUILDER_V3_ROLLOUT_EXISTING_SERVICES: 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES' as const,
+   BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO: 'BUILDER_V3_ROLLOUT_EXISTING_SERVICES_PRO' as const,
+   BUILDER_V3_ROLLOUT_NEW_SERVICES: 'BUILDER_V3_ROLLOUT_NEW_SERVICES' as const,
+   BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO: 'BUILDER_V3_ROLLOUT_NEW_SERVICES_PRO' as const,
+   CTRD_IMAGE_STORE_ROLLOUT: 'CTRD_IMAGE_STORE_ROLLOUT' as const,
+   DEMO_PERCENTAGE_ROLLOUT: 'DEMO_PERCENTAGE_ROLLOUT' as const,
+   ENABLE_RAW_SQL_QUERIES: 'ENABLE_RAW_SQL_QUERIES' as const,
+   SCYLLADB_ROUTING_ENABLED: 'SCYLLADB_ROUTING_ENABLED' as const,
+   SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL: 'SERVICEINSTANCE_DATALOADER_FOR_STATIC_URL' as const,
+   SPLIT_USAGE_QUERIES: 'SPLIT_USAGE_QUERIES' as const,
+   UPDATED_VM_QUERIES: 'UPDATED_VM_QUERIES' as const,
+   USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION: 'USE_GH_WEBHOOKS_FOR_CHANGE_DETECTION' as const,
+   VM_TIME_RANGE_QUERY: 'VM_TIME_RANGE_QUERY' as const
+}
+
+export const enumPlatformFeatureFlagType = {
+   BOOLEAN: 'BOOLEAN' as const,
+   PERCENTAGE: 'PERCENTAGE' as const
 }
 
 export const enumPluginStatus = {
-    DEPRECATED: 'DEPRECATED' as const,
-    LOCKED: 'LOCKED' as const,
-    REMOVED: 'REMOVED' as const,
-    RUNNING: 'RUNNING' as const,
-    STOPPED: 'STOPPED' as const,
+   DEPRECATED: 'DEPRECATED' as const,
+   LOCKED: 'LOCKED' as const,
+   REMOVED: 'REMOVED' as const,
+   RUNNING: 'RUNNING' as const,
+   STOPPED: 'STOPPED' as const
 }
 
 export const enumPluginType = {
-    mongodb: 'mongodb' as const,
-    mysql: 'mysql' as const,
-    postgresql: 'postgresql' as const,
-    redis: 'redis' as const,
+   mongodb: 'mongodb' as const,
+   mysql: 'mysql' as const,
+   postgresql: 'postgresql' as const,
+   redis: 'redis' as const
 }
 
 export const enumProjectRole = {
-    ADMIN: 'ADMIN' as const,
-    MEMBER: 'MEMBER' as const,
-    VIEWER: 'VIEWER' as const,
+   ADMIN: 'ADMIN' as const,
+   MEMBER: 'MEMBER' as const,
+   VIEWER: 'VIEWER' as const
 }
 
 export const enumProjectUsageProperty = {
-    BACKUP_USAGE: 'BACKUP_USAGE' as const,
-    CPU_USAGE: 'CPU_USAGE' as const,
-    CURRENT_USAGE: 'CURRENT_USAGE' as const,
-    DISK_USAGE: 'DISK_USAGE' as const,
-    ESTIMATED_USAGE: 'ESTIMATED_USAGE' as const,
-    MEMORY_USAGE: 'MEMORY_USAGE' as const,
-    NETWORK_USAGE: 'NETWORK_USAGE' as const,
+   BACKUP_USAGE: 'BACKUP_USAGE' as const,
+   CPU_USAGE: 'CPU_USAGE' as const,
+   CURRENT_USAGE: 'CURRENT_USAGE' as const,
+   DISK_USAGE: 'DISK_USAGE' as const,
+   ESTIMATED_USAGE: 'ESTIMATED_USAGE' as const,
+   MEMORY_USAGE: 'MEMORY_USAGE' as const,
+   NETWORK_USAGE: 'NETWORK_USAGE' as const
 }
 
 export const enumPublicRuntime = {
-    LEGACY: 'LEGACY' as const,
-    UNSPECIFIED: 'UNSPECIFIED' as const,
-    V2: 'V2' as const,
+   LEGACY: 'LEGACY' as const,
+   UNSPECIFIED: 'UNSPECIFIED' as const,
+   V2: 'V2' as const
 }
 
 export const enumReferralStatus = {
-    REFEREE_CREDITED: 'REFEREE_CREDITED' as const,
-    REFERRER_CREDITED: 'REFERRER_CREDITED' as const,
-    REGISTERED: 'REGISTERED' as const,
-}
-
-export const enumRefundRequestDecisionEnum = {
-    AUTO_REFUNDED: 'AUTO_REFUNDED' as const,
-    AUTO_REJECTED: 'AUTO_REJECTED' as const,
-    MANUALLY_REFUNDED: 'MANUALLY_REFUNDED' as const,
+   REFEREE_CREDITED: 'REFEREE_CREDITED' as const,
+   REFERRER_CREDITED: 'REFERRER_CREDITED' as const,
+   REGISTERED: 'REGISTERED' as const
 }
 
 export const enumRegistrationStatus = {
-    ONBOARDED: 'ONBOARDED' as const,
-    REGISTERED: 'REGISTERED' as const,
-    WAITLISTED: 'WAITLISTED' as const,
+   ONBOARDED: 'ONBOARDED' as const,
+   REGISTERED: 'REGISTERED' as const,
+   WAITLISTED: 'WAITLISTED' as const
+}
+
+export const enumReplicateVolumeInstanceSnapshotStatus = {
+   COMPLETED: 'COMPLETED' as const,
+   FAILED: 'FAILED' as const,
+   INITIATED: 'INITIATED' as const,
+   TRANSFERRING: 'TRANSFERRING' as const,
+   UNRECOGNIZED: 'UNRECOGNIZED' as const
+}
+
+export const enumReplicateVolumeInstanceStatus = {
+   COMPLETED: 'COMPLETED' as const,
+   ERROR: 'ERROR' as const,
+   QUEUED: 'QUEUED' as const,
+   TRANSFERRING_OFFLINE: 'TRANSFERRING_OFFLINE' as const,
+   TRANSFERRING_ONLINE: 'TRANSFERRING_ONLINE' as const
 }
 
 export const enumResourceOwnerType = {
-    TEAM: 'TEAM' as const,
-    USER: 'USER' as const,
+   WORKSPACE: 'WORKSPACE' as const
 }
 
 export const enumRestartPolicyType = {
-    ALWAYS: 'ALWAYS' as const,
-    NEVER: 'NEVER' as const,
-    ON_FAILURE: 'ON_FAILURE' as const,
+   ALWAYS: 'ALWAYS' as const,
+   NEVER: 'NEVER' as const,
+   ON_FAILURE: 'ON_FAILURE' as const
 }
 
 export const enumSessionType = {
-    BROWSER: 'BROWSER' as const,
-    CLI: 'CLI' as const,
-    FORUMS: 'FORUMS' as const,
+   BROWSER: 'BROWSER' as const,
+   CLI: 'CLI' as const,
+   FORUMS: 'FORUMS' as const
+}
+
+export const enumSortOrder = {
+   asc: 'asc' as const,
+   desc: 'desc' as const
 }
 
 export const enumSubscriptionModel = {
-    FREE: 'FREE' as const,
-    TEAM: 'TEAM' as const,
-    USER: 'USER' as const,
+   FREE: 'FREE' as const,
+   TEAM: 'TEAM' as const,
+   USER: 'USER' as const
 }
 
 export const enumSubscriptionPlanType = {
-    free: 'free' as const,
-    hobby: 'hobby' as const,
-    pro: 'pro' as const,
-    trial: 'trial' as const,
+   free: 'free' as const,
+   hobby: 'hobby' as const,
+   pro: 'pro' as const,
+   trial: 'trial' as const
 }
 
 export const enumSubscriptionState = {
-    ACTIVE: 'ACTIVE' as const,
-    CANCELLED: 'CANCELLED' as const,
-    INACTIVE: 'INACTIVE' as const,
-    PAST_DUE: 'PAST_DUE' as const,
-    UNPAID: 'UNPAID' as const,
+   ACTIVE: 'ACTIVE' as const,
+   CANCELLED: 'CANCELLED' as const,
+   INACTIVE: 'INACTIVE' as const,
+   PAST_DUE: 'PAST_DUE' as const,
+   UNPAID: 'UNPAID' as const
 }
 
 export const enumSupportTierOverride = {
-    BUSINESS_CLASS: 'BUSINESS_CLASS' as const,
-    BUSINESS_CLASS_TRIAL: 'BUSINESS_CLASS_TRIAL' as const,
+   BUSINESS_CLASS: 'BUSINESS_CLASS' as const,
+   BUSINESS_CLASS_TRIAL: 'BUSINESS_CLASS_TRIAL' as const
 }
 
 export const enumTeamRole = {
-    ADMIN: 'ADMIN' as const,
-    MEMBER: 'MEMBER' as const,
-    VIEWER: 'VIEWER' as const,
+   ADMIN: 'ADMIN' as const,
+   MEMBER: 'MEMBER' as const,
+   VIEWER: 'VIEWER' as const
 }
 
 export const enumTemplateStatus = {
-    HIDDEN: 'HIDDEN' as const,
-    PUBLISHED: 'PUBLISHED' as const,
-    UNPUBLISHED: 'UNPUBLISHED' as const,
+   HIDDEN: 'HIDDEN' as const,
+   PUBLISHED: 'PUBLISHED' as const,
+   UNPUBLISHED: 'UNPUBLISHED' as const
 }
 
-export const enumUsageAnomalyAction = {
-    ALLOWED: 'ALLOWED' as const,
-    AUTOBANNED: 'AUTOBANNED' as const,
-    BANNED: 'BANNED' as const,
+export const enumTwoFactorMethodCompliance = {
+   AUTHENTICATOR: 'AUTHENTICATOR' as const,
+   PASSKEY: 'PASSKEY' as const
 }
 
-export const enumUsageAnomalyFlagReason = {
-    HIGH_CPU_USAGE: 'HIGH_CPU_USAGE' as const,
-    HIGH_DISK_USAGE: 'HIGH_DISK_USAGE' as const,
-    HIGH_NETWORK_USAGE: 'HIGH_NETWORK_USAGE' as const,
+export const enumTwoFactorMethodProjectWorkspace = {
+   AUTHENTICATOR: 'AUTHENTICATOR' as const,
+   PASSKEY: 'PASSKEY' as const
 }
 
 export const enumUserFlag = {
-    BETA: 'BETA' as const,
+   BETA: 'BETA' as const
 }
 
 export const enumVolumeInstanceBackupScheduleKind = {
-    DAILY: 'DAILY' as const,
-    MONTHLY: 'MONTHLY' as const,
-    WEEKLY: 'WEEKLY' as const,
-}
-
-export const enumVolumeInstanceType = {
-    CLOUD: 'CLOUD' as const,
-    METAL: 'METAL' as const,
+   DAILY: 'DAILY' as const,
+   MONTHLY: 'MONTHLY' as const,
+   WEEKLY: 'WEEKLY' as const
 }
 
 export const enumVolumeState = {
-    DELETED: 'DELETED' as const,
-    DELETING: 'DELETING' as const,
-    ERROR: 'ERROR' as const,
-    MIGRATING: 'MIGRATING' as const,
-    MIGRATION_PENDING: 'MIGRATION_PENDING' as const,
-    READY: 'READY' as const,
-    UPDATING: 'UPDATING' as const,
+   DELETED: 'DELETED' as const,
+   DELETING: 'DELETING' as const,
+   ERROR: 'ERROR' as const,
+   MIGRATING: 'MIGRATING' as const,
+   MIGRATION_PENDING: 'MIGRATION_PENDING' as const,
+   READY: 'READY' as const,
+   RESTORING: 'RESTORING' as const,
+   UPDATING: 'UPDATING' as const
 }
 
 export const enumWithdrawalPlatformTypes = {
-    BMAC: 'BMAC' as const,
-    GITHUB: 'GITHUB' as const,
-    PAYPAL: 'PAYPAL' as const,
-}
-
-export const enumWithdrawalStatusType = {
-    CANCELLED: 'CANCELLED' as const,
-    COMPLETED: 'COMPLETED' as const,
-    FAILED: 'FAILED' as const,
-    PENDING: 'PENDING' as const,
+   BMAC: 'BMAC' as const,
+   GITHUB: 'GITHUB' as const,
+   PAYPAL: 'PAYPAL' as const,
+   STRIPE_CONNECT: 'STRIPE_CONNECT' as const
 }
 
 export const enumWorkflowStatus = {
-    Complete: 'Complete' as const,
-    Error: 'Error' as const,
-    NotFound: 'NotFound' as const,
-    Running: 'Running' as const,
+   Complete: 'Complete' as const,
+   Error: 'Error' as const,
+   NotFound: 'NotFound' as const,
+   Running: 'Running' as const
+}
+
+export const enumWorkspaceIdPConnectionStatus = {
+   ACTIVE: 'ACTIVE' as const,
+   DRAFT: 'DRAFT' as const,
+   INACTIVE: 'INACTIVE' as const,
+   PENDING: 'PENDING' as const,
+   VALIDATING: 'VALIDATING' as const
 }

@@ -63,20 +63,11 @@ export default function HomeScreen() {
     }, [currentUserWorkspaces, currentWorkspaceId])
 
     const currentWorkspaceProjects = useMemo(() => {
-        if (!currentWorkspace) return []
-
-        // determine if currentWorkspace is the user or a team
-        if (currentWorkspace?.team) {
-            return currentWorkspace.team.projects.edges
-                .map((edge) => edge.node)
-                .sort((a, b) => a.name.localeCompare(b.name))
-        }
-
-        return currentUser?.projects.edges
+        if (!currentWorkspace?.projects) return []
+        return currentWorkspace.projects.edges
             .map((edge) => edge.node)
             .sort((a, b) => a.name.localeCompare(b.name))
-        // }, [currentUser?.data?.projects, currentWorkspace])
-    }, [currentUser, currentWorkspace])
+    }, [currentWorkspace])
 
     const filteredWorkspaceProjects = useMemo(() => {
         if (!currentWorkspaceProjects) return []
@@ -266,7 +257,7 @@ export default function HomeScreen() {
                 options={{
                     headerShown: true,
                     headerLargeTitle: true,
-                    title: currentWorkspace?.team?.name || currentWorkspace?.team?.id,
+                    title: currentWorkspace?.name,
                     headerLeft: () => (
                         <ContextMenu
                             dropdownMenuMode={true}
@@ -282,7 +273,7 @@ export default function HomeScreen() {
                                             actions: [
                                                 ...(userQuery.data.workspaces || []).map(
                                                     (workspace) => ({
-                                                        title: workspace.team?.name || workspace.id,
+                                                        title: workspace.name,
                                                         systemIcon: isLiquidGlassAvailable()
                                                             ? workspace.id === currentWorkspaceId
                                                                 ? 'smallcircle.filled.circle.fill'
@@ -421,10 +412,10 @@ export default function HomeScreen() {
                             >
                                 <Image
                                     source={
-                                        currentWorkspace?.team?.avatar || currentUser?.avatar
+                                        currentWorkspace?.avatar || currentUser?.avatar
                                             ? {
                                                   uri:
-                                                      currentWorkspace?.team?.avatar ||
+                                                      currentWorkspace?.avatar ||
                                                       currentUser?.avatar,
                                               }
                                             : require('@/assets/icon.png')
