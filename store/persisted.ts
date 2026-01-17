@@ -30,6 +30,8 @@ interface PersistedStoreState {
     acknowledgeSwipeLeft: () => void
 
     hasSeenOnboarding: boolean
+
+    installationTs: number
 }
 
 export const usePersistedStore = create<PersistedStoreState>()(
@@ -89,6 +91,8 @@ export const usePersistedStore = create<PersistedStoreState>()(
             },
 
             hasSeenOnboarding: false,
+
+            installationTs: Date.now(),
         }),
         {
             name: 'station-persisted-store',

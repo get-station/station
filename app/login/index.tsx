@@ -5,6 +5,7 @@ import { usePersistedStore } from '@/store/persisted'
 import { COLORS } from '@/theme/colors'
 import { Ionicons } from '@expo/vector-icons'
 import { router, useNavigation } from 'expo-router'
+import { usePlacement } from 'expo-superwall'
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
     Alert,
@@ -30,6 +31,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Login() {
     const navigation = useNavigation()
+    const { registerPlacement } = usePlacement()
 
     const connections = usePersistedStore((state) => state.connections)
     const addConnection = usePersistedStore((state) => state.addConnection)
@@ -104,6 +106,12 @@ export default function Login() {
 
             switchConnection({ connectionId: user.id })
 
+            if (connections.length === 1) {
+                registerPlacement({
+                    placement: 'SuccessfulLogin',
+                }).catch()
+            }
+
             await queryClient.prefetchQuery({
                 queryKey: ['user', user.id],
                 queryFn: async () => await fetchUserInfo({ connectionId: user.id }),
@@ -116,7 +124,7 @@ export default function Login() {
         } finally {
             setIsLoading(false)
         }
-    }, [validateToken, switchConnection, addConnection, connections])
+    }, [validateToken, switchConnection, addConnection, connections, registerPlacement])
 
     const openApiDocs = useCallback(() => {
         try {
@@ -141,12 +149,18 @@ export default function Login() {
             <SafeAreaView style={{ flex: 1 }} edges={Platform.OS === 'android' ? ['top'] : []}>
                 <KeyboardAwareScrollView
                     bottomOffset={20}
+                    extraKeyboardSpace={70}
                     keyboardShouldPersistTaps="handled"
                     style={{
                         flex: 1,
-                        paddingTop: 120,
                         backgroundColor: COLORS.background,
                     }}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                        paddingTop: 120,
+                        paddingBottom: 280,
+                    }}
+                    showsVerticalScrollIndicator={false}
                 >
                     {showCloseButton && (
                         <TouchableOpacity
@@ -169,7 +183,7 @@ export default function Login() {
 
                     <View
                         style={{
-                            flex: 1,
+                            flexGrow: 1,
                             flexDirection: 'column',
                             justifyContent: 'center',
                             alignSelf: 'center',

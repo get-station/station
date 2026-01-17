@@ -20,7 +20,6 @@ import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { formatDistanceToNow } from 'date-fns'
-import { isLiquidGlassAvailable } from 'expo-glass-effect'
 import * as Haptics from 'expo-haptics'
 import { router, useGlobalSearchParams, useNavigation } from 'expo-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
@@ -175,28 +174,10 @@ export default function ServiceDeploymentsScreen() {
                               }
                           }}
                       >
-                          <HeaderTouchableOpacity
-                              style={
-                                  isLiquidGlassAvailable()
-                                      ? {
-                                            height: 36,
-                                            width: 36,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                        }
-                                      : {
-                                            backgroundColor: COLORS.gray100,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            borderRadius: 16,
-                                            height: 36,
-                                            width: 36,
-                                        }
-                              }
-                          >
+                          <HeaderTouchableOpacity>
                               <Ionicons
                                   name="ellipsis-horizontal-sharp"
-                                  size={isLiquidGlassAvailable() ? 32 : 28}
+                                  size={32}
                                   color={COLORS.gray800}
                               />
                           </HeaderTouchableOpacity>
