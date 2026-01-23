@@ -12,6 +12,7 @@ import HeaderItem from '@/components/base/HeaderItem'
 import { HeaderTouchableOpacity } from '@/components/base/HeaderTouchableOpacity'
 import buildPlaceholder from '@/components/base/Placeholder'
 import RefreshControl from '@/components/base/RefreshControl'
+import WidgetMessage from '@/components/base/WidgetMessage'
 import { useFlashlistProps } from '@/lib/hooks'
 import { queryClient } from '@/lib/query'
 import { usePersistedStore } from '@/store/persisted'
@@ -137,7 +138,11 @@ export default function ServiceDeploymentsScreen() {
                                           { text: 'Good to know!', style: 'cancel' },
                                       ])
                                   }
-                                  router.back()
+                                  if (navigation.canGoBack()) {
+                                      router.back()
+                                  } else {
+                                      router.replace('/home/')
+                                  }
                                   return
                               }
 
@@ -209,7 +214,6 @@ export default function ServiceDeploymentsScreen() {
                     style={{
                         flexDirection: 'column',
                         gap: 10,
-                        paddingBottom: 32,
                     }}
                 >
                     {projectEnvironments && projectEnvironments.length > 1 && (
@@ -257,6 +261,10 @@ export default function ServiceDeploymentsScreen() {
                     <View style={{ paddingHorizontal: 16 }}>
                         <ServiceMetricsCard />
                     </View>
+                    <WidgetMessage
+                        message={`Tap to see ${service?.name} metrics on your homescreen.`}
+                        style={{ paddingHorizontal: 16, paddingBottom: 12 }}
+                    />
                 </View>
             }
             ListEmptyComponent={Placeholder}

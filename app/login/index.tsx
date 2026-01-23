@@ -20,13 +20,8 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller'
-import Animated, {
-    interpolate,
-    useAnimatedKeyboard,
-    useAnimatedStyle,
-    withTiming,
-} from 'react-native-reanimated'
+import { KeyboardAwareScrollView, useAnimatedKeyboard } from 'react-native-keyboard-controller'
+import Animated, { interpolate, useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Login() {
@@ -46,10 +41,7 @@ export default function Login() {
         return Platform.OS === 'android' && isModal
     }, [isModal])
 
-    const keyboard = useAnimatedKeyboard({
-        isStatusBarTranslucentAndroid: true,
-        isNavigationBarTranslucentAndroid: true,
-    })
+    const keyboard = useAnimatedKeyboard()
 
     const helpBoxAnimatedStyles = useAnimatedStyle(() => {
         const isKeyboardVisible = interpolate(keyboard.height.value, [0, 1], [0, 1], 'clamp')

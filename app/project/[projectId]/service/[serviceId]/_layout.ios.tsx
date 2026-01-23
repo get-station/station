@@ -29,7 +29,7 @@ export default function TabsLayout() {
     }, [projectQuery.data?.project, serviceId])
 
     return (
-        <NativeTabs disableTransparentOnScrollEdge={true} tintColor={COLORS.pink500}>
+        <NativeTabs disableTransparentOnScrollEdge={true} tintColor={COLORS.pink700}>
             <NativeTabs.Trigger name="home">
                 <Label>Deployments</Label>
                 <Icon src={<VectorIcon family={Ionicons} name="rocket" />} />
