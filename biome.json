@@ -55,6 +55,6 @@
             "trailingCommas": "es5",
             "semicolons": "asNeeded"
         },
-        "globals": ["it", "describe", "expect", "test"]
+        "globals": ["it", "describe", "expect", "test", "__DEV__"]
     }
 }
