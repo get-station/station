@@ -2,8 +2,8 @@ import { fetchProject } from '@/api/queries'
 import { COLORS } from '@/theme/colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useQuery } from '@tanstack/react-query'
-import { useGlobalSearchParams } from 'expo-router'
-import { Icon, Label, NativeTabs, VectorIcon } from 'expo-router/unstable-native-tabs'
+import { Icon, Label, VectorIcon, useGlobalSearchParams } from 'expo-router'
+import { NativeTabs } from 'expo-router/unstable-native-tabs'
 import { useMemo } from 'react'
 
 export default function TabsLayout() {
