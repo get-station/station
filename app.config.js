@@ -76,7 +76,35 @@ module.exports = ({ config }) => {
                     organization: process.env.EXPO_PUBLIC_SENTRY_ORG,
                 },
             ],
+            'expo-font',
             'expo-web-browser',
+            [
+                'expo-alternate-app-icons',
+                [
+                    {
+                        name: 'Arc',
+                        ios: './assets/icon-arc.png',
+                        android: {
+                            foregroundImage: './assets/icon-arc.png',
+                        },
+                    },
+                    {
+                        name: 'Text',
+                        ios: './assets/icon-text.png',
+                        android: {
+                            foregroundImage: './assets/icon-text.png',
+                        },
+                    },
+                    {
+                        name: 'Door',
+                        ios: './assets/icon-door.png',
+                        android: {
+                            foregroundImage: './assets/icon-door.png',
+                        },
+                    },
+                ],
+            ],
+            '@bacons/apple-targets',
         ],
 
         experiments: {

@@ -202,6 +202,15 @@ function RootLayout() {
                                 />
                             </Stack>
                         </PersistQueryClientProvider>
+                                    <Stack.Screen
+                                        name="icons/index"
+                                        options={{
+                                            title: 'App Icon',
+                                            ...commonHeaderStyle,
+                                            ...commonContentStyle,
+                                            autoHideHomeIndicator: true,
+                                        }}
+                                    />
                     </SuperwallProvider>
                 </KeyboardProvider>
             </GestureHandlerRootView>
