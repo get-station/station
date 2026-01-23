@@ -32,7 +32,6 @@ export default function App() {
         registerPlacement({
             placement: 'TapWidget',
             feature: () => {
-                // WidgetKitModule.setIsSubscribed(true)
                 Alert.alert(
                     'Congrats!',
                     'You can now go to your homescreen and search for "Station" widgets'
@@ -49,7 +48,6 @@ export default function App() {
         registerPlacement({
             placement: 'LifetimeOffer_1_Show',
             feature: () => {
-                // WidgetKitModule.setIsSubscribed(true)
                 Alert.alert('Congrats!', 'You unlocked lifetime access to Station.')
             },
         }).catch((error) => {

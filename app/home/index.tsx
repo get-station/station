@@ -222,7 +222,6 @@ export default function HomeScreen() {
                     registerPlacement({
                         placement: 'LifetimeOffer_1',
                         feature: () => {
-                            // WidgetKitModule.setIsSubscribed(true)
                             Alert.alert('Congrats!', 'You unlocked lifetime access to Station.')
                         },
                     }).catch((error) => {
