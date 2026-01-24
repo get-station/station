@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="small_shortcut_widget_description">Quickly open your project</string>
+    <string name="large_project_widget_description">View detailed project information</string>
+    <string name="widget_loading">Loading…</string>
+</resources>
+
+

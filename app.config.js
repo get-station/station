@@ -59,6 +59,36 @@ module.exports = ({ config }) => {
                 },
             ],
             './plugins/withAndroidHeap',
+            [
+                './plugins/withAndroidWidget',
+                {
+                    src: 'targets/widget-android',
+                    distPlaceholder: 'com.station.mobile',
+                    versions: {
+                        glance: '1.1.0',
+                        gson: '2.10.1',
+                        activityCompose: '1.9.0',
+                        composeUi: '1.6.7',
+                        material3: '1.2.1',
+                        workRuntime: '2.9.0',
+                        kotlinExtension: '2.0.0',
+                    },
+                    widgets: [
+                        {
+                            receiverName: 'LargeProjectWidgetReceiver',
+                            configurationActivity: 'LargeProjectConfigurationActivity',
+                            title: 'Station Projects',
+                            resource: '@xml/large_project_widget',
+                        },
+                        {
+                            receiverName: 'SmallShortcutWidgetReceiver',
+                            configurationActivity: 'SmallShortcutConfigurationActivity',
+                            title: 'Station Shortcut',
+                            resource: '@xml/small_shortcut_widget',
+                        },
+                    ],
+                },
+            ],
             'expo-router',
 
             [
