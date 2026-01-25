@@ -183,13 +183,12 @@ fun ServiceItemView(
     config: WidgetServicesListConfig,
     context: Context,
 ) {
+    val path = "project/${config.projectId}/service/${service.id}"
     val deepLink =
         getAppDeepLink(
             context,
-            config.projectId,
-            service.id,
-            config.environmentId,
             config.connection.id,
+            path
         )
 
     Row(

@@ -37,28 +37,21 @@ fun formatCompactCount(value: Int): String {
 }
 
 /**
- * Generate deep link to the app based on subscription state and optional project/service/environment.
+ * Generate deep link to the app
  */
-fun getAppDeepLink(
-    context: Context,
-    projectId: String? = null,
-    serviceId: String? = null,
-    environmentId: String? = null,
-    connectionId: String? = null,
-): String {
-    val baseLink = if (projectId != null && serviceId != null) {
-        "exp+station://project/$projectId/service/$serviceId"
-    } else if (projectId != null) {
-        "exp+station://project/$projectId"
-    } else {
-        "exp+station://"
+fun getAppDeepLink(context: Context, connectionId: String?, path: String): String {
+    if (connectionId == null) {
+        return "station://"
     }
-
-    return if (connectionId != null) {
-        val separator = if (baseLink.contains("?")) "&" else "?"
-        "$baseLink${separator}_widgetConnectionId=$connectionId"
+    
+    val prefs = context.getSharedPreferences(APP_GROUP_NAME, Context.MODE_PRIVATE)
+    val isSubscribed = prefs.getBoolean(IS_SUBSCRIBED_KEY, false)
+    
+    return if (isSubscribed) {
+        val separator = if (path.contains("?")) "&" else "?"
+        "station://$path${separator}_widgetConnectionId=$connectionId"
     } else {
-        baseLink
+        "station://?showPaywall=1"
     }
 }
 

@@ -93,12 +93,11 @@ fun SmallShortcutWidgetContent(context: Context) {
             }
         } else if (config != null) {
             // Subscribed & Configured: Show Project Shortcut
+            val path = "project/${config.projectId}/service/${config.serviceId}"
             val deepLink = getAppDeepLink(
                 widgetContext,
-                config.projectId,
-                config.serviceId,
-                config.environmentId,
                 config.connection.id,
+                path
             )
             Log.d("SmallShortcutWidget", "Rendering widget for service: ${config.serviceName}, deepLink: $deepLink")
             
