@@ -115,10 +115,10 @@ fun SmallShortcutWidgetContent(context: Context) {
                 // App Icon
                 Image(
                     provider = ImageProvider(
-                        context.resources.getIdentifier("ic_launcher", "mipmap", context.packageName)
+                        context.resources.getIdentifier("ic_launcher_foreground", "mipmap", context.packageName)
                     ), 
                     contentDescription = null,
-                    modifier = GlanceModifier.size(40.dp)
+                    modifier = GlanceModifier.size(44.dp)
                 )
 
                 Text(

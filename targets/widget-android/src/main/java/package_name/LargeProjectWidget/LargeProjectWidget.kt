@@ -146,7 +146,7 @@ fun ServicesListView(
         ) {
             Image(
                 provider = ImageProvider(
-                    context.resources.getIdentifier("ic_launcher", "mipmap", context.packageName)
+                    context.resources.getIdentifier("ic_launcher_foreground", "mipmap", context.packageName)
                 ), 
                 contentDescription = null,
                 modifier = GlanceModifier.size(20.dp)
