@@ -23,7 +23,7 @@ val neutral000 = Color(0xFFFFFFFF)
 val neutral200 = Color(0xFFE6ECF2)
 val neutral950 = Color(0xFFF8F8FA)
 
-val bgApp = Color(0xFF0D0C11) // hsl(255, 11%, 7%)
+val bgApp = Color(0xFF111019) // hsl(247, 7%, 8%)
 val bgDark = Color(0xFF161521) // hsl(246, 18.5%, 10.6%)
 val stationPurple = Color(0xFF8E37E5) // hsl(270, 60%, 52%)
 val stationBlue = Color(0xFF3078ED) // hsl(220, 80%, 55%)
